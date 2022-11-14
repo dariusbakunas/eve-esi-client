@@ -25,3 +25,4 @@
 commitlint.config.js
 .prettierrc.json
 .prettierignore
+git_push.sh
