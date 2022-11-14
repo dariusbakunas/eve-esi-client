@@ -21,7 +21,6 @@
   "sideEffects": false,
   "scripts": {
     "build": "tsc && tsc -p tsconfig.esm.json",
-    "prepare": "yarn build",
     "prettier": "prettier --write .",
     "commit": "cz"
   },
