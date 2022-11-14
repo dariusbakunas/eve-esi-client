@@ -1,6 +1,6 @@
 --- package.json	2022-11-14 11:43:22.000000000 -0500
 +++ packageu.json	2022-11-14 11:42:58.000000000 -0500
-@@ -14,20 +14,43 @@
+@@ -14,20 +14,42 @@
      "openapi-generator",
      "@dariusbakunas/eve-esi-client"
    ],
@@ -13,7 +13,6 @@
    "scripts": {
      "build": "tsc && tsc -p tsconfig.esm.json",
 -    "prepare": "npm run build"
-+    "prepare": "yarn build",
 +    "prettier": "prettier --write .",
 +    "commit": "cz"
    },
