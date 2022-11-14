@@ -1,0 +1,15 @@
+build
+coverage
+tsconfig*
+README.md
+package.json
+openapitools.json
+cfg/
+dist/
+.openapi-generator/
+.openapi-generator-ignore
+.idea/
+.gitignore
+generate.sh
+git_push.sh
+yarn.lock

@@ -1,0 +1,3 @@
+enumPropertyNaming: UPPERCASE
+npmName: '@dariusbakunas/eve-esi-client'
+supportsES6: true
