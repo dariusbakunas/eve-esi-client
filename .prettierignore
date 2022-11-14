@@ -13,3 +13,4 @@ dist/
 generate.sh
 git_push.sh
 yarn.lock
+CHANGELOG.md
