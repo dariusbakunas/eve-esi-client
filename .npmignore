@@ -1,1 +1,23 @@
 # empty npmignore to ensure all required files (e.g., in the dist folder) are published by npm
+.github
+.gitignore
+.husky
+.idea
+.openapi-generator
+.openapi-generator-ignore
+cfg
+node_modules
+.prettierignore
+.prettierrc.json
+api.ts
+base.ts
+commitlint.config.js
+common.ts
+configuration.ts
+generate.sh
+index.ts
+openapitools.json
+package.patch
+tsconfig.esm.json
+tsconfig.json
+yarn.lock
