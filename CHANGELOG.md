@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/dariusbakunas/eve-esi-client/compare/v1.0.1...v1.0.2) (2022-11-14)
+
+
+### Bug Fixes
+
+* make sure npm package is public ([8d7dec1](https://github.com/dariusbakunas/eve-esi-client/commit/8d7dec1cae9e8669b19a4448f1f067ecd5d9f340))
+
 ## [1.0.1](https://github.com/dariusbakunas/eve-esi-client/compare/v1.0.0...v1.0.1) (2022-11-14)
 
 
