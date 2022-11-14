@@ -24,7 +24,7 @@
     "prepare": "yarn build",
     "prettier": "prettier --write .",
     "reset-hard": "git clean -dfx && git reset --hard && yarn",
-    "version": "release-please",
+    "version": "release-please release-pr --token=$GITHUB_TOKEN --repo-url=dariusbakunas/eve-esi-client",
     "prepare-release": "run-s reset-hard version",
     "commit": "cz"
   },

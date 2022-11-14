@@ -1,5 +1,5 @@
---- package.json	2022-11-14 10:40:21.000000000 -0500
-+++ package-updates.json	2022-11-14 10:40:08.000000000 -0500
+--- package.json	2022-11-14 10:56:19.000000000 -0500
++++ packageu.json	2022-11-14 10:55:46.000000000 -0500
 @@ -14,20 +14,46 @@
      "openapi-generator",
      "@dariusbakunas/eve-esi-client"
@@ -16,7 +16,7 @@
 +    "prepare": "yarn build",
 +    "prettier": "prettier --write .",
 +    "reset-hard": "git clean -dfx && git reset --hard && yarn",
-+    "version": "release-please",
++    "version": "release-please release-pr --token=$GITHUB_TOKEN --repo-url=dariusbakunas/eve-esi-client",
 +    "prepare-release": "run-s reset-hard version",
 +    "commit": "cz"
    },
