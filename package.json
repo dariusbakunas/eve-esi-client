@@ -24,8 +24,9 @@
     "prepare": "yarn build",
     "prettier": "prettier --write .",
     "reset-hard": "git clean -dfx && git reset --hard && yarn",
-    "version": "release-please",
-    "prepare-release": "run-s reset-hard version"
+    "version": "release-please release-pr --token=$GITHUB_TOKEN --repo-url=dariusbakunas/eve-esi-client",
+    "prepare-release": "run-s reset-hard version",
+    "commit": "cz"
   },
   "dependencies": {
     "axios": "^0.26.1"
@@ -39,10 +40,20 @@
     "README.md"
   ],
   "devDependencies": {
+    "@commitlint/cli": "^17.2.0",
+    "@commitlint/config-conventional": "^17.2.0",
     "@types/node": "^12.11.5",
+    "commitizen": "^4.2.5",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^8.0.2",
     "npm-run-all": "^4.1.5",
     "prettier": "2.7.1",
     "release-please": "^14.17.0",
     "typescript": "^4.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
