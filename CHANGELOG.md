@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/dariusbakunas/eve-esi-client/compare/v1.0.3...v2.0.0) (2022-11-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* It will change some api endpoint in final generated client
+
+### Code Refactoring
+
+* rename some character operations ([708d2b5](https://github.com/dariusbakunas/eve-esi-client/commit/708d2b52b14578137959566f96f37b3baa0bd446))
+
 ## [1.0.3](https://github.com/dariusbakunas/eve-esi-client/compare/v1.0.2...v1.0.3) (2022-11-14)
 
 
