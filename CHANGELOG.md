@@ -5,7 +5,7 @@
 
 ### ⚠ BREAKING CHANGES
 
-* It will change some api endpoint in final generated client
+* It will change some api endpoints in final generated client
 
 ### Code Refactoring
 
