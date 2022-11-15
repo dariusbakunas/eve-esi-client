@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.0.0](https://github.com/dariusbakunas/eve-esi-client/compare/v2.0.0...v3.0.0) (2022-11-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* It will change api call signatures
+
+### Code Refactoring
+
+* use single request parameter ([462dd74](https://github.com/dariusbakunas/eve-esi-client/commit/462dd74736925035a00d40b346d985e83694b3ad))
+
 ## [2.0.0](https://github.com/dariusbakunas/eve-esi-client/compare/v1.0.3...v2.0.0) (2022-11-15)
 
 
