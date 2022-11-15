@@ -1,4 +1,5 @@
 enumPropertyNaming: UPPERCASE
 npmName: '@dariusbakunas/eve-esi-client'
 supportsES6: true
-npmVersion: 1.0.3
+npmVersion: 3.0.0
+useSingleRequestParameter: true
