@@ -77,6 +77,8 @@ if [ $_arg_skip_fetch = "off" ]; then
     -H 'accept: application/json' \
     -H 'Content-Type: application/json' \
     --compressed | yq -P > cfg/openapi3.yaml
+
+  cfg/replace.sh cfg/mappings.yaml cfg/openapi3.yaml
 fi
 
 openapi-generator-cli generate -i cfg/openapi3.yaml -c cfg/config.yaml -o . -g typescript-axios --git-user-id dariusbakunas --git-repo-id eve-esi-client

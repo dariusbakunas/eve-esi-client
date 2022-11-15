@@ -161,7 +161,7 @@ paths:
 
         ---
         This route is cached for up to 3600 seconds
-      operationId: get_alliances_alliance_id
+      operationId: get_alliance
       parameters:
         - name: alliance_id
           in: path
@@ -353,7 +353,7 @@ paths:
 
         ---
         This route is cached for up to 300 seconds
-      operationId: get_alliances_alliance_id_contacts
+      operationId: get_alliance_contacts
       parameters:
         - name: alliance_id
           in: path
@@ -564,7 +564,7 @@ paths:
 
         ---
         This route is cached for up to 300 seconds
-      operationId: get_alliances_alliance_id_contacts_labels
+      operationId: get_alliance_contact_labels
       parameters:
         - name: alliance_id
           in: path
@@ -742,7 +742,7 @@ paths:
 
         ---
         This route is cached for up to 3600 seconds
-      operationId: get_alliances_alliance_id_corporations
+      operationId: get_alliance_corporations
       parameters:
         - name: alliance_id
           in: path
@@ -884,7 +884,7 @@ paths:
 
         ---
         [Diff of the upcoming changes](https://esi.evetech.net/diff/latest/dev/#GET-/alliances/{alliance_id}/icons/)
-      operationId: get_alliances_alliance_id_icons
+      operationId: get_alliance_icons
       parameters:
         - name: alliance_id
           in: path
@@ -1038,7 +1038,7 @@ paths:
 
         ---
         This route is cached for up to 3600 seconds
-      operationId: post_characters_affiliation
+      operationId: bulk_lookup_character_affiliation
       parameters:
         - name: datasource
           in: query
@@ -1168,7 +1168,7 @@ paths:
 
         ---
         This route is cached for up to 86400 seconds
-      operationId: get_characters_character_id
+      operationId: get_character
       parameters:
         - name: character_id
           in: path
@@ -1385,7 +1385,7 @@ paths:
 
         ---
         This route is cached for up to 3600 seconds
-      operationId: get_characters_character_id_agents_research
+      operationId: get_character_agent_research
       parameters:
         - name: character_id
           in: path
@@ -1580,7 +1580,7 @@ paths:
 
         ---
         This route is cached for up to 3600 seconds
-      operationId: get_characters_character_id_assets
+      operationId: get_character_assets
       parameters:
         - name: character_id
           in: path
@@ -1906,7 +1906,7 @@ paths:
         Alternate route: `/dev/characters/{character_id}/assets/locations/`
 
         Alternate route: `/v2/characters/{character_id}/assets/locations/`
-      operationId: post_characters_character_id_assets_locations
+      operationId: get_character_asset_locations
       parameters:
         - name: character_id
           in: path
@@ -2075,7 +2075,7 @@ paths:
         Alternate route: `/legacy/characters/{character_id}/assets/names/`
 
         Alternate route: `/v1/characters/{character_id}/assets/names/`
-      operationId: post_characters_character_id_assets_names
+      operationId: get_character_asset_names
       parameters:
         - name: character_id
           in: path
@@ -2225,7 +2225,7 @@ paths:
 
         ---
         This route is cached for up to 120 seconds
-      operationId: get_characters_character_id_attributes
+      operationId: get_character_attributes
       parameters:
         - name: character_id
           in: path
@@ -2431,7 +2431,7 @@ paths:
 
         ---
         This route is cached for up to 3600 seconds
-      operationId: get_characters_character_id_blueprints
+      operationId: get_character_blueprints
       parameters:
         - name: character_id
           in: path
@@ -2743,7 +2743,7 @@ paths:
 
         ---
         This route is cached for up to 3600 seconds
-      operationId: get_characters_character_id_bookmarks
+      operationId: get_character_bookmarks
       parameters:
         - name: character_id
           in: path
@@ -3019,7 +3019,7 @@ paths:
 
         ---
         This route is cached for up to 3600 seconds
-      operationId: get_characters_character_id_bookmarks_folders
+      operationId: get_character_bookmarks_folders
       parameters:
         - name: character_id
           in: path
@@ -3210,7 +3210,7 @@ paths:
 
         ---
         This route is cached for up to 5 seconds
-      operationId: get_characters_character_id_calendar
+      operationId: get_character_calendar
       parameters:
         - name: character_id
           in: path
@@ -3414,7 +3414,7 @@ paths:
 
         ---
         This route is cached for up to 5 seconds
-      operationId: get_characters_character_id_calendar_event_id
+      operationId: get_character_calendar_event
       parameters:
         - name: character_id
           in: path
@@ -3667,7 +3667,7 @@ paths:
 
         ---
         This route is cached for up to 5 seconds
-      operationId: put_characters_character_id_calendar_event_id
+      operationId: respond_to_character_character_calendar_event
       parameters:
         - name: character_id
           in: path
@@ -3806,7 +3806,7 @@ paths:
 
         ---
         This route is cached for up to 600 seconds
-      operationId: get_characters_character_id_calendar_event_id_attendees
+      operationId: get_character_calendar_event_attendees
       parameters:
         - name: character_id
           in: path
@@ -4009,7 +4009,7 @@ paths:
 
         ---
         This route is cached for up to 120 seconds
-      operationId: get_characters_character_id_clones
+      operationId: get_character_clones
       parameters:
         - name: character_id
           in: path
@@ -4248,7 +4248,7 @@ paths:
 
         ---
         This route is cached for up to 300 seconds
-      operationId: get_characters_character_id_contacts
+      operationId: get_character_contacts
       parameters:
         - name: character_id
           in: path
@@ -4463,7 +4463,7 @@ paths:
         Alternate route: `/dev/characters/{character_id}/contacts/`
 
         Alternate route: `/v2/characters/{character_id}/contacts/`
-      operationId: put_characters_character_id_contacts
+      operationId: bulk_edit_character_contacts
       parameters:
         - name: character_id
           in: path
@@ -4606,7 +4606,7 @@ paths:
         Alternate route: `/dev/characters/{character_id}/contacts/`
 
         Alternate route: `/v2/characters/{character_id}/contacts/`
-      operationId: post_characters_character_id_contacts
+      operationId: bulk_add_character_contacts
       parameters:
         - name: character_id
           in: path
@@ -4778,7 +4778,7 @@ paths:
         Alternate route: `/dev/characters/{character_id}/contacts/`
 
         Alternate route: `/v2/characters/{character_id}/contacts/`
-      operationId: delete_characters_character_id_contacts
+      operationId: bulk_delete_character_contacts
       parameters:
         - name: character_id
           in: path
@@ -4897,7 +4897,7 @@ paths:
 
         ---
         This route is cached for up to 300 seconds
-      operationId: get_characters_character_id_contacts_labels
+      operationId: get_character_contact_labels
       parameters:
         - name: character_id
           in: path
@@ -5073,7 +5073,7 @@ paths:
 
         ---
         This route is cached for up to 300 seconds
-      operationId: get_characters_character_id_contracts
+      operationId: get_character_contracts
       parameters:
         - name: character_id
           in: path
@@ -5408,7 +5408,7 @@ paths:
 
         ---
         This route is cached for up to 300 seconds
-      operationId: get_characters_character_id_contracts_contract_id_bids
+      operationId: get_character_contract_bids
       parameters:
         - name: character_id
           in: path
@@ -5621,7 +5621,7 @@ paths:
 
         ---
         This route is cached for up to 3600 seconds
-      operationId: get_characters_character_id_contracts_contract_id_items
+      operationId: get_character_contract_items
       parameters:
         - name: character_id
           in: path
@@ -5842,7 +5842,7 @@ paths:
 
         ---
         This route is cached for up to 86400 seconds
-      operationId: get_characters_character_id_corporationhistory
+      operationId: get_character_corporationhistory
       parameters:
         - name: character_id
           in: path
@@ -6004,7 +6004,7 @@ paths:
         Alternate route: `/dev/characters/{character_id}/cspa/`
 
         Alternate route: `/v5/characters/{character_id}/cspa/`
-      operationId: post_characters_character_id_cspa
+      operationId: get_characters_cspa_cost
       parameters:
         - name: character_id
           in: path
@@ -6132,7 +6132,7 @@ paths:
 
         ---
         This route is cached for up to 300 seconds
-      operationId: get_characters_character_id_fatigue
+      operationId: get_character_fatigue
       parameters:
         - name: character_id
           in: path
@@ -6304,7 +6304,7 @@ paths:
 
         ---
         This route is cached for up to 300 seconds
-      operationId: get_characters_character_id_fittings
+      operationId: get_character_fittings
       parameters:
         - name: character_id
           in: path
@@ -6563,7 +6563,7 @@ paths:
         Alternate route: `/dev/characters/{character_id}/fittings/`
 
         Alternate route: `/v2/characters/{character_id}/fittings/`
-      operationId: post_characters_character_id_fittings
+      operationId: add_character_fitting
       parameters:
         - name: character_id
           in: path
@@ -6787,7 +6787,7 @@ paths:
         Alternate route: `/legacy/characters/{character_id}/fittings/{fitting_id}/`
 
         Alternate route: `/v1/characters/{character_id}/fittings/{fitting_id}/`
-      operationId: delete_characters_character_id_fittings_fitting_id
+      operationId: delete_character_fitting
       parameters:
         - name: character_id
           in: path
@@ -6905,7 +6905,7 @@ paths:
 
         ---
         [Diff of the upcoming changes](https://esi.evetech.net/diff/latest/dev/#GET-/characters/{character_id}/fleet/)
-      operationId: get_characters_character_id_fleet
+      operationId: get_character_fleet
       parameters:
         - name: character_id
           in: path
@@ -7111,7 +7111,7 @@ paths:
 
         ---
         This route expires daily at 11:05
-      operationId: get_characters_character_id_fw_stats
+      operationId: get_character_character_fw_stats
       parameters:
         - name: character_id
           in: path
@@ -7355,7 +7355,7 @@ paths:
 
         ---
         This route is cached for up to 120 seconds
-      operationId: get_characters_character_id_implants
+      operationId: get_character_character_implants
       parameters:
         - name: character_id
           in: path
@@ -7521,7 +7521,7 @@ paths:
 
         ---
         This route is cached for up to 300 seconds
-      operationId: get_characters_character_id_industry_jobs
+      operationId: get_character_industry_jobs
       parameters:
         - name: character_id
           in: path
@@ -7835,7 +7835,7 @@ paths:
 
         ---
         This route is cached for up to 300 seconds
-      operationId: get_characters_character_id_killmails_recent
+      operationId: get_character_recent_killmails
       parameters:
         - name: character_id
           in: path
@@ -8029,7 +8029,7 @@ paths:
 
         ---
         This route is cached for up to 5 seconds
-      operationId: get_characters_character_id_location
+      operationId: get_character_location
       parameters:
         - name: character_id
           in: path
@@ -8206,7 +8206,7 @@ paths:
 
         ---
         This route is cached for up to 3600 seconds
-      operationId: get_characters_character_id_loyalty_points
+      operationId: get_character_loyalty_points
       parameters:
         - name: character_id
           in: path
@@ -8383,7 +8383,7 @@ paths:
 
         ---
         This route is cached for up to 30 seconds
-      operationId: get_characters_character_id_mail
+      operationId: get_character_mail_headers
       parameters:
         - name: character_id
           in: path
@@ -8634,7 +8634,7 @@ paths:
         Alternate route: `/legacy/characters/{character_id}/mail/`
 
         Alternate route: `/v1/characters/{character_id}/mail/`
-      operationId: post_characters_character_id_mail
+      operationId: send_character_mail
       parameters:
         - name: character_id
           in: path
@@ -8820,7 +8820,7 @@ paths:
 
         ---
         This route is cached for up to 30 seconds
-      operationId: get_characters_character_id_mail_labels
+      operationId: get_character_mail_labels
       parameters:
         - name: character_id
           in: path
@@ -9039,7 +9039,7 @@ paths:
         Alternate route: `/legacy/characters/{character_id}/mail/labels/`
 
         Alternate route: `/v2/characters/{character_id}/mail/labels/`
-      operationId: post_characters_character_id_mail_labels
+      operationId: create_character_mail_label
       parameters:
         - name: character_id
           in: path
@@ -9193,7 +9193,7 @@ paths:
         Alternate route: `/legacy/characters/{character_id}/mail/labels/{label_id}/`
 
         Alternate route: `/v1/characters/{character_id}/mail/labels/{label_id}/`
-      operationId: delete_characters_character_id_mail_labels_label_id
+      operationId: delete_character_mail_label
       parameters:
         - name: character_id
           in: path
@@ -9322,7 +9322,7 @@ paths:
 
         ---
         This route is cached for up to 120 seconds
-      operationId: get_characters_character_id_mail_lists
+      operationId: get_character_mail_lists
       parameters:
         - name: character_id
           in: path
@@ -9498,7 +9498,7 @@ paths:
 
         ---
         This route is cached for up to 30 seconds
-      operationId: get_characters_character_id_mail_mail_id
+      operationId: get_character_mail
       parameters:
         - name: character_id
           in: path
@@ -9743,7 +9743,7 @@ paths:
         Alternate route: `/legacy/characters/{character_id}/mail/{mail_id}/`
 
         Alternate route: `/v1/characters/{character_id}/mail/{mail_id}/`
-      operationId: put_characters_character_id_mail_mail_id
+      operationId: update_characters_mail_metadata
       parameters:
         - name: character_id
           in: path
@@ -9879,7 +9879,7 @@ paths:
         Alternate route: `/legacy/characters/{character_id}/mail/{mail_id}/`
 
         Alternate route: `/v1/characters/{character_id}/mail/{mail_id}/`
-      operationId: delete_characters_character_id_mail_mail_id
+      operationId: delete_character_mail
       parameters:
         - name: character_id
           in: path
@@ -9991,7 +9991,7 @@ paths:
 
         ---
         This route is cached for up to 3600 seconds
-      operationId: get_characters_character_id_medals
+      operationId: get_character_medals
       parameters:
         - name: character_id
           in: path
@@ -10257,7 +10257,7 @@ paths:
 
         ---
         This route is cached for up to 600 seconds
-      operationId: get_characters_character_id_mining
+      operationId: get_character_mining
       parameters:
         - name: character_id
           in: path
@@ -10466,7 +10466,7 @@ paths:
 
         ---
         This route is cached for up to 600 seconds
-      operationId: get_characters_character_id_notifications
+      operationId: get_character_notifications
       parameters:
         - name: character_id
           in: path
@@ -10895,7 +10895,7 @@ paths:
 
         ---
         This route is cached for up to 600 seconds
-      operationId: get_characters_character_id_notifications_contacts
+      operationId: get_character_notifications_contacts
       parameters:
         - name: character_id
           in: path
@@ -11091,7 +11091,7 @@ paths:
 
         ---
         This route is cached for up to 60 seconds
-      operationId: get_characters_character_id_online
+      operationId: is_character_online
       parameters:
         - name: character_id
           in: path
@@ -11273,7 +11273,7 @@ paths:
 
         ---
         This route is cached for up to 3600 seconds
-      operationId: get_characters_character_id_opportunities
+      operationId: get_character_opportunities
       parameters:
         - name: character_id
           in: path
@@ -11448,7 +11448,7 @@ paths:
 
         ---
         This route is cached for up to 1200 seconds
-      operationId: get_characters_character_id_orders
+      operationId: get_character_orders
       parameters:
         - name: character_id
           in: path
@@ -11715,7 +11715,7 @@ paths:
 
         ---
         This route is cached for up to 3600 seconds
-      operationId: get_characters_character_id_orders_history
+      operationId: get_character_order_history
       parameters:
         - name: character_id
           in: path
@@ -12006,7 +12006,7 @@ paths:
 
         ---
         This route is cached for up to 600 seconds
-      operationId: get_characters_character_id_planets
+      operationId: get_character_planets
       parameters:
         - name: character_id
           in: path
@@ -12231,7 +12231,7 @@ paths:
         Alternate route: `/dev/characters/{character_id}/planets/{planet_id}/`
 
         Alternate route: `/v3/characters/{character_id}/planets/{planet_id}/`
-      operationId: get_characters_character_id_planets_planet_id
+      operationId: get_character_planet
       parameters:
         - name: character_id
           in: path
@@ -12619,7 +12619,7 @@ paths:
 
         ---
         This route expires daily at 11:05
-      operationId: get_characters_character_id_portrait
+      operationId: get_character_portrait
       parameters:
         - name: character_id
           in: path
@@ -12784,7 +12784,7 @@ paths:
 
         ---
         This route is cached for up to 3600 seconds
-      operationId: get_characters_character_id_roles
+      operationId: get_character_roles
       parameters:
         - name: character_id
           in: path
@@ -13175,7 +13175,7 @@ paths:
 
         ---
         This route is cached for up to 3600 seconds
-      operationId: get_characters_character_id_search
+      operationId: search_character_entities
       parameters:
         - name: Accept-Language
           in: header
@@ -13537,7 +13537,7 @@ paths:
 
         ---
         This route is cached for up to 5 seconds
-      operationId: get_characters_character_id_ship
+      operationId: get_character_ship
       parameters:
         - name: character_id
           in: path
@@ -13716,7 +13716,7 @@ paths:
 
         ---
         This route is cached for up to 120 seconds
-      operationId: get_characters_character_id_skillqueue
+      operationId: get_character_skillqueue
       parameters:
         - name: character_id
           in: path
@@ -13937,7 +13937,7 @@ paths:
 
         ---
         This route is cached for up to 120 seconds
-      operationId: get_characters_character_id_skills
+      operationId: get_character_skills
       parameters:
         - name: character_id
           in: path
@@ -14149,7 +14149,7 @@ paths:
 
         ---
         This route is cached for up to 3600 seconds
-      operationId: get_characters_character_id_standings
+      operationId: get_character_standings
       parameters:
         - name: character_id
           in: path
@@ -14339,7 +14339,7 @@ paths:
 
         ---
         This route is cached for up to 3600 seconds
-      operationId: get_characters_character_id_titles
+      operationId: get_character_titles
       parameters:
         - name: character_id
           in: path
@@ -14512,7 +14512,7 @@ paths:
 
         ---
         [Diff of the upcoming changes](https://esi.evetech.net/diff/latest/dev/#GET-/characters/{character_id}/wallet/)
-      operationId: get_characters_character_id_wallet
+      operationId: get_character_wallet
       parameters:
         - name: character_id
           in: path
@@ -14666,7 +14666,7 @@ paths:
 
         ---
         This route is cached for up to 3600 seconds
-      operationId: get_characters_character_id_wallet_journal
+      operationId: get_character_wallet_journal
       parameters:
         - name: character_id
           in: path
@@ -15064,7 +15064,7 @@ paths:
 
         ---
         This route is cached for up to 3600 seconds
-      operationId: get_characters_character_id_wallet_transactions
+      operationId: get_character_wallet_transactions
       parameters:
         - name: character_id
           in: path

@@ -14080,57 +14080,6 @@ export const AllianceApiAxiosParamCreator = function (
 ) {
   return {
     /**
-     * List all active player alliances  --- Alternate route: `/dev/alliances/`  Alternate route: `/legacy/alliances/`  Alternate route: `/v1/alliances/`  Alternate route: `/v2/alliances/`  --- This route is cached for up to 3600 seconds
-     * @summary List all alliances
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getAlliances: async (
-      datasource?: "tranquility",
-      ifNoneMatch?: string,
-      options: AxiosRequestConfig = {}
-    ): Promise<RequestArgs> => {
-      const localVarPath = `/alliances/`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: "GET",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      if (datasource !== undefined) {
-        localVarQueryParameter["datasource"] = datasource;
-      }
-
-      if (ifNoneMatch != null) {
-        localVarHeaderParameter["If-None-Match"] = String(ifNoneMatch);
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
      * Public information about an alliance  --- Alternate route: `/dev/alliances/{alliance_id}/`  Alternate route: `/legacy/alliances/{alliance_id}/`  Alternate route: `/v3/alliances/{alliance_id}/`  Alternate route: `/v4/alliances/{alliance_id}/`  --- This route is cached for up to 3600 seconds
      * @summary Get alliance information
      * @param {number} allianceId An EVE alliance ID
@@ -14139,14 +14088,14 @@ export const AllianceApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getAlliancesAllianceId: async (
+    getAlliance: async (
       allianceId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'allianceId' is not null or undefined
-      assertParamExists("getAlliancesAllianceId", "allianceId", allianceId);
+      assertParamExists("getAlliance", "allianceId", allianceId);
       const localVarPath = `/alliances/{alliance_id}/`.replace(
         `{${"alliance_id"}}`,
         encodeURIComponent(String(allianceId))
@@ -14197,18 +14146,14 @@ export const AllianceApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getAlliancesAllianceIdCorporations: async (
+    getAllianceCorporations: async (
       allianceId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'allianceId' is not null or undefined
-      assertParamExists(
-        "getAlliancesAllianceIdCorporations",
-        "allianceId",
-        allianceId
-      );
+      assertParamExists("getAllianceCorporations", "allianceId", allianceId);
       const localVarPath = `/alliances/{alliance_id}/corporations/`.replace(
         `{${"alliance_id"}}`,
         encodeURIComponent(String(allianceId))
@@ -14259,22 +14204,69 @@ export const AllianceApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getAlliancesAllianceIdIcons: async (
+    getAllianceIcons: async (
       allianceId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'allianceId' is not null or undefined
-      assertParamExists(
-        "getAlliancesAllianceIdIcons",
-        "allianceId",
-        allianceId
-      );
+      assertParamExists("getAllianceIcons", "allianceId", allianceId);
       const localVarPath = `/alliances/{alliance_id}/icons/`.replace(
         `{${"alliance_id"}}`,
         encodeURIComponent(String(allianceId))
       );
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "GET",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (datasource !== undefined) {
+        localVarQueryParameter["datasource"] = datasource;
+      }
+
+      if (ifNoneMatch != null) {
+        localVarHeaderParameter["If-None-Match"] = String(ifNoneMatch);
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * List all active player alliances  --- Alternate route: `/dev/alliances/`  Alternate route: `/legacy/alliances/`  Alternate route: `/v1/alliances/`  Alternate route: `/v2/alliances/`  --- This route is cached for up to 3600 seconds
+     * @summary List all alliances
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAlliances: async (
+      datasource?: "tranquility",
+      ifNoneMatch?: string,
+      options: AxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/alliances/`;
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
       let baseOptions;
@@ -14323,6 +14315,104 @@ export const AllianceApiFp = function (configuration?: Configuration) {
   const localVarAxiosParamCreator = AllianceApiAxiosParamCreator(configuration);
   return {
     /**
+     * Public information about an alliance  --- Alternate route: `/dev/alliances/{alliance_id}/`  Alternate route: `/legacy/alliances/{alliance_id}/`  Alternate route: `/v3/alliances/{alliance_id}/`  Alternate route: `/v4/alliances/{alliance_id}/`  --- This route is cached for up to 3600 seconds
+     * @summary Get alliance information
+     * @param {number} allianceId An EVE alliance ID
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getAlliance(
+      allianceId: number,
+      datasource?: "tranquility",
+      ifNoneMatch?: string,
+      options?: AxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<GetAlliancesAllianceIdOk>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getAlliance(
+        allianceId,
+        datasource,
+        ifNoneMatch,
+        options
+      );
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration
+      );
+    },
+    /**
+     * List all current member corporations of an alliance  --- Alternate route: `/dev/alliances/{alliance_id}/corporations/`  Alternate route: `/legacy/alliances/{alliance_id}/corporations/`  Alternate route: `/v1/alliances/{alliance_id}/corporations/`  Alternate route: `/v2/alliances/{alliance_id}/corporations/`  --- This route is cached for up to 3600 seconds
+     * @summary List alliance\'s corporations
+     * @param {number} allianceId An EVE alliance ID
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getAllianceCorporations(
+      allianceId: number,
+      datasource?: "tranquility",
+      ifNoneMatch?: string,
+      options?: AxiosRequestConfig
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<number>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.getAllianceCorporations(
+          allianceId,
+          datasource,
+          ifNoneMatch,
+          options
+        );
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration
+      );
+    },
+    /**
+     * Get the icon urls for a alliance  --- Alternate route: `/legacy/alliances/{alliance_id}/icons/`  Alternate route: `/v1/alliances/{alliance_id}/icons/`  --- This route expires daily at 11:05  --- [Diff of the upcoming changes](https://esi.evetech.net/diff/latest/dev/#GET-/alliances/{alliance_id}/icons/)
+     * @summary Get alliance icon
+     * @param {number} allianceId An EVE alliance ID
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getAllianceIcons(
+      allianceId: number,
+      datasource?: "tranquility",
+      ifNoneMatch?: string,
+      options?: AxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<GetAlliancesAllianceIdIconsOk>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.getAllianceIcons(
+          allianceId,
+          datasource,
+          ifNoneMatch,
+          options
+        );
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration
+      );
+    },
+    /**
      * List all active player alliances  --- Alternate route: `/dev/alliances/`  Alternate route: `/legacy/alliances/`  Alternate route: `/v1/alliances/`  Alternate route: `/v2/alliances/`  --- This route is cached for up to 3600 seconds
      * @summary List all alliances
      * @param {'tranquility'} [datasource] The server name you would like data from
@@ -14349,105 +14439,6 @@ export const AllianceApiFp = function (configuration?: Configuration) {
         configuration
       );
     },
-    /**
-     * Public information about an alliance  --- Alternate route: `/dev/alliances/{alliance_id}/`  Alternate route: `/legacy/alliances/{alliance_id}/`  Alternate route: `/v3/alliances/{alliance_id}/`  Alternate route: `/v4/alliances/{alliance_id}/`  --- This route is cached for up to 3600 seconds
-     * @summary Get alliance information
-     * @param {number} allianceId An EVE alliance ID
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async getAlliancesAllianceId(
-      allianceId: number,
-      datasource?: "tranquility",
-      ifNoneMatch?: string,
-      options?: AxiosRequestConfig
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<GetAlliancesAllianceIdOk>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getAlliancesAllianceId(
-          allianceId,
-          datasource,
-          ifNoneMatch,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-    /**
-     * List all current member corporations of an alliance  --- Alternate route: `/dev/alliances/{alliance_id}/corporations/`  Alternate route: `/legacy/alliances/{alliance_id}/corporations/`  Alternate route: `/v1/alliances/{alliance_id}/corporations/`  Alternate route: `/v2/alliances/{alliance_id}/corporations/`  --- This route is cached for up to 3600 seconds
-     * @summary List alliance\'s corporations
-     * @param {number} allianceId An EVE alliance ID
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async getAlliancesAllianceIdCorporations(
-      allianceId: number,
-      datasource?: "tranquility",
-      ifNoneMatch?: string,
-      options?: AxiosRequestConfig
-    ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<number>>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getAlliancesAllianceIdCorporations(
-          allianceId,
-          datasource,
-          ifNoneMatch,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-    /**
-     * Get the icon urls for a alliance  --- Alternate route: `/legacy/alliances/{alliance_id}/icons/`  Alternate route: `/v1/alliances/{alliance_id}/icons/`  --- This route expires daily at 11:05  --- [Diff of the upcoming changes](https://esi.evetech.net/diff/latest/dev/#GET-/alliances/{alliance_id}/icons/)
-     * @summary Get alliance icon
-     * @param {number} allianceId An EVE alliance ID
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async getAlliancesAllianceIdIcons(
-      allianceId: number,
-      datasource?: "tranquility",
-      ifNoneMatch?: string,
-      options?: AxiosRequestConfig
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<GetAlliancesAllianceIdIconsOk>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getAlliancesAllianceIdIcons(
-          allianceId,
-          datasource,
-          ifNoneMatch,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
   };
 };
 
@@ -14462,6 +14453,63 @@ export const AllianceApiFactory = function (
 ) {
   const localVarFp = AllianceApiFp(configuration);
   return {
+    /**
+     * Public information about an alliance  --- Alternate route: `/dev/alliances/{alliance_id}/`  Alternate route: `/legacy/alliances/{alliance_id}/`  Alternate route: `/v3/alliances/{alliance_id}/`  Alternate route: `/v4/alliances/{alliance_id}/`  --- This route is cached for up to 3600 seconds
+     * @summary Get alliance information
+     * @param {number} allianceId An EVE alliance ID
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAlliance(
+      allianceId: number,
+      datasource?: "tranquility",
+      ifNoneMatch?: string,
+      options?: any
+    ): AxiosPromise<GetAlliancesAllianceIdOk> {
+      return localVarFp
+        .getAlliance(allianceId, datasource, ifNoneMatch, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * List all current member corporations of an alliance  --- Alternate route: `/dev/alliances/{alliance_id}/corporations/`  Alternate route: `/legacy/alliances/{alliance_id}/corporations/`  Alternate route: `/v1/alliances/{alliance_id}/corporations/`  Alternate route: `/v2/alliances/{alliance_id}/corporations/`  --- This route is cached for up to 3600 seconds
+     * @summary List alliance\'s corporations
+     * @param {number} allianceId An EVE alliance ID
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAllianceCorporations(
+      allianceId: number,
+      datasource?: "tranquility",
+      ifNoneMatch?: string,
+      options?: any
+    ): AxiosPromise<Array<number>> {
+      return localVarFp
+        .getAllianceCorporations(allianceId, datasource, ifNoneMatch, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * Get the icon urls for a alliance  --- Alternate route: `/legacy/alliances/{alliance_id}/icons/`  Alternate route: `/v1/alliances/{alliance_id}/icons/`  --- This route expires daily at 11:05  --- [Diff of the upcoming changes](https://esi.evetech.net/diff/latest/dev/#GET-/alliances/{alliance_id}/icons/)
+     * @summary Get alliance icon
+     * @param {number} allianceId An EVE alliance ID
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAllianceIcons(
+      allianceId: number,
+      datasource?: "tranquility",
+      ifNoneMatch?: string,
+      options?: any
+    ): AxiosPromise<GetAlliancesAllianceIdIconsOk> {
+      return localVarFp
+        .getAllianceIcons(allianceId, datasource, ifNoneMatch, options)
+        .then((request) => request(axios, basePath));
+    },
     /**
      * List all active player alliances  --- Alternate route: `/dev/alliances/`  Alternate route: `/legacy/alliances/`  Alternate route: `/v1/alliances/`  Alternate route: `/v2/alliances/`  --- This route is cached for up to 3600 seconds
      * @summary List all alliances
@@ -14479,73 +14527,6 @@ export const AllianceApiFactory = function (
         .getAlliances(datasource, ifNoneMatch, options)
         .then((request) => request(axios, basePath));
     },
-    /**
-     * Public information about an alliance  --- Alternate route: `/dev/alliances/{alliance_id}/`  Alternate route: `/legacy/alliances/{alliance_id}/`  Alternate route: `/v3/alliances/{alliance_id}/`  Alternate route: `/v4/alliances/{alliance_id}/`  --- This route is cached for up to 3600 seconds
-     * @summary Get alliance information
-     * @param {number} allianceId An EVE alliance ID
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getAlliancesAllianceId(
-      allianceId: number,
-      datasource?: "tranquility",
-      ifNoneMatch?: string,
-      options?: any
-    ): AxiosPromise<GetAlliancesAllianceIdOk> {
-      return localVarFp
-        .getAlliancesAllianceId(allianceId, datasource, ifNoneMatch, options)
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * List all current member corporations of an alliance  --- Alternate route: `/dev/alliances/{alliance_id}/corporations/`  Alternate route: `/legacy/alliances/{alliance_id}/corporations/`  Alternate route: `/v1/alliances/{alliance_id}/corporations/`  Alternate route: `/v2/alliances/{alliance_id}/corporations/`  --- This route is cached for up to 3600 seconds
-     * @summary List alliance\'s corporations
-     * @param {number} allianceId An EVE alliance ID
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getAlliancesAllianceIdCorporations(
-      allianceId: number,
-      datasource?: "tranquility",
-      ifNoneMatch?: string,
-      options?: any
-    ): AxiosPromise<Array<number>> {
-      return localVarFp
-        .getAlliancesAllianceIdCorporations(
-          allianceId,
-          datasource,
-          ifNoneMatch,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * Get the icon urls for a alliance  --- Alternate route: `/legacy/alliances/{alliance_id}/icons/`  Alternate route: `/v1/alliances/{alliance_id}/icons/`  --- This route expires daily at 11:05  --- [Diff of the upcoming changes](https://esi.evetech.net/diff/latest/dev/#GET-/alliances/{alliance_id}/icons/)
-     * @summary Get alliance icon
-     * @param {number} allianceId An EVE alliance ID
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getAlliancesAllianceIdIcons(
-      allianceId: number,
-      datasource?: "tranquility",
-      ifNoneMatch?: string,
-      options?: any
-    ): AxiosPromise<GetAlliancesAllianceIdIconsOk> {
-      return localVarFp
-        .getAlliancesAllianceIdIcons(
-          allianceId,
-          datasource,
-          ifNoneMatch,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
   };
 };
 
@@ -14556,6 +14537,69 @@ export const AllianceApiFactory = function (
  * @extends {BaseAPI}
  */
 export class AllianceApi extends BaseAPI {
+  /**
+   * Public information about an alliance  --- Alternate route: `/dev/alliances/{alliance_id}/`  Alternate route: `/legacy/alliances/{alliance_id}/`  Alternate route: `/v3/alliances/{alliance_id}/`  Alternate route: `/v4/alliances/{alliance_id}/`  --- This route is cached for up to 3600 seconds
+   * @summary Get alliance information
+   * @param {number} allianceId An EVE alliance ID
+   * @param {'tranquility'} [datasource] The server name you would like data from
+   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AllianceApi
+   */
+  public getAlliance(
+    allianceId: number,
+    datasource?: "tranquility",
+    ifNoneMatch?: string,
+    options?: AxiosRequestConfig
+  ) {
+    return AllianceApiFp(this.configuration)
+      .getAlliance(allianceId, datasource, ifNoneMatch, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * List all current member corporations of an alliance  --- Alternate route: `/dev/alliances/{alliance_id}/corporations/`  Alternate route: `/legacy/alliances/{alliance_id}/corporations/`  Alternate route: `/v1/alliances/{alliance_id}/corporations/`  Alternate route: `/v2/alliances/{alliance_id}/corporations/`  --- This route is cached for up to 3600 seconds
+   * @summary List alliance\'s corporations
+   * @param {number} allianceId An EVE alliance ID
+   * @param {'tranquility'} [datasource] The server name you would like data from
+   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AllianceApi
+   */
+  public getAllianceCorporations(
+    allianceId: number,
+    datasource?: "tranquility",
+    ifNoneMatch?: string,
+    options?: AxiosRequestConfig
+  ) {
+    return AllianceApiFp(this.configuration)
+      .getAllianceCorporations(allianceId, datasource, ifNoneMatch, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Get the icon urls for a alliance  --- Alternate route: `/legacy/alliances/{alliance_id}/icons/`  Alternate route: `/v1/alliances/{alliance_id}/icons/`  --- This route expires daily at 11:05  --- [Diff of the upcoming changes](https://esi.evetech.net/diff/latest/dev/#GET-/alliances/{alliance_id}/icons/)
+   * @summary Get alliance icon
+   * @param {number} allianceId An EVE alliance ID
+   * @param {'tranquility'} [datasource] The server name you would like data from
+   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AllianceApi
+   */
+  public getAllianceIcons(
+    allianceId: number,
+    datasource?: "tranquility",
+    ifNoneMatch?: string,
+    options?: AxiosRequestConfig
+  ) {
+    return AllianceApiFp(this.configuration)
+      .getAllianceIcons(allianceId, datasource, ifNoneMatch, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
   /**
    * List all active player alliances  --- Alternate route: `/dev/alliances/`  Alternate route: `/legacy/alliances/`  Alternate route: `/v1/alliances/`  Alternate route: `/v2/alliances/`  --- This route is cached for up to 3600 seconds
    * @summary List all alliances
@@ -14574,74 +14618,6 @@ export class AllianceApi extends BaseAPI {
       .getAlliances(datasource, ifNoneMatch, options)
       .then((request) => request(this.axios, this.basePath));
   }
-
-  /**
-   * Public information about an alliance  --- Alternate route: `/dev/alliances/{alliance_id}/`  Alternate route: `/legacy/alliances/{alliance_id}/`  Alternate route: `/v3/alliances/{alliance_id}/`  Alternate route: `/v4/alliances/{alliance_id}/`  --- This route is cached for up to 3600 seconds
-   * @summary Get alliance information
-   * @param {number} allianceId An EVE alliance ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof AllianceApi
-   */
-  public getAlliancesAllianceId(
-    allianceId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    options?: AxiosRequestConfig
-  ) {
-    return AllianceApiFp(this.configuration)
-      .getAlliancesAllianceId(allianceId, datasource, ifNoneMatch, options)
-      .then((request) => request(this.axios, this.basePath));
-  }
-
-  /**
-   * List all current member corporations of an alliance  --- Alternate route: `/dev/alliances/{alliance_id}/corporations/`  Alternate route: `/legacy/alliances/{alliance_id}/corporations/`  Alternate route: `/v1/alliances/{alliance_id}/corporations/`  Alternate route: `/v2/alliances/{alliance_id}/corporations/`  --- This route is cached for up to 3600 seconds
-   * @summary List alliance\'s corporations
-   * @param {number} allianceId An EVE alliance ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof AllianceApi
-   */
-  public getAlliancesAllianceIdCorporations(
-    allianceId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    options?: AxiosRequestConfig
-  ) {
-    return AllianceApiFp(this.configuration)
-      .getAlliancesAllianceIdCorporations(
-        allianceId,
-        datasource,
-        ifNoneMatch,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
-
-  /**
-   * Get the icon urls for a alliance  --- Alternate route: `/legacy/alliances/{alliance_id}/icons/`  Alternate route: `/v1/alliances/{alliance_id}/icons/`  --- This route expires daily at 11:05  --- [Diff of the upcoming changes](https://esi.evetech.net/diff/latest/dev/#GET-/alliances/{alliance_id}/icons/)
-   * @summary Get alliance icon
-   * @param {number} allianceId An EVE alliance ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof AllianceApi
-   */
-  public getAlliancesAllianceIdIcons(
-    allianceId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    options?: AxiosRequestConfig
-  ) {
-    return AllianceApiFp(this.configuration)
-      .getAlliancesAllianceIdIcons(allianceId, datasource, ifNoneMatch, options)
-      .then((request) => request(this.axios, this.basePath));
-  }
 }
 
 /**
@@ -14653,6 +14629,167 @@ export const AssetsApiAxiosParamCreator = function (
 ) {
   return {
     /**
+     * Return locations for a set of item ids, which you can get from character assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)  --- Alternate route: `/dev/characters/{character_id}/assets/locations/`  Alternate route: `/v2/characters/{character_id}/assets/locations/`
+     * @summary Get character asset locations
+     * @param {number} characterId An EVE character ID
+     * @param {Array<number>} itemIds A list of item ids
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {string} [token] Access token to use if unable to set a header
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCharacterAssetLocations: async (
+      characterId: number,
+      itemIds: Array<number>,
+      datasource?: "tranquility",
+      token?: string,
+      options: AxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'characterId' is not null or undefined
+      assertParamExists(
+        "getCharacterAssetLocations",
+        "characterId",
+        characterId
+      );
+      // verify required parameter 'itemIds' is not null or undefined
+      assertParamExists("getCharacterAssetLocations", "itemIds", itemIds);
+      const localVarPath =
+        `/characters/{character_id}/assets/locations/`.replace(
+          `{${"character_id"}}`,
+          encodeURIComponent(String(characterId))
+        );
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication evesso required
+      // oauth required
+      await setOAuthToObject(
+        localVarHeaderParameter,
+        "evesso",
+        ["esi-assets.read_assets.v1"],
+        configuration
+      );
+
+      if (datasource !== undefined) {
+        localVarQueryParameter["datasource"] = datasource;
+      }
+
+      if (token !== undefined) {
+        localVarQueryParameter["token"] = token;
+      }
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        itemIds,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Return names for a set of item ids, which you can get from character assets endpoint. Typically used for items that can customize names, like containers or ships.  --- Alternate route: `/dev/characters/{character_id}/assets/names/`  Alternate route: `/legacy/characters/{character_id}/assets/names/`  Alternate route: `/v1/characters/{character_id}/assets/names/`
+     * @summary Get character asset names
+     * @param {number} characterId An EVE character ID
+     * @param {Array<number>} itemIds A list of item ids
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {string} [token] Access token to use if unable to set a header
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCharacterAssetNames: async (
+      characterId: number,
+      itemIds: Array<number>,
+      datasource?: "tranquility",
+      token?: string,
+      options: AxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'characterId' is not null or undefined
+      assertParamExists("getCharacterAssetNames", "characterId", characterId);
+      // verify required parameter 'itemIds' is not null or undefined
+      assertParamExists("getCharacterAssetNames", "itemIds", itemIds);
+      const localVarPath = `/characters/{character_id}/assets/names/`.replace(
+        `{${"character_id"}}`,
+        encodeURIComponent(String(characterId))
+      );
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication evesso required
+      // oauth required
+      await setOAuthToObject(
+        localVarHeaderParameter,
+        "evesso",
+        ["esi-assets.read_assets.v1"],
+        configuration
+      );
+
+      if (datasource !== undefined) {
+        localVarQueryParameter["datasource"] = datasource;
+      }
+
+      if (token !== undefined) {
+        localVarQueryParameter["token"] = token;
+      }
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        itemIds,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
      * Return a list of the characters assets  --- Alternate route: `/dev/characters/{character_id}/assets/`  Alternate route: `/v5/characters/{character_id}/assets/`  --- This route is cached for up to 3600 seconds
      * @summary Get character assets
      * @param {number} characterId An EVE character ID
@@ -14663,7 +14800,7 @@ export const AssetsApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdAssets: async (
+    getCharacterAssets: async (
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -14672,11 +14809,7 @@ export const AssetsApiAxiosParamCreator = function (
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "getCharactersCharacterIdAssets",
-        "characterId",
-        characterId
-      );
+      assertParamExists("getCharacterAssets", "characterId", characterId);
       const localVarPath = `/characters/{character_id}/assets/`.replace(
         `{${"character_id"}}`,
         encodeURIComponent(String(characterId))
@@ -14812,179 +14945,6 @@ export const AssetsApiAxiosParamCreator = function (
         ...headersFromBaseOptions,
         ...options.headers,
       };
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Return locations for a set of item ids, which you can get from character assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)  --- Alternate route: `/dev/characters/{character_id}/assets/locations/`  Alternate route: `/v2/characters/{character_id}/assets/locations/`
-     * @summary Get character asset locations
-     * @param {number} characterId An EVE character ID
-     * @param {Array<number>} itemIds A list of item ids
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {string} [token] Access token to use if unable to set a header
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    postCharactersCharacterIdAssetsLocations: async (
-      characterId: number,
-      itemIds: Array<number>,
-      datasource?: "tranquility",
-      token?: string,
-      options: AxiosRequestConfig = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "postCharactersCharacterIdAssetsLocations",
-        "characterId",
-        characterId
-      );
-      // verify required parameter 'itemIds' is not null or undefined
-      assertParamExists(
-        "postCharactersCharacterIdAssetsLocations",
-        "itemIds",
-        itemIds
-      );
-      const localVarPath =
-        `/characters/{character_id}/assets/locations/`.replace(
-          `{${"character_id"}}`,
-          encodeURIComponent(String(characterId))
-        );
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: "POST",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      // authentication evesso required
-      // oauth required
-      await setOAuthToObject(
-        localVarHeaderParameter,
-        "evesso",
-        ["esi-assets.read_assets.v1"],
-        configuration
-      );
-
-      if (datasource !== undefined) {
-        localVarQueryParameter["datasource"] = datasource;
-      }
-
-      if (token !== undefined) {
-        localVarQueryParameter["token"] = token;
-      }
-
-      localVarHeaderParameter["Content-Type"] = "application/json";
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        itemIds,
-        localVarRequestOptions,
-        configuration
-      );
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Return names for a set of item ids, which you can get from character assets endpoint. Typically used for items that can customize names, like containers or ships.  --- Alternate route: `/dev/characters/{character_id}/assets/names/`  Alternate route: `/legacy/characters/{character_id}/assets/names/`  Alternate route: `/v1/characters/{character_id}/assets/names/`
-     * @summary Get character asset names
-     * @param {number} characterId An EVE character ID
-     * @param {Array<number>} itemIds A list of item ids
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {string} [token] Access token to use if unable to set a header
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    postCharactersCharacterIdAssetsNames: async (
-      characterId: number,
-      itemIds: Array<number>,
-      datasource?: "tranquility",
-      token?: string,
-      options: AxiosRequestConfig = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "postCharactersCharacterIdAssetsNames",
-        "characterId",
-        characterId
-      );
-      // verify required parameter 'itemIds' is not null or undefined
-      assertParamExists(
-        "postCharactersCharacterIdAssetsNames",
-        "itemIds",
-        itemIds
-      );
-      const localVarPath = `/characters/{character_id}/assets/names/`.replace(
-        `{${"character_id"}}`,
-        encodeURIComponent(String(characterId))
-      );
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: "POST",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      // authentication evesso required
-      // oauth required
-      await setOAuthToObject(
-        localVarHeaderParameter,
-        "evesso",
-        ["esi-assets.read_assets.v1"],
-        configuration
-      );
-
-      if (datasource !== undefined) {
-        localVarQueryParameter["datasource"] = datasource;
-      }
-
-      if (token !== undefined) {
-        localVarQueryParameter["token"] = token;
-      }
-
-      localVarHeaderParameter["Content-Type"] = "application/json";
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        itemIds,
-        localVarRequestOptions,
-        configuration
-      );
 
       return {
         url: toPathString(localVarUrlObj),
@@ -15176,6 +15136,80 @@ export const AssetsApiFp = function (configuration?: Configuration) {
   const localVarAxiosParamCreator = AssetsApiAxiosParamCreator(configuration);
   return {
     /**
+     * Return locations for a set of item ids, which you can get from character assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)  --- Alternate route: `/dev/characters/{character_id}/assets/locations/`  Alternate route: `/v2/characters/{character_id}/assets/locations/`
+     * @summary Get character asset locations
+     * @param {number} characterId An EVE character ID
+     * @param {Array<number>} itemIds A list of item ids
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {string} [token] Access token to use if unable to set a header
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getCharacterAssetLocations(
+      characterId: number,
+      itemIds: Array<number>,
+      datasource?: "tranquility",
+      token?: string,
+      options?: AxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<Array<PostCharactersCharacterIdAssetsLocations200Ok>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.getCharacterAssetLocations(
+          characterId,
+          itemIds,
+          datasource,
+          token,
+          options
+        );
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration
+      );
+    },
+    /**
+     * Return names for a set of item ids, which you can get from character assets endpoint. Typically used for items that can customize names, like containers or ships.  --- Alternate route: `/dev/characters/{character_id}/assets/names/`  Alternate route: `/legacy/characters/{character_id}/assets/names/`  Alternate route: `/v1/characters/{character_id}/assets/names/`
+     * @summary Get character asset names
+     * @param {number} characterId An EVE character ID
+     * @param {Array<number>} itemIds A list of item ids
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {string} [token] Access token to use if unable to set a header
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getCharacterAssetNames(
+      characterId: number,
+      itemIds: Array<number>,
+      datasource?: "tranquility",
+      token?: string,
+      options?: AxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<Array<PostCharactersCharacterIdAssetsNames200Ok>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.getCharacterAssetNames(
+          characterId,
+          itemIds,
+          datasource,
+          token,
+          options
+        );
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration
+      );
+    },
+    /**
      * Return a list of the characters assets  --- Alternate route: `/dev/characters/{character_id}/assets/`  Alternate route: `/v5/characters/{character_id}/assets/`  --- This route is cached for up to 3600 seconds
      * @summary Get character assets
      * @param {number} characterId An EVE character ID
@@ -15186,7 +15220,7 @@ export const AssetsApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterIdAssets(
+    async getCharacterAssets(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -15200,7 +15234,7 @@ export const AssetsApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<Array<GetCharactersCharacterIdAssets200Ok>>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdAssets(
+        await localVarAxiosParamCreator.getCharacterAssets(
           characterId,
           datasource,
           ifNoneMatch,
@@ -15245,80 +15279,6 @@ export const AssetsApiFp = function (configuration?: Configuration) {
           datasource,
           ifNoneMatch,
           page,
-          token,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-    /**
-     * Return locations for a set of item ids, which you can get from character assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)  --- Alternate route: `/dev/characters/{character_id}/assets/locations/`  Alternate route: `/v2/characters/{character_id}/assets/locations/`
-     * @summary Get character asset locations
-     * @param {number} characterId An EVE character ID
-     * @param {Array<number>} itemIds A list of item ids
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {string} [token] Access token to use if unable to set a header
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async postCharactersCharacterIdAssetsLocations(
-      characterId: number,
-      itemIds: Array<number>,
-      datasource?: "tranquility",
-      token?: string,
-      options?: AxiosRequestConfig
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<Array<PostCharactersCharacterIdAssetsLocations200Ok>>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.postCharactersCharacterIdAssetsLocations(
-          characterId,
-          itemIds,
-          datasource,
-          token,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-    /**
-     * Return names for a set of item ids, which you can get from character assets endpoint. Typically used for items that can customize names, like containers or ships.  --- Alternate route: `/dev/characters/{character_id}/assets/names/`  Alternate route: `/legacy/characters/{character_id}/assets/names/`  Alternate route: `/v1/characters/{character_id}/assets/names/`
-     * @summary Get character asset names
-     * @param {number} characterId An EVE character ID
-     * @param {Array<number>} itemIds A list of item ids
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {string} [token] Access token to use if unable to set a header
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async postCharactersCharacterIdAssetsNames(
-      characterId: number,
-      itemIds: Array<number>,
-      datasource?: "tranquility",
-      token?: string,
-      options?: AxiosRequestConfig
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<Array<PostCharactersCharacterIdAssetsNames200Ok>>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.postCharactersCharacterIdAssetsNames(
-          characterId,
-          itemIds,
-          datasource,
           token,
           options
         );
@@ -15420,6 +15380,60 @@ export const AssetsApiFactory = function (
   const localVarFp = AssetsApiFp(configuration);
   return {
     /**
+     * Return locations for a set of item ids, which you can get from character assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)  --- Alternate route: `/dev/characters/{character_id}/assets/locations/`  Alternate route: `/v2/characters/{character_id}/assets/locations/`
+     * @summary Get character asset locations
+     * @param {number} characterId An EVE character ID
+     * @param {Array<number>} itemIds A list of item ids
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {string} [token] Access token to use if unable to set a header
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCharacterAssetLocations(
+      characterId: number,
+      itemIds: Array<number>,
+      datasource?: "tranquility",
+      token?: string,
+      options?: any
+    ): AxiosPromise<Array<PostCharactersCharacterIdAssetsLocations200Ok>> {
+      return localVarFp
+        .getCharacterAssetLocations(
+          characterId,
+          itemIds,
+          datasource,
+          token,
+          options
+        )
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * Return names for a set of item ids, which you can get from character assets endpoint. Typically used for items that can customize names, like containers or ships.  --- Alternate route: `/dev/characters/{character_id}/assets/names/`  Alternate route: `/legacy/characters/{character_id}/assets/names/`  Alternate route: `/v1/characters/{character_id}/assets/names/`
+     * @summary Get character asset names
+     * @param {number} characterId An EVE character ID
+     * @param {Array<number>} itemIds A list of item ids
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {string} [token] Access token to use if unable to set a header
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCharacterAssetNames(
+      characterId: number,
+      itemIds: Array<number>,
+      datasource?: "tranquility",
+      token?: string,
+      options?: any
+    ): AxiosPromise<Array<PostCharactersCharacterIdAssetsNames200Ok>> {
+      return localVarFp
+        .getCharacterAssetNames(
+          characterId,
+          itemIds,
+          datasource,
+          token,
+          options
+        )
+        .then((request) => request(axios, basePath));
+    },
+    /**
      * Return a list of the characters assets  --- Alternate route: `/dev/characters/{character_id}/assets/`  Alternate route: `/v5/characters/{character_id}/assets/`  --- This route is cached for up to 3600 seconds
      * @summary Get character assets
      * @param {number} characterId An EVE character ID
@@ -15430,7 +15444,7 @@ export const AssetsApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdAssets(
+    getCharacterAssets(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -15439,7 +15453,7 @@ export const AssetsApiFactory = function (
       options?: any
     ): AxiosPromise<Array<GetCharactersCharacterIdAssets200Ok>> {
       return localVarFp
-        .getCharactersCharacterIdAssets(
+        .getCharacterAssets(
           characterId,
           datasource,
           ifNoneMatch,
@@ -15474,60 +15488,6 @@ export const AssetsApiFactory = function (
           datasource,
           ifNoneMatch,
           page,
-          token,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * Return locations for a set of item ids, which you can get from character assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)  --- Alternate route: `/dev/characters/{character_id}/assets/locations/`  Alternate route: `/v2/characters/{character_id}/assets/locations/`
-     * @summary Get character asset locations
-     * @param {number} characterId An EVE character ID
-     * @param {Array<number>} itemIds A list of item ids
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {string} [token] Access token to use if unable to set a header
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    postCharactersCharacterIdAssetsLocations(
-      characterId: number,
-      itemIds: Array<number>,
-      datasource?: "tranquility",
-      token?: string,
-      options?: any
-    ): AxiosPromise<Array<PostCharactersCharacterIdAssetsLocations200Ok>> {
-      return localVarFp
-        .postCharactersCharacterIdAssetsLocations(
-          characterId,
-          itemIds,
-          datasource,
-          token,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * Return names for a set of item ids, which you can get from character assets endpoint. Typically used for items that can customize names, like containers or ships.  --- Alternate route: `/dev/characters/{character_id}/assets/names/`  Alternate route: `/legacy/characters/{character_id}/assets/names/`  Alternate route: `/v1/characters/{character_id}/assets/names/`
-     * @summary Get character asset names
-     * @param {number} characterId An EVE character ID
-     * @param {Array<number>} itemIds A list of item ids
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {string} [token] Access token to use if unable to set a header
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    postCharactersCharacterIdAssetsNames(
-      characterId: number,
-      itemIds: Array<number>,
-      datasource?: "tranquility",
-      token?: string,
-      options?: any
-    ): AxiosPromise<Array<PostCharactersCharacterIdAssetsNames200Ok>> {
-      return localVarFp
-        .postCharactersCharacterIdAssetsNames(
-          characterId,
-          itemIds,
-          datasource,
           token,
           options
         )
@@ -15598,6 +15558,58 @@ export const AssetsApiFactory = function (
  */
 export class AssetsApi extends BaseAPI {
   /**
+   * Return locations for a set of item ids, which you can get from character assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)  --- Alternate route: `/dev/characters/{character_id}/assets/locations/`  Alternate route: `/v2/characters/{character_id}/assets/locations/`
+   * @summary Get character asset locations
+   * @param {number} characterId An EVE character ID
+   * @param {Array<number>} itemIds A list of item ids
+   * @param {'tranquility'} [datasource] The server name you would like data from
+   * @param {string} [token] Access token to use if unable to set a header
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AssetsApi
+   */
+  public getCharacterAssetLocations(
+    characterId: number,
+    itemIds: Array<number>,
+    datasource?: "tranquility",
+    token?: string,
+    options?: AxiosRequestConfig
+  ) {
+    return AssetsApiFp(this.configuration)
+      .getCharacterAssetLocations(
+        characterId,
+        itemIds,
+        datasource,
+        token,
+        options
+      )
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Return names for a set of item ids, which you can get from character assets endpoint. Typically used for items that can customize names, like containers or ships.  --- Alternate route: `/dev/characters/{character_id}/assets/names/`  Alternate route: `/legacy/characters/{character_id}/assets/names/`  Alternate route: `/v1/characters/{character_id}/assets/names/`
+   * @summary Get character asset names
+   * @param {number} characterId An EVE character ID
+   * @param {Array<number>} itemIds A list of item ids
+   * @param {'tranquility'} [datasource] The server name you would like data from
+   * @param {string} [token] Access token to use if unable to set a header
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof AssetsApi
+   */
+  public getCharacterAssetNames(
+    characterId: number,
+    itemIds: Array<number>,
+    datasource?: "tranquility",
+    token?: string,
+    options?: AxiosRequestConfig
+  ) {
+    return AssetsApiFp(this.configuration)
+      .getCharacterAssetNames(characterId, itemIds, datasource, token, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
    * Return a list of the characters assets  --- Alternate route: `/dev/characters/{character_id}/assets/`  Alternate route: `/v5/characters/{character_id}/assets/`  --- This route is cached for up to 3600 seconds
    * @summary Get character assets
    * @param {number} characterId An EVE character ID
@@ -15609,7 +15621,7 @@ export class AssetsApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof AssetsApi
    */
-  public getCharactersCharacterIdAssets(
+  public getCharacterAssets(
     characterId: number,
     datasource?: "tranquility",
     ifNoneMatch?: string,
@@ -15618,7 +15630,7 @@ export class AssetsApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return AssetsApiFp(this.configuration)
-      .getCharactersCharacterIdAssets(
+      .getCharacterAssets(
         characterId,
         datasource,
         ifNoneMatch,
@@ -15655,64 +15667,6 @@ export class AssetsApi extends BaseAPI {
         datasource,
         ifNoneMatch,
         page,
-        token,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
-
-  /**
-   * Return locations for a set of item ids, which you can get from character assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)  --- Alternate route: `/dev/characters/{character_id}/assets/locations/`  Alternate route: `/v2/characters/{character_id}/assets/locations/`
-   * @summary Get character asset locations
-   * @param {number} characterId An EVE character ID
-   * @param {Array<number>} itemIds A list of item ids
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [token] Access token to use if unable to set a header
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof AssetsApi
-   */
-  public postCharactersCharacterIdAssetsLocations(
-    characterId: number,
-    itemIds: Array<number>,
-    datasource?: "tranquility",
-    token?: string,
-    options?: AxiosRequestConfig
-  ) {
-    return AssetsApiFp(this.configuration)
-      .postCharactersCharacterIdAssetsLocations(
-        characterId,
-        itemIds,
-        datasource,
-        token,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
-
-  /**
-   * Return names for a set of item ids, which you can get from character assets endpoint. Typically used for items that can customize names, like containers or ships.  --- Alternate route: `/dev/characters/{character_id}/assets/names/`  Alternate route: `/legacy/characters/{character_id}/assets/names/`  Alternate route: `/v1/characters/{character_id}/assets/names/`
-   * @summary Get character asset names
-   * @param {number} characterId An EVE character ID
-   * @param {Array<number>} itemIds A list of item ids
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [token] Access token to use if unable to set a header
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof AssetsApi
-   */
-  public postCharactersCharacterIdAssetsNames(
-    characterId: number,
-    itemIds: Array<number>,
-    datasource?: "tranquility",
-    token?: string,
-    options?: AxiosRequestConfig
-  ) {
-    return AssetsApiFp(this.configuration)
-      .postCharactersCharacterIdAssetsNames(
-        characterId,
-        itemIds,
-        datasource,
         token,
         options
       )
@@ -15797,7 +15751,7 @@ export const BookmarksApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdBookmarks: async (
+    getCharacterBookmarks: async (
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -15806,11 +15760,7 @@ export const BookmarksApiAxiosParamCreator = function (
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "getCharactersCharacterIdBookmarks",
-        "characterId",
-        characterId
-      );
+      assertParamExists("getCharacterBookmarks", "characterId", characterId);
       const localVarPath = `/characters/{character_id}/bookmarks/`.replace(
         `{${"character_id"}}`,
         encodeURIComponent(String(characterId))
@@ -15880,7 +15830,7 @@ export const BookmarksApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdBookmarksFolders: async (
+    getCharacterBookmarksFolders: async (
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -15890,7 +15840,7 @@ export const BookmarksApiAxiosParamCreator = function (
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
       assertParamExists(
-        "getCharactersCharacterIdBookmarksFolders",
+        "getCharacterBookmarksFolders",
         "characterId",
         characterId
       );
@@ -16142,7 +16092,7 @@ export const BookmarksApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterIdBookmarks(
+    async getCharacterBookmarks(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -16156,7 +16106,7 @@ export const BookmarksApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<Array<GetCharactersCharacterIdBookmarks200Ok>>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdBookmarks(
+        await localVarAxiosParamCreator.getCharacterBookmarks(
           characterId,
           datasource,
           ifNoneMatch,
@@ -16182,7 +16132,7 @@ export const BookmarksApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterIdBookmarksFolders(
+    async getCharacterBookmarksFolders(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -16196,7 +16146,7 @@ export const BookmarksApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<Array<GetCharactersCharacterIdBookmarksFolders200Ok>>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdBookmarksFolders(
+        await localVarAxiosParamCreator.getCharacterBookmarksFolders(
           characterId,
           datasource,
           ifNoneMatch,
@@ -16318,7 +16268,7 @@ export const BookmarksApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdBookmarks(
+    getCharacterBookmarks(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -16327,7 +16277,7 @@ export const BookmarksApiFactory = function (
       options?: any
     ): AxiosPromise<Array<GetCharactersCharacterIdBookmarks200Ok>> {
       return localVarFp
-        .getCharactersCharacterIdBookmarks(
+        .getCharacterBookmarks(
           characterId,
           datasource,
           ifNoneMatch,
@@ -16348,7 +16298,7 @@ export const BookmarksApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdBookmarksFolders(
+    getCharacterBookmarksFolders(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -16357,7 +16307,7 @@ export const BookmarksApiFactory = function (
       options?: any
     ): AxiosPromise<Array<GetCharactersCharacterIdBookmarksFolders200Ok>> {
       return localVarFp
-        .getCharactersCharacterIdBookmarksFolders(
+        .getCharacterBookmarksFolders(
           characterId,
           datasource,
           ifNoneMatch,
@@ -16449,7 +16399,7 @@ export class BookmarksApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof BookmarksApi
    */
-  public getCharactersCharacterIdBookmarks(
+  public getCharacterBookmarks(
     characterId: number,
     datasource?: "tranquility",
     ifNoneMatch?: string,
@@ -16458,7 +16408,7 @@ export class BookmarksApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return BookmarksApiFp(this.configuration)
-      .getCharactersCharacterIdBookmarks(
+      .getCharacterBookmarks(
         characterId,
         datasource,
         ifNoneMatch,
@@ -16481,7 +16431,7 @@ export class BookmarksApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof BookmarksApi
    */
-  public getCharactersCharacterIdBookmarksFolders(
+  public getCharacterBookmarksFolders(
     characterId: number,
     datasource?: "tranquility",
     ifNoneMatch?: string,
@@ -16490,7 +16440,7 @@ export class BookmarksApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return BookmarksApiFp(this.configuration)
-      .getCharactersCharacterIdBookmarksFolders(
+      .getCharacterBookmarksFolders(
         characterId,
         datasource,
         ifNoneMatch,
@@ -16585,7 +16535,7 @@ export const CalendarApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdCalendar: async (
+    getCharacterCalendar: async (
       characterId: number,
       datasource?: "tranquility",
       fromEvent?: number,
@@ -16594,11 +16544,7 @@ export const CalendarApiAxiosParamCreator = function (
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "getCharactersCharacterIdCalendar",
-        "characterId",
-        characterId
-      );
+      assertParamExists("getCharacterCalendar", "characterId", characterId);
       const localVarPath = `/characters/{character_id}/calendar/`.replace(
         `{${"character_id"}}`,
         encodeURIComponent(String(characterId))
@@ -16668,7 +16614,7 @@ export const CalendarApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdCalendarEventId: async (
+    getCharacterCalendarEvent: async (
       characterId: number,
       eventId: number,
       datasource?: "tranquility",
@@ -16678,16 +16624,12 @@ export const CalendarApiAxiosParamCreator = function (
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
       assertParamExists(
-        "getCharactersCharacterIdCalendarEventId",
+        "getCharacterCalendarEvent",
         "characterId",
         characterId
       );
       // verify required parameter 'eventId' is not null or undefined
-      assertParamExists(
-        "getCharactersCharacterIdCalendarEventId",
-        "eventId",
-        eventId
-      );
+      assertParamExists("getCharacterCalendarEvent", "eventId", eventId);
       const localVarPath = `/characters/{character_id}/calendar/{event_id}/`
         .replace(`{${"character_id"}}`, encodeURIComponent(String(characterId)))
         .replace(`{${"event_id"}}`, encodeURIComponent(String(eventId)));
@@ -16752,7 +16694,7 @@ export const CalendarApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdCalendarEventIdAttendees: async (
+    getCharacterCalendarEventAttendees: async (
       characterId: number,
       eventId: number,
       datasource?: "tranquility",
@@ -16762,13 +16704,13 @@ export const CalendarApiAxiosParamCreator = function (
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
       assertParamExists(
-        "getCharactersCharacterIdCalendarEventIdAttendees",
+        "getCharacterCalendarEventAttendees",
         "characterId",
         characterId
       );
       // verify required parameter 'eventId' is not null or undefined
       assertParamExists(
-        "getCharactersCharacterIdCalendarEventIdAttendees",
+        "getCharacterCalendarEventAttendees",
         "eventId",
         eventId
       );
@@ -16840,7 +16782,7 @@ export const CalendarApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    putCharactersCharacterIdCalendarEventId: async (
+    respondToCharacterCharacterCalendarEvent: async (
       characterId: number,
       eventId: number,
       response: PutCharactersCharacterIdCalendarEventIdResponse,
@@ -16850,19 +16792,19 @@ export const CalendarApiAxiosParamCreator = function (
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
       assertParamExists(
-        "putCharactersCharacterIdCalendarEventId",
+        "respondToCharacterCharacterCalendarEvent",
         "characterId",
         characterId
       );
       // verify required parameter 'eventId' is not null or undefined
       assertParamExists(
-        "putCharactersCharacterIdCalendarEventId",
+        "respondToCharacterCharacterCalendarEvent",
         "eventId",
         eventId
       );
       // verify required parameter 'response' is not null or undefined
       assertParamExists(
-        "putCharactersCharacterIdCalendarEventId",
+        "respondToCharacterCharacterCalendarEvent",
         "response",
         response
       );
@@ -16943,7 +16885,7 @@ export const CalendarApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterIdCalendar(
+    async getCharacterCalendar(
       characterId: number,
       datasource?: "tranquility",
       fromEvent?: number,
@@ -16957,7 +16899,7 @@ export const CalendarApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<Array<GetCharactersCharacterIdCalendar200Ok>>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdCalendar(
+        await localVarAxiosParamCreator.getCharacterCalendar(
           characterId,
           datasource,
           fromEvent,
@@ -16983,7 +16925,7 @@ export const CalendarApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterIdCalendarEventId(
+    async getCharacterCalendarEvent(
       characterId: number,
       eventId: number,
       datasource?: "tranquility",
@@ -16997,7 +16939,7 @@ export const CalendarApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<GetCharactersCharacterIdCalendarEventIdOk>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdCalendarEventId(
+        await localVarAxiosParamCreator.getCharacterCalendarEvent(
           characterId,
           eventId,
           datasource,
@@ -17023,7 +16965,7 @@ export const CalendarApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterIdCalendarEventIdAttendees(
+    async getCharacterCalendarEventAttendees(
       characterId: number,
       eventId: number,
       datasource?: "tranquility",
@@ -17039,7 +16981,7 @@ export const CalendarApiFp = function (configuration?: Configuration) {
       >
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdCalendarEventIdAttendees(
+        await localVarAxiosParamCreator.getCharacterCalendarEventAttendees(
           characterId,
           eventId,
           datasource,
@@ -17065,7 +17007,7 @@ export const CalendarApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async putCharactersCharacterIdCalendarEventId(
+    async respondToCharacterCharacterCalendarEvent(
       characterId: number,
       eventId: number,
       response: PutCharactersCharacterIdCalendarEventIdResponse,
@@ -17076,7 +17018,7 @@ export const CalendarApiFp = function (configuration?: Configuration) {
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.putCharactersCharacterIdCalendarEventId(
+        await localVarAxiosParamCreator.respondToCharacterCharacterCalendarEvent(
           characterId,
           eventId,
           response,
@@ -17116,7 +17058,7 @@ export const CalendarApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdCalendar(
+    getCharacterCalendar(
       characterId: number,
       datasource?: "tranquility",
       fromEvent?: number,
@@ -17125,7 +17067,7 @@ export const CalendarApiFactory = function (
       options?: any
     ): AxiosPromise<Array<GetCharactersCharacterIdCalendar200Ok>> {
       return localVarFp
-        .getCharactersCharacterIdCalendar(
+        .getCharacterCalendar(
           characterId,
           datasource,
           fromEvent,
@@ -17146,7 +17088,7 @@ export const CalendarApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdCalendarEventId(
+    getCharacterCalendarEvent(
       characterId: number,
       eventId: number,
       datasource?: "tranquility",
@@ -17155,7 +17097,7 @@ export const CalendarApiFactory = function (
       options?: any
     ): AxiosPromise<GetCharactersCharacterIdCalendarEventIdOk> {
       return localVarFp
-        .getCharactersCharacterIdCalendarEventId(
+        .getCharacterCalendarEvent(
           characterId,
           eventId,
           datasource,
@@ -17176,7 +17118,7 @@ export const CalendarApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdCalendarEventIdAttendees(
+    getCharacterCalendarEventAttendees(
       characterId: number,
       eventId: number,
       datasource?: "tranquility",
@@ -17187,7 +17129,7 @@ export const CalendarApiFactory = function (
       Array<GetCharactersCharacterIdCalendarEventIdAttendees200Ok>
     > {
       return localVarFp
-        .getCharactersCharacterIdCalendarEventIdAttendees(
+        .getCharacterCalendarEventAttendees(
           characterId,
           eventId,
           datasource,
@@ -17208,7 +17150,7 @@ export const CalendarApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    putCharactersCharacterIdCalendarEventId(
+    respondToCharacterCharacterCalendarEvent(
       characterId: number,
       eventId: number,
       response: PutCharactersCharacterIdCalendarEventIdResponse,
@@ -17217,7 +17159,7 @@ export const CalendarApiFactory = function (
       options?: any
     ): AxiosPromise<void> {
       return localVarFp
-        .putCharactersCharacterIdCalendarEventId(
+        .respondToCharacterCharacterCalendarEvent(
           characterId,
           eventId,
           response,
@@ -17249,7 +17191,7 @@ export class CalendarApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CalendarApi
    */
-  public getCharactersCharacterIdCalendar(
+  public getCharacterCalendar(
     characterId: number,
     datasource?: "tranquility",
     fromEvent?: number,
@@ -17258,7 +17200,7 @@ export class CalendarApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return CalendarApiFp(this.configuration)
-      .getCharactersCharacterIdCalendar(
+      .getCharacterCalendar(
         characterId,
         datasource,
         fromEvent,
@@ -17281,7 +17223,7 @@ export class CalendarApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CalendarApi
    */
-  public getCharactersCharacterIdCalendarEventId(
+  public getCharacterCalendarEvent(
     characterId: number,
     eventId: number,
     datasource?: "tranquility",
@@ -17290,7 +17232,7 @@ export class CalendarApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return CalendarApiFp(this.configuration)
-      .getCharactersCharacterIdCalendarEventId(
+      .getCharacterCalendarEvent(
         characterId,
         eventId,
         datasource,
@@ -17313,7 +17255,7 @@ export class CalendarApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CalendarApi
    */
-  public getCharactersCharacterIdCalendarEventIdAttendees(
+  public getCharacterCalendarEventAttendees(
     characterId: number,
     eventId: number,
     datasource?: "tranquility",
@@ -17322,7 +17264,7 @@ export class CalendarApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return CalendarApiFp(this.configuration)
-      .getCharactersCharacterIdCalendarEventIdAttendees(
+      .getCharacterCalendarEventAttendees(
         characterId,
         eventId,
         datasource,
@@ -17345,7 +17287,7 @@ export class CalendarApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CalendarApi
    */
-  public putCharactersCharacterIdCalendarEventId(
+  public respondToCharacterCharacterCalendarEvent(
     characterId: number,
     eventId: number,
     response: PutCharactersCharacterIdCalendarEventIdResponse,
@@ -17354,7 +17296,7 @@ export class CalendarApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return CalendarApiFp(this.configuration)
-      .putCharactersCharacterIdCalendarEventId(
+      .respondToCharacterCharacterCalendarEvent(
         characterId,
         eventId,
         response,
@@ -17375,6 +17317,66 @@ export const CharacterApiAxiosParamCreator = function (
 ) {
   return {
     /**
+     * Bulk lookup of character IDs to corporation, alliance and faction  --- Alternate route: `/dev/characters/affiliation/`  Alternate route: `/v2/characters/affiliation/`  --- This route is cached for up to 3600 seconds
+     * @summary Character affiliation
+     * @param {Array<number>} characters The character IDs to fetch affiliations for. All characters must exist, or none will be returned
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    bulkLookupCharacterAffiliation: async (
+      characters: Array<number>,
+      datasource?: "tranquility",
+      options: AxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'characters' is not null or undefined
+      assertParamExists(
+        "bulkLookupCharacterAffiliation",
+        "characters",
+        characters
+      );
+      const localVarPath = `/characters/affiliation/`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      if (datasource !== undefined) {
+        localVarQueryParameter["datasource"] = datasource;
+      }
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        characters,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
      * Public information about a character  --- Alternate route: `/dev/characters/{character_id}/`  Alternate route: `/legacy/characters/{character_id}/`  Alternate route: `/v5/characters/{character_id}/`  --- This route is cached for up to 86400 seconds
      * @summary Get character\'s public information
      * @param {number} characterId An EVE character ID
@@ -17383,14 +17385,14 @@ export const CharacterApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterId: async (
+    getCharacter: async (
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
-      assertParamExists("getCharactersCharacterId", "characterId", characterId);
+      assertParamExists("getCharacter", "characterId", characterId);
       const localVarPath = `/characters/{character_id}/`.replace(
         `{${"character_id"}}`,
         encodeURIComponent(String(characterId))
@@ -17442,7 +17444,7 @@ export const CharacterApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdAgentsResearch: async (
+    getCharacterAgentResearch: async (
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -17451,7 +17453,7 @@ export const CharacterApiAxiosParamCreator = function (
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
       assertParamExists(
-        "getCharactersCharacterIdAgentsResearch",
+        "getCharacterAgentResearch",
         "characterId",
         characterId
       );
@@ -17521,7 +17523,7 @@ export const CharacterApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdBlueprints: async (
+    getCharacterBlueprints: async (
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -17530,11 +17532,7 @@ export const CharacterApiAxiosParamCreator = function (
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "getCharactersCharacterIdBlueprints",
-        "characterId",
-        characterId
-      );
+      assertParamExists("getCharacterBlueprints", "characterId", characterId);
       const localVarPath = `/characters/{character_id}/blueprints/`.replace(
         `{${"character_id"}}`,
         encodeURIComponent(String(characterId))
@@ -17602,7 +17600,7 @@ export const CharacterApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdCorporationhistory: async (
+    getCharacterCorporationhistory: async (
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -17610,7 +17608,7 @@ export const CharacterApiAxiosParamCreator = function (
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
       assertParamExists(
-        "getCharactersCharacterIdCorporationhistory",
+        "getCharacterCorporationhistory",
         "characterId",
         characterId
       );
@@ -17666,7 +17664,7 @@ export const CharacterApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdFatigue: async (
+    getCharacterFatigue: async (
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -17674,11 +17672,7 @@ export const CharacterApiAxiosParamCreator = function (
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "getCharactersCharacterIdFatigue",
-        "characterId",
-        characterId
-      );
+      assertParamExists("getCharacterFatigue", "characterId", characterId);
       const localVarPath = `/characters/{character_id}/fatigue/`.replace(
         `{${"character_id"}}`,
         encodeURIComponent(String(characterId))
@@ -17743,7 +17737,7 @@ export const CharacterApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdMedals: async (
+    getCharacterMedals: async (
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -17751,11 +17745,7 @@ export const CharacterApiAxiosParamCreator = function (
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "getCharactersCharacterIdMedals",
-        "characterId",
-        characterId
-      );
+      assertParamExists("getCharacterMedals", "characterId", characterId);
       const localVarPath = `/characters/{character_id}/medals/`.replace(
         `{${"character_id"}}`,
         encodeURIComponent(String(characterId))
@@ -17820,7 +17810,7 @@ export const CharacterApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdNotifications: async (
+    getCharacterNotifications: async (
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -17829,7 +17819,7 @@ export const CharacterApiAxiosParamCreator = function (
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
       assertParamExists(
-        "getCharactersCharacterIdNotifications",
+        "getCharacterNotifications",
         "characterId",
         characterId
       );
@@ -17897,7 +17887,7 @@ export const CharacterApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdNotificationsContacts: async (
+    getCharacterNotificationsContacts: async (
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -17906,7 +17896,7 @@ export const CharacterApiAxiosParamCreator = function (
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
       assertParamExists(
-        "getCharactersCharacterIdNotificationsContacts",
+        "getCharacterNotificationsContacts",
         "characterId",
         characterId
       );
@@ -17974,18 +17964,14 @@ export const CharacterApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdPortrait: async (
+    getCharacterPortrait: async (
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "getCharactersCharacterIdPortrait",
-        "characterId",
-        characterId
-      );
+      assertParamExists("getCharacterPortrait", "characterId", characterId);
       const localVarPath = `/characters/{character_id}/portrait/`.replace(
         `{${"character_id"}}`,
         encodeURIComponent(String(characterId))
@@ -18037,7 +18023,7 @@ export const CharacterApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdRoles: async (
+    getCharacterRoles: async (
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -18045,11 +18031,7 @@ export const CharacterApiAxiosParamCreator = function (
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "getCharactersCharacterIdRoles",
-        "characterId",
-        characterId
-      );
+      assertParamExists("getCharacterRoles", "characterId", characterId);
       const localVarPath = `/characters/{character_id}/roles/`.replace(
         `{${"character_id"}}`,
         encodeURIComponent(String(characterId))
@@ -18114,7 +18096,7 @@ export const CharacterApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdStandings: async (
+    getCharacterStandings: async (
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -18122,11 +18104,7 @@ export const CharacterApiAxiosParamCreator = function (
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "getCharactersCharacterIdStandings",
-        "characterId",
-        characterId
-      );
+      assertParamExists("getCharacterStandings", "characterId", characterId);
       const localVarPath = `/characters/{character_id}/standings/`.replace(
         `{${"character_id"}}`,
         encodeURIComponent(String(characterId))
@@ -18191,7 +18169,7 @@ export const CharacterApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdTitles: async (
+    getCharacterTitles: async (
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -18199,11 +18177,7 @@ export const CharacterApiAxiosParamCreator = function (
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "getCharactersCharacterIdTitles",
-        "characterId",
-        characterId
-      );
+      assertParamExists("getCharacterTitles", "characterId", characterId);
       const localVarPath = `/characters/{character_id}/titles/`.replace(
         `{${"character_id"}}`,
         encodeURIComponent(String(characterId))
@@ -18259,62 +18233,6 @@ export const CharacterApiAxiosParamCreator = function (
       };
     },
     /**
-     * Bulk lookup of character IDs to corporation, alliance and faction  --- Alternate route: `/dev/characters/affiliation/`  Alternate route: `/v2/characters/affiliation/`  --- This route is cached for up to 3600 seconds
-     * @summary Character affiliation
-     * @param {Array<number>} characters The character IDs to fetch affiliations for. All characters must exist, or none will be returned
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    postCharactersAffiliation: async (
-      characters: Array<number>,
-      datasource?: "tranquility",
-      options: AxiosRequestConfig = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'characters' is not null or undefined
-      assertParamExists("postCharactersAffiliation", "characters", characters);
-      const localVarPath = `/characters/affiliation/`;
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: "POST",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      if (datasource !== undefined) {
-        localVarQueryParameter["datasource"] = datasource;
-      }
-
-      localVarHeaderParameter["Content-Type"] = "application/json";
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        characters,
-        localVarRequestOptions,
-        configuration
-      );
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
      * Takes a source character ID in the url and a set of target character ID\'s in the body, returns a CSPA charge cost  --- Alternate route: `/dev/characters/{character_id}/cspa/`  Alternate route: `/v5/characters/{character_id}/cspa/`
      * @summary Calculate a CSPA charge cost
      * @param {number} characterId An EVE character ID
@@ -18324,7 +18242,7 @@ export const CharacterApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    postCharactersCharacterIdCspa: async (
+    getCharactersCspaCost: async (
       characterId: number,
       characters: Array<number>,
       datasource?: "tranquility",
@@ -18332,17 +18250,9 @@ export const CharacterApiAxiosParamCreator = function (
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "postCharactersCharacterIdCspa",
-        "characterId",
-        characterId
-      );
+      assertParamExists("getCharactersCspaCost", "characterId", characterId);
       // verify required parameter 'characters' is not null or undefined
-      assertParamExists(
-        "postCharactersCharacterIdCspa",
-        "characters",
-        characters
-      );
+      assertParamExists("getCharactersCspaCost", "characters", characters);
       const localVarPath = `/characters/{character_id}/cspa/`.replace(
         `{${"character_id"}}`,
         encodeURIComponent(String(characterId))
@@ -18412,6 +18322,37 @@ export const CharacterApiFp = function (configuration?: Configuration) {
     CharacterApiAxiosParamCreator(configuration);
   return {
     /**
+     * Bulk lookup of character IDs to corporation, alliance and faction  --- Alternate route: `/dev/characters/affiliation/`  Alternate route: `/v2/characters/affiliation/`  --- This route is cached for up to 3600 seconds
+     * @summary Character affiliation
+     * @param {Array<number>} characters The character IDs to fetch affiliations for. All characters must exist, or none will be returned
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async bulkLookupCharacterAffiliation(
+      characters: Array<number>,
+      datasource?: "tranquility",
+      options?: AxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<Array<PostCharactersAffiliation200Ok>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.bulkLookupCharacterAffiliation(
+          characters,
+          datasource,
+          options
+        );
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration
+      );
+    },
+    /**
      * Public information about a character  --- Alternate route: `/dev/characters/{character_id}/`  Alternate route: `/legacy/characters/{character_id}/`  Alternate route: `/v5/characters/{character_id}/`  --- This route is cached for up to 86400 seconds
      * @summary Get character\'s public information
      * @param {number} characterId An EVE character ID
@@ -18420,7 +18361,7 @@ export const CharacterApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterId(
+    async getCharacter(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -18431,13 +18372,12 @@ export const CharacterApiFp = function (configuration?: Configuration) {
         basePath?: string
       ) => AxiosPromise<GetCharactersCharacterIdOk>
     > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterId(
-          characterId,
-          datasource,
-          ifNoneMatch,
-          options
-        );
+      const localVarAxiosArgs = await localVarAxiosParamCreator.getCharacter(
+        characterId,
+        datasource,
+        ifNoneMatch,
+        options
+      );
       return createRequestFunction(
         localVarAxiosArgs,
         globalAxios,
@@ -18455,7 +18395,7 @@ export const CharacterApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterIdAgentsResearch(
+    async getCharacterAgentResearch(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -18468,7 +18408,7 @@ export const CharacterApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<Array<GetCharactersCharacterIdAgentsResearch200Ok>>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdAgentsResearch(
+        await localVarAxiosParamCreator.getCharacterAgentResearch(
           characterId,
           datasource,
           ifNoneMatch,
@@ -18493,7 +18433,7 @@ export const CharacterApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterIdBlueprints(
+    async getCharacterBlueprints(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -18507,7 +18447,7 @@ export const CharacterApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<Array<GetCharactersCharacterIdBlueprints200Ok>>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdBlueprints(
+        await localVarAxiosParamCreator.getCharacterBlueprints(
           characterId,
           datasource,
           ifNoneMatch,
@@ -18531,7 +18471,7 @@ export const CharacterApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterIdCorporationhistory(
+    async getCharacterCorporationhistory(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -18543,7 +18483,7 @@ export const CharacterApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<Array<GetCharactersCharacterIdCorporationhistory200Ok>>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdCorporationhistory(
+        await localVarAxiosParamCreator.getCharacterCorporationhistory(
           characterId,
           datasource,
           ifNoneMatch,
@@ -18566,7 +18506,7 @@ export const CharacterApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterIdFatigue(
+    async getCharacterFatigue(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -18579,7 +18519,7 @@ export const CharacterApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<GetCharactersCharacterIdFatigueOk>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdFatigue(
+        await localVarAxiosParamCreator.getCharacterFatigue(
           characterId,
           datasource,
           ifNoneMatch,
@@ -18603,7 +18543,7 @@ export const CharacterApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterIdMedals(
+    async getCharacterMedals(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -18616,7 +18556,7 @@ export const CharacterApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<Array<GetCharactersCharacterIdMedals200Ok>>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdMedals(
+        await localVarAxiosParamCreator.getCharacterMedals(
           characterId,
           datasource,
           ifNoneMatch,
@@ -18640,7 +18580,7 @@ export const CharacterApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterIdNotifications(
+    async getCharacterNotifications(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -18653,7 +18593,7 @@ export const CharacterApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<Array<GetCharactersCharacterIdNotifications200Ok>>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdNotifications(
+        await localVarAxiosParamCreator.getCharacterNotifications(
           characterId,
           datasource,
           ifNoneMatch,
@@ -18677,7 +18617,7 @@ export const CharacterApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterIdNotificationsContacts(
+    async getCharacterNotificationsContacts(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -18692,7 +18632,7 @@ export const CharacterApiFp = function (configuration?: Configuration) {
       >
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdNotificationsContacts(
+        await localVarAxiosParamCreator.getCharacterNotificationsContacts(
           characterId,
           datasource,
           ifNoneMatch,
@@ -18715,7 +18655,7 @@ export const CharacterApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterIdPortrait(
+    async getCharacterPortrait(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -18727,7 +18667,7 @@ export const CharacterApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<GetCharactersCharacterIdPortraitOk>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdPortrait(
+        await localVarAxiosParamCreator.getCharacterPortrait(
           characterId,
           datasource,
           ifNoneMatch,
@@ -18750,7 +18690,7 @@ export const CharacterApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterIdRoles(
+    async getCharacterRoles(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -18763,7 +18703,7 @@ export const CharacterApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<GetCharactersCharacterIdRolesOk>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdRoles(
+        await localVarAxiosParamCreator.getCharacterRoles(
           characterId,
           datasource,
           ifNoneMatch,
@@ -18787,7 +18727,7 @@ export const CharacterApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterIdStandings(
+    async getCharacterStandings(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -18800,7 +18740,7 @@ export const CharacterApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<Array<GetCharactersCharacterIdStandings200Ok>>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdStandings(
+        await localVarAxiosParamCreator.getCharacterStandings(
           characterId,
           datasource,
           ifNoneMatch,
@@ -18824,7 +18764,7 @@ export const CharacterApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterIdTitles(
+    async getCharacterTitles(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -18837,42 +18777,11 @@ export const CharacterApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<Array<GetCharactersCharacterIdTitles200Ok>>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdTitles(
+        await localVarAxiosParamCreator.getCharacterTitles(
           characterId,
           datasource,
           ifNoneMatch,
           token,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-    /**
-     * Bulk lookup of character IDs to corporation, alliance and faction  --- Alternate route: `/dev/characters/affiliation/`  Alternate route: `/v2/characters/affiliation/`  --- This route is cached for up to 3600 seconds
-     * @summary Character affiliation
-     * @param {Array<number>} characters The character IDs to fetch affiliations for. All characters must exist, or none will be returned
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async postCharactersAffiliation(
-      characters: Array<number>,
-      datasource?: "tranquility",
-      options?: AxiosRequestConfig
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<Array<PostCharactersAffiliation200Ok>>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.postCharactersAffiliation(
-          characters,
-          datasource,
           options
         );
       return createRequestFunction(
@@ -18892,7 +18801,7 @@ export const CharacterApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async postCharactersCharacterIdCspa(
+    async getCharactersCspaCost(
       characterId: number,
       characters: Array<number>,
       datasource?: "tranquility",
@@ -18902,7 +18811,7 @@ export const CharacterApiFp = function (configuration?: Configuration) {
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<number>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.postCharactersCharacterIdCspa(
+        await localVarAxiosParamCreator.getCharactersCspaCost(
           characterId,
           characters,
           datasource,
@@ -18931,6 +18840,23 @@ export const CharacterApiFactory = function (
   const localVarFp = CharacterApiFp(configuration);
   return {
     /**
+     * Bulk lookup of character IDs to corporation, alliance and faction  --- Alternate route: `/dev/characters/affiliation/`  Alternate route: `/v2/characters/affiliation/`  --- This route is cached for up to 3600 seconds
+     * @summary Character affiliation
+     * @param {Array<number>} characters The character IDs to fetch affiliations for. All characters must exist, or none will be returned
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    bulkLookupCharacterAffiliation(
+      characters: Array<number>,
+      datasource?: "tranquility",
+      options?: any
+    ): AxiosPromise<Array<PostCharactersAffiliation200Ok>> {
+      return localVarFp
+        .bulkLookupCharacterAffiliation(characters, datasource, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
      * Public information about a character  --- Alternate route: `/dev/characters/{character_id}/`  Alternate route: `/legacy/characters/{character_id}/`  Alternate route: `/v5/characters/{character_id}/`  --- This route is cached for up to 86400 seconds
      * @summary Get character\'s public information
      * @param {number} characterId An EVE character ID
@@ -18939,14 +18865,14 @@ export const CharacterApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterId(
+    getCharacter(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
       options?: any
     ): AxiosPromise<GetCharactersCharacterIdOk> {
       return localVarFp
-        .getCharactersCharacterId(characterId, datasource, ifNoneMatch, options)
+        .getCharacter(characterId, datasource, ifNoneMatch, options)
         .then((request) => request(axios, basePath));
     },
     /**
@@ -18959,7 +18885,7 @@ export const CharacterApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdAgentsResearch(
+    getCharacterAgentResearch(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -18967,7 +18893,7 @@ export const CharacterApiFactory = function (
       options?: any
     ): AxiosPromise<Array<GetCharactersCharacterIdAgentsResearch200Ok>> {
       return localVarFp
-        .getCharactersCharacterIdAgentsResearch(
+        .getCharacterAgentResearch(
           characterId,
           datasource,
           ifNoneMatch,
@@ -18987,7 +18913,7 @@ export const CharacterApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdBlueprints(
+    getCharacterBlueprints(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -18996,7 +18922,7 @@ export const CharacterApiFactory = function (
       options?: any
     ): AxiosPromise<Array<GetCharactersCharacterIdBlueprints200Ok>> {
       return localVarFp
-        .getCharactersCharacterIdBlueprints(
+        .getCharacterBlueprints(
           characterId,
           datasource,
           ifNoneMatch,
@@ -19015,14 +18941,14 @@ export const CharacterApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdCorporationhistory(
+    getCharacterCorporationhistory(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
       options?: any
     ): AxiosPromise<Array<GetCharactersCharacterIdCorporationhistory200Ok>> {
       return localVarFp
-        .getCharactersCharacterIdCorporationhistory(
+        .getCharacterCorporationhistory(
           characterId,
           datasource,
           ifNoneMatch,
@@ -19040,7 +18966,7 @@ export const CharacterApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdFatigue(
+    getCharacterFatigue(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -19048,7 +18974,7 @@ export const CharacterApiFactory = function (
       options?: any
     ): AxiosPromise<GetCharactersCharacterIdFatigueOk> {
       return localVarFp
-        .getCharactersCharacterIdFatigue(
+        .getCharacterFatigue(
           characterId,
           datasource,
           ifNoneMatch,
@@ -19067,7 +18993,7 @@ export const CharacterApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdMedals(
+    getCharacterMedals(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -19075,7 +19001,7 @@ export const CharacterApiFactory = function (
       options?: any
     ): AxiosPromise<Array<GetCharactersCharacterIdMedals200Ok>> {
       return localVarFp
-        .getCharactersCharacterIdMedals(
+        .getCharacterMedals(
           characterId,
           datasource,
           ifNoneMatch,
@@ -19094,7 +19020,7 @@ export const CharacterApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdNotifications(
+    getCharacterNotifications(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -19102,7 +19028,7 @@ export const CharacterApiFactory = function (
       options?: any
     ): AxiosPromise<Array<GetCharactersCharacterIdNotifications200Ok>> {
       return localVarFp
-        .getCharactersCharacterIdNotifications(
+        .getCharacterNotifications(
           characterId,
           datasource,
           ifNoneMatch,
@@ -19121,7 +19047,7 @@ export const CharacterApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdNotificationsContacts(
+    getCharacterNotificationsContacts(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -19129,7 +19055,7 @@ export const CharacterApiFactory = function (
       options?: any
     ): AxiosPromise<Array<GetCharactersCharacterIdNotificationsContacts200Ok>> {
       return localVarFp
-        .getCharactersCharacterIdNotificationsContacts(
+        .getCharacterNotificationsContacts(
           characterId,
           datasource,
           ifNoneMatch,
@@ -19147,19 +19073,14 @@ export const CharacterApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdPortrait(
+    getCharacterPortrait(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
       options?: any
     ): AxiosPromise<GetCharactersCharacterIdPortraitOk> {
       return localVarFp
-        .getCharactersCharacterIdPortrait(
-          characterId,
-          datasource,
-          ifNoneMatch,
-          options
-        )
+        .getCharacterPortrait(characterId, datasource, ifNoneMatch, options)
         .then((request) => request(axios, basePath));
     },
     /**
@@ -19172,7 +19093,7 @@ export const CharacterApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdRoles(
+    getCharacterRoles(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -19180,13 +19101,7 @@ export const CharacterApiFactory = function (
       options?: any
     ): AxiosPromise<GetCharactersCharacterIdRolesOk> {
       return localVarFp
-        .getCharactersCharacterIdRoles(
-          characterId,
-          datasource,
-          ifNoneMatch,
-          token,
-          options
-        )
+        .getCharacterRoles(characterId, datasource, ifNoneMatch, token, options)
         .then((request) => request(axios, basePath));
     },
     /**
@@ -19199,7 +19114,7 @@ export const CharacterApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdStandings(
+    getCharacterStandings(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -19207,7 +19122,7 @@ export const CharacterApiFactory = function (
       options?: any
     ): AxiosPromise<Array<GetCharactersCharacterIdStandings200Ok>> {
       return localVarFp
-        .getCharactersCharacterIdStandings(
+        .getCharacterStandings(
           characterId,
           datasource,
           ifNoneMatch,
@@ -19226,7 +19141,7 @@ export const CharacterApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdTitles(
+    getCharacterTitles(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -19234,30 +19149,13 @@ export const CharacterApiFactory = function (
       options?: any
     ): AxiosPromise<Array<GetCharactersCharacterIdTitles200Ok>> {
       return localVarFp
-        .getCharactersCharacterIdTitles(
+        .getCharacterTitles(
           characterId,
           datasource,
           ifNoneMatch,
           token,
           options
         )
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * Bulk lookup of character IDs to corporation, alliance and faction  --- Alternate route: `/dev/characters/affiliation/`  Alternate route: `/v2/characters/affiliation/`  --- This route is cached for up to 3600 seconds
-     * @summary Character affiliation
-     * @param {Array<number>} characters The character IDs to fetch affiliations for. All characters must exist, or none will be returned
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    postCharactersAffiliation(
-      characters: Array<number>,
-      datasource?: "tranquility",
-      options?: any
-    ): AxiosPromise<Array<PostCharactersAffiliation200Ok>> {
-      return localVarFp
-        .postCharactersAffiliation(characters, datasource, options)
         .then((request) => request(axios, basePath));
     },
     /**
@@ -19270,7 +19168,7 @@ export const CharacterApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    postCharactersCharacterIdCspa(
+    getCharactersCspaCost(
       characterId: number,
       characters: Array<number>,
       datasource?: "tranquility",
@@ -19278,7 +19176,7 @@ export const CharacterApiFactory = function (
       options?: any
     ): AxiosPromise<number> {
       return localVarFp
-        .postCharactersCharacterIdCspa(
+        .getCharactersCspaCost(
           characterId,
           characters,
           datasource,
@@ -19298,6 +19196,25 @@ export const CharacterApiFactory = function (
  */
 export class CharacterApi extends BaseAPI {
   /**
+   * Bulk lookup of character IDs to corporation, alliance and faction  --- Alternate route: `/dev/characters/affiliation/`  Alternate route: `/v2/characters/affiliation/`  --- This route is cached for up to 3600 seconds
+   * @summary Character affiliation
+   * @param {Array<number>} characters The character IDs to fetch affiliations for. All characters must exist, or none will be returned
+   * @param {'tranquility'} [datasource] The server name you would like data from
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof CharacterApi
+   */
+  public bulkLookupCharacterAffiliation(
+    characters: Array<number>,
+    datasource?: "tranquility",
+    options?: AxiosRequestConfig
+  ) {
+    return CharacterApiFp(this.configuration)
+      .bulkLookupCharacterAffiliation(characters, datasource, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
    * Public information about a character  --- Alternate route: `/dev/characters/{character_id}/`  Alternate route: `/legacy/characters/{character_id}/`  Alternate route: `/v5/characters/{character_id}/`  --- This route is cached for up to 86400 seconds
    * @summary Get character\'s public information
    * @param {number} characterId An EVE character ID
@@ -19307,14 +19224,14 @@ export class CharacterApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CharacterApi
    */
-  public getCharactersCharacterId(
+  public getCharacter(
     characterId: number,
     datasource?: "tranquility",
     ifNoneMatch?: string,
     options?: AxiosRequestConfig
   ) {
     return CharacterApiFp(this.configuration)
-      .getCharactersCharacterId(characterId, datasource, ifNoneMatch, options)
+      .getCharacter(characterId, datasource, ifNoneMatch, options)
       .then((request) => request(this.axios, this.basePath));
   }
 
@@ -19329,7 +19246,7 @@ export class CharacterApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CharacterApi
    */
-  public getCharactersCharacterIdAgentsResearch(
+  public getCharacterAgentResearch(
     characterId: number,
     datasource?: "tranquility",
     ifNoneMatch?: string,
@@ -19337,7 +19254,7 @@ export class CharacterApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return CharacterApiFp(this.configuration)
-      .getCharactersCharacterIdAgentsResearch(
+      .getCharacterAgentResearch(
         characterId,
         datasource,
         ifNoneMatch,
@@ -19359,7 +19276,7 @@ export class CharacterApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CharacterApi
    */
-  public getCharactersCharacterIdBlueprints(
+  public getCharacterBlueprints(
     characterId: number,
     datasource?: "tranquility",
     ifNoneMatch?: string,
@@ -19368,7 +19285,7 @@ export class CharacterApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return CharacterApiFp(this.configuration)
-      .getCharactersCharacterIdBlueprints(
+      .getCharacterBlueprints(
         characterId,
         datasource,
         ifNoneMatch,
@@ -19389,14 +19306,14 @@ export class CharacterApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CharacterApi
    */
-  public getCharactersCharacterIdCorporationhistory(
+  public getCharacterCorporationhistory(
     characterId: number,
     datasource?: "tranquility",
     ifNoneMatch?: string,
     options?: AxiosRequestConfig
   ) {
     return CharacterApiFp(this.configuration)
-      .getCharactersCharacterIdCorporationhistory(
+      .getCharacterCorporationhistory(
         characterId,
         datasource,
         ifNoneMatch,
@@ -19416,7 +19333,7 @@ export class CharacterApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CharacterApi
    */
-  public getCharactersCharacterIdFatigue(
+  public getCharacterFatigue(
     characterId: number,
     datasource?: "tranquility",
     ifNoneMatch?: string,
@@ -19424,13 +19341,7 @@ export class CharacterApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return CharacterApiFp(this.configuration)
-      .getCharactersCharacterIdFatigue(
-        characterId,
-        datasource,
-        ifNoneMatch,
-        token,
-        options
-      )
+      .getCharacterFatigue(characterId, datasource, ifNoneMatch, token, options)
       .then((request) => request(this.axios, this.basePath));
   }
 
@@ -19445,7 +19356,7 @@ export class CharacterApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CharacterApi
    */
-  public getCharactersCharacterIdMedals(
+  public getCharacterMedals(
     characterId: number,
     datasource?: "tranquility",
     ifNoneMatch?: string,
@@ -19453,13 +19364,7 @@ export class CharacterApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return CharacterApiFp(this.configuration)
-      .getCharactersCharacterIdMedals(
-        characterId,
-        datasource,
-        ifNoneMatch,
-        token,
-        options
-      )
+      .getCharacterMedals(characterId, datasource, ifNoneMatch, token, options)
       .then((request) => request(this.axios, this.basePath));
   }
 
@@ -19474,7 +19379,7 @@ export class CharacterApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CharacterApi
    */
-  public getCharactersCharacterIdNotifications(
+  public getCharacterNotifications(
     characterId: number,
     datasource?: "tranquility",
     ifNoneMatch?: string,
@@ -19482,7 +19387,7 @@ export class CharacterApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return CharacterApiFp(this.configuration)
-      .getCharactersCharacterIdNotifications(
+      .getCharacterNotifications(
         characterId,
         datasource,
         ifNoneMatch,
@@ -19503,7 +19408,7 @@ export class CharacterApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CharacterApi
    */
-  public getCharactersCharacterIdNotificationsContacts(
+  public getCharacterNotificationsContacts(
     characterId: number,
     datasource?: "tranquility",
     ifNoneMatch?: string,
@@ -19511,7 +19416,7 @@ export class CharacterApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return CharacterApiFp(this.configuration)
-      .getCharactersCharacterIdNotificationsContacts(
+      .getCharacterNotificationsContacts(
         characterId,
         datasource,
         ifNoneMatch,
@@ -19531,19 +19436,14 @@ export class CharacterApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CharacterApi
    */
-  public getCharactersCharacterIdPortrait(
+  public getCharacterPortrait(
     characterId: number,
     datasource?: "tranquility",
     ifNoneMatch?: string,
     options?: AxiosRequestConfig
   ) {
     return CharacterApiFp(this.configuration)
-      .getCharactersCharacterIdPortrait(
-        characterId,
-        datasource,
-        ifNoneMatch,
-        options
-      )
+      .getCharacterPortrait(characterId, datasource, ifNoneMatch, options)
       .then((request) => request(this.axios, this.basePath));
   }
 
@@ -19558,7 +19458,7 @@ export class CharacterApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CharacterApi
    */
-  public getCharactersCharacterIdRoles(
+  public getCharacterRoles(
     characterId: number,
     datasource?: "tranquility",
     ifNoneMatch?: string,
@@ -19566,13 +19466,7 @@ export class CharacterApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return CharacterApiFp(this.configuration)
-      .getCharactersCharacterIdRoles(
-        characterId,
-        datasource,
-        ifNoneMatch,
-        token,
-        options
-      )
+      .getCharacterRoles(characterId, datasource, ifNoneMatch, token, options)
       .then((request) => request(this.axios, this.basePath));
   }
 
@@ -19587,7 +19481,7 @@ export class CharacterApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CharacterApi
    */
-  public getCharactersCharacterIdStandings(
+  public getCharacterStandings(
     characterId: number,
     datasource?: "tranquility",
     ifNoneMatch?: string,
@@ -19595,7 +19489,7 @@ export class CharacterApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return CharacterApiFp(this.configuration)
-      .getCharactersCharacterIdStandings(
+      .getCharacterStandings(
         characterId,
         datasource,
         ifNoneMatch,
@@ -19616,7 +19510,7 @@ export class CharacterApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CharacterApi
    */
-  public getCharactersCharacterIdTitles(
+  public getCharacterTitles(
     characterId: number,
     datasource?: "tranquility",
     ifNoneMatch?: string,
@@ -19624,32 +19518,7 @@ export class CharacterApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return CharacterApiFp(this.configuration)
-      .getCharactersCharacterIdTitles(
-        characterId,
-        datasource,
-        ifNoneMatch,
-        token,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
-
-  /**
-   * Bulk lookup of character IDs to corporation, alliance and faction  --- Alternate route: `/dev/characters/affiliation/`  Alternate route: `/v2/characters/affiliation/`  --- This route is cached for up to 3600 seconds
-   * @summary Character affiliation
-   * @param {Array<number>} characters The character IDs to fetch affiliations for. All characters must exist, or none will be returned
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof CharacterApi
-   */
-  public postCharactersAffiliation(
-    characters: Array<number>,
-    datasource?: "tranquility",
-    options?: AxiosRequestConfig
-  ) {
-    return CharacterApiFp(this.configuration)
-      .postCharactersAffiliation(characters, datasource, options)
+      .getCharacterTitles(characterId, datasource, ifNoneMatch, token, options)
       .then((request) => request(this.axios, this.basePath));
   }
 
@@ -19664,7 +19533,7 @@ export class CharacterApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof CharacterApi
    */
-  public postCharactersCharacterIdCspa(
+  public getCharactersCspaCost(
     characterId: number,
     characters: Array<number>,
     datasource?: "tranquility",
@@ -19672,7 +19541,7 @@ export class CharacterApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return CharacterApiFp(this.configuration)
-      .postCharactersCharacterIdCspa(
+      .getCharactersCspaCost(
         characterId,
         characters,
         datasource,
@@ -19692,83 +19561,6 @@ export const ClonesApiAxiosParamCreator = function (
 ) {
   return {
     /**
-     * A list of the character\'s clones  --- Alternate route: `/dev/characters/{character_id}/clones/`  Alternate route: `/v3/characters/{character_id}/clones/`  Alternate route: `/v4/characters/{character_id}/clones/`  --- This route is cached for up to 120 seconds
-     * @summary Get clones
-     * @param {number} characterId An EVE character ID
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-     * @param {string} [token] Access token to use if unable to set a header
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getCharactersCharacterIdClones: async (
-      characterId: number,
-      datasource?: "tranquility",
-      ifNoneMatch?: string,
-      token?: string,
-      options: AxiosRequestConfig = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "getCharactersCharacterIdClones",
-        "characterId",
-        characterId
-      );
-      const localVarPath = `/characters/{character_id}/clones/`.replace(
-        `{${"character_id"}}`,
-        encodeURIComponent(String(characterId))
-      );
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: "GET",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      // authentication evesso required
-      // oauth required
-      await setOAuthToObject(
-        localVarHeaderParameter,
-        "evesso",
-        ["esi-clones.read_clones.v1"],
-        configuration
-      );
-
-      if (datasource !== undefined) {
-        localVarQueryParameter["datasource"] = datasource;
-      }
-
-      if (token !== undefined) {
-        localVarQueryParameter["token"] = token;
-      }
-
-      if (ifNoneMatch != null) {
-        localVarHeaderParameter["If-None-Match"] = String(ifNoneMatch);
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
      * Return implants on the active clone of a character  --- Alternate route: `/dev/characters/{character_id}/implants/`  Alternate route: `/legacy/characters/{character_id}/implants/`  Alternate route: `/v1/characters/{character_id}/implants/`  Alternate route: `/v2/characters/{character_id}/implants/`  --- This route is cached for up to 120 seconds
      * @summary Get active implants
      * @param {number} characterId An EVE character ID
@@ -19778,7 +19570,7 @@ export const ClonesApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdImplants: async (
+    getCharacterCharacterImplants: async (
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -19787,7 +19579,7 @@ export const ClonesApiAxiosParamCreator = function (
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
       assertParamExists(
-        "getCharactersCharacterIdImplants",
+        "getCharacterCharacterImplants",
         "characterId",
         characterId
       );
@@ -19845,6 +19637,79 @@ export const ClonesApiAxiosParamCreator = function (
         options: localVarRequestOptions,
       };
     },
+    /**
+     * A list of the character\'s clones  --- Alternate route: `/dev/characters/{character_id}/clones/`  Alternate route: `/v3/characters/{character_id}/clones/`  Alternate route: `/v4/characters/{character_id}/clones/`  --- This route is cached for up to 120 seconds
+     * @summary Get clones
+     * @param {number} characterId An EVE character ID
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param {string} [token] Access token to use if unable to set a header
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCharacterClones: async (
+      characterId: number,
+      datasource?: "tranquility",
+      ifNoneMatch?: string,
+      token?: string,
+      options: AxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'characterId' is not null or undefined
+      assertParamExists("getCharacterClones", "characterId", characterId);
+      const localVarPath = `/characters/{character_id}/clones/`.replace(
+        `{${"character_id"}}`,
+        encodeURIComponent(String(characterId))
+      );
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "GET",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication evesso required
+      // oauth required
+      await setOAuthToObject(
+        localVarHeaderParameter,
+        "evesso",
+        ["esi-clones.read_clones.v1"],
+        configuration
+      );
+
+      if (datasource !== undefined) {
+        localVarQueryParameter["datasource"] = datasource;
+      }
+
+      if (token !== undefined) {
+        localVarQueryParameter["token"] = token;
+      }
+
+      if (ifNoneMatch != null) {
+        localVarHeaderParameter["If-None-Match"] = String(ifNoneMatch);
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
   };
 };
 
@@ -19856,8 +19721,8 @@ export const ClonesApiFp = function (configuration?: Configuration) {
   const localVarAxiosParamCreator = ClonesApiAxiosParamCreator(configuration);
   return {
     /**
-     * A list of the character\'s clones  --- Alternate route: `/dev/characters/{character_id}/clones/`  Alternate route: `/v3/characters/{character_id}/clones/`  Alternate route: `/v4/characters/{character_id}/clones/`  --- This route is cached for up to 120 seconds
-     * @summary Get clones
+     * Return implants on the active clone of a character  --- Alternate route: `/dev/characters/{character_id}/implants/`  Alternate route: `/legacy/characters/{character_id}/implants/`  Alternate route: `/v1/characters/{character_id}/implants/`  Alternate route: `/v2/characters/{character_id}/implants/`  --- This route is cached for up to 120 seconds
+     * @summary Get active implants
      * @param {number} characterId An EVE character ID
      * @param {'tranquility'} [datasource] The server name you would like data from
      * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
@@ -19865,20 +19730,17 @@ export const ClonesApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterIdClones(
+    async getCharacterCharacterImplants(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
       token?: string,
       options?: AxiosRequestConfig
     ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<GetCharactersCharacterIdClonesOk>
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<number>>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdClones(
+        await localVarAxiosParamCreator.getCharacterCharacterImplants(
           characterId,
           datasource,
           ifNoneMatch,
@@ -19893,8 +19755,8 @@ export const ClonesApiFp = function (configuration?: Configuration) {
       );
     },
     /**
-     * Return implants on the active clone of a character  --- Alternate route: `/dev/characters/{character_id}/implants/`  Alternate route: `/legacy/characters/{character_id}/implants/`  Alternate route: `/v1/characters/{character_id}/implants/`  Alternate route: `/v2/characters/{character_id}/implants/`  --- This route is cached for up to 120 seconds
-     * @summary Get active implants
+     * A list of the character\'s clones  --- Alternate route: `/dev/characters/{character_id}/clones/`  Alternate route: `/v3/characters/{character_id}/clones/`  Alternate route: `/v4/characters/{character_id}/clones/`  --- This route is cached for up to 120 seconds
+     * @summary Get clones
      * @param {number} characterId An EVE character ID
      * @param {'tranquility'} [datasource] The server name you would like data from
      * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
@@ -19902,17 +19764,20 @@ export const ClonesApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterIdImplants(
+    async getCharacterClones(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
       token?: string,
       options?: AxiosRequestConfig
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<number>>
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<GetCharactersCharacterIdClonesOk>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdImplants(
+        await localVarAxiosParamCreator.getCharacterClones(
           characterId,
           datasource,
           ifNoneMatch,
@@ -19941,33 +19806,6 @@ export const ClonesApiFactory = function (
   const localVarFp = ClonesApiFp(configuration);
   return {
     /**
-     * A list of the character\'s clones  --- Alternate route: `/dev/characters/{character_id}/clones/`  Alternate route: `/v3/characters/{character_id}/clones/`  Alternate route: `/v4/characters/{character_id}/clones/`  --- This route is cached for up to 120 seconds
-     * @summary Get clones
-     * @param {number} characterId An EVE character ID
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-     * @param {string} [token] Access token to use if unable to set a header
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getCharactersCharacterIdClones(
-      characterId: number,
-      datasource?: "tranquility",
-      ifNoneMatch?: string,
-      token?: string,
-      options?: any
-    ): AxiosPromise<GetCharactersCharacterIdClonesOk> {
-      return localVarFp
-        .getCharactersCharacterIdClones(
-          characterId,
-          datasource,
-          ifNoneMatch,
-          token,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
      * Return implants on the active clone of a character  --- Alternate route: `/dev/characters/{character_id}/implants/`  Alternate route: `/legacy/characters/{character_id}/implants/`  Alternate route: `/v1/characters/{character_id}/implants/`  Alternate route: `/v2/characters/{character_id}/implants/`  --- This route is cached for up to 120 seconds
      * @summary Get active implants
      * @param {number} characterId An EVE character ID
@@ -19977,7 +19815,7 @@ export const ClonesApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdImplants(
+    getCharacterCharacterImplants(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -19985,7 +19823,34 @@ export const ClonesApiFactory = function (
       options?: any
     ): AxiosPromise<Array<number>> {
       return localVarFp
-        .getCharactersCharacterIdImplants(
+        .getCharacterCharacterImplants(
+          characterId,
+          datasource,
+          ifNoneMatch,
+          token,
+          options
+        )
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * A list of the character\'s clones  --- Alternate route: `/dev/characters/{character_id}/clones/`  Alternate route: `/v3/characters/{character_id}/clones/`  Alternate route: `/v4/characters/{character_id}/clones/`  --- This route is cached for up to 120 seconds
+     * @summary Get clones
+     * @param {number} characterId An EVE character ID
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param {string} [token] Access token to use if unable to set a header
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCharacterClones(
+      characterId: number,
+      datasource?: "tranquility",
+      ifNoneMatch?: string,
+      token?: string,
+      options?: any
+    ): AxiosPromise<GetCharactersCharacterIdClonesOk> {
+      return localVarFp
+        .getCharacterClones(
           characterId,
           datasource,
           ifNoneMatch,
@@ -20005,35 +19870,6 @@ export const ClonesApiFactory = function (
  */
 export class ClonesApi extends BaseAPI {
   /**
-   * A list of the character\'s clones  --- Alternate route: `/dev/characters/{character_id}/clones/`  Alternate route: `/v3/characters/{character_id}/clones/`  Alternate route: `/v4/characters/{character_id}/clones/`  --- This route is cached for up to 120 seconds
-   * @summary Get clones
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof ClonesApi
-   */
-  public getCharactersCharacterIdClones(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
-    options?: AxiosRequestConfig
-  ) {
-    return ClonesApiFp(this.configuration)
-      .getCharactersCharacterIdClones(
-        characterId,
-        datasource,
-        ifNoneMatch,
-        token,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
-
-  /**
    * Return implants on the active clone of a character  --- Alternate route: `/dev/characters/{character_id}/implants/`  Alternate route: `/legacy/characters/{character_id}/implants/`  Alternate route: `/v1/characters/{character_id}/implants/`  Alternate route: `/v2/characters/{character_id}/implants/`  --- This route is cached for up to 120 seconds
    * @summary Get active implants
    * @param {number} characterId An EVE character ID
@@ -20044,7 +19880,7 @@ export class ClonesApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof ClonesApi
    */
-  public getCharactersCharacterIdImplants(
+  public getCharacterCharacterImplants(
     characterId: number,
     datasource?: "tranquility",
     ifNoneMatch?: string,
@@ -20052,13 +19888,36 @@ export class ClonesApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return ClonesApiFp(this.configuration)
-      .getCharactersCharacterIdImplants(
+      .getCharacterCharacterImplants(
         characterId,
         datasource,
         ifNoneMatch,
         token,
         options
       )
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * A list of the character\'s clones  --- Alternate route: `/dev/characters/{character_id}/clones/`  Alternate route: `/v3/characters/{character_id}/clones/`  Alternate route: `/v4/characters/{character_id}/clones/`  --- This route is cached for up to 120 seconds
+   * @summary Get clones
+   * @param {number} characterId An EVE character ID
+   * @param {'tranquility'} [datasource] The server name you would like data from
+   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {string} [token] Access token to use if unable to set a header
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ClonesApi
+   */
+  public getCharacterClones(
+    characterId: number,
+    datasource?: "tranquility",
+    ifNoneMatch?: string,
+    token?: string,
+    options?: AxiosRequestConfig
+  ) {
+    return ClonesApiFp(this.configuration)
+      .getCharacterClones(characterId, datasource, ifNoneMatch, token, options)
       .then((request) => request(this.axios, this.basePath));
   }
 }
@@ -20072,6 +19931,106 @@ export const ContactsApiAxiosParamCreator = function (
 ) {
   return {
     /**
+     * Bulk add contacts with same settings  --- Alternate route: `/dev/characters/{character_id}/contacts/`  Alternate route: `/v2/characters/{character_id}/contacts/`
+     * @summary Add contacts
+     * @param {number} characterId An EVE character ID
+     * @param {number} standing Standing for the contact
+     * @param {Array<number>} contactIds A list of contacts
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {Array<number>} [labelIds] Add custom labels to the new contact
+     * @param {string} [token] Access token to use if unable to set a header
+     * @param {boolean} [watched] Whether the contact should be watched, note this is only effective on characters
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    bulkAddCharacterContacts: async (
+      characterId: number,
+      standing: number,
+      contactIds: Array<number>,
+      datasource?: "tranquility",
+      labelIds?: Array<number>,
+      token?: string,
+      watched?: boolean,
+      options: AxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'characterId' is not null or undefined
+      assertParamExists("bulkAddCharacterContacts", "characterId", characterId);
+      // verify required parameter 'standing' is not null or undefined
+      assertParamExists("bulkAddCharacterContacts", "standing", standing);
+      // verify required parameter 'contactIds' is not null or undefined
+      assertParamExists("bulkAddCharacterContacts", "contactIds", contactIds);
+      const localVarPath = `/characters/{character_id}/contacts/`.replace(
+        `{${"character_id"}}`,
+        encodeURIComponent(String(characterId))
+      );
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication evesso required
+      // oauth required
+      await setOAuthToObject(
+        localVarHeaderParameter,
+        "evesso",
+        ["esi-characters.write_contacts.v1"],
+        configuration
+      );
+
+      if (datasource !== undefined) {
+        localVarQueryParameter["datasource"] = datasource;
+      }
+
+      if (labelIds) {
+        localVarQueryParameter["label_ids"] = labelIds.join(
+          COLLECTION_FORMATS.csv
+        );
+      }
+
+      if (standing !== undefined) {
+        localVarQueryParameter["standing"] = standing;
+      }
+
+      if (token !== undefined) {
+        localVarQueryParameter["token"] = token;
+      }
+
+      if (watched !== undefined) {
+        localVarQueryParameter["watched"] = watched;
+      }
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        contactIds,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
      * Bulk delete contacts  --- Alternate route: `/dev/characters/{character_id}/contacts/`  Alternate route: `/v2/characters/{character_id}/contacts/`
      * @summary Delete contacts
      * @param {number} characterId An EVE character ID
@@ -20081,7 +20040,7 @@ export const ContactsApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteCharactersCharacterIdContacts: async (
+    bulkDeleteCharacterContacts: async (
       characterId: number,
       contactIds: Array<number>,
       datasource?: "tranquility",
@@ -20090,13 +20049,13 @@ export const ContactsApiAxiosParamCreator = function (
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
       assertParamExists(
-        "deleteCharactersCharacterIdContacts",
+        "bulkDeleteCharacterContacts",
         "characterId",
         characterId
       );
       // verify required parameter 'contactIds' is not null or undefined
       assertParamExists(
-        "deleteCharactersCharacterIdContacts",
+        "bulkDeleteCharacterContacts",
         "contactIds",
         contactIds
       );
@@ -20157,6 +20116,183 @@ export const ContactsApiAxiosParamCreator = function (
       };
     },
     /**
+     * Bulk edit contacts with same settings  --- Alternate route: `/dev/characters/{character_id}/contacts/`  Alternate route: `/v2/characters/{character_id}/contacts/`
+     * @summary Edit contacts
+     * @param {number} characterId An EVE character ID
+     * @param {number} standing Standing for the contact
+     * @param {Array<number>} contactIds A list of contacts
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {Array<number>} [labelIds] Add custom labels to the contact
+     * @param {string} [token] Access token to use if unable to set a header
+     * @param {boolean} [watched] Whether the contact should be watched, note this is only effective on characters
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    bulkEditCharacterContacts: async (
+      characterId: number,
+      standing: number,
+      contactIds: Array<number>,
+      datasource?: "tranquility",
+      labelIds?: Array<number>,
+      token?: string,
+      watched?: boolean,
+      options: AxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'characterId' is not null or undefined
+      assertParamExists(
+        "bulkEditCharacterContacts",
+        "characterId",
+        characterId
+      );
+      // verify required parameter 'standing' is not null or undefined
+      assertParamExists("bulkEditCharacterContacts", "standing", standing);
+      // verify required parameter 'contactIds' is not null or undefined
+      assertParamExists("bulkEditCharacterContacts", "contactIds", contactIds);
+      const localVarPath = `/characters/{character_id}/contacts/`.replace(
+        `{${"character_id"}}`,
+        encodeURIComponent(String(characterId))
+      );
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "PUT",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication evesso required
+      // oauth required
+      await setOAuthToObject(
+        localVarHeaderParameter,
+        "evesso",
+        ["esi-characters.write_contacts.v1"],
+        configuration
+      );
+
+      if (datasource !== undefined) {
+        localVarQueryParameter["datasource"] = datasource;
+      }
+
+      if (labelIds) {
+        localVarQueryParameter["label_ids"] = labelIds.join(
+          COLLECTION_FORMATS.csv
+        );
+      }
+
+      if (standing !== undefined) {
+        localVarQueryParameter["standing"] = standing;
+      }
+
+      if (token !== undefined) {
+        localVarQueryParameter["token"] = token;
+      }
+
+      if (watched !== undefined) {
+        localVarQueryParameter["watched"] = watched;
+      }
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        contactIds,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Return custom labels for an alliance\'s contacts  --- Alternate route: `/dev/alliances/{alliance_id}/contacts/labels/`  Alternate route: `/legacy/alliances/{alliance_id}/contacts/labels/`  Alternate route: `/v1/alliances/{alliance_id}/contacts/labels/`  --- This route is cached for up to 300 seconds
+     * @summary Get alliance contact labels
+     * @param {number} allianceId An EVE alliance ID
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param {string} [token] Access token to use if unable to set a header
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAllianceContactLabels: async (
+      allianceId: number,
+      datasource?: "tranquility",
+      ifNoneMatch?: string,
+      token?: string,
+      options: AxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'allianceId' is not null or undefined
+      assertParamExists("getAllianceContactLabels", "allianceId", allianceId);
+      const localVarPath = `/alliances/{alliance_id}/contacts/labels/`.replace(
+        `{${"alliance_id"}}`,
+        encodeURIComponent(String(allianceId))
+      );
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "GET",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication evesso required
+      // oauth required
+      await setOAuthToObject(
+        localVarHeaderParameter,
+        "evesso",
+        ["esi-alliances.read_contacts.v1"],
+        configuration
+      );
+
+      if (datasource !== undefined) {
+        localVarQueryParameter["datasource"] = datasource;
+      }
+
+      if (token !== undefined) {
+        localVarQueryParameter["token"] = token;
+      }
+
+      if (ifNoneMatch != null) {
+        localVarHeaderParameter["If-None-Match"] = String(ifNoneMatch);
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
      * Return contacts of an alliance  --- Alternate route: `/dev/alliances/{alliance_id}/contacts/`  Alternate route: `/v2/alliances/{alliance_id}/contacts/`  --- This route is cached for up to 300 seconds
      * @summary Get alliance contacts
      * @param {number} allianceId An EVE alliance ID
@@ -20167,7 +20303,7 @@ export const ContactsApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getAlliancesAllianceIdContacts: async (
+    getAllianceContacts: async (
       allianceId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -20176,11 +20312,7 @@ export const ContactsApiAxiosParamCreator = function (
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'allianceId' is not null or undefined
-      assertParamExists(
-        "getAlliancesAllianceIdContacts",
-        "allianceId",
-        allianceId
-      );
+      assertParamExists("getAllianceContacts", "allianceId", allianceId);
       const localVarPath = `/alliances/{alliance_id}/contacts/`.replace(
         `{${"alliance_id"}}`,
         encodeURIComponent(String(allianceId))
@@ -20240,32 +20372,33 @@ export const ContactsApiAxiosParamCreator = function (
       };
     },
     /**
-     * Return custom labels for an alliance\'s contacts  --- Alternate route: `/dev/alliances/{alliance_id}/contacts/labels/`  Alternate route: `/legacy/alliances/{alliance_id}/contacts/labels/`  Alternate route: `/v1/alliances/{alliance_id}/contacts/labels/`  --- This route is cached for up to 300 seconds
-     * @summary Get alliance contact labels
-     * @param {number} allianceId An EVE alliance ID
+     * Return custom labels for a character\'s contacts  --- Alternate route: `/dev/characters/{character_id}/contacts/labels/`  Alternate route: `/legacy/characters/{character_id}/contacts/labels/`  Alternate route: `/v1/characters/{character_id}/contacts/labels/`  --- This route is cached for up to 300 seconds
+     * @summary Get contact labels
+     * @param {number} characterId An EVE character ID
      * @param {'tranquility'} [datasource] The server name you would like data from
      * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
      * @param {string} [token] Access token to use if unable to set a header
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getAlliancesAllianceIdContactsLabels: async (
-      allianceId: number,
+    getCharacterContactLabels: async (
+      characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
       token?: string,
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'allianceId' is not null or undefined
+      // verify required parameter 'characterId' is not null or undefined
       assertParamExists(
-        "getAlliancesAllianceIdContactsLabels",
-        "allianceId",
-        allianceId
+        "getCharacterContactLabels",
+        "characterId",
+        characterId
       );
-      const localVarPath = `/alliances/{alliance_id}/contacts/labels/`.replace(
-        `{${"alliance_id"}}`,
-        encodeURIComponent(String(allianceId))
-      );
+      const localVarPath =
+        `/characters/{character_id}/contacts/labels/`.replace(
+          `{${"character_id"}}`,
+          encodeURIComponent(String(characterId))
+        );
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
       let baseOptions;
@@ -20286,7 +20419,7 @@ export const ContactsApiAxiosParamCreator = function (
       await setOAuthToObject(
         localVarHeaderParameter,
         "evesso",
-        ["esi-alliances.read_contacts.v1"],
+        ["esi-characters.read_contacts.v1"],
         configuration
       );
 
@@ -20327,7 +20460,7 @@ export const ContactsApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdContacts: async (
+    getCharacterContacts: async (
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -20336,11 +20469,7 @@ export const ContactsApiAxiosParamCreator = function (
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "getCharactersCharacterIdContacts",
-        "characterId",
-        characterId
-      );
+      assertParamExists("getCharacterContacts", "characterId", characterId);
       const localVarPath = `/characters/{character_id}/contacts/`.replace(
         `{${"character_id"}}`,
         encodeURIComponent(String(characterId))
@@ -20375,84 +20504,6 @@ export const ContactsApiAxiosParamCreator = function (
 
       if (page !== undefined) {
         localVarQueryParameter["page"] = page;
-      }
-
-      if (token !== undefined) {
-        localVarQueryParameter["token"] = token;
-      }
-
-      if (ifNoneMatch != null) {
-        localVarHeaderParameter["If-None-Match"] = String(ifNoneMatch);
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Return custom labels for a character\'s contacts  --- Alternate route: `/dev/characters/{character_id}/contacts/labels/`  Alternate route: `/legacy/characters/{character_id}/contacts/labels/`  Alternate route: `/v1/characters/{character_id}/contacts/labels/`  --- This route is cached for up to 300 seconds
-     * @summary Get contact labels
-     * @param {number} characterId An EVE character ID
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-     * @param {string} [token] Access token to use if unable to set a header
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getCharactersCharacterIdContactsLabels: async (
-      characterId: number,
-      datasource?: "tranquility",
-      ifNoneMatch?: string,
-      token?: string,
-      options: AxiosRequestConfig = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "getCharactersCharacterIdContactsLabels",
-        "characterId",
-        characterId
-      );
-      const localVarPath =
-        `/characters/{character_id}/contacts/labels/`.replace(
-          `{${"character_id"}}`,
-          encodeURIComponent(String(characterId))
-        );
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: "GET",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      // authentication evesso required
-      // oauth required
-      await setOAuthToObject(
-        localVarHeaderParameter,
-        "evesso",
-        ["esi-characters.read_contacts.v1"],
-        configuration
-      );
-
-      if (datasource !== undefined) {
-        localVarQueryParameter["datasource"] = datasource;
       }
 
       if (token !== undefined) {
@@ -20638,6 +20689,16 @@ export const ContactsApiAxiosParamCreator = function (
         options: localVarRequestOptions,
       };
     },
+  };
+};
+
+/**
+ * ContactsApi - functional programming interface
+ * @export
+ */
+export const ContactsApiFp = function (configuration?: Configuration) {
+  const localVarAxiosParamCreator = ContactsApiAxiosParamCreator(configuration);
+  return {
     /**
      * Bulk add contacts with same settings  --- Alternate route: `/dev/characters/{character_id}/contacts/`  Alternate route: `/v2/characters/{character_id}/contacts/`
      * @summary Add contacts
@@ -20651,7 +20712,7 @@ export const ContactsApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    postCharactersCharacterIdContacts: async (
+    async bulkAddCharacterContacts(
       characterId: number,
       standing: number,
       contactIds: Array<number>,
@@ -20659,96 +20720,61 @@ export const ContactsApiAxiosParamCreator = function (
       labelIds?: Array<number>,
       token?: string,
       watched?: boolean,
-      options: AxiosRequestConfig = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "postCharactersCharacterIdContacts",
-        "characterId",
-        characterId
-      );
-      // verify required parameter 'standing' is not null or undefined
-      assertParamExists(
-        "postCharactersCharacterIdContacts",
-        "standing",
-        standing
-      );
-      // verify required parameter 'contactIds' is not null or undefined
-      assertParamExists(
-        "postCharactersCharacterIdContacts",
-        "contactIds",
-        contactIds
-      );
-      const localVarPath = `/characters/{character_id}/contacts/`.replace(
-        `{${"character_id"}}`,
-        encodeURIComponent(String(characterId))
-      );
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: "POST",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      // authentication evesso required
-      // oauth required
-      await setOAuthToObject(
-        localVarHeaderParameter,
-        "evesso",
-        ["esi-characters.write_contacts.v1"],
-        configuration
-      );
-
-      if (datasource !== undefined) {
-        localVarQueryParameter["datasource"] = datasource;
-      }
-
-      if (labelIds) {
-        localVarQueryParameter["label_ids"] = labelIds.join(
-          COLLECTION_FORMATS.csv
+      options?: AxiosRequestConfig
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<number>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.bulkAddCharacterContacts(
+          characterId,
+          standing,
+          contactIds,
+          datasource,
+          labelIds,
+          token,
+          watched,
+          options
         );
-      }
-
-      if (standing !== undefined) {
-        localVarQueryParameter["standing"] = standing;
-      }
-
-      if (token !== undefined) {
-        localVarQueryParameter["token"] = token;
-      }
-
-      if (watched !== undefined) {
-        localVarQueryParameter["watched"] = watched;
-      }
-
-      localVarHeaderParameter["Content-Type"] = "application/json";
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        contactIds,
-        localVarRequestOptions,
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
         configuration
       );
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
+    },
+    /**
+     * Bulk delete contacts  --- Alternate route: `/dev/characters/{character_id}/contacts/`  Alternate route: `/v2/characters/{character_id}/contacts/`
+     * @summary Delete contacts
+     * @param {number} characterId An EVE character ID
+     * @param {Array<number>} contactIds A list of contacts to delete
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {string} [token] Access token to use if unable to set a header
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async bulkDeleteCharacterContacts(
+      characterId: number,
+      contactIds: Array<number>,
+      datasource?: "tranquility",
+      token?: string,
+      options?: AxiosRequestConfig
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.bulkDeleteCharacterContacts(
+          characterId,
+          contactIds,
+          datasource,
+          token,
+          options
+        );
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration
+      );
     },
     /**
      * Bulk edit contacts with same settings  --- Alternate route: `/dev/characters/{character_id}/contacts/`  Alternate route: `/v2/characters/{character_id}/contacts/`
@@ -20763,7 +20789,7 @@ export const ContactsApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    putCharactersCharacterIdContacts: async (
+    async bulkEditCharacterContacts(
       characterId: number,
       standing: number,
       contactIds: Array<number>,
@@ -20771,131 +20797,55 @@ export const ContactsApiAxiosParamCreator = function (
       labelIds?: Array<number>,
       token?: string,
       watched?: boolean,
-      options: AxiosRequestConfig = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "putCharactersCharacterIdContacts",
-        "characterId",
-        characterId
-      );
-      // verify required parameter 'standing' is not null or undefined
-      assertParamExists(
-        "putCharactersCharacterIdContacts",
-        "standing",
-        standing
-      );
-      // verify required parameter 'contactIds' is not null or undefined
-      assertParamExists(
-        "putCharactersCharacterIdContacts",
-        "contactIds",
-        contactIds
-      );
-      const localVarPath = `/characters/{character_id}/contacts/`.replace(
-        `{${"character_id"}}`,
-        encodeURIComponent(String(characterId))
-      );
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: "PUT",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      // authentication evesso required
-      // oauth required
-      await setOAuthToObject(
-        localVarHeaderParameter,
-        "evesso",
-        ["esi-characters.write_contacts.v1"],
-        configuration
-      );
-
-      if (datasource !== undefined) {
-        localVarQueryParameter["datasource"] = datasource;
-      }
-
-      if (labelIds) {
-        localVarQueryParameter["label_ids"] = labelIds.join(
-          COLLECTION_FORMATS.csv
-        );
-      }
-
-      if (standing !== undefined) {
-        localVarQueryParameter["standing"] = standing;
-      }
-
-      if (token !== undefined) {
-        localVarQueryParameter["token"] = token;
-      }
-
-      if (watched !== undefined) {
-        localVarQueryParameter["watched"] = watched;
-      }
-
-      localVarHeaderParameter["Content-Type"] = "application/json";
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        contactIds,
-        localVarRequestOptions,
-        configuration
-      );
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-  };
-};
-
-/**
- * ContactsApi - functional programming interface
- * @export
- */
-export const ContactsApiFp = function (configuration?: Configuration) {
-  const localVarAxiosParamCreator = ContactsApiAxiosParamCreator(configuration);
-  return {
-    /**
-     * Bulk delete contacts  --- Alternate route: `/dev/characters/{character_id}/contacts/`  Alternate route: `/v2/characters/{character_id}/contacts/`
-     * @summary Delete contacts
-     * @param {number} characterId An EVE character ID
-     * @param {Array<number>} contactIds A list of contacts to delete
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {string} [token] Access token to use if unable to set a header
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async deleteCharactersCharacterIdContacts(
-      characterId: number,
-      contactIds: Array<number>,
-      datasource?: "tranquility",
-      token?: string,
       options?: AxiosRequestConfig
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.deleteCharactersCharacterIdContacts(
+        await localVarAxiosParamCreator.bulkEditCharacterContacts(
           characterId,
+          standing,
           contactIds,
           datasource,
+          labelIds,
+          token,
+          watched,
+          options
+        );
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration
+      );
+    },
+    /**
+     * Return custom labels for an alliance\'s contacts  --- Alternate route: `/dev/alliances/{alliance_id}/contacts/labels/`  Alternate route: `/legacy/alliances/{alliance_id}/contacts/labels/`  Alternate route: `/v1/alliances/{alliance_id}/contacts/labels/`  --- This route is cached for up to 300 seconds
+     * @summary Get alliance contact labels
+     * @param {number} allianceId An EVE alliance ID
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param {string} [token] Access token to use if unable to set a header
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getAllianceContactLabels(
+      allianceId: number,
+      datasource?: "tranquility",
+      ifNoneMatch?: string,
+      token?: string,
+      options?: AxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<Array<GetAlliancesAllianceIdContactsLabels200Ok>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.getAllianceContactLabels(
+          allianceId,
+          datasource,
+          ifNoneMatch,
           token,
           options
         );
@@ -20917,7 +20867,7 @@ export const ContactsApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getAlliancesAllianceIdContacts(
+    async getAllianceContacts(
       allianceId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -20931,85 +20881,8 @@ export const ContactsApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<Array<GetAlliancesAllianceIdContacts200Ok>>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getAlliancesAllianceIdContacts(
+        await localVarAxiosParamCreator.getAllianceContacts(
           allianceId,
-          datasource,
-          ifNoneMatch,
-          page,
-          token,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-    /**
-     * Return custom labels for an alliance\'s contacts  --- Alternate route: `/dev/alliances/{alliance_id}/contacts/labels/`  Alternate route: `/legacy/alliances/{alliance_id}/contacts/labels/`  Alternate route: `/v1/alliances/{alliance_id}/contacts/labels/`  --- This route is cached for up to 300 seconds
-     * @summary Get alliance contact labels
-     * @param {number} allianceId An EVE alliance ID
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-     * @param {string} [token] Access token to use if unable to set a header
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async getAlliancesAllianceIdContactsLabels(
-      allianceId: number,
-      datasource?: "tranquility",
-      ifNoneMatch?: string,
-      token?: string,
-      options?: AxiosRequestConfig
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<Array<GetAlliancesAllianceIdContactsLabels200Ok>>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getAlliancesAllianceIdContactsLabels(
-          allianceId,
-          datasource,
-          ifNoneMatch,
-          token,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-    /**
-     * Return contacts of a character  --- Alternate route: `/dev/characters/{character_id}/contacts/`  Alternate route: `/v2/characters/{character_id}/contacts/`  --- This route is cached for up to 300 seconds
-     * @summary Get contacts
-     * @param {number} characterId An EVE character ID
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-     * @param {number} [page] Which page of results to return
-     * @param {string} [token] Access token to use if unable to set a header
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async getCharactersCharacterIdContacts(
-      characterId: number,
-      datasource?: "tranquility",
-      ifNoneMatch?: string,
-      page?: number,
-      token?: string,
-      options?: AxiosRequestConfig
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<Array<GetCharactersCharacterIdContacts200Ok>>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdContacts(
-          characterId,
           datasource,
           ifNoneMatch,
           page,
@@ -21033,7 +20906,7 @@ export const ContactsApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterIdContactsLabels(
+    async getCharacterContactLabels(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -21046,10 +20919,50 @@ export const ContactsApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<Array<GetCharactersCharacterIdContactsLabels200Ok>>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdContactsLabels(
+        await localVarAxiosParamCreator.getCharacterContactLabels(
           characterId,
           datasource,
           ifNoneMatch,
+          token,
+          options
+        );
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration
+      );
+    },
+    /**
+     * Return contacts of a character  --- Alternate route: `/dev/characters/{character_id}/contacts/`  Alternate route: `/v2/characters/{character_id}/contacts/`  --- This route is cached for up to 300 seconds
+     * @summary Get contacts
+     * @param {number} characterId An EVE character ID
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param {number} [page] Which page of results to return
+     * @param {string} [token] Access token to use if unable to set a header
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getCharacterContacts(
+      characterId: number,
+      datasource?: "tranquility",
+      ifNoneMatch?: string,
+      page?: number,
+      token?: string,
+      options?: AxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<Array<GetCharactersCharacterIdContacts200Ok>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.getCharacterContacts(
+          characterId,
+          datasource,
+          ifNoneMatch,
+          page,
           token,
           options
         );
@@ -21137,92 +21050,6 @@ export const ContactsApiFp = function (configuration?: Configuration) {
         configuration
       );
     },
-    /**
-     * Bulk add contacts with same settings  --- Alternate route: `/dev/characters/{character_id}/contacts/`  Alternate route: `/v2/characters/{character_id}/contacts/`
-     * @summary Add contacts
-     * @param {number} characterId An EVE character ID
-     * @param {number} standing Standing for the contact
-     * @param {Array<number>} contactIds A list of contacts
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {Array<number>} [labelIds] Add custom labels to the new contact
-     * @param {string} [token] Access token to use if unable to set a header
-     * @param {boolean} [watched] Whether the contact should be watched, note this is only effective on characters
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async postCharactersCharacterIdContacts(
-      characterId: number,
-      standing: number,
-      contactIds: Array<number>,
-      datasource?: "tranquility",
-      labelIds?: Array<number>,
-      token?: string,
-      watched?: boolean,
-      options?: AxiosRequestConfig
-    ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<number>>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.postCharactersCharacterIdContacts(
-          characterId,
-          standing,
-          contactIds,
-          datasource,
-          labelIds,
-          token,
-          watched,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-    /**
-     * Bulk edit contacts with same settings  --- Alternate route: `/dev/characters/{character_id}/contacts/`  Alternate route: `/v2/characters/{character_id}/contacts/`
-     * @summary Edit contacts
-     * @param {number} characterId An EVE character ID
-     * @param {number} standing Standing for the contact
-     * @param {Array<number>} contactIds A list of contacts
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {Array<number>} [labelIds] Add custom labels to the contact
-     * @param {string} [token] Access token to use if unable to set a header
-     * @param {boolean} [watched] Whether the contact should be watched, note this is only effective on characters
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async putCharactersCharacterIdContacts(
-      characterId: number,
-      standing: number,
-      contactIds: Array<number>,
-      datasource?: "tranquility",
-      labelIds?: Array<number>,
-      token?: string,
-      watched?: boolean,
-      options?: AxiosRequestConfig
-    ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.putCharactersCharacterIdContacts(
-          characterId,
-          standing,
-          contactIds,
-          datasource,
-          labelIds,
-          token,
-          watched,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
   };
 };
 
@@ -21238,6 +21065,42 @@ export const ContactsApiFactory = function (
   const localVarFp = ContactsApiFp(configuration);
   return {
     /**
+     * Bulk add contacts with same settings  --- Alternate route: `/dev/characters/{character_id}/contacts/`  Alternate route: `/v2/characters/{character_id}/contacts/`
+     * @summary Add contacts
+     * @param {number} characterId An EVE character ID
+     * @param {number} standing Standing for the contact
+     * @param {Array<number>} contactIds A list of contacts
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {Array<number>} [labelIds] Add custom labels to the new contact
+     * @param {string} [token] Access token to use if unable to set a header
+     * @param {boolean} [watched] Whether the contact should be watched, note this is only effective on characters
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    bulkAddCharacterContacts(
+      characterId: number,
+      standing: number,
+      contactIds: Array<number>,
+      datasource?: "tranquility",
+      labelIds?: Array<number>,
+      token?: string,
+      watched?: boolean,
+      options?: any
+    ): AxiosPromise<Array<number>> {
+      return localVarFp
+        .bulkAddCharacterContacts(
+          characterId,
+          standing,
+          contactIds,
+          datasource,
+          labelIds,
+          token,
+          watched,
+          options
+        )
+        .then((request) => request(axios, basePath));
+    },
+    /**
      * Bulk delete contacts  --- Alternate route: `/dev/characters/{character_id}/contacts/`  Alternate route: `/v2/characters/{character_id}/contacts/`
      * @summary Delete contacts
      * @param {number} characterId An EVE character ID
@@ -21247,7 +21110,7 @@ export const ContactsApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteCharactersCharacterIdContacts(
+    bulkDeleteCharacterContacts(
       characterId: number,
       contactIds: Array<number>,
       datasource?: "tranquility",
@@ -21255,10 +21118,73 @@ export const ContactsApiFactory = function (
       options?: any
     ): AxiosPromise<void> {
       return localVarFp
-        .deleteCharactersCharacterIdContacts(
+        .bulkDeleteCharacterContacts(
           characterId,
           contactIds,
           datasource,
+          token,
+          options
+        )
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * Bulk edit contacts with same settings  --- Alternate route: `/dev/characters/{character_id}/contacts/`  Alternate route: `/v2/characters/{character_id}/contacts/`
+     * @summary Edit contacts
+     * @param {number} characterId An EVE character ID
+     * @param {number} standing Standing for the contact
+     * @param {Array<number>} contactIds A list of contacts
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {Array<number>} [labelIds] Add custom labels to the contact
+     * @param {string} [token] Access token to use if unable to set a header
+     * @param {boolean} [watched] Whether the contact should be watched, note this is only effective on characters
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    bulkEditCharacterContacts(
+      characterId: number,
+      standing: number,
+      contactIds: Array<number>,
+      datasource?: "tranquility",
+      labelIds?: Array<number>,
+      token?: string,
+      watched?: boolean,
+      options?: any
+    ): AxiosPromise<void> {
+      return localVarFp
+        .bulkEditCharacterContacts(
+          characterId,
+          standing,
+          contactIds,
+          datasource,
+          labelIds,
+          token,
+          watched,
+          options
+        )
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * Return custom labels for an alliance\'s contacts  --- Alternate route: `/dev/alliances/{alliance_id}/contacts/labels/`  Alternate route: `/legacy/alliances/{alliance_id}/contacts/labels/`  Alternate route: `/v1/alliances/{alliance_id}/contacts/labels/`  --- This route is cached for up to 300 seconds
+     * @summary Get alliance contact labels
+     * @param {number} allianceId An EVE alliance ID
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param {string} [token] Access token to use if unable to set a header
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getAllianceContactLabels(
+      allianceId: number,
+      datasource?: "tranquility",
+      ifNoneMatch?: string,
+      token?: string,
+      options?: any
+    ): AxiosPromise<Array<GetAlliancesAllianceIdContactsLabels200Ok>> {
+      return localVarFp
+        .getAllianceContactLabels(
+          allianceId,
+          datasource,
+          ifNoneMatch,
           token,
           options
         )
@@ -21275,7 +21201,7 @@ export const ContactsApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getAlliancesAllianceIdContacts(
+    getAllianceContacts(
       allianceId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -21284,65 +21210,8 @@ export const ContactsApiFactory = function (
       options?: any
     ): AxiosPromise<Array<GetAlliancesAllianceIdContacts200Ok>> {
       return localVarFp
-        .getAlliancesAllianceIdContacts(
+        .getAllianceContacts(
           allianceId,
-          datasource,
-          ifNoneMatch,
-          page,
-          token,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * Return custom labels for an alliance\'s contacts  --- Alternate route: `/dev/alliances/{alliance_id}/contacts/labels/`  Alternate route: `/legacy/alliances/{alliance_id}/contacts/labels/`  Alternate route: `/v1/alliances/{alliance_id}/contacts/labels/`  --- This route is cached for up to 300 seconds
-     * @summary Get alliance contact labels
-     * @param {number} allianceId An EVE alliance ID
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-     * @param {string} [token] Access token to use if unable to set a header
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getAlliancesAllianceIdContactsLabels(
-      allianceId: number,
-      datasource?: "tranquility",
-      ifNoneMatch?: string,
-      token?: string,
-      options?: any
-    ): AxiosPromise<Array<GetAlliancesAllianceIdContactsLabels200Ok>> {
-      return localVarFp
-        .getAlliancesAllianceIdContactsLabels(
-          allianceId,
-          datasource,
-          ifNoneMatch,
-          token,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * Return contacts of a character  --- Alternate route: `/dev/characters/{character_id}/contacts/`  Alternate route: `/v2/characters/{character_id}/contacts/`  --- This route is cached for up to 300 seconds
-     * @summary Get contacts
-     * @param {number} characterId An EVE character ID
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-     * @param {number} [page] Which page of results to return
-     * @param {string} [token] Access token to use if unable to set a header
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getCharactersCharacterIdContacts(
-      characterId: number,
-      datasource?: "tranquility",
-      ifNoneMatch?: string,
-      page?: number,
-      token?: string,
-      options?: any
-    ): AxiosPromise<Array<GetCharactersCharacterIdContacts200Ok>> {
-      return localVarFp
-        .getCharactersCharacterIdContacts(
-          characterId,
           datasource,
           ifNoneMatch,
           page,
@@ -21361,7 +21230,7 @@ export const ContactsApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdContactsLabels(
+    getCharacterContactLabels(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -21369,10 +21238,40 @@ export const ContactsApiFactory = function (
       options?: any
     ): AxiosPromise<Array<GetCharactersCharacterIdContactsLabels200Ok>> {
       return localVarFp
-        .getCharactersCharacterIdContactsLabels(
+        .getCharacterContactLabels(
           characterId,
           datasource,
           ifNoneMatch,
+          token,
+          options
+        )
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * Return contacts of a character  --- Alternate route: `/dev/characters/{character_id}/contacts/`  Alternate route: `/v2/characters/{character_id}/contacts/`  --- This route is cached for up to 300 seconds
+     * @summary Get contacts
+     * @param {number} characterId An EVE character ID
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param {number} [page] Which page of results to return
+     * @param {string} [token] Access token to use if unable to set a header
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCharacterContacts(
+      characterId: number,
+      datasource?: "tranquility",
+      ifNoneMatch?: string,
+      page?: number,
+      token?: string,
+      options?: any
+    ): AxiosPromise<Array<GetCharactersCharacterIdContacts200Ok>> {
+      return localVarFp
+        .getCharacterContacts(
+          characterId,
+          datasource,
+          ifNoneMatch,
+          page,
           token,
           options
         )
@@ -21435,78 +21334,6 @@ export const ContactsApiFactory = function (
         )
         .then((request) => request(axios, basePath));
     },
-    /**
-     * Bulk add contacts with same settings  --- Alternate route: `/dev/characters/{character_id}/contacts/`  Alternate route: `/v2/characters/{character_id}/contacts/`
-     * @summary Add contacts
-     * @param {number} characterId An EVE character ID
-     * @param {number} standing Standing for the contact
-     * @param {Array<number>} contactIds A list of contacts
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {Array<number>} [labelIds] Add custom labels to the new contact
-     * @param {string} [token] Access token to use if unable to set a header
-     * @param {boolean} [watched] Whether the contact should be watched, note this is only effective on characters
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    postCharactersCharacterIdContacts(
-      characterId: number,
-      standing: number,
-      contactIds: Array<number>,
-      datasource?: "tranquility",
-      labelIds?: Array<number>,
-      token?: string,
-      watched?: boolean,
-      options?: any
-    ): AxiosPromise<Array<number>> {
-      return localVarFp
-        .postCharactersCharacterIdContacts(
-          characterId,
-          standing,
-          contactIds,
-          datasource,
-          labelIds,
-          token,
-          watched,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * Bulk edit contacts with same settings  --- Alternate route: `/dev/characters/{character_id}/contacts/`  Alternate route: `/v2/characters/{character_id}/contacts/`
-     * @summary Edit contacts
-     * @param {number} characterId An EVE character ID
-     * @param {number} standing Standing for the contact
-     * @param {Array<number>} contactIds A list of contacts
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {Array<number>} [labelIds] Add custom labels to the contact
-     * @param {string} [token] Access token to use if unable to set a header
-     * @param {boolean} [watched] Whether the contact should be watched, note this is only effective on characters
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    putCharactersCharacterIdContacts(
-      characterId: number,
-      standing: number,
-      contactIds: Array<number>,
-      datasource?: "tranquility",
-      labelIds?: Array<number>,
-      token?: string,
-      watched?: boolean,
-      options?: any
-    ): AxiosPromise<void> {
-      return localVarFp
-        .putCharactersCharacterIdContacts(
-          characterId,
-          standing,
-          contactIds,
-          datasource,
-          labelIds,
-          token,
-          watched,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
   };
 };
 
@@ -21518,6 +21345,44 @@ export const ContactsApiFactory = function (
  */
 export class ContactsApi extends BaseAPI {
   /**
+   * Bulk add contacts with same settings  --- Alternate route: `/dev/characters/{character_id}/contacts/`  Alternate route: `/v2/characters/{character_id}/contacts/`
+   * @summary Add contacts
+   * @param {number} characterId An EVE character ID
+   * @param {number} standing Standing for the contact
+   * @param {Array<number>} contactIds A list of contacts
+   * @param {'tranquility'} [datasource] The server name you would like data from
+   * @param {Array<number>} [labelIds] Add custom labels to the new contact
+   * @param {string} [token] Access token to use if unable to set a header
+   * @param {boolean} [watched] Whether the contact should be watched, note this is only effective on characters
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ContactsApi
+   */
+  public bulkAddCharacterContacts(
+    characterId: number,
+    standing: number,
+    contactIds: Array<number>,
+    datasource?: "tranquility",
+    labelIds?: Array<number>,
+    token?: string,
+    watched?: boolean,
+    options?: AxiosRequestConfig
+  ) {
+    return ContactsApiFp(this.configuration)
+      .bulkAddCharacterContacts(
+        characterId,
+        standing,
+        contactIds,
+        datasource,
+        labelIds,
+        token,
+        watched,
+        options
+      )
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
    * Bulk delete contacts  --- Alternate route: `/dev/characters/{character_id}/contacts/`  Alternate route: `/v2/characters/{character_id}/contacts/`
    * @summary Delete contacts
    * @param {number} characterId An EVE character ID
@@ -21528,7 +21393,7 @@ export class ContactsApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof ContactsApi
    */
-  public deleteCharactersCharacterIdContacts(
+  public bulkDeleteCharacterContacts(
     characterId: number,
     contactIds: Array<number>,
     datasource?: "tranquility",
@@ -21536,10 +21401,77 @@ export class ContactsApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return ContactsApiFp(this.configuration)
-      .deleteCharactersCharacterIdContacts(
+      .bulkDeleteCharacterContacts(
         characterId,
         contactIds,
         datasource,
+        token,
+        options
+      )
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Bulk edit contacts with same settings  --- Alternate route: `/dev/characters/{character_id}/contacts/`  Alternate route: `/v2/characters/{character_id}/contacts/`
+   * @summary Edit contacts
+   * @param {number} characterId An EVE character ID
+   * @param {number} standing Standing for the contact
+   * @param {Array<number>} contactIds A list of contacts
+   * @param {'tranquility'} [datasource] The server name you would like data from
+   * @param {Array<number>} [labelIds] Add custom labels to the contact
+   * @param {string} [token] Access token to use if unable to set a header
+   * @param {boolean} [watched] Whether the contact should be watched, note this is only effective on characters
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ContactsApi
+   */
+  public bulkEditCharacterContacts(
+    characterId: number,
+    standing: number,
+    contactIds: Array<number>,
+    datasource?: "tranquility",
+    labelIds?: Array<number>,
+    token?: string,
+    watched?: boolean,
+    options?: AxiosRequestConfig
+  ) {
+    return ContactsApiFp(this.configuration)
+      .bulkEditCharacterContacts(
+        characterId,
+        standing,
+        contactIds,
+        datasource,
+        labelIds,
+        token,
+        watched,
+        options
+      )
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Return custom labels for an alliance\'s contacts  --- Alternate route: `/dev/alliances/{alliance_id}/contacts/labels/`  Alternate route: `/legacy/alliances/{alliance_id}/contacts/labels/`  Alternate route: `/v1/alliances/{alliance_id}/contacts/labels/`  --- This route is cached for up to 300 seconds
+   * @summary Get alliance contact labels
+   * @param {number} allianceId An EVE alliance ID
+   * @param {'tranquility'} [datasource] The server name you would like data from
+   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {string} [token] Access token to use if unable to set a header
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ContactsApi
+   */
+  public getAllianceContactLabels(
+    allianceId: number,
+    datasource?: "tranquility",
+    ifNoneMatch?: string,
+    token?: string,
+    options?: AxiosRequestConfig
+  ) {
+    return ContactsApiFp(this.configuration)
+      .getAllianceContactLabels(
+        allianceId,
+        datasource,
+        ifNoneMatch,
         token,
         options
       )
@@ -21558,7 +21490,7 @@ export class ContactsApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof ContactsApi
    */
-  public getAlliancesAllianceIdContacts(
+  public getAllianceContacts(
     allianceId: number,
     datasource?: "tranquility",
     ifNoneMatch?: string,
@@ -21567,69 +21499,8 @@ export class ContactsApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return ContactsApiFp(this.configuration)
-      .getAlliancesAllianceIdContacts(
+      .getAllianceContacts(
         allianceId,
-        datasource,
-        ifNoneMatch,
-        page,
-        token,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
-
-  /**
-   * Return custom labels for an alliance\'s contacts  --- Alternate route: `/dev/alliances/{alliance_id}/contacts/labels/`  Alternate route: `/legacy/alliances/{alliance_id}/contacts/labels/`  Alternate route: `/v1/alliances/{alliance_id}/contacts/labels/`  --- This route is cached for up to 300 seconds
-   * @summary Get alliance contact labels
-   * @param {number} allianceId An EVE alliance ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof ContactsApi
-   */
-  public getAlliancesAllianceIdContactsLabels(
-    allianceId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
-    options?: AxiosRequestConfig
-  ) {
-    return ContactsApiFp(this.configuration)
-      .getAlliancesAllianceIdContactsLabels(
-        allianceId,
-        datasource,
-        ifNoneMatch,
-        token,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
-
-  /**
-   * Return contacts of a character  --- Alternate route: `/dev/characters/{character_id}/contacts/`  Alternate route: `/v2/characters/{character_id}/contacts/`  --- This route is cached for up to 300 seconds
-   * @summary Get contacts
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [page] Which page of results to return
-   * @param {string} [token] Access token to use if unable to set a header
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof ContactsApi
-   */
-  public getCharactersCharacterIdContacts(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    page?: number,
-    token?: string,
-    options?: AxiosRequestConfig
-  ) {
-    return ContactsApiFp(this.configuration)
-      .getCharactersCharacterIdContacts(
-        characterId,
         datasource,
         ifNoneMatch,
         page,
@@ -21650,7 +21521,7 @@ export class ContactsApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof ContactsApi
    */
-  public getCharactersCharacterIdContactsLabels(
+  public getCharacterContactLabels(
     characterId: number,
     datasource?: "tranquility",
     ifNoneMatch?: string,
@@ -21658,10 +21529,42 @@ export class ContactsApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return ContactsApiFp(this.configuration)
-      .getCharactersCharacterIdContactsLabels(
+      .getCharacterContactLabels(
         characterId,
         datasource,
         ifNoneMatch,
+        token,
+        options
+      )
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Return contacts of a character  --- Alternate route: `/dev/characters/{character_id}/contacts/`  Alternate route: `/v2/characters/{character_id}/contacts/`  --- This route is cached for up to 300 seconds
+   * @summary Get contacts
+   * @param {number} characterId An EVE character ID
+   * @param {'tranquility'} [datasource] The server name you would like data from
+   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {number} [page] Which page of results to return
+   * @param {string} [token] Access token to use if unable to set a header
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ContactsApi
+   */
+  public getCharacterContacts(
+    characterId: number,
+    datasource?: "tranquility",
+    ifNoneMatch?: string,
+    page?: number,
+    token?: string,
+    options?: AxiosRequestConfig
+  ) {
+    return ContactsApiFp(this.configuration)
+      .getCharacterContacts(
+        characterId,
+        datasource,
+        ifNoneMatch,
+        page,
         token,
         options
       )
@@ -21728,82 +21631,6 @@ export class ContactsApi extends BaseAPI {
       )
       .then((request) => request(this.axios, this.basePath));
   }
-
-  /**
-   * Bulk add contacts with same settings  --- Alternate route: `/dev/characters/{character_id}/contacts/`  Alternate route: `/v2/characters/{character_id}/contacts/`
-   * @summary Add contacts
-   * @param {number} characterId An EVE character ID
-   * @param {number} standing Standing for the contact
-   * @param {Array<number>} contactIds A list of contacts
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {Array<number>} [labelIds] Add custom labels to the new contact
-   * @param {string} [token] Access token to use if unable to set a header
-   * @param {boolean} [watched] Whether the contact should be watched, note this is only effective on characters
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof ContactsApi
-   */
-  public postCharactersCharacterIdContacts(
-    characterId: number,
-    standing: number,
-    contactIds: Array<number>,
-    datasource?: "tranquility",
-    labelIds?: Array<number>,
-    token?: string,
-    watched?: boolean,
-    options?: AxiosRequestConfig
-  ) {
-    return ContactsApiFp(this.configuration)
-      .postCharactersCharacterIdContacts(
-        characterId,
-        standing,
-        contactIds,
-        datasource,
-        labelIds,
-        token,
-        watched,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
-
-  /**
-   * Bulk edit contacts with same settings  --- Alternate route: `/dev/characters/{character_id}/contacts/`  Alternate route: `/v2/characters/{character_id}/contacts/`
-   * @summary Edit contacts
-   * @param {number} characterId An EVE character ID
-   * @param {number} standing Standing for the contact
-   * @param {Array<number>} contactIds A list of contacts
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {Array<number>} [labelIds] Add custom labels to the contact
-   * @param {string} [token] Access token to use if unable to set a header
-   * @param {boolean} [watched] Whether the contact should be watched, note this is only effective on characters
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof ContactsApi
-   */
-  public putCharactersCharacterIdContacts(
-    characterId: number,
-    standing: number,
-    contactIds: Array<number>,
-    datasource?: "tranquility",
-    labelIds?: Array<number>,
-    token?: string,
-    watched?: boolean,
-    options?: AxiosRequestConfig
-  ) {
-    return ContactsApiFp(this.configuration)
-      .putCharactersCharacterIdContacts(
-        characterId,
-        standing,
-        contactIds,
-        datasource,
-        labelIds,
-        token,
-        watched,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
 }
 
 /**
@@ -21815,89 +21642,6 @@ export const ContractsApiAxiosParamCreator = function (
 ) {
   return {
     /**
-     * Returns contracts available to a character, only if the character is issuer, acceptor or assignee. Only returns contracts no older than 30 days, or if the status is \"in_progress\".  --- Alternate route: `/dev/characters/{character_id}/contracts/`  Alternate route: `/legacy/characters/{character_id}/contracts/`  Alternate route: `/v1/characters/{character_id}/contracts/`  --- This route is cached for up to 300 seconds
-     * @summary Get contracts
-     * @param {number} characterId An EVE character ID
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-     * @param {number} [page] Which page of results to return
-     * @param {string} [token] Access token to use if unable to set a header
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getCharactersCharacterIdContracts: async (
-      characterId: number,
-      datasource?: "tranquility",
-      ifNoneMatch?: string,
-      page?: number,
-      token?: string,
-      options: AxiosRequestConfig = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "getCharactersCharacterIdContracts",
-        "characterId",
-        characterId
-      );
-      const localVarPath = `/characters/{character_id}/contracts/`.replace(
-        `{${"character_id"}}`,
-        encodeURIComponent(String(characterId))
-      );
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: "GET",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      // authentication evesso required
-      // oauth required
-      await setOAuthToObject(
-        localVarHeaderParameter,
-        "evesso",
-        ["esi-contracts.read_character_contracts.v1"],
-        configuration
-      );
-
-      if (datasource !== undefined) {
-        localVarQueryParameter["datasource"] = datasource;
-      }
-
-      if (page !== undefined) {
-        localVarQueryParameter["page"] = page;
-      }
-
-      if (token !== undefined) {
-        localVarQueryParameter["token"] = token;
-      }
-
-      if (ifNoneMatch != null) {
-        localVarHeaderParameter["If-None-Match"] = String(ifNoneMatch);
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
      * Lists bids on a particular auction contract  --- Alternate route: `/dev/characters/{character_id}/contracts/{contract_id}/bids/`  Alternate route: `/legacy/characters/{character_id}/contracts/{contract_id}/bids/`  Alternate route: `/v1/characters/{character_id}/contracts/{contract_id}/bids/`  --- This route is cached for up to 300 seconds
      * @summary Get contract bids
      * @param {number} characterId An EVE character ID
@@ -21908,7 +21652,7 @@ export const ContractsApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdContractsContractIdBids: async (
+    getCharacterContractBids: async (
       characterId: number,
       contractId: number,
       datasource?: "tranquility",
@@ -21917,17 +21661,9 @@ export const ContractsApiAxiosParamCreator = function (
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "getCharactersCharacterIdContractsContractIdBids",
-        "characterId",
-        characterId
-      );
+      assertParamExists("getCharacterContractBids", "characterId", characterId);
       // verify required parameter 'contractId' is not null or undefined
-      assertParamExists(
-        "getCharactersCharacterIdContractsContractIdBids",
-        "contractId",
-        contractId
-      );
+      assertParamExists("getCharacterContractBids", "contractId", contractId);
       const localVarPath =
         `/characters/{character_id}/contracts/{contract_id}/bids/`
           .replace(
@@ -21999,7 +21735,7 @@ export const ContractsApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdContractsContractIdItems: async (
+    getCharacterContractItems: async (
       characterId: number,
       contractId: number,
       datasource?: "tranquility",
@@ -22009,16 +21745,12 @@ export const ContractsApiAxiosParamCreator = function (
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
       assertParamExists(
-        "getCharactersCharacterIdContractsContractIdItems",
+        "getCharacterContractItems",
         "characterId",
         characterId
       );
       // verify required parameter 'contractId' is not null or undefined
-      assertParamExists(
-        "getCharactersCharacterIdContractsContractIdItems",
-        "contractId",
-        contractId
-      );
+      assertParamExists("getCharacterContractItems", "contractId", contractId);
       const localVarPath =
         `/characters/{character_id}/contracts/{contract_id}/items/`
           .replace(
@@ -22055,6 +21787,85 @@ export const ContractsApiAxiosParamCreator = function (
 
       if (datasource !== undefined) {
         localVarQueryParameter["datasource"] = datasource;
+      }
+
+      if (token !== undefined) {
+        localVarQueryParameter["token"] = token;
+      }
+
+      if (ifNoneMatch != null) {
+        localVarHeaderParameter["If-None-Match"] = String(ifNoneMatch);
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Returns contracts available to a character, only if the character is issuer, acceptor or assignee. Only returns contracts no older than 30 days, or if the status is \"in_progress\".  --- Alternate route: `/dev/characters/{character_id}/contracts/`  Alternate route: `/legacy/characters/{character_id}/contracts/`  Alternate route: `/v1/characters/{character_id}/contracts/`  --- This route is cached for up to 300 seconds
+     * @summary Get contracts
+     * @param {number} characterId An EVE character ID
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param {number} [page] Which page of results to return
+     * @param {string} [token] Access token to use if unable to set a header
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCharacterContracts: async (
+      characterId: number,
+      datasource?: "tranquility",
+      ifNoneMatch?: string,
+      page?: number,
+      token?: string,
+      options: AxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'characterId' is not null or undefined
+      assertParamExists("getCharacterContracts", "characterId", characterId);
+      const localVarPath = `/characters/{character_id}/contracts/`.replace(
+        `{${"character_id"}}`,
+        encodeURIComponent(String(characterId))
+      );
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "GET",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication evesso required
+      // oauth required
+      await setOAuthToObject(
+        localVarHeaderParameter,
+        "evesso",
+        ["esi-contracts.read_character_contracts.v1"],
+        configuration
+      );
+
+      if (datasource !== undefined) {
+        localVarQueryParameter["datasource"] = datasource;
+      }
+
+      if (page !== undefined) {
+        localVarQueryParameter["page"] = page;
       }
 
       if (token !== undefined) {
@@ -22556,46 +22367,6 @@ export const ContractsApiFp = function (configuration?: Configuration) {
     ContractsApiAxiosParamCreator(configuration);
   return {
     /**
-     * Returns contracts available to a character, only if the character is issuer, acceptor or assignee. Only returns contracts no older than 30 days, or if the status is \"in_progress\".  --- Alternate route: `/dev/characters/{character_id}/contracts/`  Alternate route: `/legacy/characters/{character_id}/contracts/`  Alternate route: `/v1/characters/{character_id}/contracts/`  --- This route is cached for up to 300 seconds
-     * @summary Get contracts
-     * @param {number} characterId An EVE character ID
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-     * @param {number} [page] Which page of results to return
-     * @param {string} [token] Access token to use if unable to set a header
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async getCharactersCharacterIdContracts(
-      characterId: number,
-      datasource?: "tranquility",
-      ifNoneMatch?: string,
-      page?: number,
-      token?: string,
-      options?: AxiosRequestConfig
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<Array<GetCharactersCharacterIdContracts200Ok>>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdContracts(
-          characterId,
-          datasource,
-          ifNoneMatch,
-          page,
-          token,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-    /**
      * Lists bids on a particular auction contract  --- Alternate route: `/dev/characters/{character_id}/contracts/{contract_id}/bids/`  Alternate route: `/legacy/characters/{character_id}/contracts/{contract_id}/bids/`  Alternate route: `/v1/characters/{character_id}/contracts/{contract_id}/bids/`  --- This route is cached for up to 300 seconds
      * @summary Get contract bids
      * @param {number} characterId An EVE character ID
@@ -22606,7 +22377,7 @@ export const ContractsApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterIdContractsContractIdBids(
+    async getCharacterContractBids(
       characterId: number,
       contractId: number,
       datasource?: "tranquility",
@@ -22622,7 +22393,7 @@ export const ContractsApiFp = function (configuration?: Configuration) {
       >
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdContractsContractIdBids(
+        await localVarAxiosParamCreator.getCharacterContractBids(
           characterId,
           contractId,
           datasource,
@@ -22648,7 +22419,7 @@ export const ContractsApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterIdContractsContractIdItems(
+    async getCharacterContractItems(
       characterId: number,
       contractId: number,
       datasource?: "tranquility",
@@ -22664,11 +22435,51 @@ export const ContractsApiFp = function (configuration?: Configuration) {
       >
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdContractsContractIdItems(
+        await localVarAxiosParamCreator.getCharacterContractItems(
           characterId,
           contractId,
           datasource,
           ifNoneMatch,
+          token,
+          options
+        );
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration
+      );
+    },
+    /**
+     * Returns contracts available to a character, only if the character is issuer, acceptor or assignee. Only returns contracts no older than 30 days, or if the status is \"in_progress\".  --- Alternate route: `/dev/characters/{character_id}/contracts/`  Alternate route: `/legacy/characters/{character_id}/contracts/`  Alternate route: `/v1/characters/{character_id}/contracts/`  --- This route is cached for up to 300 seconds
+     * @summary Get contracts
+     * @param {number} characterId An EVE character ID
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param {number} [page] Which page of results to return
+     * @param {string} [token] Access token to use if unable to set a header
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getCharacterContracts(
+      characterId: number,
+      datasource?: "tranquility",
+      ifNoneMatch?: string,
+      page?: number,
+      token?: string,
+      options?: AxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<Array<GetCharactersCharacterIdContracts200Ok>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.getCharacterContracts(
+          characterId,
+          datasource,
+          ifNoneMatch,
+          page,
           token,
           options
         );
@@ -22932,36 +22743,6 @@ export const ContractsApiFactory = function (
   const localVarFp = ContractsApiFp(configuration);
   return {
     /**
-     * Returns contracts available to a character, only if the character is issuer, acceptor or assignee. Only returns contracts no older than 30 days, or if the status is \"in_progress\".  --- Alternate route: `/dev/characters/{character_id}/contracts/`  Alternate route: `/legacy/characters/{character_id}/contracts/`  Alternate route: `/v1/characters/{character_id}/contracts/`  --- This route is cached for up to 300 seconds
-     * @summary Get contracts
-     * @param {number} characterId An EVE character ID
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-     * @param {number} [page] Which page of results to return
-     * @param {string} [token] Access token to use if unable to set a header
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getCharactersCharacterIdContracts(
-      characterId: number,
-      datasource?: "tranquility",
-      ifNoneMatch?: string,
-      page?: number,
-      token?: string,
-      options?: any
-    ): AxiosPromise<Array<GetCharactersCharacterIdContracts200Ok>> {
-      return localVarFp
-        .getCharactersCharacterIdContracts(
-          characterId,
-          datasource,
-          ifNoneMatch,
-          page,
-          token,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
      * Lists bids on a particular auction contract  --- Alternate route: `/dev/characters/{character_id}/contracts/{contract_id}/bids/`  Alternate route: `/legacy/characters/{character_id}/contracts/{contract_id}/bids/`  Alternate route: `/v1/characters/{character_id}/contracts/{contract_id}/bids/`  --- This route is cached for up to 300 seconds
      * @summary Get contract bids
      * @param {number} characterId An EVE character ID
@@ -22972,7 +22753,7 @@ export const ContractsApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdContractsContractIdBids(
+    getCharacterContractBids(
       characterId: number,
       contractId: number,
       datasource?: "tranquility",
@@ -22983,7 +22764,7 @@ export const ContractsApiFactory = function (
       Array<GetCharactersCharacterIdContractsContractIdBids200Ok>
     > {
       return localVarFp
-        .getCharactersCharacterIdContractsContractIdBids(
+        .getCharacterContractBids(
           characterId,
           contractId,
           datasource,
@@ -23004,7 +22785,7 @@ export const ContractsApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdContractsContractIdItems(
+    getCharacterContractItems(
       characterId: number,
       contractId: number,
       datasource?: "tranquility",
@@ -23015,11 +22796,41 @@ export const ContractsApiFactory = function (
       Array<GetCharactersCharacterIdContractsContractIdItems200Ok>
     > {
       return localVarFp
-        .getCharactersCharacterIdContractsContractIdItems(
+        .getCharacterContractItems(
           characterId,
           contractId,
           datasource,
           ifNoneMatch,
+          token,
+          options
+        )
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * Returns contracts available to a character, only if the character is issuer, acceptor or assignee. Only returns contracts no older than 30 days, or if the status is \"in_progress\".  --- Alternate route: `/dev/characters/{character_id}/contracts/`  Alternate route: `/legacy/characters/{character_id}/contracts/`  Alternate route: `/v1/characters/{character_id}/contracts/`  --- This route is cached for up to 300 seconds
+     * @summary Get contracts
+     * @param {number} characterId An EVE character ID
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param {number} [page] Which page of results to return
+     * @param {string} [token] Access token to use if unable to set a header
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCharacterContracts(
+      characterId: number,
+      datasource?: "tranquility",
+      ifNoneMatch?: string,
+      page?: number,
+      token?: string,
+      options?: any
+    ): AxiosPromise<Array<GetCharactersCharacterIdContracts200Ok>> {
+      return localVarFp
+        .getCharacterContracts(
+          characterId,
+          datasource,
+          ifNoneMatch,
+          page,
           token,
           options
         )
@@ -23214,38 +23025,6 @@ export const ContractsApiFactory = function (
  */
 export class ContractsApi extends BaseAPI {
   /**
-   * Returns contracts available to a character, only if the character is issuer, acceptor or assignee. Only returns contracts no older than 30 days, or if the status is \"in_progress\".  --- Alternate route: `/dev/characters/{character_id}/contracts/`  Alternate route: `/legacy/characters/{character_id}/contracts/`  Alternate route: `/v1/characters/{character_id}/contracts/`  --- This route is cached for up to 300 seconds
-   * @summary Get contracts
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [page] Which page of results to return
-   * @param {string} [token] Access token to use if unable to set a header
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof ContractsApi
-   */
-  public getCharactersCharacterIdContracts(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    page?: number,
-    token?: string,
-    options?: AxiosRequestConfig
-  ) {
-    return ContractsApiFp(this.configuration)
-      .getCharactersCharacterIdContracts(
-        characterId,
-        datasource,
-        ifNoneMatch,
-        page,
-        token,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
-
-  /**
    * Lists bids on a particular auction contract  --- Alternate route: `/dev/characters/{character_id}/contracts/{contract_id}/bids/`  Alternate route: `/legacy/characters/{character_id}/contracts/{contract_id}/bids/`  Alternate route: `/v1/characters/{character_id}/contracts/{contract_id}/bids/`  --- This route is cached for up to 300 seconds
    * @summary Get contract bids
    * @param {number} characterId An EVE character ID
@@ -23257,7 +23036,7 @@ export class ContractsApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof ContractsApi
    */
-  public getCharactersCharacterIdContractsContractIdBids(
+  public getCharacterContractBids(
     characterId: number,
     contractId: number,
     datasource?: "tranquility",
@@ -23266,7 +23045,7 @@ export class ContractsApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return ContractsApiFp(this.configuration)
-      .getCharactersCharacterIdContractsContractIdBids(
+      .getCharacterContractBids(
         characterId,
         contractId,
         datasource,
@@ -23289,7 +23068,7 @@ export class ContractsApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof ContractsApi
    */
-  public getCharactersCharacterIdContractsContractIdItems(
+  public getCharacterContractItems(
     characterId: number,
     contractId: number,
     datasource?: "tranquility",
@@ -23298,11 +23077,43 @@ export class ContractsApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return ContractsApiFp(this.configuration)
-      .getCharactersCharacterIdContractsContractIdItems(
+      .getCharacterContractItems(
         characterId,
         contractId,
         datasource,
         ifNoneMatch,
+        token,
+        options
+      )
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Returns contracts available to a character, only if the character is issuer, acceptor or assignee. Only returns contracts no older than 30 days, or if the status is \"in_progress\".  --- Alternate route: `/dev/characters/{character_id}/contracts/`  Alternate route: `/legacy/characters/{character_id}/contracts/`  Alternate route: `/v1/characters/{character_id}/contracts/`  --- This route is cached for up to 300 seconds
+   * @summary Get contracts
+   * @param {number} characterId An EVE character ID
+   * @param {'tranquility'} [datasource] The server name you would like data from
+   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {number} [page] Which page of results to return
+   * @param {string} [token] Access token to use if unable to set a header
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof ContractsApi
+   */
+  public getCharacterContracts(
+    characterId: number,
+    datasource?: "tranquility",
+    ifNoneMatch?: string,
+    page?: number,
+    token?: string,
+    options?: AxiosRequestConfig
+  ) {
+    return ContractsApiFp(this.configuration)
+      .getCharacterContracts(
+        characterId,
+        datasource,
+        ifNoneMatch,
+        page,
         token,
         options
       )
@@ -28149,7 +27960,7 @@ export const FactionWarfareApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdFwStats: async (
+    getCharacterCharacterFwStats: async (
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -28158,7 +27969,7 @@ export const FactionWarfareApiAxiosParamCreator = function (
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
       assertParamExists(
-        "getCharactersCharacterIdFwStats",
+        "getCharacterCharacterFwStats",
         "characterId",
         characterId
       );
@@ -28620,7 +28431,7 @@ export const FactionWarfareApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterIdFwStats(
+    async getCharacterCharacterFwStats(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -28633,7 +28444,7 @@ export const FactionWarfareApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<GetCharactersCharacterIdFwStatsOk>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdFwStats(
+        await localVarAxiosParamCreator.getCharacterCharacterFwStats(
           characterId,
           datasource,
           ifNoneMatch,
@@ -28891,7 +28702,7 @@ export const FactionWarfareApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdFwStats(
+    getCharacterCharacterFwStats(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -28899,7 +28710,7 @@ export const FactionWarfareApiFactory = function (
       options?: any
     ): AxiosPromise<GetCharactersCharacterIdFwStatsOk> {
       return localVarFp
-        .getCharactersCharacterIdFwStats(
+        .getCharacterCharacterFwStats(
           characterId,
           datasource,
           ifNoneMatch,
@@ -29058,7 +28869,7 @@ export class FactionWarfareApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof FactionWarfareApi
    */
-  public getCharactersCharacterIdFwStats(
+  public getCharacterCharacterFwStats(
     characterId: number,
     datasource?: "tranquility",
     ifNoneMatch?: string,
@@ -29066,7 +28877,7 @@ export class FactionWarfareApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return FactionWarfareApiFp(this.configuration)
-      .getCharactersCharacterIdFwStats(
+      .getCharacterCharacterFwStats(
         characterId,
         datasource,
         ifNoneMatch,
@@ -29229,6 +29040,84 @@ export const FittingsApiAxiosParamCreator = function (
 ) {
   return {
     /**
+     * Save a new fitting for a character  --- Alternate route: `/dev/characters/{character_id}/fittings/`  Alternate route: `/v2/characters/{character_id}/fittings/`
+     * @summary Create fitting
+     * @param {number} characterId An EVE character ID
+     * @param {PostCharactersCharacterIdFittingsFitting} fitting Details about the new fitting
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {string} [token] Access token to use if unable to set a header
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    addCharacterFitting: async (
+      characterId: number,
+      fitting: PostCharactersCharacterIdFittingsFitting,
+      datasource?: "tranquility",
+      token?: string,
+      options: AxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'characterId' is not null or undefined
+      assertParamExists("addCharacterFitting", "characterId", characterId);
+      // verify required parameter 'fitting' is not null or undefined
+      assertParamExists("addCharacterFitting", "fitting", fitting);
+      const localVarPath = `/characters/{character_id}/fittings/`.replace(
+        `{${"character_id"}}`,
+        encodeURIComponent(String(characterId))
+      );
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication evesso required
+      // oauth required
+      await setOAuthToObject(
+        localVarHeaderParameter,
+        "evesso",
+        ["esi-fittings.write_fittings.v1"],
+        configuration
+      );
+
+      if (datasource !== undefined) {
+        localVarQueryParameter["datasource"] = datasource;
+      }
+
+      if (token !== undefined) {
+        localVarQueryParameter["token"] = token;
+      }
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        fitting,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
      * Delete a fitting from a character  --- Alternate route: `/dev/characters/{character_id}/fittings/{fitting_id}/`  Alternate route: `/legacy/characters/{character_id}/fittings/{fitting_id}/`  Alternate route: `/v1/characters/{character_id}/fittings/{fitting_id}/`
      * @summary Delete fitting
      * @param {number} characterId An EVE character ID
@@ -29238,7 +29127,7 @@ export const FittingsApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteCharactersCharacterIdFittingsFittingId: async (
+    deleteCharacterFitting: async (
       characterId: number,
       fittingId: number,
       datasource?: "tranquility",
@@ -29246,17 +29135,9 @@ export const FittingsApiAxiosParamCreator = function (
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "deleteCharactersCharacterIdFittingsFittingId",
-        "characterId",
-        characterId
-      );
+      assertParamExists("deleteCharacterFitting", "characterId", characterId);
       // verify required parameter 'fittingId' is not null or undefined
-      assertParamExists(
-        "deleteCharactersCharacterIdFittingsFittingId",
-        "fittingId",
-        fittingId
-      );
+      assertParamExists("deleteCharacterFitting", "fittingId", fittingId);
       const localVarPath = `/characters/{character_id}/fittings/{fitting_id}/`
         .replace(`{${"character_id"}}`, encodeURIComponent(String(characterId)))
         .replace(`{${"fitting_id"}}`, encodeURIComponent(String(fittingId)));
@@ -29316,7 +29197,7 @@ export const FittingsApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdFittings: async (
+    getCharacterFittings: async (
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -29324,11 +29205,7 @@ export const FittingsApiAxiosParamCreator = function (
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "getCharactersCharacterIdFittings",
-        "characterId",
-        characterId
-      );
+      assertParamExists("getCharacterFittings", "characterId", characterId);
       const localVarPath = `/characters/{character_id}/fittings/`.replace(
         `{${"character_id"}}`,
         encodeURIComponent(String(characterId))
@@ -29383,92 +29260,6 @@ export const FittingsApiAxiosParamCreator = function (
         options: localVarRequestOptions,
       };
     },
-    /**
-     * Save a new fitting for a character  --- Alternate route: `/dev/characters/{character_id}/fittings/`  Alternate route: `/v2/characters/{character_id}/fittings/`
-     * @summary Create fitting
-     * @param {number} characterId An EVE character ID
-     * @param {PostCharactersCharacterIdFittingsFitting} fitting Details about the new fitting
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {string} [token] Access token to use if unable to set a header
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    postCharactersCharacterIdFittings: async (
-      characterId: number,
-      fitting: PostCharactersCharacterIdFittingsFitting,
-      datasource?: "tranquility",
-      token?: string,
-      options: AxiosRequestConfig = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "postCharactersCharacterIdFittings",
-        "characterId",
-        characterId
-      );
-      // verify required parameter 'fitting' is not null or undefined
-      assertParamExists(
-        "postCharactersCharacterIdFittings",
-        "fitting",
-        fitting
-      );
-      const localVarPath = `/characters/{character_id}/fittings/`.replace(
-        `{${"character_id"}}`,
-        encodeURIComponent(String(characterId))
-      );
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: "POST",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      // authentication evesso required
-      // oauth required
-      await setOAuthToObject(
-        localVarHeaderParameter,
-        "evesso",
-        ["esi-fittings.write_fittings.v1"],
-        configuration
-      );
-
-      if (datasource !== undefined) {
-        localVarQueryParameter["datasource"] = datasource;
-      }
-
-      if (token !== undefined) {
-        localVarQueryParameter["token"] = token;
-      }
-
-      localVarHeaderParameter["Content-Type"] = "application/json";
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        fitting,
-        localVarRequestOptions,
-        configuration
-      );
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
   };
 };
 
@@ -29480,6 +29271,43 @@ export const FittingsApiFp = function (configuration?: Configuration) {
   const localVarAxiosParamCreator = FittingsApiAxiosParamCreator(configuration);
   return {
     /**
+     * Save a new fitting for a character  --- Alternate route: `/dev/characters/{character_id}/fittings/`  Alternate route: `/v2/characters/{character_id}/fittings/`
+     * @summary Create fitting
+     * @param {number} characterId An EVE character ID
+     * @param {PostCharactersCharacterIdFittingsFitting} fitting Details about the new fitting
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {string} [token] Access token to use if unable to set a header
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async addCharacterFitting(
+      characterId: number,
+      fitting: PostCharactersCharacterIdFittingsFitting,
+      datasource?: "tranquility",
+      token?: string,
+      options?: AxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<PostCharactersCharacterIdFittingsCreated>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.addCharacterFitting(
+          characterId,
+          fitting,
+          datasource,
+          token,
+          options
+        );
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration
+      );
+    },
+    /**
      * Delete a fitting from a character  --- Alternate route: `/dev/characters/{character_id}/fittings/{fitting_id}/`  Alternate route: `/legacy/characters/{character_id}/fittings/{fitting_id}/`  Alternate route: `/v1/characters/{character_id}/fittings/{fitting_id}/`
      * @summary Delete fitting
      * @param {number} characterId An EVE character ID
@@ -29489,7 +29317,7 @@ export const FittingsApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async deleteCharactersCharacterIdFittingsFittingId(
+    async deleteCharacterFitting(
       characterId: number,
       fittingId: number,
       datasource?: "tranquility",
@@ -29499,7 +29327,7 @@ export const FittingsApiFp = function (configuration?: Configuration) {
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.deleteCharactersCharacterIdFittingsFittingId(
+        await localVarAxiosParamCreator.deleteCharacterFitting(
           characterId,
           fittingId,
           datasource,
@@ -29523,7 +29351,7 @@ export const FittingsApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterIdFittings(
+    async getCharacterFittings(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -29536,47 +29364,10 @@ export const FittingsApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<Array<GetCharactersCharacterIdFittings200Ok>>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdFittings(
+        await localVarAxiosParamCreator.getCharacterFittings(
           characterId,
           datasource,
           ifNoneMatch,
-          token,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-    /**
-     * Save a new fitting for a character  --- Alternate route: `/dev/characters/{character_id}/fittings/`  Alternate route: `/v2/characters/{character_id}/fittings/`
-     * @summary Create fitting
-     * @param {number} characterId An EVE character ID
-     * @param {PostCharactersCharacterIdFittingsFitting} fitting Details about the new fitting
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {string} [token] Access token to use if unable to set a header
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async postCharactersCharacterIdFittings(
-      characterId: number,
-      fitting: PostCharactersCharacterIdFittingsFitting,
-      datasource?: "tranquility",
-      token?: string,
-      options?: AxiosRequestConfig
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<PostCharactersCharacterIdFittingsCreated>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.postCharactersCharacterIdFittings(
-          characterId,
-          fitting,
-          datasource,
           token,
           options
         );
@@ -29602,6 +29393,27 @@ export const FittingsApiFactory = function (
   const localVarFp = FittingsApiFp(configuration);
   return {
     /**
+     * Save a new fitting for a character  --- Alternate route: `/dev/characters/{character_id}/fittings/`  Alternate route: `/v2/characters/{character_id}/fittings/`
+     * @summary Create fitting
+     * @param {number} characterId An EVE character ID
+     * @param {PostCharactersCharacterIdFittingsFitting} fitting Details about the new fitting
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {string} [token] Access token to use if unable to set a header
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    addCharacterFitting(
+      characterId: number,
+      fitting: PostCharactersCharacterIdFittingsFitting,
+      datasource?: "tranquility",
+      token?: string,
+      options?: any
+    ): AxiosPromise<PostCharactersCharacterIdFittingsCreated> {
+      return localVarFp
+        .addCharacterFitting(characterId, fitting, datasource, token, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
      * Delete a fitting from a character  --- Alternate route: `/dev/characters/{character_id}/fittings/{fitting_id}/`  Alternate route: `/legacy/characters/{character_id}/fittings/{fitting_id}/`  Alternate route: `/v1/characters/{character_id}/fittings/{fitting_id}/`
      * @summary Delete fitting
      * @param {number} characterId An EVE character ID
@@ -29611,7 +29423,7 @@ export const FittingsApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteCharactersCharacterIdFittingsFittingId(
+    deleteCharacterFitting(
       characterId: number,
       fittingId: number,
       datasource?: "tranquility",
@@ -29619,7 +29431,7 @@ export const FittingsApiFactory = function (
       options?: any
     ): AxiosPromise<void> {
       return localVarFp
-        .deleteCharactersCharacterIdFittingsFittingId(
+        .deleteCharacterFitting(
           characterId,
           fittingId,
           datasource,
@@ -29638,7 +29450,7 @@ export const FittingsApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdFittings(
+    getCharacterFittings(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -29646,37 +29458,10 @@ export const FittingsApiFactory = function (
       options?: any
     ): AxiosPromise<Array<GetCharactersCharacterIdFittings200Ok>> {
       return localVarFp
-        .getCharactersCharacterIdFittings(
+        .getCharacterFittings(
           characterId,
           datasource,
           ifNoneMatch,
-          token,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * Save a new fitting for a character  --- Alternate route: `/dev/characters/{character_id}/fittings/`  Alternate route: `/v2/characters/{character_id}/fittings/`
-     * @summary Create fitting
-     * @param {number} characterId An EVE character ID
-     * @param {PostCharactersCharacterIdFittingsFitting} fitting Details about the new fitting
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {string} [token] Access token to use if unable to set a header
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    postCharactersCharacterIdFittings(
-      characterId: number,
-      fitting: PostCharactersCharacterIdFittingsFitting,
-      datasource?: "tranquility",
-      token?: string,
-      options?: any
-    ): AxiosPromise<PostCharactersCharacterIdFittingsCreated> {
-      return localVarFp
-        .postCharactersCharacterIdFittings(
-          characterId,
-          fitting,
-          datasource,
           token,
           options
         )
@@ -29693,6 +29478,29 @@ export const FittingsApiFactory = function (
  */
 export class FittingsApi extends BaseAPI {
   /**
+   * Save a new fitting for a character  --- Alternate route: `/dev/characters/{character_id}/fittings/`  Alternate route: `/v2/characters/{character_id}/fittings/`
+   * @summary Create fitting
+   * @param {number} characterId An EVE character ID
+   * @param {PostCharactersCharacterIdFittingsFitting} fitting Details about the new fitting
+   * @param {'tranquility'} [datasource] The server name you would like data from
+   * @param {string} [token] Access token to use if unable to set a header
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof FittingsApi
+   */
+  public addCharacterFitting(
+    characterId: number,
+    fitting: PostCharactersCharacterIdFittingsFitting,
+    datasource?: "tranquility",
+    token?: string,
+    options?: AxiosRequestConfig
+  ) {
+    return FittingsApiFp(this.configuration)
+      .addCharacterFitting(characterId, fitting, datasource, token, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
    * Delete a fitting from a character  --- Alternate route: `/dev/characters/{character_id}/fittings/{fitting_id}/`  Alternate route: `/legacy/characters/{character_id}/fittings/{fitting_id}/`  Alternate route: `/v1/characters/{character_id}/fittings/{fitting_id}/`
    * @summary Delete fitting
    * @param {number} characterId An EVE character ID
@@ -29703,7 +29511,7 @@ export class FittingsApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof FittingsApi
    */
-  public deleteCharactersCharacterIdFittingsFittingId(
+  public deleteCharacterFitting(
     characterId: number,
     fittingId: number,
     datasource?: "tranquility",
@@ -29711,7 +29519,7 @@ export class FittingsApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return FittingsApiFp(this.configuration)
-      .deleteCharactersCharacterIdFittingsFittingId(
+      .deleteCharacterFitting(
         characterId,
         fittingId,
         datasource,
@@ -29732,7 +29540,7 @@ export class FittingsApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof FittingsApi
    */
-  public getCharactersCharacterIdFittings(
+  public getCharacterFittings(
     characterId: number,
     datasource?: "tranquility",
     ifNoneMatch?: string,
@@ -29740,39 +29548,10 @@ export class FittingsApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return FittingsApiFp(this.configuration)
-      .getCharactersCharacterIdFittings(
+      .getCharacterFittings(
         characterId,
         datasource,
         ifNoneMatch,
-        token,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
-
-  /**
-   * Save a new fitting for a character  --- Alternate route: `/dev/characters/{character_id}/fittings/`  Alternate route: `/v2/characters/{character_id}/fittings/`
-   * @summary Create fitting
-   * @param {number} characterId An EVE character ID
-   * @param {PostCharactersCharacterIdFittingsFitting} fitting Details about the new fitting
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [token] Access token to use if unable to set a header
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof FittingsApi
-   */
-  public postCharactersCharacterIdFittings(
-    characterId: number,
-    fitting: PostCharactersCharacterIdFittingsFitting,
-    datasource?: "tranquility",
-    token?: string,
-    options?: AxiosRequestConfig
-  ) {
-    return FittingsApiFp(this.configuration)
-      .postCharactersCharacterIdFittings(
-        characterId,
-        fitting,
-        datasource,
         token,
         options
       )
@@ -30016,7 +29795,7 @@ export const FleetsApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdFleet: async (
+    getCharacterFleet: async (
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -30024,11 +29803,7 @@ export const FleetsApiAxiosParamCreator = function (
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "getCharactersCharacterIdFleet",
-        "characterId",
-        characterId
-      );
+      assertParamExists("getCharacterFleet", "characterId", characterId);
       const localVarPath = `/characters/{character_id}/fleet/`.replace(
         `{${"character_id"}}`,
         encodeURIComponent(String(characterId))
@@ -31032,7 +30807,7 @@ export const FleetsApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterIdFleet(
+    async getCharacterFleet(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -31045,7 +30820,7 @@ export const FleetsApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<GetCharactersCharacterIdFleetOk>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdFleet(
+        await localVarAxiosParamCreator.getCharacterFleet(
           characterId,
           datasource,
           ifNoneMatch,
@@ -31573,7 +31348,7 @@ export const FleetsApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdFleet(
+    getCharacterFleet(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -31581,13 +31356,7 @@ export const FleetsApiFactory = function (
       options?: any
     ): AxiosPromise<GetCharactersCharacterIdFleetOk> {
       return localVarFp
-        .getCharactersCharacterIdFleet(
-          characterId,
-          datasource,
-          ifNoneMatch,
-          token,
-          options
-        )
+        .getCharacterFleet(characterId, datasource, ifNoneMatch, token, options)
         .then((request) => request(axios, basePath));
     },
     /**
@@ -32005,7 +31774,7 @@ export class FleetsApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof FleetsApi
    */
-  public getCharactersCharacterIdFleet(
+  public getCharacterFleet(
     characterId: number,
     datasource?: "tranquility",
     ifNoneMatch?: string,
@@ -32013,13 +31782,7 @@ export class FleetsApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return FleetsApiFp(this.configuration)
-      .getCharactersCharacterIdFleet(
-        characterId,
-        datasource,
-        ifNoneMatch,
-        token,
-        options
-      )
+      .getCharacterFleet(characterId, datasource, ifNoneMatch, token, options)
       .then((request) => request(this.axios, this.basePath));
   }
 
@@ -32507,7 +32270,7 @@ export const IndustryApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdIndustryJobs: async (
+    getCharacterIndustryJobs: async (
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -32516,11 +32279,7 @@ export const IndustryApiAxiosParamCreator = function (
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "getCharactersCharacterIdIndustryJobs",
-        "characterId",
-        characterId
-      );
+      assertParamExists("getCharacterIndustryJobs", "characterId", characterId);
       const localVarPath = `/characters/{character_id}/industry/jobs/`.replace(
         `{${"character_id"}}`,
         encodeURIComponent(String(characterId))
@@ -32590,7 +32349,7 @@ export const IndustryApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdMining: async (
+    getCharacterMining: async (
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -32599,11 +32358,7 @@ export const IndustryApiAxiosParamCreator = function (
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "getCharactersCharacterIdMining",
-        "characterId",
-        characterId
-      );
+      assertParamExists("getCharacterMining", "characterId", characterId);
       const localVarPath = `/characters/{character_id}/mining/`.replace(
         `{${"character_id"}}`,
         encodeURIComponent(String(characterId))
@@ -33140,7 +32895,7 @@ export const IndustryApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterIdIndustryJobs(
+    async getCharacterIndustryJobs(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -33154,7 +32909,7 @@ export const IndustryApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<Array<GetCharactersCharacterIdIndustryJobs200Ok>>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdIndustryJobs(
+        await localVarAxiosParamCreator.getCharacterIndustryJobs(
           characterId,
           datasource,
           ifNoneMatch,
@@ -33180,7 +32935,7 @@ export const IndustryApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterIdMining(
+    async getCharacterMining(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -33194,7 +32949,7 @@ export const IndustryApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<Array<GetCharactersCharacterIdMining200Ok>>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdMining(
+        await localVarAxiosParamCreator.getCharacterMining(
           characterId,
           datasource,
           ifNoneMatch,
@@ -33466,7 +33221,7 @@ export const IndustryApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdIndustryJobs(
+    getCharacterIndustryJobs(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -33475,7 +33230,7 @@ export const IndustryApiFactory = function (
       options?: any
     ): AxiosPromise<Array<GetCharactersCharacterIdIndustryJobs200Ok>> {
       return localVarFp
-        .getCharactersCharacterIdIndustryJobs(
+        .getCharacterIndustryJobs(
           characterId,
           datasource,
           ifNoneMatch,
@@ -33496,7 +33251,7 @@ export const IndustryApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdMining(
+    getCharacterMining(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -33505,7 +33260,7 @@ export const IndustryApiFactory = function (
       options?: any
     ): AxiosPromise<Array<GetCharactersCharacterIdMining200Ok>> {
       return localVarFp
-        .getCharactersCharacterIdMining(
+        .getCharacterMining(
           characterId,
           datasource,
           ifNoneMatch,
@@ -33699,7 +33454,7 @@ export class IndustryApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof IndustryApi
    */
-  public getCharactersCharacterIdIndustryJobs(
+  public getCharacterIndustryJobs(
     characterId: number,
     datasource?: "tranquility",
     ifNoneMatch?: string,
@@ -33708,7 +33463,7 @@ export class IndustryApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return IndustryApiFp(this.configuration)
-      .getCharactersCharacterIdIndustryJobs(
+      .getCharacterIndustryJobs(
         characterId,
         datasource,
         ifNoneMatch,
@@ -33731,7 +33486,7 @@ export class IndustryApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof IndustryApi
    */
-  public getCharactersCharacterIdMining(
+  public getCharacterMining(
     characterId: number,
     datasource?: "tranquility",
     ifNoneMatch?: string,
@@ -33740,7 +33495,7 @@ export class IndustryApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return IndustryApiFp(this.configuration)
-      .getCharactersCharacterIdMining(
+      .getCharacterMining(
         characterId,
         datasource,
         ifNoneMatch,
@@ -34206,7 +33961,7 @@ export const KillmailsApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdKillmailsRecent: async (
+    getCharacterRecentKillmails: async (
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -34216,7 +33971,7 @@ export const KillmailsApiAxiosParamCreator = function (
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
       assertParamExists(
-        "getCharactersCharacterIdKillmailsRecent",
+        "getCharacterRecentKillmails",
         "characterId",
         characterId
       );
@@ -34457,7 +34212,7 @@ export const KillmailsApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterIdKillmailsRecent(
+    async getCharacterRecentKillmails(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -34471,7 +34226,7 @@ export const KillmailsApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<Array<GetCharactersCharacterIdKillmailsRecent200Ok>>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdKillmailsRecent(
+        await localVarAxiosParamCreator.getCharacterRecentKillmails(
           characterId,
           datasource,
           ifNoneMatch,
@@ -34588,7 +34343,7 @@ export const KillmailsApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdKillmailsRecent(
+    getCharacterRecentKillmails(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -34597,7 +34352,7 @@ export const KillmailsApiFactory = function (
       options?: any
     ): AxiosPromise<Array<GetCharactersCharacterIdKillmailsRecent200Ok>> {
       return localVarFp
-        .getCharactersCharacterIdKillmailsRecent(
+        .getCharacterRecentKillmails(
           characterId,
           datasource,
           ifNoneMatch,
@@ -34686,7 +34441,7 @@ export class KillmailsApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof KillmailsApi
    */
-  public getCharactersCharacterIdKillmailsRecent(
+  public getCharacterRecentKillmails(
     characterId: number,
     datasource?: "tranquility",
     ifNoneMatch?: string,
@@ -34695,7 +34450,7 @@ export class KillmailsApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return KillmailsApiFp(this.configuration)
-      .getCharactersCharacterIdKillmailsRecent(
+      .getCharacterRecentKillmails(
         characterId,
         datasource,
         ifNoneMatch,
@@ -34786,7 +34541,7 @@ export const LocationApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdLocation: async (
+    getCharacterLocation: async (
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -34794,11 +34549,7 @@ export const LocationApiAxiosParamCreator = function (
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "getCharactersCharacterIdLocation",
-        "characterId",
-        characterId
-      );
+      assertParamExists("getCharacterLocation", "characterId", characterId);
       const localVarPath = `/characters/{character_id}/location/`.replace(
         `{${"character_id"}}`,
         encodeURIComponent(String(characterId))
@@ -34854,83 +34605,6 @@ export const LocationApiAxiosParamCreator = function (
       };
     },
     /**
-     * Checks if the character is currently online  --- Alternate route: `/dev/characters/{character_id}/online/`  Alternate route: `/v2/characters/{character_id}/online/`  Alternate route: `/v3/characters/{character_id}/online/`  --- This route is cached for up to 60 seconds
-     * @summary Get character online
-     * @param {number} characterId An EVE character ID
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-     * @param {string} [token] Access token to use if unable to set a header
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getCharactersCharacterIdOnline: async (
-      characterId: number,
-      datasource?: "tranquility",
-      ifNoneMatch?: string,
-      token?: string,
-      options: AxiosRequestConfig = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "getCharactersCharacterIdOnline",
-        "characterId",
-        characterId
-      );
-      const localVarPath = `/characters/{character_id}/online/`.replace(
-        `{${"character_id"}}`,
-        encodeURIComponent(String(characterId))
-      );
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: "GET",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      // authentication evesso required
-      // oauth required
-      await setOAuthToObject(
-        localVarHeaderParameter,
-        "evesso",
-        ["esi-location.read_online.v1"],
-        configuration
-      );
-
-      if (datasource !== undefined) {
-        localVarQueryParameter["datasource"] = datasource;
-      }
-
-      if (token !== undefined) {
-        localVarQueryParameter["token"] = token;
-      }
-
-      if (ifNoneMatch != null) {
-        localVarHeaderParameter["If-None-Match"] = String(ifNoneMatch);
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
      * Get the current ship type, name and id  --- Alternate route: `/dev/characters/{character_id}/ship/`  Alternate route: `/legacy/characters/{character_id}/ship/`  Alternate route: `/v1/characters/{character_id}/ship/`  Alternate route: `/v2/characters/{character_id}/ship/`  --- This route is cached for up to 5 seconds
      * @summary Get current ship
      * @param {number} characterId An EVE character ID
@@ -34940,7 +34614,7 @@ export const LocationApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdShip: async (
+    getCharacterShip: async (
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -34948,11 +34622,7 @@ export const LocationApiAxiosParamCreator = function (
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "getCharactersCharacterIdShip",
-        "characterId",
-        characterId
-      );
+      assertParamExists("getCharacterShip", "characterId", characterId);
       const localVarPath = `/characters/{character_id}/ship/`.replace(
         `{${"character_id"}}`,
         encodeURIComponent(String(characterId))
@@ -35007,6 +34677,79 @@ export const LocationApiAxiosParamCreator = function (
         options: localVarRequestOptions,
       };
     },
+    /**
+     * Checks if the character is currently online  --- Alternate route: `/dev/characters/{character_id}/online/`  Alternate route: `/v2/characters/{character_id}/online/`  Alternate route: `/v3/characters/{character_id}/online/`  --- This route is cached for up to 60 seconds
+     * @summary Get character online
+     * @param {number} characterId An EVE character ID
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param {string} [token] Access token to use if unable to set a header
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    isCharacterOnline: async (
+      characterId: number,
+      datasource?: "tranquility",
+      ifNoneMatch?: string,
+      token?: string,
+      options: AxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'characterId' is not null or undefined
+      assertParamExists("isCharacterOnline", "characterId", characterId);
+      const localVarPath = `/characters/{character_id}/online/`.replace(
+        `{${"character_id"}}`,
+        encodeURIComponent(String(characterId))
+      );
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "GET",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication evesso required
+      // oauth required
+      await setOAuthToObject(
+        localVarHeaderParameter,
+        "evesso",
+        ["esi-location.read_online.v1"],
+        configuration
+      );
+
+      if (datasource !== undefined) {
+        localVarQueryParameter["datasource"] = datasource;
+      }
+
+      if (token !== undefined) {
+        localVarQueryParameter["token"] = token;
+      }
+
+      if (ifNoneMatch != null) {
+        localVarHeaderParameter["If-None-Match"] = String(ifNoneMatch);
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
   };
 };
 
@@ -35027,7 +34770,7 @@ export const LocationApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterIdLocation(
+    async getCharacterLocation(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -35040,44 +34783,7 @@ export const LocationApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<GetCharactersCharacterIdLocationOk>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdLocation(
-          characterId,
-          datasource,
-          ifNoneMatch,
-          token,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-    /**
-     * Checks if the character is currently online  --- Alternate route: `/dev/characters/{character_id}/online/`  Alternate route: `/v2/characters/{character_id}/online/`  Alternate route: `/v3/characters/{character_id}/online/`  --- This route is cached for up to 60 seconds
-     * @summary Get character online
-     * @param {number} characterId An EVE character ID
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-     * @param {string} [token] Access token to use if unable to set a header
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async getCharactersCharacterIdOnline(
-      characterId: number,
-      datasource?: "tranquility",
-      ifNoneMatch?: string,
-      token?: string,
-      options?: AxiosRequestConfig
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<GetCharactersCharacterIdOnlineOk>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdOnline(
+        await localVarAxiosParamCreator.getCharacterLocation(
           characterId,
           datasource,
           ifNoneMatch,
@@ -35101,7 +34807,7 @@ export const LocationApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterIdShip(
+    async getCharacterShip(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -35114,7 +34820,44 @@ export const LocationApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<GetCharactersCharacterIdShipOk>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdShip(
+        await localVarAxiosParamCreator.getCharacterShip(
+          characterId,
+          datasource,
+          ifNoneMatch,
+          token,
+          options
+        );
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration
+      );
+    },
+    /**
+     * Checks if the character is currently online  --- Alternate route: `/dev/characters/{character_id}/online/`  Alternate route: `/v2/characters/{character_id}/online/`  Alternate route: `/v3/characters/{character_id}/online/`  --- This route is cached for up to 60 seconds
+     * @summary Get character online
+     * @param {number} characterId An EVE character ID
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param {string} [token] Access token to use if unable to set a header
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async isCharacterOnline(
+      characterId: number,
+      datasource?: "tranquility",
+      ifNoneMatch?: string,
+      token?: string,
+      options?: AxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<GetCharactersCharacterIdOnlineOk>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.isCharacterOnline(
           characterId,
           datasource,
           ifNoneMatch,
@@ -35152,7 +34895,7 @@ export const LocationApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdLocation(
+    getCharacterLocation(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -35160,34 +34903,7 @@ export const LocationApiFactory = function (
       options?: any
     ): AxiosPromise<GetCharactersCharacterIdLocationOk> {
       return localVarFp
-        .getCharactersCharacterIdLocation(
-          characterId,
-          datasource,
-          ifNoneMatch,
-          token,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * Checks if the character is currently online  --- Alternate route: `/dev/characters/{character_id}/online/`  Alternate route: `/v2/characters/{character_id}/online/`  Alternate route: `/v3/characters/{character_id}/online/`  --- This route is cached for up to 60 seconds
-     * @summary Get character online
-     * @param {number} characterId An EVE character ID
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-     * @param {string} [token] Access token to use if unable to set a header
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getCharactersCharacterIdOnline(
-      characterId: number,
-      datasource?: "tranquility",
-      ifNoneMatch?: string,
-      token?: string,
-      options?: any
-    ): AxiosPromise<GetCharactersCharacterIdOnlineOk> {
-      return localVarFp
-        .getCharactersCharacterIdOnline(
+        .getCharacterLocation(
           characterId,
           datasource,
           ifNoneMatch,
@@ -35206,7 +34922,7 @@ export const LocationApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdShip(
+    getCharacterShip(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -35214,13 +34930,28 @@ export const LocationApiFactory = function (
       options?: any
     ): AxiosPromise<GetCharactersCharacterIdShipOk> {
       return localVarFp
-        .getCharactersCharacterIdShip(
-          characterId,
-          datasource,
-          ifNoneMatch,
-          token,
-          options
-        )
+        .getCharacterShip(characterId, datasource, ifNoneMatch, token, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * Checks if the character is currently online  --- Alternate route: `/dev/characters/{character_id}/online/`  Alternate route: `/v2/characters/{character_id}/online/`  Alternate route: `/v3/characters/{character_id}/online/`  --- This route is cached for up to 60 seconds
+     * @summary Get character online
+     * @param {number} characterId An EVE character ID
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param {string} [token] Access token to use if unable to set a header
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    isCharacterOnline(
+      characterId: number,
+      datasource?: "tranquility",
+      ifNoneMatch?: string,
+      token?: string,
+      options?: any
+    ): AxiosPromise<GetCharactersCharacterIdOnlineOk> {
+      return localVarFp
+        .isCharacterOnline(characterId, datasource, ifNoneMatch, token, options)
         .then((request) => request(axios, basePath));
     },
   };
@@ -35244,7 +34975,7 @@ export class LocationApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof LocationApi
    */
-  public getCharactersCharacterIdLocation(
+  public getCharacterLocation(
     characterId: number,
     datasource?: "tranquility",
     ifNoneMatch?: string,
@@ -35252,36 +34983,7 @@ export class LocationApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return LocationApiFp(this.configuration)
-      .getCharactersCharacterIdLocation(
-        characterId,
-        datasource,
-        ifNoneMatch,
-        token,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
-
-  /**
-   * Checks if the character is currently online  --- Alternate route: `/dev/characters/{character_id}/online/`  Alternate route: `/v2/characters/{character_id}/online/`  Alternate route: `/v3/characters/{character_id}/online/`  --- This route is cached for up to 60 seconds
-   * @summary Get character online
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof LocationApi
-   */
-  public getCharactersCharacterIdOnline(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
-    options?: AxiosRequestConfig
-  ) {
-    return LocationApiFp(this.configuration)
-      .getCharactersCharacterIdOnline(
+      .getCharacterLocation(
         characterId,
         datasource,
         ifNoneMatch,
@@ -35302,7 +35004,7 @@ export class LocationApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof LocationApi
    */
-  public getCharactersCharacterIdShip(
+  public getCharacterShip(
     characterId: number,
     datasource?: "tranquility",
     ifNoneMatch?: string,
@@ -35310,13 +35012,30 @@ export class LocationApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return LocationApiFp(this.configuration)
-      .getCharactersCharacterIdShip(
-        characterId,
-        datasource,
-        ifNoneMatch,
-        token,
-        options
-      )
+      .getCharacterShip(characterId, datasource, ifNoneMatch, token, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Checks if the character is currently online  --- Alternate route: `/dev/characters/{character_id}/online/`  Alternate route: `/v2/characters/{character_id}/online/`  Alternate route: `/v3/characters/{character_id}/online/`  --- This route is cached for up to 60 seconds
+   * @summary Get character online
+   * @param {number} characterId An EVE character ID
+   * @param {'tranquility'} [datasource] The server name you would like data from
+   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {string} [token] Access token to use if unable to set a header
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof LocationApi
+   */
+  public isCharacterOnline(
+    characterId: number,
+    datasource?: "tranquility",
+    ifNoneMatch?: string,
+    token?: string,
+    options?: AxiosRequestConfig
+  ) {
+    return LocationApiFp(this.configuration)
+      .isCharacterOnline(characterId, datasource, ifNoneMatch, token, options)
       .then((request) => request(this.axios, this.basePath));
   }
 }
@@ -35339,7 +35058,7 @@ export const LoyaltyApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdLoyaltyPoints: async (
+    getCharacterLoyaltyPoints: async (
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -35348,7 +35067,7 @@ export const LoyaltyApiAxiosParamCreator = function (
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
       assertParamExists(
-        "getCharactersCharacterIdLoyaltyPoints",
+        "getCharacterLoyaltyPoints",
         "characterId",
         characterId
       );
@@ -35488,7 +35207,7 @@ export const LoyaltyApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterIdLoyaltyPoints(
+    async getCharacterLoyaltyPoints(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -35501,7 +35220,7 @@ export const LoyaltyApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<Array<GetCharactersCharacterIdLoyaltyPoints200Ok>>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdLoyaltyPoints(
+        await localVarAxiosParamCreator.getCharacterLoyaltyPoints(
           characterId,
           datasource,
           ifNoneMatch,
@@ -35573,7 +35292,7 @@ export const LoyaltyApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdLoyaltyPoints(
+    getCharacterLoyaltyPoints(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -35581,7 +35300,7 @@ export const LoyaltyApiFactory = function (
       options?: any
     ): AxiosPromise<Array<GetCharactersCharacterIdLoyaltyPoints200Ok>> {
       return localVarFp
-        .getCharactersCharacterIdLoyaltyPoints(
+        .getCharacterLoyaltyPoints(
           characterId,
           datasource,
           ifNoneMatch,
@@ -35635,7 +35354,7 @@ export class LoyaltyApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof LoyaltyApi
    */
-  public getCharactersCharacterIdLoyaltyPoints(
+  public getCharacterLoyaltyPoints(
     characterId: number,
     datasource?: "tranquility",
     ifNoneMatch?: string,
@@ -35643,7 +35362,7 @@ export class LoyaltyApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return LoyaltyApiFp(this.configuration)
-      .getCharactersCharacterIdLoyaltyPoints(
+      .getCharacterLoyaltyPoints(
         characterId,
         datasource,
         ifNoneMatch,
@@ -35689,37 +35408,30 @@ export const MailApiAxiosParamCreator = function (
 ) {
   return {
     /**
-     * Delete a mail label  --- Alternate route: `/dev/characters/{character_id}/mail/labels/{label_id}/`  Alternate route: `/legacy/characters/{character_id}/mail/labels/{label_id}/`  Alternate route: `/v1/characters/{character_id}/mail/labels/{label_id}/`
-     * @summary Delete a mail label
+     * Create a mail label  --- Alternate route: `/dev/characters/{character_id}/mail/labels/`  Alternate route: `/legacy/characters/{character_id}/mail/labels/`  Alternate route: `/v2/characters/{character_id}/mail/labels/`
+     * @summary Create a mail label
      * @param {number} characterId An EVE character ID
-     * @param {number} labelId An EVE label id
+     * @param {PostCharactersCharacterIdMailLabelsLabel} label Label to create
      * @param {'tranquility'} [datasource] The server name you would like data from
      * @param {string} [token] Access token to use if unable to set a header
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteCharactersCharacterIdMailLabelsLabelId: async (
+    createCharacterMailLabel: async (
       characterId: number,
-      labelId: number,
+      label: PostCharactersCharacterIdMailLabelsLabel,
       datasource?: "tranquility",
       token?: string,
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "deleteCharactersCharacterIdMailLabelsLabelId",
-        "characterId",
-        characterId
+      assertParamExists("createCharacterMailLabel", "characterId", characterId);
+      // verify required parameter 'label' is not null or undefined
+      assertParamExists("createCharacterMailLabel", "label", label);
+      const localVarPath = `/characters/{character_id}/mail/labels/`.replace(
+        `{${"character_id"}}`,
+        encodeURIComponent(String(characterId))
       );
-      // verify required parameter 'labelId' is not null or undefined
-      assertParamExists(
-        "deleteCharactersCharacterIdMailLabelsLabelId",
-        "labelId",
-        labelId
-      );
-      const localVarPath = `/characters/{character_id}/mail/labels/{label_id}/`
-        .replace(`{${"character_id"}}`, encodeURIComponent(String(characterId)))
-        .replace(`{${"label_id"}}`, encodeURIComponent(String(labelId)));
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
       let baseOptions;
@@ -35728,7 +35440,7 @@ export const MailApiAxiosParamCreator = function (
       }
 
       const localVarRequestOptions = {
-        method: "DELETE",
+        method: "POST",
         ...baseOptions,
         ...options,
       };
@@ -35752,6 +35464,8 @@ export const MailApiAxiosParamCreator = function (
         localVarQueryParameter["token"] = token;
       }
 
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
       setSearchParams(localVarUrlObj, localVarQueryParameter);
       let headersFromBaseOptions =
         baseOptions && baseOptions.headers ? baseOptions.headers : {};
@@ -35760,6 +35474,11 @@ export const MailApiAxiosParamCreator = function (
         ...headersFromBaseOptions,
         ...options.headers,
       };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        label,
+        localVarRequestOptions,
+        configuration
+      );
 
       return {
         url: toPathString(localVarUrlObj),
@@ -35776,7 +35495,7 @@ export const MailApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteCharactersCharacterIdMailMailId: async (
+    deleteCharacterMail: async (
       characterId: number,
       mailId: number,
       datasource?: "tranquility",
@@ -35784,17 +35503,9 @@ export const MailApiAxiosParamCreator = function (
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "deleteCharactersCharacterIdMailMailId",
-        "characterId",
-        characterId
-      );
+      assertParamExists("deleteCharacterMail", "characterId", characterId);
       // verify required parameter 'mailId' is not null or undefined
-      assertParamExists(
-        "deleteCharactersCharacterIdMailMailId",
-        "mailId",
-        mailId
-      );
+      assertParamExists("deleteCharacterMail", "mailId", mailId);
       const localVarPath = `/characters/{character_id}/mail/{mail_id}/`
         .replace(`{${"character_id"}}`, encodeURIComponent(String(characterId)))
         .replace(`{${"mail_id"}}`, encodeURIComponent(String(mailId)));
@@ -35845,6 +35556,152 @@ export const MailApiAxiosParamCreator = function (
       };
     },
     /**
+     * Delete a mail label  --- Alternate route: `/dev/characters/{character_id}/mail/labels/{label_id}/`  Alternate route: `/legacy/characters/{character_id}/mail/labels/{label_id}/`  Alternate route: `/v1/characters/{character_id}/mail/labels/{label_id}/`
+     * @summary Delete a mail label
+     * @param {number} characterId An EVE character ID
+     * @param {number} labelId An EVE label id
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {string} [token] Access token to use if unable to set a header
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteCharacterMailLabel: async (
+      characterId: number,
+      labelId: number,
+      datasource?: "tranquility",
+      token?: string,
+      options: AxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'characterId' is not null or undefined
+      assertParamExists("deleteCharacterMailLabel", "characterId", characterId);
+      // verify required parameter 'labelId' is not null or undefined
+      assertParamExists("deleteCharacterMailLabel", "labelId", labelId);
+      const localVarPath = `/characters/{character_id}/mail/labels/{label_id}/`
+        .replace(`{${"character_id"}}`, encodeURIComponent(String(characterId)))
+        .replace(`{${"label_id"}}`, encodeURIComponent(String(labelId)));
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "DELETE",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication evesso required
+      // oauth required
+      await setOAuthToObject(
+        localVarHeaderParameter,
+        "evesso",
+        ["esi-mail.organize_mail.v1"],
+        configuration
+      );
+
+      if (datasource !== undefined) {
+        localVarQueryParameter["datasource"] = datasource;
+      }
+
+      if (token !== undefined) {
+        localVarQueryParameter["token"] = token;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Return the contents of an EVE mail  --- Alternate route: `/dev/characters/{character_id}/mail/{mail_id}/`  Alternate route: `/legacy/characters/{character_id}/mail/{mail_id}/`  Alternate route: `/v1/characters/{character_id}/mail/{mail_id}/`  --- This route is cached for up to 30 seconds
+     * @summary Return a mail
+     * @param {number} characterId An EVE character ID
+     * @param {number} mailId An EVE mail ID
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param {string} [token] Access token to use if unable to set a header
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCharacterMail: async (
+      characterId: number,
+      mailId: number,
+      datasource?: "tranquility",
+      ifNoneMatch?: string,
+      token?: string,
+      options: AxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'characterId' is not null or undefined
+      assertParamExists("getCharacterMail", "characterId", characterId);
+      // verify required parameter 'mailId' is not null or undefined
+      assertParamExists("getCharacterMail", "mailId", mailId);
+      const localVarPath = `/characters/{character_id}/mail/{mail_id}/`
+        .replace(`{${"character_id"}}`, encodeURIComponent(String(characterId)))
+        .replace(`{${"mail_id"}}`, encodeURIComponent(String(mailId)));
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "GET",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication evesso required
+      // oauth required
+      await setOAuthToObject(
+        localVarHeaderParameter,
+        "evesso",
+        ["esi-mail.read_mail.v1"],
+        configuration
+      );
+
+      if (datasource !== undefined) {
+        localVarQueryParameter["datasource"] = datasource;
+      }
+
+      if (token !== undefined) {
+        localVarQueryParameter["token"] = token;
+      }
+
+      if (ifNoneMatch != null) {
+        localVarHeaderParameter["If-None-Match"] = String(ifNoneMatch);
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
      * Return the 50 most recent mail headers belonging to the character that match the query criteria. Queries can be filtered by label, and last_mail_id can be used to paginate backwards  --- Alternate route: `/dev/characters/{character_id}/mail/`  Alternate route: `/legacy/characters/{character_id}/mail/`  Alternate route: `/v1/characters/{character_id}/mail/`  --- This route is cached for up to 30 seconds
      * @summary Return mail headers
      * @param {number} characterId An EVE character ID
@@ -35856,7 +35713,7 @@ export const MailApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdMail: async (
+    getCharacterMailHeaders: async (
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -35866,11 +35723,7 @@ export const MailApiAxiosParamCreator = function (
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "getCharactersCharacterIdMail",
-        "characterId",
-        characterId
-      );
+      assertParamExists("getCharacterMailHeaders", "characterId", characterId);
       const localVarPath = `/characters/{character_id}/mail/`.replace(
         `{${"character_id"}}`,
         encodeURIComponent(String(characterId))
@@ -35945,7 +35798,7 @@ export const MailApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdMailLabels: async (
+    getCharacterMailLabels: async (
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -35953,11 +35806,7 @@ export const MailApiAxiosParamCreator = function (
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "getCharactersCharacterIdMailLabels",
-        "characterId",
-        characterId
-      );
+      assertParamExists("getCharacterMailLabels", "characterId", characterId);
       const localVarPath = `/characters/{character_id}/mail/labels/`.replace(
         `{${"character_id"}}`,
         encodeURIComponent(String(characterId))
@@ -36022,7 +35871,7 @@ export const MailApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdMailLists: async (
+    getCharacterMailLists: async (
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -36030,95 +35879,11 @@ export const MailApiAxiosParamCreator = function (
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "getCharactersCharacterIdMailLists",
-        "characterId",
-        characterId
-      );
+      assertParamExists("getCharacterMailLists", "characterId", characterId);
       const localVarPath = `/characters/{character_id}/mail/lists/`.replace(
         `{${"character_id"}}`,
         encodeURIComponent(String(characterId))
       );
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: "GET",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      // authentication evesso required
-      // oauth required
-      await setOAuthToObject(
-        localVarHeaderParameter,
-        "evesso",
-        ["esi-mail.read_mail.v1"],
-        configuration
-      );
-
-      if (datasource !== undefined) {
-        localVarQueryParameter["datasource"] = datasource;
-      }
-
-      if (token !== undefined) {
-        localVarQueryParameter["token"] = token;
-      }
-
-      if (ifNoneMatch != null) {
-        localVarHeaderParameter["If-None-Match"] = String(ifNoneMatch);
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Return the contents of an EVE mail  --- Alternate route: `/dev/characters/{character_id}/mail/{mail_id}/`  Alternate route: `/legacy/characters/{character_id}/mail/{mail_id}/`  Alternate route: `/v1/characters/{character_id}/mail/{mail_id}/`  --- This route is cached for up to 30 seconds
-     * @summary Return a mail
-     * @param {number} characterId An EVE character ID
-     * @param {number} mailId An EVE mail ID
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-     * @param {string} [token] Access token to use if unable to set a header
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getCharactersCharacterIdMailMailId: async (
-      characterId: number,
-      mailId: number,
-      datasource?: "tranquility",
-      ifNoneMatch?: string,
-      token?: string,
-      options: AxiosRequestConfig = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "getCharactersCharacterIdMailMailId",
-        "characterId",
-        characterId
-      );
-      // verify required parameter 'mailId' is not null or undefined
-      assertParamExists("getCharactersCharacterIdMailMailId", "mailId", mailId);
-      const localVarPath = `/characters/{character_id}/mail/{mail_id}/`
-        .replace(`{${"character_id"}}`, encodeURIComponent(String(characterId)))
-        .replace(`{${"mail_id"}}`, encodeURIComponent(String(mailId)));
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
       let baseOptions;
@@ -36179,7 +35944,7 @@ export const MailApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    postCharactersCharacterIdMail: async (
+    sendCharacterMail: async (
       characterId: number,
       mail: PostCharactersCharacterIdMailMail,
       datasource?: "tranquility",
@@ -36187,13 +35952,9 @@ export const MailApiAxiosParamCreator = function (
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "postCharactersCharacterIdMail",
-        "characterId",
-        characterId
-      );
+      assertParamExists("sendCharacterMail", "characterId", characterId);
       // verify required parameter 'mail' is not null or undefined
-      assertParamExists("postCharactersCharacterIdMail", "mail", mail);
+      assertParamExists("sendCharacterMail", "mail", mail);
       const localVarPath = `/characters/{character_id}/mail/`.replace(
         `{${"character_id"}}`,
         encodeURIComponent(String(characterId))
@@ -36252,88 +36013,6 @@ export const MailApiAxiosParamCreator = function (
       };
     },
     /**
-     * Create a mail label  --- Alternate route: `/dev/characters/{character_id}/mail/labels/`  Alternate route: `/legacy/characters/{character_id}/mail/labels/`  Alternate route: `/v2/characters/{character_id}/mail/labels/`
-     * @summary Create a mail label
-     * @param {number} characterId An EVE character ID
-     * @param {PostCharactersCharacterIdMailLabelsLabel} label Label to create
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {string} [token] Access token to use if unable to set a header
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    postCharactersCharacterIdMailLabels: async (
-      characterId: number,
-      label: PostCharactersCharacterIdMailLabelsLabel,
-      datasource?: "tranquility",
-      token?: string,
-      options: AxiosRequestConfig = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "postCharactersCharacterIdMailLabels",
-        "characterId",
-        characterId
-      );
-      // verify required parameter 'label' is not null or undefined
-      assertParamExists("postCharactersCharacterIdMailLabels", "label", label);
-      const localVarPath = `/characters/{character_id}/mail/labels/`.replace(
-        `{${"character_id"}}`,
-        encodeURIComponent(String(characterId))
-      );
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: "POST",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      // authentication evesso required
-      // oauth required
-      await setOAuthToObject(
-        localVarHeaderParameter,
-        "evesso",
-        ["esi-mail.organize_mail.v1"],
-        configuration
-      );
-
-      if (datasource !== undefined) {
-        localVarQueryParameter["datasource"] = datasource;
-      }
-
-      if (token !== undefined) {
-        localVarQueryParameter["token"] = token;
-      }
-
-      localVarHeaderParameter["Content-Type"] = "application/json";
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        label,
-        localVarRequestOptions,
-        configuration
-      );
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
      * Update metadata about a mail  --- Alternate route: `/dev/characters/{character_id}/mail/{mail_id}/`  Alternate route: `/legacy/characters/{character_id}/mail/{mail_id}/`  Alternate route: `/v1/characters/{character_id}/mail/{mail_id}/`
      * @summary Update metadata about a mail
      * @param {number} characterId An EVE character ID
@@ -36344,7 +36023,7 @@ export const MailApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    putCharactersCharacterIdMailMailId: async (
+    updateCharactersMailMetadata: async (
       characterId: number,
       mailId: number,
       contents: PutCharactersCharacterIdMailMailIdContents,
@@ -36354,18 +36033,14 @@ export const MailApiAxiosParamCreator = function (
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
       assertParamExists(
-        "putCharactersCharacterIdMailMailId",
+        "updateCharactersMailMetadata",
         "characterId",
         characterId
       );
       // verify required parameter 'mailId' is not null or undefined
-      assertParamExists("putCharactersCharacterIdMailMailId", "mailId", mailId);
+      assertParamExists("updateCharactersMailMetadata", "mailId", mailId);
       // verify required parameter 'contents' is not null or undefined
-      assertParamExists(
-        "putCharactersCharacterIdMailMailId",
-        "contents",
-        contents
-      );
+      assertParamExists("updateCharactersMailMetadata", "contents", contents);
       const localVarPath = `/characters/{character_id}/mail/{mail_id}/`
         .replace(`{${"character_id"}}`, encodeURIComponent(String(characterId)))
         .replace(`{${"mail_id"}}`, encodeURIComponent(String(mailId)));
@@ -36433,28 +36108,28 @@ export const MailApiFp = function (configuration?: Configuration) {
   const localVarAxiosParamCreator = MailApiAxiosParamCreator(configuration);
   return {
     /**
-     * Delete a mail label  --- Alternate route: `/dev/characters/{character_id}/mail/labels/{label_id}/`  Alternate route: `/legacy/characters/{character_id}/mail/labels/{label_id}/`  Alternate route: `/v1/characters/{character_id}/mail/labels/{label_id}/`
-     * @summary Delete a mail label
+     * Create a mail label  --- Alternate route: `/dev/characters/{character_id}/mail/labels/`  Alternate route: `/legacy/characters/{character_id}/mail/labels/`  Alternate route: `/v2/characters/{character_id}/mail/labels/`
+     * @summary Create a mail label
      * @param {number} characterId An EVE character ID
-     * @param {number} labelId An EVE label id
+     * @param {PostCharactersCharacterIdMailLabelsLabel} label Label to create
      * @param {'tranquility'} [datasource] The server name you would like data from
      * @param {string} [token] Access token to use if unable to set a header
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async deleteCharactersCharacterIdMailLabelsLabelId(
+    async createCharacterMailLabel(
       characterId: number,
-      labelId: number,
+      label: PostCharactersCharacterIdMailLabelsLabel,
       datasource?: "tranquility",
       token?: string,
       options?: AxiosRequestConfig
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<number>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.deleteCharactersCharacterIdMailLabelsLabelId(
+        await localVarAxiosParamCreator.createCharacterMailLabel(
           characterId,
-          labelId,
+          label,
           datasource,
           token,
           options
@@ -36476,7 +36151,7 @@ export const MailApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async deleteCharactersCharacterIdMailMailId(
+    async deleteCharacterMail(
       characterId: number,
       mailId: number,
       datasource?: "tranquility",
@@ -36486,10 +36161,84 @@ export const MailApiFp = function (configuration?: Configuration) {
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.deleteCharactersCharacterIdMailMailId(
+        await localVarAxiosParamCreator.deleteCharacterMail(
           characterId,
           mailId,
           datasource,
+          token,
+          options
+        );
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration
+      );
+    },
+    /**
+     * Delete a mail label  --- Alternate route: `/dev/characters/{character_id}/mail/labels/{label_id}/`  Alternate route: `/legacy/characters/{character_id}/mail/labels/{label_id}/`  Alternate route: `/v1/characters/{character_id}/mail/labels/{label_id}/`
+     * @summary Delete a mail label
+     * @param {number} characterId An EVE character ID
+     * @param {number} labelId An EVE label id
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {string} [token] Access token to use if unable to set a header
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async deleteCharacterMailLabel(
+      characterId: number,
+      labelId: number,
+      datasource?: "tranquility",
+      token?: string,
+      options?: AxiosRequestConfig
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.deleteCharacterMailLabel(
+          characterId,
+          labelId,
+          datasource,
+          token,
+          options
+        );
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration
+      );
+    },
+    /**
+     * Return the contents of an EVE mail  --- Alternate route: `/dev/characters/{character_id}/mail/{mail_id}/`  Alternate route: `/legacy/characters/{character_id}/mail/{mail_id}/`  Alternate route: `/v1/characters/{character_id}/mail/{mail_id}/`  --- This route is cached for up to 30 seconds
+     * @summary Return a mail
+     * @param {number} characterId An EVE character ID
+     * @param {number} mailId An EVE mail ID
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param {string} [token] Access token to use if unable to set a header
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getCharacterMail(
+      characterId: number,
+      mailId: number,
+      datasource?: "tranquility",
+      ifNoneMatch?: string,
+      token?: string,
+      options?: AxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<GetCharactersCharacterIdMailMailIdOk>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.getCharacterMail(
+          characterId,
+          mailId,
+          datasource,
+          ifNoneMatch,
           token,
           options
         );
@@ -36512,7 +36261,7 @@ export const MailApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterIdMail(
+    async getCharacterMailHeaders(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -36527,7 +36276,7 @@ export const MailApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<Array<GetCharactersCharacterIdMail200Ok>>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdMail(
+        await localVarAxiosParamCreator.getCharacterMailHeaders(
           characterId,
           datasource,
           ifNoneMatch,
@@ -36553,7 +36302,7 @@ export const MailApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterIdMailLabels(
+    async getCharacterMailLabels(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -36566,7 +36315,7 @@ export const MailApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<GetCharactersCharacterIdMailLabelsOk>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdMailLabels(
+        await localVarAxiosParamCreator.getCharacterMailLabels(
           characterId,
           datasource,
           ifNoneMatch,
@@ -36590,7 +36339,7 @@ export const MailApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterIdMailLists(
+    async getCharacterMailLists(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -36603,48 +36352,8 @@ export const MailApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<Array<GetCharactersCharacterIdMailLists200Ok>>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdMailLists(
+        await localVarAxiosParamCreator.getCharacterMailLists(
           characterId,
-          datasource,
-          ifNoneMatch,
-          token,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-    /**
-     * Return the contents of an EVE mail  --- Alternate route: `/dev/characters/{character_id}/mail/{mail_id}/`  Alternate route: `/legacy/characters/{character_id}/mail/{mail_id}/`  Alternate route: `/v1/characters/{character_id}/mail/{mail_id}/`  --- This route is cached for up to 30 seconds
-     * @summary Return a mail
-     * @param {number} characterId An EVE character ID
-     * @param {number} mailId An EVE mail ID
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-     * @param {string} [token] Access token to use if unable to set a header
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async getCharactersCharacterIdMailMailId(
-      characterId: number,
-      mailId: number,
-      datasource?: "tranquility",
-      ifNoneMatch?: string,
-      token?: string,
-      options?: AxiosRequestConfig
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<GetCharactersCharacterIdMailMailIdOk>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdMailMailId(
-          characterId,
-          mailId,
           datasource,
           ifNoneMatch,
           token,
@@ -36667,7 +36376,7 @@ export const MailApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async postCharactersCharacterIdMail(
+    async sendCharacterMail(
       characterId: number,
       mail: PostCharactersCharacterIdMailMail,
       datasource?: "tranquility",
@@ -36677,43 +36386,9 @@ export const MailApiFp = function (configuration?: Configuration) {
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<number>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.postCharactersCharacterIdMail(
+        await localVarAxiosParamCreator.sendCharacterMail(
           characterId,
           mail,
-          datasource,
-          token,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-    /**
-     * Create a mail label  --- Alternate route: `/dev/characters/{character_id}/mail/labels/`  Alternate route: `/legacy/characters/{character_id}/mail/labels/`  Alternate route: `/v2/characters/{character_id}/mail/labels/`
-     * @summary Create a mail label
-     * @param {number} characterId An EVE character ID
-     * @param {PostCharactersCharacterIdMailLabelsLabel} label Label to create
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {string} [token] Access token to use if unable to set a header
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async postCharactersCharacterIdMailLabels(
-      characterId: number,
-      label: PostCharactersCharacterIdMailLabelsLabel,
-      datasource?: "tranquility",
-      token?: string,
-      options?: AxiosRequestConfig
-    ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<number>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.postCharactersCharacterIdMailLabels(
-          characterId,
-          label,
           datasource,
           token,
           options
@@ -36736,7 +36411,7 @@ export const MailApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async putCharactersCharacterIdMailMailId(
+    async updateCharactersMailMetadata(
       characterId: number,
       mailId: number,
       contents: PutCharactersCharacterIdMailMailIdContents,
@@ -36747,7 +36422,7 @@ export const MailApiFp = function (configuration?: Configuration) {
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.putCharactersCharacterIdMailMailId(
+        await localVarAxiosParamCreator.updateCharactersMailMetadata(
           characterId,
           mailId,
           contents,
@@ -36777,26 +36452,26 @@ export const MailApiFactory = function (
   const localVarFp = MailApiFp(configuration);
   return {
     /**
-     * Delete a mail label  --- Alternate route: `/dev/characters/{character_id}/mail/labels/{label_id}/`  Alternate route: `/legacy/characters/{character_id}/mail/labels/{label_id}/`  Alternate route: `/v1/characters/{character_id}/mail/labels/{label_id}/`
-     * @summary Delete a mail label
+     * Create a mail label  --- Alternate route: `/dev/characters/{character_id}/mail/labels/`  Alternate route: `/legacy/characters/{character_id}/mail/labels/`  Alternate route: `/v2/characters/{character_id}/mail/labels/`
+     * @summary Create a mail label
      * @param {number} characterId An EVE character ID
-     * @param {number} labelId An EVE label id
+     * @param {PostCharactersCharacterIdMailLabelsLabel} label Label to create
      * @param {'tranquility'} [datasource] The server name you would like data from
      * @param {string} [token] Access token to use if unable to set a header
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteCharactersCharacterIdMailLabelsLabelId(
+    createCharacterMailLabel(
       characterId: number,
-      labelId: number,
+      label: PostCharactersCharacterIdMailLabelsLabel,
       datasource?: "tranquility",
       token?: string,
       options?: any
-    ): AxiosPromise<void> {
+    ): AxiosPromise<number> {
       return localVarFp
-        .deleteCharactersCharacterIdMailLabelsLabelId(
+        .createCharacterMailLabel(
           characterId,
-          labelId,
+          label,
           datasource,
           token,
           options
@@ -36813,7 +36488,7 @@ export const MailApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    deleteCharactersCharacterIdMailMailId(
+    deleteCharacterMail(
       characterId: number,
       mailId: number,
       datasource?: "tranquility",
@@ -36821,10 +36496,61 @@ export const MailApiFactory = function (
       options?: any
     ): AxiosPromise<void> {
       return localVarFp
-        .deleteCharactersCharacterIdMailMailId(
+        .deleteCharacterMail(characterId, mailId, datasource, token, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * Delete a mail label  --- Alternate route: `/dev/characters/{character_id}/mail/labels/{label_id}/`  Alternate route: `/legacy/characters/{character_id}/mail/labels/{label_id}/`  Alternate route: `/v1/characters/{character_id}/mail/labels/{label_id}/`
+     * @summary Delete a mail label
+     * @param {number} characterId An EVE character ID
+     * @param {number} labelId An EVE label id
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {string} [token] Access token to use if unable to set a header
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    deleteCharacterMailLabel(
+      characterId: number,
+      labelId: number,
+      datasource?: "tranquility",
+      token?: string,
+      options?: any
+    ): AxiosPromise<void> {
+      return localVarFp
+        .deleteCharacterMailLabel(
+          characterId,
+          labelId,
+          datasource,
+          token,
+          options
+        )
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * Return the contents of an EVE mail  --- Alternate route: `/dev/characters/{character_id}/mail/{mail_id}/`  Alternate route: `/legacy/characters/{character_id}/mail/{mail_id}/`  Alternate route: `/v1/characters/{character_id}/mail/{mail_id}/`  --- This route is cached for up to 30 seconds
+     * @summary Return a mail
+     * @param {number} characterId An EVE character ID
+     * @param {number} mailId An EVE mail ID
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param {string} [token] Access token to use if unable to set a header
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCharacterMail(
+      characterId: number,
+      mailId: number,
+      datasource?: "tranquility",
+      ifNoneMatch?: string,
+      token?: string,
+      options?: any
+    ): AxiosPromise<GetCharactersCharacterIdMailMailIdOk> {
+      return localVarFp
+        .getCharacterMail(
           characterId,
           mailId,
           datasource,
+          ifNoneMatch,
           token,
           options
         )
@@ -36842,7 +36568,7 @@ export const MailApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdMail(
+    getCharacterMailHeaders(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -36852,7 +36578,7 @@ export const MailApiFactory = function (
       options?: any
     ): AxiosPromise<Array<GetCharactersCharacterIdMail200Ok>> {
       return localVarFp
-        .getCharactersCharacterIdMail(
+        .getCharacterMailHeaders(
           characterId,
           datasource,
           ifNoneMatch,
@@ -36873,7 +36599,7 @@ export const MailApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdMailLabels(
+    getCharacterMailLabels(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -36881,7 +36607,7 @@ export const MailApiFactory = function (
       options?: any
     ): AxiosPromise<GetCharactersCharacterIdMailLabelsOk> {
       return localVarFp
-        .getCharactersCharacterIdMailLabels(
+        .getCharacterMailLabels(
           characterId,
           datasource,
           ifNoneMatch,
@@ -36900,7 +36626,7 @@ export const MailApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdMailLists(
+    getCharacterMailLists(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -36908,38 +36634,8 @@ export const MailApiFactory = function (
       options?: any
     ): AxiosPromise<Array<GetCharactersCharacterIdMailLists200Ok>> {
       return localVarFp
-        .getCharactersCharacterIdMailLists(
+        .getCharacterMailLists(
           characterId,
-          datasource,
-          ifNoneMatch,
-          token,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * Return the contents of an EVE mail  --- Alternate route: `/dev/characters/{character_id}/mail/{mail_id}/`  Alternate route: `/legacy/characters/{character_id}/mail/{mail_id}/`  Alternate route: `/v1/characters/{character_id}/mail/{mail_id}/`  --- This route is cached for up to 30 seconds
-     * @summary Return a mail
-     * @param {number} characterId An EVE character ID
-     * @param {number} mailId An EVE mail ID
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-     * @param {string} [token] Access token to use if unable to set a header
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getCharactersCharacterIdMailMailId(
-      characterId: number,
-      mailId: number,
-      datasource?: "tranquility",
-      ifNoneMatch?: string,
-      token?: string,
-      options?: any
-    ): AxiosPromise<GetCharactersCharacterIdMailMailIdOk> {
-      return localVarFp
-        .getCharactersCharacterIdMailMailId(
-          characterId,
-          mailId,
           datasource,
           ifNoneMatch,
           token,
@@ -36957,7 +36653,7 @@ export const MailApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    postCharactersCharacterIdMail(
+    sendCharacterMail(
       characterId: number,
       mail: PostCharactersCharacterIdMailMail,
       datasource?: "tranquility",
@@ -36965,40 +36661,7 @@ export const MailApiFactory = function (
       options?: any
     ): AxiosPromise<number> {
       return localVarFp
-        .postCharactersCharacterIdMail(
-          characterId,
-          mail,
-          datasource,
-          token,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
-     * Create a mail label  --- Alternate route: `/dev/characters/{character_id}/mail/labels/`  Alternate route: `/legacy/characters/{character_id}/mail/labels/`  Alternate route: `/v2/characters/{character_id}/mail/labels/`
-     * @summary Create a mail label
-     * @param {number} characterId An EVE character ID
-     * @param {PostCharactersCharacterIdMailLabelsLabel} label Label to create
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {string} [token] Access token to use if unable to set a header
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    postCharactersCharacterIdMailLabels(
-      characterId: number,
-      label: PostCharactersCharacterIdMailLabelsLabel,
-      datasource?: "tranquility",
-      token?: string,
-      options?: any
-    ): AxiosPromise<number> {
-      return localVarFp
-        .postCharactersCharacterIdMailLabels(
-          characterId,
-          label,
-          datasource,
-          token,
-          options
-        )
+        .sendCharacterMail(characterId, mail, datasource, token, options)
         .then((request) => request(axios, basePath));
     },
     /**
@@ -37012,7 +36675,7 @@ export const MailApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    putCharactersCharacterIdMailMailId(
+    updateCharactersMailMetadata(
       characterId: number,
       mailId: number,
       contents: PutCharactersCharacterIdMailMailIdContents,
@@ -37021,7 +36684,7 @@ export const MailApiFactory = function (
       options?: any
     ): AxiosPromise<void> {
       return localVarFp
-        .putCharactersCharacterIdMailMailId(
+        .updateCharactersMailMetadata(
           characterId,
           mailId,
           contents,
@@ -37042,31 +36705,25 @@ export const MailApiFactory = function (
  */
 export class MailApi extends BaseAPI {
   /**
-   * Delete a mail label  --- Alternate route: `/dev/characters/{character_id}/mail/labels/{label_id}/`  Alternate route: `/legacy/characters/{character_id}/mail/labels/{label_id}/`  Alternate route: `/v1/characters/{character_id}/mail/labels/{label_id}/`
-   * @summary Delete a mail label
+   * Create a mail label  --- Alternate route: `/dev/characters/{character_id}/mail/labels/`  Alternate route: `/legacy/characters/{character_id}/mail/labels/`  Alternate route: `/v2/characters/{character_id}/mail/labels/`
+   * @summary Create a mail label
    * @param {number} characterId An EVE character ID
-   * @param {number} labelId An EVE label id
+   * @param {PostCharactersCharacterIdMailLabelsLabel} label Label to create
    * @param {'tranquility'} [datasource] The server name you would like data from
    * @param {string} [token] Access token to use if unable to set a header
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MailApi
    */
-  public deleteCharactersCharacterIdMailLabelsLabelId(
+  public createCharacterMailLabel(
     characterId: number,
-    labelId: number,
+    label: PostCharactersCharacterIdMailLabelsLabel,
     datasource?: "tranquility",
     token?: string,
     options?: AxiosRequestConfig
   ) {
     return MailApiFp(this.configuration)
-      .deleteCharactersCharacterIdMailLabelsLabelId(
-        characterId,
-        labelId,
-        datasource,
-        token,
-        options
-      )
+      .createCharacterMailLabel(characterId, label, datasource, token, options)
       .then((request) => request(this.axios, this.basePath));
   }
 
@@ -37081,7 +36738,7 @@ export class MailApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof MailApi
    */
-  public deleteCharactersCharacterIdMailMailId(
+  public deleteCharacterMail(
     characterId: number,
     mailId: number,
     datasource?: "tranquility",
@@ -37089,10 +36746,65 @@ export class MailApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return MailApiFp(this.configuration)
-      .deleteCharactersCharacterIdMailMailId(
+      .deleteCharacterMail(characterId, mailId, datasource, token, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Delete a mail label  --- Alternate route: `/dev/characters/{character_id}/mail/labels/{label_id}/`  Alternate route: `/legacy/characters/{character_id}/mail/labels/{label_id}/`  Alternate route: `/v1/characters/{character_id}/mail/labels/{label_id}/`
+   * @summary Delete a mail label
+   * @param {number} characterId An EVE character ID
+   * @param {number} labelId An EVE label id
+   * @param {'tranquility'} [datasource] The server name you would like data from
+   * @param {string} [token] Access token to use if unable to set a header
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MailApi
+   */
+  public deleteCharacterMailLabel(
+    characterId: number,
+    labelId: number,
+    datasource?: "tranquility",
+    token?: string,
+    options?: AxiosRequestConfig
+  ) {
+    return MailApiFp(this.configuration)
+      .deleteCharacterMailLabel(
+        characterId,
+        labelId,
+        datasource,
+        token,
+        options
+      )
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Return the contents of an EVE mail  --- Alternate route: `/dev/characters/{character_id}/mail/{mail_id}/`  Alternate route: `/legacy/characters/{character_id}/mail/{mail_id}/`  Alternate route: `/v1/characters/{character_id}/mail/{mail_id}/`  --- This route is cached for up to 30 seconds
+   * @summary Return a mail
+   * @param {number} characterId An EVE character ID
+   * @param {number} mailId An EVE mail ID
+   * @param {'tranquility'} [datasource] The server name you would like data from
+   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {string} [token] Access token to use if unable to set a header
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MailApi
+   */
+  public getCharacterMail(
+    characterId: number,
+    mailId: number,
+    datasource?: "tranquility",
+    ifNoneMatch?: string,
+    token?: string,
+    options?: AxiosRequestConfig
+  ) {
+    return MailApiFp(this.configuration)
+      .getCharacterMail(
         characterId,
         mailId,
         datasource,
+        ifNoneMatch,
         token,
         options
       )
@@ -37112,7 +36824,7 @@ export class MailApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof MailApi
    */
-  public getCharactersCharacterIdMail(
+  public getCharacterMailHeaders(
     characterId: number,
     datasource?: "tranquility",
     ifNoneMatch?: string,
@@ -37122,7 +36834,7 @@ export class MailApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return MailApiFp(this.configuration)
-      .getCharactersCharacterIdMail(
+      .getCharacterMailHeaders(
         characterId,
         datasource,
         ifNoneMatch,
@@ -37145,7 +36857,7 @@ export class MailApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof MailApi
    */
-  public getCharactersCharacterIdMailLabels(
+  public getCharacterMailLabels(
     characterId: number,
     datasource?: "tranquility",
     ifNoneMatch?: string,
@@ -37153,7 +36865,7 @@ export class MailApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return MailApiFp(this.configuration)
-      .getCharactersCharacterIdMailLabels(
+      .getCharacterMailLabels(
         characterId,
         datasource,
         ifNoneMatch,
@@ -37174,7 +36886,7 @@ export class MailApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof MailApi
    */
-  public getCharactersCharacterIdMailLists(
+  public getCharacterMailLists(
     characterId: number,
     datasource?: "tranquility",
     ifNoneMatch?: string,
@@ -37182,40 +36894,8 @@ export class MailApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return MailApiFp(this.configuration)
-      .getCharactersCharacterIdMailLists(
+      .getCharacterMailLists(
         characterId,
-        datasource,
-        ifNoneMatch,
-        token,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
-
-  /**
-   * Return the contents of an EVE mail  --- Alternate route: `/dev/characters/{character_id}/mail/{mail_id}/`  Alternate route: `/legacy/characters/{character_id}/mail/{mail_id}/`  Alternate route: `/v1/characters/{character_id}/mail/{mail_id}/`  --- This route is cached for up to 30 seconds
-   * @summary Return a mail
-   * @param {number} characterId An EVE character ID
-   * @param {number} mailId An EVE mail ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof MailApi
-   */
-  public getCharactersCharacterIdMailMailId(
-    characterId: number,
-    mailId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
-    options?: AxiosRequestConfig
-  ) {
-    return MailApiFp(this.configuration)
-      .getCharactersCharacterIdMailMailId(
-        characterId,
-        mailId,
         datasource,
         ifNoneMatch,
         token,
@@ -37235,7 +36915,7 @@ export class MailApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof MailApi
    */
-  public postCharactersCharacterIdMail(
+  public sendCharacterMail(
     characterId: number,
     mail: PostCharactersCharacterIdMailMail,
     datasource?: "tranquility",
@@ -37243,42 +36923,7 @@ export class MailApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return MailApiFp(this.configuration)
-      .postCharactersCharacterIdMail(
-        characterId,
-        mail,
-        datasource,
-        token,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
-
-  /**
-   * Create a mail label  --- Alternate route: `/dev/characters/{character_id}/mail/labels/`  Alternate route: `/legacy/characters/{character_id}/mail/labels/`  Alternate route: `/v2/characters/{character_id}/mail/labels/`
-   * @summary Create a mail label
-   * @param {number} characterId An EVE character ID
-   * @param {PostCharactersCharacterIdMailLabelsLabel} label Label to create
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [token] Access token to use if unable to set a header
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof MailApi
-   */
-  public postCharactersCharacterIdMailLabels(
-    characterId: number,
-    label: PostCharactersCharacterIdMailLabelsLabel,
-    datasource?: "tranquility",
-    token?: string,
-    options?: AxiosRequestConfig
-  ) {
-    return MailApiFp(this.configuration)
-      .postCharactersCharacterIdMailLabels(
-        characterId,
-        label,
-        datasource,
-        token,
-        options
-      )
+      .sendCharacterMail(characterId, mail, datasource, token, options)
       .then((request) => request(this.axios, this.basePath));
   }
 
@@ -37294,7 +36939,7 @@ export class MailApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof MailApi
    */
-  public putCharactersCharacterIdMailMailId(
+  public updateCharactersMailMetadata(
     characterId: number,
     mailId: number,
     contents: PutCharactersCharacterIdMailMailIdContents,
@@ -37303,7 +36948,7 @@ export class MailApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return MailApiFp(this.configuration)
-      .putCharactersCharacterIdMailMailId(
+      .updateCharactersMailMetadata(
         characterId,
         mailId,
         contents,
@@ -37324,83 +36969,6 @@ export const MarketApiAxiosParamCreator = function (
 ) {
   return {
     /**
-     * List open market orders placed by a character  --- Alternate route: `/dev/characters/{character_id}/orders/`  Alternate route: `/v2/characters/{character_id}/orders/`  --- This route is cached for up to 1200 seconds
-     * @summary List open orders from a character
-     * @param {number} characterId An EVE character ID
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-     * @param {string} [token] Access token to use if unable to set a header
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getCharactersCharacterIdOrders: async (
-      characterId: number,
-      datasource?: "tranquility",
-      ifNoneMatch?: string,
-      token?: string,
-      options: AxiosRequestConfig = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "getCharactersCharacterIdOrders",
-        "characterId",
-        characterId
-      );
-      const localVarPath = `/characters/{character_id}/orders/`.replace(
-        `{${"character_id"}}`,
-        encodeURIComponent(String(characterId))
-      );
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: "GET",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      // authentication evesso required
-      // oauth required
-      await setOAuthToObject(
-        localVarHeaderParameter,
-        "evesso",
-        ["esi-markets.read_character_orders.v1"],
-        configuration
-      );
-
-      if (datasource !== undefined) {
-        localVarQueryParameter["datasource"] = datasource;
-      }
-
-      if (token !== undefined) {
-        localVarQueryParameter["token"] = token;
-      }
-
-      if (ifNoneMatch != null) {
-        localVarHeaderParameter["If-None-Match"] = String(ifNoneMatch);
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
      * List cancelled and expired market orders placed by a character up to 90 days in the past.  --- Alternate route: `/dev/characters/{character_id}/orders/history/`  Alternate route: `/legacy/characters/{character_id}/orders/history/`  Alternate route: `/v1/characters/{character_id}/orders/history/`  --- This route is cached for up to 3600 seconds
      * @summary List historical orders by a character
      * @param {number} characterId An EVE character ID
@@ -37411,7 +36979,7 @@ export const MarketApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdOrdersHistory: async (
+    getCharacterOrderHistory: async (
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -37420,11 +36988,7 @@ export const MarketApiAxiosParamCreator = function (
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "getCharactersCharacterIdOrdersHistory",
-        "characterId",
-        characterId
-      );
+      assertParamExists("getCharacterOrderHistory", "characterId", characterId);
       const localVarPath = `/characters/{character_id}/orders/history/`.replace(
         `{${"character_id"}}`,
         encodeURIComponent(String(characterId))
@@ -37459,6 +37023,79 @@ export const MarketApiAxiosParamCreator = function (
 
       if (page !== undefined) {
         localVarQueryParameter["page"] = page;
+      }
+
+      if (token !== undefined) {
+        localVarQueryParameter["token"] = token;
+      }
+
+      if (ifNoneMatch != null) {
+        localVarHeaderParameter["If-None-Match"] = String(ifNoneMatch);
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * List open market orders placed by a character  --- Alternate route: `/dev/characters/{character_id}/orders/`  Alternate route: `/v2/characters/{character_id}/orders/`  --- This route is cached for up to 1200 seconds
+     * @summary List open orders from a character
+     * @param {number} characterId An EVE character ID
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param {string} [token] Access token to use if unable to set a header
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCharacterOrders: async (
+      characterId: number,
+      datasource?: "tranquility",
+      ifNoneMatch?: string,
+      token?: string,
+      options: AxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'characterId' is not null or undefined
+      assertParamExists("getCharacterOrders", "characterId", characterId);
+      const localVarPath = `/characters/{character_id}/orders/`.replace(
+        `{${"character_id"}}`,
+        encodeURIComponent(String(characterId))
+      );
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "GET",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication evesso required
+      // oauth required
+      await setOAuthToObject(
+        localVarHeaderParameter,
+        "evesso",
+        ["esi-markets.read_character_orders.v1"],
+        configuration
+      );
+
+      if (datasource !== undefined) {
+        localVarQueryParameter["datasource"] = datasource;
       }
 
       if (token !== undefined) {
@@ -38146,43 +37783,6 @@ export const MarketApiFp = function (configuration?: Configuration) {
   const localVarAxiosParamCreator = MarketApiAxiosParamCreator(configuration);
   return {
     /**
-     * List open market orders placed by a character  --- Alternate route: `/dev/characters/{character_id}/orders/`  Alternate route: `/v2/characters/{character_id}/orders/`  --- This route is cached for up to 1200 seconds
-     * @summary List open orders from a character
-     * @param {number} characterId An EVE character ID
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-     * @param {string} [token] Access token to use if unable to set a header
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async getCharactersCharacterIdOrders(
-      characterId: number,
-      datasource?: "tranquility",
-      ifNoneMatch?: string,
-      token?: string,
-      options?: AxiosRequestConfig
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<Array<GetCharactersCharacterIdOrders200Ok>>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdOrders(
-          characterId,
-          datasource,
-          ifNoneMatch,
-          token,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-    /**
      * List cancelled and expired market orders placed by a character up to 90 days in the past.  --- Alternate route: `/dev/characters/{character_id}/orders/history/`  Alternate route: `/legacy/characters/{character_id}/orders/history/`  Alternate route: `/v1/characters/{character_id}/orders/history/`  --- This route is cached for up to 3600 seconds
      * @summary List historical orders by a character
      * @param {number} characterId An EVE character ID
@@ -38193,7 +37793,7 @@ export const MarketApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterIdOrdersHistory(
+    async getCharacterOrderHistory(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -38207,11 +37807,48 @@ export const MarketApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<Array<GetCharactersCharacterIdOrdersHistory200Ok>>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdOrdersHistory(
+        await localVarAxiosParamCreator.getCharacterOrderHistory(
           characterId,
           datasource,
           ifNoneMatch,
           page,
+          token,
+          options
+        );
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration
+      );
+    },
+    /**
+     * List open market orders placed by a character  --- Alternate route: `/dev/characters/{character_id}/orders/`  Alternate route: `/v2/characters/{character_id}/orders/`  --- This route is cached for up to 1200 seconds
+     * @summary List open orders from a character
+     * @param {number} characterId An EVE character ID
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param {string} [token] Access token to use if unable to set a header
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getCharacterOrders(
+      characterId: number,
+      datasource?: "tranquility",
+      ifNoneMatch?: string,
+      token?: string,
+      options?: AxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<Array<GetCharactersCharacterIdOrders200Ok>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.getCharacterOrders(
+          characterId,
+          datasource,
+          ifNoneMatch,
           token,
           options
         );
@@ -38588,33 +38225,6 @@ export const MarketApiFactory = function (
   const localVarFp = MarketApiFp(configuration);
   return {
     /**
-     * List open market orders placed by a character  --- Alternate route: `/dev/characters/{character_id}/orders/`  Alternate route: `/v2/characters/{character_id}/orders/`  --- This route is cached for up to 1200 seconds
-     * @summary List open orders from a character
-     * @param {number} characterId An EVE character ID
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-     * @param {string} [token] Access token to use if unable to set a header
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getCharactersCharacterIdOrders(
-      characterId: number,
-      datasource?: "tranquility",
-      ifNoneMatch?: string,
-      token?: string,
-      options?: any
-    ): AxiosPromise<Array<GetCharactersCharacterIdOrders200Ok>> {
-      return localVarFp
-        .getCharactersCharacterIdOrders(
-          characterId,
-          datasource,
-          ifNoneMatch,
-          token,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
      * List cancelled and expired market orders placed by a character up to 90 days in the past.  --- Alternate route: `/dev/characters/{character_id}/orders/history/`  Alternate route: `/legacy/characters/{character_id}/orders/history/`  Alternate route: `/v1/characters/{character_id}/orders/history/`  --- This route is cached for up to 3600 seconds
      * @summary List historical orders by a character
      * @param {number} characterId An EVE character ID
@@ -38625,7 +38235,7 @@ export const MarketApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdOrdersHistory(
+    getCharacterOrderHistory(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -38634,11 +38244,38 @@ export const MarketApiFactory = function (
       options?: any
     ): AxiosPromise<Array<GetCharactersCharacterIdOrdersHistory200Ok>> {
       return localVarFp
-        .getCharactersCharacterIdOrdersHistory(
+        .getCharacterOrderHistory(
           characterId,
           datasource,
           ifNoneMatch,
           page,
+          token,
+          options
+        )
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * List open market orders placed by a character  --- Alternate route: `/dev/characters/{character_id}/orders/`  Alternate route: `/v2/characters/{character_id}/orders/`  --- This route is cached for up to 1200 seconds
+     * @summary List open orders from a character
+     * @param {number} characterId An EVE character ID
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param {string} [token] Access token to use if unable to set a header
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCharacterOrders(
+      characterId: number,
+      datasource?: "tranquility",
+      ifNoneMatch?: string,
+      token?: string,
+      options?: any
+    ): AxiosPromise<Array<GetCharactersCharacterIdOrders200Ok>> {
+      return localVarFp
+        .getCharacterOrders(
+          characterId,
+          datasource,
+          ifNoneMatch,
           token,
           options
         )
@@ -38914,35 +38551,6 @@ export const MarketApiFactory = function (
  */
 export class MarketApi extends BaseAPI {
   /**
-   * List open market orders placed by a character  --- Alternate route: `/dev/characters/{character_id}/orders/`  Alternate route: `/v2/characters/{character_id}/orders/`  --- This route is cached for up to 1200 seconds
-   * @summary List open orders from a character
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof MarketApi
-   */
-  public getCharactersCharacterIdOrders(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
-    options?: AxiosRequestConfig
-  ) {
-    return MarketApiFp(this.configuration)
-      .getCharactersCharacterIdOrders(
-        characterId,
-        datasource,
-        ifNoneMatch,
-        token,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
-
-  /**
    * List cancelled and expired market orders placed by a character up to 90 days in the past.  --- Alternate route: `/dev/characters/{character_id}/orders/history/`  Alternate route: `/legacy/characters/{character_id}/orders/history/`  Alternate route: `/v1/characters/{character_id}/orders/history/`  --- This route is cached for up to 3600 seconds
    * @summary List historical orders by a character
    * @param {number} characterId An EVE character ID
@@ -38954,7 +38562,7 @@ export class MarketApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof MarketApi
    */
-  public getCharactersCharacterIdOrdersHistory(
+  public getCharacterOrderHistory(
     characterId: number,
     datasource?: "tranquility",
     ifNoneMatch?: string,
@@ -38963,7 +38571,7 @@ export class MarketApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return MarketApiFp(this.configuration)
-      .getCharactersCharacterIdOrdersHistory(
+      .getCharacterOrderHistory(
         characterId,
         datasource,
         ifNoneMatch,
@@ -38971,6 +38579,29 @@ export class MarketApi extends BaseAPI {
         token,
         options
       )
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * List open market orders placed by a character  --- Alternate route: `/dev/characters/{character_id}/orders/`  Alternate route: `/v2/characters/{character_id}/orders/`  --- This route is cached for up to 1200 seconds
+   * @summary List open orders from a character
+   * @param {number} characterId An EVE character ID
+   * @param {'tranquility'} [datasource] The server name you would like data from
+   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {string} [token] Access token to use if unable to set a header
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof MarketApi
+   */
+  public getCharacterOrders(
+    characterId: number,
+    datasource?: "tranquility",
+    ifNoneMatch?: string,
+    token?: string,
+    options?: AxiosRequestConfig
+  ) {
+    return MarketApiFp(this.configuration)
+      .getCharacterOrders(characterId, datasource, ifNoneMatch, token, options)
       .then((request) => request(this.axios, this.basePath));
   }
 
@@ -39255,7 +38886,7 @@ export const OpportunitiesApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdOpportunities: async (
+    getCharacterOpportunities: async (
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -39264,7 +38895,7 @@ export const OpportunitiesApiAxiosParamCreator = function (
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
       assertParamExists(
-        "getCharactersCharacterIdOpportunities",
+        "getCharacterOpportunities",
         "characterId",
         characterId
       );
@@ -39591,7 +39222,7 @@ export const OpportunitiesApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterIdOpportunities(
+    async getCharacterOpportunities(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -39604,7 +39235,7 @@ export const OpportunitiesApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<Array<GetCharactersCharacterIdOpportunities200Ok>>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdOpportunities(
+        await localVarAxiosParamCreator.getCharacterOpportunities(
           characterId,
           datasource,
           ifNoneMatch,
@@ -39790,7 +39421,7 @@ export const OpportunitiesApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdOpportunities(
+    getCharacterOpportunities(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -39798,7 +39429,7 @@ export const OpportunitiesApiFactory = function (
       options?: any
     ): AxiosPromise<Array<GetCharactersCharacterIdOpportunities200Ok>> {
       return localVarFp
-        .getCharactersCharacterIdOpportunities(
+        .getCharacterOpportunities(
           characterId,
           datasource,
           ifNoneMatch,
@@ -39929,7 +39560,7 @@ export class OpportunitiesApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof OpportunitiesApi
    */
-  public getCharactersCharacterIdOpportunities(
+  public getCharacterOpportunities(
     characterId: number,
     datasource?: "tranquility",
     ifNoneMatch?: string,
@@ -39937,7 +39568,7 @@ export class OpportunitiesApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return OpportunitiesApiFp(this.configuration)
-      .getCharactersCharacterIdOpportunities(
+      .getCharacterOpportunities(
         characterId,
         datasource,
         ifNoneMatch,
@@ -40057,6 +39688,76 @@ export const PlanetaryInteractionApiAxiosParamCreator = function (
 ) {
   return {
     /**
+     * Returns full details on the layout of a single planetary colony, including links, pins and routes. Note: Planetary information is only recalculated when the colony is viewed through the client. Information will not update until this criteria is met.  --- Alternate route: `/dev/characters/{character_id}/planets/{planet_id}/`  Alternate route: `/v3/characters/{character_id}/planets/{planet_id}/`
+     * @summary Get colony layout
+     * @param {number} characterId An EVE character ID
+     * @param {number} planetId Planet id of the target planet
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {string} [token] Access token to use if unable to set a header
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCharacterPlanet: async (
+      characterId: number,
+      planetId: number,
+      datasource?: "tranquility",
+      token?: string,
+      options: AxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'characterId' is not null or undefined
+      assertParamExists("getCharacterPlanet", "characterId", characterId);
+      // verify required parameter 'planetId' is not null or undefined
+      assertParamExists("getCharacterPlanet", "planetId", planetId);
+      const localVarPath = `/characters/{character_id}/planets/{planet_id}/`
+        .replace(`{${"character_id"}}`, encodeURIComponent(String(characterId)))
+        .replace(`{${"planet_id"}}`, encodeURIComponent(String(planetId)));
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "GET",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication evesso required
+      // oauth required
+      await setOAuthToObject(
+        localVarHeaderParameter,
+        "evesso",
+        ["esi-planets.manage_planets.v1"],
+        configuration
+      );
+
+      if (datasource !== undefined) {
+        localVarQueryParameter["datasource"] = datasource;
+      }
+
+      if (token !== undefined) {
+        localVarQueryParameter["token"] = token;
+      }
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
      * Returns a list of all planetary colonies owned by a character.  --- Alternate route: `/dev/characters/{character_id}/planets/`  Alternate route: `/legacy/characters/{character_id}/planets/`  Alternate route: `/v1/characters/{character_id}/planets/`  --- This route is cached for up to 600 seconds
      * @summary Get colonies
      * @param {number} characterId An EVE character ID
@@ -40066,7 +39767,7 @@ export const PlanetaryInteractionApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdPlanets: async (
+    getCharacterPlanets: async (
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -40074,11 +39775,7 @@ export const PlanetaryInteractionApiAxiosParamCreator = function (
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "getCharactersCharacterIdPlanets",
-        "characterId",
-        characterId
-      );
+      assertParamExists("getCharacterPlanets", "characterId", characterId);
       const localVarPath = `/characters/{character_id}/planets/`.replace(
         `{${"character_id"}}`,
         encodeURIComponent(String(characterId))
@@ -40117,84 +39814,6 @@ export const PlanetaryInteractionApiAxiosParamCreator = function (
 
       if (ifNoneMatch != null) {
         localVarHeaderParameter["If-None-Match"] = String(ifNoneMatch);
-      }
-
-      setSearchParams(localVarUrlObj, localVarQueryParameter);
-      let headersFromBaseOptions =
-        baseOptions && baseOptions.headers ? baseOptions.headers : {};
-      localVarRequestOptions.headers = {
-        ...localVarHeaderParameter,
-        ...headersFromBaseOptions,
-        ...options.headers,
-      };
-
-      return {
-        url: toPathString(localVarUrlObj),
-        options: localVarRequestOptions,
-      };
-    },
-    /**
-     * Returns full details on the layout of a single planetary colony, including links, pins and routes. Note: Planetary information is only recalculated when the colony is viewed through the client. Information will not update until this criteria is met.  --- Alternate route: `/dev/characters/{character_id}/planets/{planet_id}/`  Alternate route: `/v3/characters/{character_id}/planets/{planet_id}/`
-     * @summary Get colony layout
-     * @param {number} characterId An EVE character ID
-     * @param {number} planetId Planet id of the target planet
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {string} [token] Access token to use if unable to set a header
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getCharactersCharacterIdPlanetsPlanetId: async (
-      characterId: number,
-      planetId: number,
-      datasource?: "tranquility",
-      token?: string,
-      options: AxiosRequestConfig = {}
-    ): Promise<RequestArgs> => {
-      // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "getCharactersCharacterIdPlanetsPlanetId",
-        "characterId",
-        characterId
-      );
-      // verify required parameter 'planetId' is not null or undefined
-      assertParamExists(
-        "getCharactersCharacterIdPlanetsPlanetId",
-        "planetId",
-        planetId
-      );
-      const localVarPath = `/characters/{character_id}/planets/{planet_id}/`
-        .replace(`{${"character_id"}}`, encodeURIComponent(String(characterId)))
-        .replace(`{${"planet_id"}}`, encodeURIComponent(String(planetId)));
-      // use dummy base URL string because the URL constructor only accepts absolute URLs.
-      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-      let baseOptions;
-      if (configuration) {
-        baseOptions = configuration.baseOptions;
-      }
-
-      const localVarRequestOptions = {
-        method: "GET",
-        ...baseOptions,
-        ...options,
-      };
-      const localVarHeaderParameter = {} as any;
-      const localVarQueryParameter = {} as any;
-
-      // authentication evesso required
-      // oauth required
-      await setOAuthToObject(
-        localVarHeaderParameter,
-        "evesso",
-        ["esi-planets.manage_planets.v1"],
-        configuration
-      );
-
-      if (datasource !== undefined) {
-        localVarQueryParameter["datasource"] = datasource;
-      }
-
-      if (token !== undefined) {
-        localVarQueryParameter["token"] = token;
       }
 
       setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -40371,43 +39990,6 @@ export const PlanetaryInteractionApiFp = function (
     PlanetaryInteractionApiAxiosParamCreator(configuration);
   return {
     /**
-     * Returns a list of all planetary colonies owned by a character.  --- Alternate route: `/dev/characters/{character_id}/planets/`  Alternate route: `/legacy/characters/{character_id}/planets/`  Alternate route: `/v1/characters/{character_id}/planets/`  --- This route is cached for up to 600 seconds
-     * @summary Get colonies
-     * @param {number} characterId An EVE character ID
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-     * @param {string} [token] Access token to use if unable to set a header
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    async getCharactersCharacterIdPlanets(
-      characterId: number,
-      datasource?: "tranquility",
-      ifNoneMatch?: string,
-      token?: string,
-      options?: AxiosRequestConfig
-    ): Promise<
-      (
-        axios?: AxiosInstance,
-        basePath?: string
-      ) => AxiosPromise<Array<GetCharactersCharacterIdPlanets200Ok>>
-    > {
-      const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdPlanets(
-          characterId,
-          datasource,
-          ifNoneMatch,
-          token,
-          options
-        );
-      return createRequestFunction(
-        localVarAxiosArgs,
-        globalAxios,
-        BASE_PATH,
-        configuration
-      );
-    },
-    /**
      * Returns full details on the layout of a single planetary colony, including links, pins and routes. Note: Planetary information is only recalculated when the colony is viewed through the client. Information will not update until this criteria is met.  --- Alternate route: `/dev/characters/{character_id}/planets/{planet_id}/`  Alternate route: `/v3/characters/{character_id}/planets/{planet_id}/`
      * @summary Get colony layout
      * @param {number} characterId An EVE character ID
@@ -40417,7 +39999,7 @@ export const PlanetaryInteractionApiFp = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterIdPlanetsPlanetId(
+    async getCharacterPlanet(
       characterId: number,
       planetId: number,
       datasource?: "tranquility",
@@ -40430,10 +40012,47 @@ export const PlanetaryInteractionApiFp = function (
       ) => AxiosPromise<GetCharactersCharacterIdPlanetsPlanetIdOk>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdPlanetsPlanetId(
+        await localVarAxiosParamCreator.getCharacterPlanet(
           characterId,
           planetId,
           datasource,
+          token,
+          options
+        );
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration
+      );
+    },
+    /**
+     * Returns a list of all planetary colonies owned by a character.  --- Alternate route: `/dev/characters/{character_id}/planets/`  Alternate route: `/legacy/characters/{character_id}/planets/`  Alternate route: `/v1/characters/{character_id}/planets/`  --- This route is cached for up to 600 seconds
+     * @summary Get colonies
+     * @param {number} characterId An EVE character ID
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param {string} [token] Access token to use if unable to set a header
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async getCharacterPlanets(
+      characterId: number,
+      datasource?: "tranquility",
+      ifNoneMatch?: string,
+      token?: string,
+      options?: AxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<Array<GetCharactersCharacterIdPlanets200Ok>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.getCharacterPlanets(
+          characterId,
+          datasource,
+          ifNoneMatch,
           token,
           options
         );
@@ -40533,33 +40152,6 @@ export const PlanetaryInteractionApiFactory = function (
   const localVarFp = PlanetaryInteractionApiFp(configuration);
   return {
     /**
-     * Returns a list of all planetary colonies owned by a character.  --- Alternate route: `/dev/characters/{character_id}/planets/`  Alternate route: `/legacy/characters/{character_id}/planets/`  Alternate route: `/v1/characters/{character_id}/planets/`  --- This route is cached for up to 600 seconds
-     * @summary Get colonies
-     * @param {number} characterId An EVE character ID
-     * @param {'tranquility'} [datasource] The server name you would like data from
-     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-     * @param {string} [token] Access token to use if unable to set a header
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     */
-    getCharactersCharacterIdPlanets(
-      characterId: number,
-      datasource?: "tranquility",
-      ifNoneMatch?: string,
-      token?: string,
-      options?: any
-    ): AxiosPromise<Array<GetCharactersCharacterIdPlanets200Ok>> {
-      return localVarFp
-        .getCharactersCharacterIdPlanets(
-          characterId,
-          datasource,
-          ifNoneMatch,
-          token,
-          options
-        )
-        .then((request) => request(axios, basePath));
-    },
-    /**
      * Returns full details on the layout of a single planetary colony, including links, pins and routes. Note: Planetary information is only recalculated when the colony is viewed through the client. Information will not update until this criteria is met.  --- Alternate route: `/dev/characters/{character_id}/planets/{planet_id}/`  Alternate route: `/v3/characters/{character_id}/planets/{planet_id}/`
      * @summary Get colony layout
      * @param {number} characterId An EVE character ID
@@ -40569,7 +40161,7 @@ export const PlanetaryInteractionApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdPlanetsPlanetId(
+    getCharacterPlanet(
       characterId: number,
       planetId: number,
       datasource?: "tranquility",
@@ -40577,10 +40169,31 @@ export const PlanetaryInteractionApiFactory = function (
       options?: any
     ): AxiosPromise<GetCharactersCharacterIdPlanetsPlanetIdOk> {
       return localVarFp
-        .getCharactersCharacterIdPlanetsPlanetId(
+        .getCharacterPlanet(characterId, planetId, datasource, token, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * Returns a list of all planetary colonies owned by a character.  --- Alternate route: `/dev/characters/{character_id}/planets/`  Alternate route: `/legacy/characters/{character_id}/planets/`  Alternate route: `/v1/characters/{character_id}/planets/`  --- This route is cached for up to 600 seconds
+     * @summary Get colonies
+     * @param {number} characterId An EVE character ID
+     * @param {'tranquility'} [datasource] The server name you would like data from
+     * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+     * @param {string} [token] Access token to use if unable to set a header
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    getCharacterPlanets(
+      characterId: number,
+      datasource?: "tranquility",
+      ifNoneMatch?: string,
+      token?: string,
+      options?: any
+    ): AxiosPromise<Array<GetCharactersCharacterIdPlanets200Ok>> {
+      return localVarFp
+        .getCharacterPlanets(
           characterId,
-          planetId,
           datasource,
+          ifNoneMatch,
           token,
           options
         )
@@ -40651,35 +40264,6 @@ export const PlanetaryInteractionApiFactory = function (
  */
 export class PlanetaryInteractionApi extends BaseAPI {
   /**
-   * Returns a list of all planetary colonies owned by a character.  --- Alternate route: `/dev/characters/{character_id}/planets/`  Alternate route: `/legacy/characters/{character_id}/planets/`  Alternate route: `/v1/characters/{character_id}/planets/`  --- This route is cached for up to 600 seconds
-   * @summary Get colonies
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
-   * @param {*} [options] Override http request option.
-   * @throws {RequiredError}
-   * @memberof PlanetaryInteractionApi
-   */
-  public getCharactersCharacterIdPlanets(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
-    options?: AxiosRequestConfig
-  ) {
-    return PlanetaryInteractionApiFp(this.configuration)
-      .getCharactersCharacterIdPlanets(
-        characterId,
-        datasource,
-        ifNoneMatch,
-        token,
-        options
-      )
-      .then((request) => request(this.axios, this.basePath));
-  }
-
-  /**
    * Returns full details on the layout of a single planetary colony, including links, pins and routes. Note: Planetary information is only recalculated when the colony is viewed through the client. Information will not update until this criteria is met.  --- Alternate route: `/dev/characters/{character_id}/planets/{planet_id}/`  Alternate route: `/v3/characters/{character_id}/planets/{planet_id}/`
    * @summary Get colony layout
    * @param {number} characterId An EVE character ID
@@ -40690,7 +40274,7 @@ export class PlanetaryInteractionApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof PlanetaryInteractionApi
    */
-  public getCharactersCharacterIdPlanetsPlanetId(
+  public getCharacterPlanet(
     characterId: number,
     planetId: number,
     datasource?: "tranquility",
@@ -40698,13 +40282,30 @@ export class PlanetaryInteractionApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return PlanetaryInteractionApiFp(this.configuration)
-      .getCharactersCharacterIdPlanetsPlanetId(
-        characterId,
-        planetId,
-        datasource,
-        token,
-        options
-      )
+      .getCharacterPlanet(characterId, planetId, datasource, token, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Returns a list of all planetary colonies owned by a character.  --- Alternate route: `/dev/characters/{character_id}/planets/`  Alternate route: `/legacy/characters/{character_id}/planets/`  Alternate route: `/v1/characters/{character_id}/planets/`  --- This route is cached for up to 600 seconds
+   * @summary Get colonies
+   * @param {number} characterId An EVE character ID
+   * @param {'tranquility'} [datasource] The server name you would like data from
+   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {string} [token] Access token to use if unable to set a header
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof PlanetaryInteractionApi
+   */
+  public getCharacterPlanets(
+    characterId: number,
+    datasource?: "tranquility",
+    ifNoneMatch?: string,
+    token?: string,
+    options?: AxiosRequestConfig
+  ) {
+    return PlanetaryInteractionApiFp(this.configuration)
+      .getCharacterPlanets(characterId, datasource, ifNoneMatch, token, options)
       .then((request) => request(this.axios, this.basePath));
   }
 
@@ -41037,7 +40638,7 @@ export const SearchApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdSearch: async (
+    searchCharacterEntities: async (
       categories: Set<
         | "agent"
         | "alliance"
@@ -41080,19 +40681,11 @@ export const SearchApiAxiosParamCreator = function (
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'categories' is not null or undefined
-      assertParamExists(
-        "getCharactersCharacterIdSearch",
-        "categories",
-        categories
-      );
+      assertParamExists("searchCharacterEntities", "categories", categories);
       // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "getCharactersCharacterIdSearch",
-        "characterId",
-        characterId
-      );
+      assertParamExists("searchCharacterEntities", "characterId", characterId);
       // verify required parameter 'search' is not null or undefined
-      assertParamExists("getCharactersCharacterIdSearch", "search", search);
+      assertParamExists("searchCharacterEntities", "search", search);
       const localVarPath = `/characters/{character_id}/search/`.replace(
         `{${"character_id"}}`,
         encodeURIComponent(String(characterId))
@@ -41194,7 +40787,7 @@ export const SearchApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterIdSearch(
+    async searchCharacterEntities(
       categories: Set<
         | "agent"
         | "alliance"
@@ -41242,7 +40835,7 @@ export const SearchApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<GetCharactersCharacterIdSearchOk>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdSearch(
+        await localVarAxiosParamCreator.searchCharacterEntities(
           categories,
           characterId,
           search,
@@ -41290,7 +40883,7 @@ export const SearchApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdSearch(
+    searchCharacterEntities(
       categories: Set<
         | "agent"
         | "alliance"
@@ -41333,7 +40926,7 @@ export const SearchApiFactory = function (
       options?: any
     ): AxiosPromise<GetCharactersCharacterIdSearchOk> {
       return localVarFp
-        .getCharactersCharacterIdSearch(
+        .searchCharacterEntities(
           categories,
           characterId,
           search,
@@ -41373,7 +40966,7 @@ export class SearchApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof SearchApi
    */
-  public getCharactersCharacterIdSearch(
+  public searchCharacterEntities(
     categories: Set<
       | "agent"
       | "alliance"
@@ -41407,7 +41000,7 @@ export class SearchApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return SearchApiFp(this.configuration)
-      .getCharactersCharacterIdSearch(
+      .searchCharacterEntities(
         categories,
         characterId,
         search,
@@ -41441,7 +41034,7 @@ export const SkillsApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdAttributes: async (
+    getCharacterAttributes: async (
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -41449,11 +41042,7 @@ export const SkillsApiAxiosParamCreator = function (
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "getCharactersCharacterIdAttributes",
-        "characterId",
-        characterId
-      );
+      assertParamExists("getCharacterAttributes", "characterId", characterId);
       const localVarPath = `/characters/{character_id}/attributes/`.replace(
         `{${"character_id"}}`,
         encodeURIComponent(String(characterId))
@@ -41518,7 +41107,7 @@ export const SkillsApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdSkillqueue: async (
+    getCharacterSkillqueue: async (
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -41526,11 +41115,7 @@ export const SkillsApiAxiosParamCreator = function (
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "getCharactersCharacterIdSkillqueue",
-        "characterId",
-        characterId
-      );
+      assertParamExists("getCharacterSkillqueue", "characterId", characterId);
       const localVarPath = `/characters/{character_id}/skillqueue/`.replace(
         `{${"character_id"}}`,
         encodeURIComponent(String(characterId))
@@ -41595,7 +41180,7 @@ export const SkillsApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdSkills: async (
+    getCharacterSkills: async (
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -41603,11 +41188,7 @@ export const SkillsApiAxiosParamCreator = function (
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "getCharactersCharacterIdSkills",
-        "characterId",
-        characterId
-      );
+      assertParamExists("getCharacterSkills", "characterId", characterId);
       const localVarPath = `/characters/{character_id}/skills/`.replace(
         `{${"character_id"}}`,
         encodeURIComponent(String(characterId))
@@ -41682,7 +41263,7 @@ export const SkillsApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterIdAttributes(
+    async getCharacterAttributes(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -41695,7 +41276,7 @@ export const SkillsApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<GetCharactersCharacterIdAttributesOk>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdAttributes(
+        await localVarAxiosParamCreator.getCharacterAttributes(
           characterId,
           datasource,
           ifNoneMatch,
@@ -41719,7 +41300,7 @@ export const SkillsApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterIdSkillqueue(
+    async getCharacterSkillqueue(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -41732,7 +41313,7 @@ export const SkillsApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<Array<GetCharactersCharacterIdSkillqueue200Ok>>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdSkillqueue(
+        await localVarAxiosParamCreator.getCharacterSkillqueue(
           characterId,
           datasource,
           ifNoneMatch,
@@ -41756,7 +41337,7 @@ export const SkillsApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterIdSkills(
+    async getCharacterSkills(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -41769,7 +41350,7 @@ export const SkillsApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<GetCharactersCharacterIdSkillsOk>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdSkills(
+        await localVarAxiosParamCreator.getCharacterSkills(
           characterId,
           datasource,
           ifNoneMatch,
@@ -41807,7 +41388,7 @@ export const SkillsApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdAttributes(
+    getCharacterAttributes(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -41815,7 +41396,7 @@ export const SkillsApiFactory = function (
       options?: any
     ): AxiosPromise<GetCharactersCharacterIdAttributesOk> {
       return localVarFp
-        .getCharactersCharacterIdAttributes(
+        .getCharacterAttributes(
           characterId,
           datasource,
           ifNoneMatch,
@@ -41834,7 +41415,7 @@ export const SkillsApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdSkillqueue(
+    getCharacterSkillqueue(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -41842,7 +41423,7 @@ export const SkillsApiFactory = function (
       options?: any
     ): AxiosPromise<Array<GetCharactersCharacterIdSkillqueue200Ok>> {
       return localVarFp
-        .getCharactersCharacterIdSkillqueue(
+        .getCharacterSkillqueue(
           characterId,
           datasource,
           ifNoneMatch,
@@ -41861,7 +41442,7 @@ export const SkillsApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdSkills(
+    getCharacterSkills(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -41869,7 +41450,7 @@ export const SkillsApiFactory = function (
       options?: any
     ): AxiosPromise<GetCharactersCharacterIdSkillsOk> {
       return localVarFp
-        .getCharactersCharacterIdSkills(
+        .getCharacterSkills(
           characterId,
           datasource,
           ifNoneMatch,
@@ -41899,7 +41480,7 @@ export class SkillsApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof SkillsApi
    */
-  public getCharactersCharacterIdAttributes(
+  public getCharacterAttributes(
     characterId: number,
     datasource?: "tranquility",
     ifNoneMatch?: string,
@@ -41907,7 +41488,7 @@ export class SkillsApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return SkillsApiFp(this.configuration)
-      .getCharactersCharacterIdAttributes(
+      .getCharacterAttributes(
         characterId,
         datasource,
         ifNoneMatch,
@@ -41928,7 +41509,7 @@ export class SkillsApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof SkillsApi
    */
-  public getCharactersCharacterIdSkillqueue(
+  public getCharacterSkillqueue(
     characterId: number,
     datasource?: "tranquility",
     ifNoneMatch?: string,
@@ -41936,7 +41517,7 @@ export class SkillsApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return SkillsApiFp(this.configuration)
-      .getCharactersCharacterIdSkillqueue(
+      .getCharacterSkillqueue(
         characterId,
         datasource,
         ifNoneMatch,
@@ -41957,7 +41538,7 @@ export class SkillsApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof SkillsApi
    */
-  public getCharactersCharacterIdSkills(
+  public getCharacterSkills(
     characterId: number,
     datasource?: "tranquility",
     ifNoneMatch?: string,
@@ -41965,13 +41546,7 @@ export class SkillsApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return SkillsApiFp(this.configuration)
-      .getCharactersCharacterIdSkills(
-        characterId,
-        datasource,
-        ifNoneMatch,
-        token,
-        options
-      )
+      .getCharacterSkills(characterId, datasource, ifNoneMatch, token, options)
       .then((request) => request(this.axios, this.basePath));
   }
 }
@@ -48347,7 +47922,7 @@ export const WalletApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdWallet: async (
+    getCharacterWallet: async (
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -48355,11 +47930,7 @@ export const WalletApiAxiosParamCreator = function (
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
-      assertParamExists(
-        "getCharactersCharacterIdWallet",
-        "characterId",
-        characterId
-      );
+      assertParamExists("getCharacterWallet", "characterId", characterId);
       const localVarPath = `/characters/{character_id}/wallet/`.replace(
         `{${"character_id"}}`,
         encodeURIComponent(String(characterId))
@@ -48425,7 +47996,7 @@ export const WalletApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdWalletJournal: async (
+    getCharacterWalletJournal: async (
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -48435,7 +48006,7 @@ export const WalletApiAxiosParamCreator = function (
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
       assertParamExists(
-        "getCharactersCharacterIdWalletJournal",
+        "getCharacterWalletJournal",
         "characterId",
         characterId
       );
@@ -48508,7 +48079,7 @@ export const WalletApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdWalletTransactions: async (
+    getCharacterWalletTransactions: async (
       characterId: number,
       datasource?: "tranquility",
       fromId?: number,
@@ -48518,7 +48089,7 @@ export const WalletApiAxiosParamCreator = function (
     ): Promise<RequestArgs> => {
       // verify required parameter 'characterId' is not null or undefined
       assertParamExists(
-        "getCharactersCharacterIdWalletTransactions",
+        "getCharacterWalletTransactions",
         "characterId",
         characterId
       );
@@ -48866,7 +48437,7 @@ export const WalletApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterIdWallet(
+    async getCharacterWallet(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -48876,7 +48447,7 @@ export const WalletApiFp = function (configuration?: Configuration) {
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<number>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdWallet(
+        await localVarAxiosParamCreator.getCharacterWallet(
           characterId,
           datasource,
           ifNoneMatch,
@@ -48901,7 +48472,7 @@ export const WalletApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterIdWalletJournal(
+    async getCharacterWalletJournal(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -48915,7 +48486,7 @@ export const WalletApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<Array<GetCharactersCharacterIdWalletJournal200Ok>>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdWalletJournal(
+        await localVarAxiosParamCreator.getCharacterWalletJournal(
           characterId,
           datasource,
           ifNoneMatch,
@@ -48941,7 +48512,7 @@ export const WalletApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async getCharactersCharacterIdWalletTransactions(
+    async getCharacterWalletTransactions(
       characterId: number,
       datasource?: "tranquility",
       fromId?: number,
@@ -48955,7 +48526,7 @@ export const WalletApiFp = function (configuration?: Configuration) {
       ) => AxiosPromise<Array<GetCharactersCharacterIdWalletTransactions200Ok>>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.getCharactersCharacterIdWalletTransactions(
+        await localVarAxiosParamCreator.getCharacterWalletTransactions(
           characterId,
           datasource,
           fromId,
@@ -49121,7 +48692,7 @@ export const WalletApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdWallet(
+    getCharacterWallet(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -49129,7 +48700,7 @@ export const WalletApiFactory = function (
       options?: any
     ): AxiosPromise<number> {
       return localVarFp
-        .getCharactersCharacterIdWallet(
+        .getCharacterWallet(
           characterId,
           datasource,
           ifNoneMatch,
@@ -49149,7 +48720,7 @@ export const WalletApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdWalletJournal(
+    getCharacterWalletJournal(
       characterId: number,
       datasource?: "tranquility",
       ifNoneMatch?: string,
@@ -49158,7 +48729,7 @@ export const WalletApiFactory = function (
       options?: any
     ): AxiosPromise<Array<GetCharactersCharacterIdWalletJournal200Ok>> {
       return localVarFp
-        .getCharactersCharacterIdWalletJournal(
+        .getCharacterWalletJournal(
           characterId,
           datasource,
           ifNoneMatch,
@@ -49179,7 +48750,7 @@ export const WalletApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    getCharactersCharacterIdWalletTransactions(
+    getCharacterWalletTransactions(
       characterId: number,
       datasource?: "tranquility",
       fromId?: number,
@@ -49188,7 +48759,7 @@ export const WalletApiFactory = function (
       options?: any
     ): AxiosPromise<Array<GetCharactersCharacterIdWalletTransactions200Ok>> {
       return localVarFp
-        .getCharactersCharacterIdWalletTransactions(
+        .getCharacterWalletTransactions(
           characterId,
           datasource,
           fromId,
@@ -49316,7 +48887,7 @@ export class WalletApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof WalletApi
    */
-  public getCharactersCharacterIdWallet(
+  public getCharacterWallet(
     characterId: number,
     datasource?: "tranquility",
     ifNoneMatch?: string,
@@ -49324,13 +48895,7 @@ export class WalletApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return WalletApiFp(this.configuration)
-      .getCharactersCharacterIdWallet(
-        characterId,
-        datasource,
-        ifNoneMatch,
-        token,
-        options
-      )
+      .getCharacterWallet(characterId, datasource, ifNoneMatch, token, options)
       .then((request) => request(this.axios, this.basePath));
   }
 
@@ -49346,7 +48911,7 @@ export class WalletApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof WalletApi
    */
-  public getCharactersCharacterIdWalletJournal(
+  public getCharacterWalletJournal(
     characterId: number,
     datasource?: "tranquility",
     ifNoneMatch?: string,
@@ -49355,7 +48920,7 @@ export class WalletApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return WalletApiFp(this.configuration)
-      .getCharactersCharacterIdWalletJournal(
+      .getCharacterWalletJournal(
         characterId,
         datasource,
         ifNoneMatch,
@@ -49378,7 +48943,7 @@ export class WalletApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof WalletApi
    */
-  public getCharactersCharacterIdWalletTransactions(
+  public getCharacterWalletTransactions(
     characterId: number,
     datasource?: "tranquility",
     fromId?: number,
@@ -49387,7 +48952,7 @@ export class WalletApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return WalletApiFp(this.configuration)
-      .getCharactersCharacterIdWalletTransactions(
+      .getCharacterWalletTransactions(
         characterId,
         datasource,
         fromId,
