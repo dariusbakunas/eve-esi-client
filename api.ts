@@ -14531,6 +14531,111 @@ export const AllianceApiFactory = function (
 };
 
 /**
+ * Request parameters for getAlliance operation in AllianceApi.
+ * @export
+ * @interface AllianceApiGetAllianceRequest
+ */
+export interface AllianceApiGetAllianceRequest {
+  /**
+   * An EVE alliance ID
+   * @type {number}
+   * @memberof AllianceApiGetAlliance
+   */
+  readonly allianceId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof AllianceApiGetAlliance
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof AllianceApiGetAlliance
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
+ * Request parameters for getAllianceCorporations operation in AllianceApi.
+ * @export
+ * @interface AllianceApiGetAllianceCorporationsRequest
+ */
+export interface AllianceApiGetAllianceCorporationsRequest {
+  /**
+   * An EVE alliance ID
+   * @type {number}
+   * @memberof AllianceApiGetAllianceCorporations
+   */
+  readonly allianceId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof AllianceApiGetAllianceCorporations
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof AllianceApiGetAllianceCorporations
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
+ * Request parameters for getAllianceIcons operation in AllianceApi.
+ * @export
+ * @interface AllianceApiGetAllianceIconsRequest
+ */
+export interface AllianceApiGetAllianceIconsRequest {
+  /**
+   * An EVE alliance ID
+   * @type {number}
+   * @memberof AllianceApiGetAllianceIcons
+   */
+  readonly allianceId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof AllianceApiGetAllianceIcons
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof AllianceApiGetAllianceIcons
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
+ * Request parameters for getAlliances operation in AllianceApi.
+ * @export
+ * @interface AllianceApiGetAlliancesRequest
+ */
+export interface AllianceApiGetAlliancesRequest {
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof AllianceApiGetAlliances
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof AllianceApiGetAlliances
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
  * AllianceApi - object-oriented interface
  * @export
  * @class AllianceApi
@@ -14540,82 +14645,87 @@ export class AllianceApi extends BaseAPI {
   /**
    * Public information about an alliance  --- Alternate route: `/dev/alliances/{alliance_id}/`  Alternate route: `/legacy/alliances/{alliance_id}/`  Alternate route: `/v3/alliances/{alliance_id}/`  Alternate route: `/v4/alliances/{alliance_id}/`  --- This route is cached for up to 3600 seconds
    * @summary Get alliance information
-   * @param {number} allianceId An EVE alliance ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {AllianceApiGetAllianceRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AllianceApi
    */
   public getAlliance(
-    allianceId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: AllianceApiGetAllianceRequest,
     options?: AxiosRequestConfig
   ) {
     return AllianceApiFp(this.configuration)
-      .getAlliance(allianceId, datasource, ifNoneMatch, options)
+      .getAlliance(
+        requestParameters.allianceId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * List all current member corporations of an alliance  --- Alternate route: `/dev/alliances/{alliance_id}/corporations/`  Alternate route: `/legacy/alliances/{alliance_id}/corporations/`  Alternate route: `/v1/alliances/{alliance_id}/corporations/`  Alternate route: `/v2/alliances/{alliance_id}/corporations/`  --- This route is cached for up to 3600 seconds
    * @summary List alliance\'s corporations
-   * @param {number} allianceId An EVE alliance ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {AllianceApiGetAllianceCorporationsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AllianceApi
    */
   public getAllianceCorporations(
-    allianceId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: AllianceApiGetAllianceCorporationsRequest,
     options?: AxiosRequestConfig
   ) {
     return AllianceApiFp(this.configuration)
-      .getAllianceCorporations(allianceId, datasource, ifNoneMatch, options)
+      .getAllianceCorporations(
+        requestParameters.allianceId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Get the icon urls for a alliance  --- Alternate route: `/legacy/alliances/{alliance_id}/icons/`  Alternate route: `/v1/alliances/{alliance_id}/icons/`  --- This route expires daily at 11:05  --- [Diff of the upcoming changes](https://esi.evetech.net/diff/latest/dev/#GET-/alliances/{alliance_id}/icons/)
    * @summary Get alliance icon
-   * @param {number} allianceId An EVE alliance ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {AllianceApiGetAllianceIconsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AllianceApi
    */
   public getAllianceIcons(
-    allianceId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: AllianceApiGetAllianceIconsRequest,
     options?: AxiosRequestConfig
   ) {
     return AllianceApiFp(this.configuration)
-      .getAllianceIcons(allianceId, datasource, ifNoneMatch, options)
+      .getAllianceIcons(
+        requestParameters.allianceId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * List all active player alliances  --- Alternate route: `/dev/alliances/`  Alternate route: `/legacy/alliances/`  Alternate route: `/v1/alliances/`  Alternate route: `/v2/alliances/`  --- This route is cached for up to 3600 seconds
    * @summary List all alliances
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {AllianceApiGetAlliancesRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AllianceApi
    */
   public getAlliances(
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: AllianceApiGetAlliancesRequest = {},
     options?: AxiosRequestConfig
   ) {
     return AllianceApiFp(this.configuration)
-      .getAlliances(datasource, ifNoneMatch, options)
+      .getAlliances(
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 }
@@ -15551,6 +15661,230 @@ export const AssetsApiFactory = function (
 };
 
 /**
+ * Request parameters for getCharacterAssetLocations operation in AssetsApi.
+ * @export
+ * @interface AssetsApiGetCharacterAssetLocationsRequest
+ */
+export interface AssetsApiGetCharacterAssetLocationsRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof AssetsApiGetCharacterAssetLocations
+   */
+  readonly characterId: number;
+
+  /**
+   * A list of item ids
+   * @type {Array<number>}
+   * @memberof AssetsApiGetCharacterAssetLocations
+   */
+  readonly itemIds: Array<number>;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof AssetsApiGetCharacterAssetLocations
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof AssetsApiGetCharacterAssetLocations
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCharacterAssetNames operation in AssetsApi.
+ * @export
+ * @interface AssetsApiGetCharacterAssetNamesRequest
+ */
+export interface AssetsApiGetCharacterAssetNamesRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof AssetsApiGetCharacterAssetNames
+   */
+  readonly characterId: number;
+
+  /**
+   * A list of item ids
+   * @type {Array<number>}
+   * @memberof AssetsApiGetCharacterAssetNames
+   */
+  readonly itemIds: Array<number>;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof AssetsApiGetCharacterAssetNames
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof AssetsApiGetCharacterAssetNames
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCharacterAssets operation in AssetsApi.
+ * @export
+ * @interface AssetsApiGetCharacterAssetsRequest
+ */
+export interface AssetsApiGetCharacterAssetsRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof AssetsApiGetCharacterAssets
+   */
+  readonly characterId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof AssetsApiGetCharacterAssets
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof AssetsApiGetCharacterAssets
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Which page of results to return
+   * @type {number}
+   * @memberof AssetsApiGetCharacterAssets
+   */
+  readonly page?: number;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof AssetsApiGetCharacterAssets
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCorporationsCorporationIdAssets operation in AssetsApi.
+ * @export
+ * @interface AssetsApiGetCorporationsCorporationIdAssetsRequest
+ */
+export interface AssetsApiGetCorporationsCorporationIdAssetsRequest {
+  /**
+   * An EVE corporation ID
+   * @type {number}
+   * @memberof AssetsApiGetCorporationsCorporationIdAssets
+   */
+  readonly corporationId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof AssetsApiGetCorporationsCorporationIdAssets
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof AssetsApiGetCorporationsCorporationIdAssets
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Which page of results to return
+   * @type {number}
+   * @memberof AssetsApiGetCorporationsCorporationIdAssets
+   */
+  readonly page?: number;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof AssetsApiGetCorporationsCorporationIdAssets
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for postCorporationsCorporationIdAssetsLocations operation in AssetsApi.
+ * @export
+ * @interface AssetsApiPostCorporationsCorporationIdAssetsLocationsRequest
+ */
+export interface AssetsApiPostCorporationsCorporationIdAssetsLocationsRequest {
+  /**
+   * An EVE corporation ID
+   * @type {number}
+   * @memberof AssetsApiPostCorporationsCorporationIdAssetsLocations
+   */
+  readonly corporationId: number;
+
+  /**
+   * A list of item ids
+   * @type {Array<number>}
+   * @memberof AssetsApiPostCorporationsCorporationIdAssetsLocations
+   */
+  readonly itemIds: Array<number>;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof AssetsApiPostCorporationsCorporationIdAssetsLocations
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof AssetsApiPostCorporationsCorporationIdAssetsLocations
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for postCorporationsCorporationIdAssetsNames operation in AssetsApi.
+ * @export
+ * @interface AssetsApiPostCorporationsCorporationIdAssetsNamesRequest
+ */
+export interface AssetsApiPostCorporationsCorporationIdAssetsNamesRequest {
+  /**
+   * An EVE corporation ID
+   * @type {number}
+   * @memberof AssetsApiPostCorporationsCorporationIdAssetsNames
+   */
+  readonly corporationId: number;
+
+  /**
+   * A list of item ids
+   * @type {Array<number>}
+   * @memberof AssetsApiPostCorporationsCorporationIdAssetsNames
+   */
+  readonly itemIds: Array<number>;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof AssetsApiPostCorporationsCorporationIdAssetsNames
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof AssetsApiPostCorporationsCorporationIdAssetsNames
+   */
+  readonly token?: string;
+}
+
+/**
  * AssetsApi - object-oriented interface
  * @export
  * @class AssetsApi
@@ -15560,27 +15894,21 @@ export class AssetsApi extends BaseAPI {
   /**
    * Return locations for a set of item ids, which you can get from character assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)  --- Alternate route: `/dev/characters/{character_id}/assets/locations/`  Alternate route: `/v2/characters/{character_id}/assets/locations/`
    * @summary Get character asset locations
-   * @param {number} characterId An EVE character ID
-   * @param {Array<number>} itemIds A list of item ids
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {AssetsApiGetCharacterAssetLocationsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AssetsApi
    */
   public getCharacterAssetLocations(
-    characterId: number,
-    itemIds: Array<number>,
-    datasource?: "tranquility",
-    token?: string,
+    requestParameters: AssetsApiGetCharacterAssetLocationsRequest,
     options?: AxiosRequestConfig
   ) {
     return AssetsApiFp(this.configuration)
       .getCharacterAssetLocations(
-        characterId,
-        itemIds,
-        datasource,
-        token,
+        requestParameters.characterId,
+        requestParameters.itemIds,
+        requestParameters.datasource,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -15589,53 +15917,45 @@ export class AssetsApi extends BaseAPI {
   /**
    * Return names for a set of item ids, which you can get from character assets endpoint. Typically used for items that can customize names, like containers or ships.  --- Alternate route: `/dev/characters/{character_id}/assets/names/`  Alternate route: `/legacy/characters/{character_id}/assets/names/`  Alternate route: `/v1/characters/{character_id}/assets/names/`
    * @summary Get character asset names
-   * @param {number} characterId An EVE character ID
-   * @param {Array<number>} itemIds A list of item ids
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {AssetsApiGetCharacterAssetNamesRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AssetsApi
    */
   public getCharacterAssetNames(
-    characterId: number,
-    itemIds: Array<number>,
-    datasource?: "tranquility",
-    token?: string,
+    requestParameters: AssetsApiGetCharacterAssetNamesRequest,
     options?: AxiosRequestConfig
   ) {
     return AssetsApiFp(this.configuration)
-      .getCharacterAssetNames(characterId, itemIds, datasource, token, options)
+      .getCharacterAssetNames(
+        requestParameters.characterId,
+        requestParameters.itemIds,
+        requestParameters.datasource,
+        requestParameters.token,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Return a list of the characters assets  --- Alternate route: `/dev/characters/{character_id}/assets/`  Alternate route: `/v5/characters/{character_id}/assets/`  --- This route is cached for up to 3600 seconds
    * @summary Get character assets
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [page] Which page of results to return
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {AssetsApiGetCharacterAssetsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AssetsApi
    */
   public getCharacterAssets(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    page?: number,
-    token?: string,
+    requestParameters: AssetsApiGetCharacterAssetsRequest,
     options?: AxiosRequestConfig
   ) {
     return AssetsApiFp(this.configuration)
       .getCharacterAssets(
-        characterId,
-        datasource,
-        ifNoneMatch,
-        page,
-        token,
+        requestParameters.characterId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.page,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -15644,30 +15964,22 @@ export class AssetsApi extends BaseAPI {
   /**
    * Return a list of the corporation assets  --- Alternate route: `/dev/corporations/{corporation_id}/assets/`  Alternate route: `/v5/corporations/{corporation_id}/assets/`  --- This route is cached for up to 3600 seconds  --- Requires one of the following EVE corporation role(s): Director
    * @summary Get corporation assets
-   * @param {number} corporationId An EVE corporation ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [page] Which page of results to return
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {AssetsApiGetCorporationsCorporationIdAssetsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AssetsApi
    */
   public getCorporationsCorporationIdAssets(
-    corporationId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    page?: number,
-    token?: string,
+    requestParameters: AssetsApiGetCorporationsCorporationIdAssetsRequest,
     options?: AxiosRequestConfig
   ) {
     return AssetsApiFp(this.configuration)
       .getCorporationsCorporationIdAssets(
-        corporationId,
-        datasource,
-        ifNoneMatch,
-        page,
-        token,
+        requestParameters.corporationId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.page,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -15676,27 +15988,21 @@ export class AssetsApi extends BaseAPI {
   /**
    * Return locations for a set of item ids, which you can get from corporation assets endpoint. Coordinates for items in hangars or stations are set to (0,0,0)  --- Alternate route: `/dev/corporations/{corporation_id}/assets/locations/`  Alternate route: `/v2/corporations/{corporation_id}/assets/locations/`   --- Requires one of the following EVE corporation role(s): Director
    * @summary Get corporation asset locations
-   * @param {number} corporationId An EVE corporation ID
-   * @param {Array<number>} itemIds A list of item ids
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {AssetsApiPostCorporationsCorporationIdAssetsLocationsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AssetsApi
    */
   public postCorporationsCorporationIdAssetsLocations(
-    corporationId: number,
-    itemIds: Array<number>,
-    datasource?: "tranquility",
-    token?: string,
+    requestParameters: AssetsApiPostCorporationsCorporationIdAssetsLocationsRequest,
     options?: AxiosRequestConfig
   ) {
     return AssetsApiFp(this.configuration)
       .postCorporationsCorporationIdAssetsLocations(
-        corporationId,
-        itemIds,
-        datasource,
-        token,
+        requestParameters.corporationId,
+        requestParameters.itemIds,
+        requestParameters.datasource,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -15705,27 +16011,21 @@ export class AssetsApi extends BaseAPI {
   /**
    * Return names for a set of item ids, which you can get from corporation assets endpoint. Only valid for items that can customize names, like containers or ships  --- Alternate route: `/dev/corporations/{corporation_id}/assets/names/`  Alternate route: `/legacy/corporations/{corporation_id}/assets/names/`  Alternate route: `/v1/corporations/{corporation_id}/assets/names/`   --- Requires one of the following EVE corporation role(s): Director
    * @summary Get corporation asset names
-   * @param {number} corporationId An EVE corporation ID
-   * @param {Array<number>} itemIds A list of item ids
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {AssetsApiPostCorporationsCorporationIdAssetsNamesRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof AssetsApi
    */
   public postCorporationsCorporationIdAssetsNames(
-    corporationId: number,
-    itemIds: Array<number>,
-    datasource?: "tranquility",
-    token?: string,
+    requestParameters: AssetsApiPostCorporationsCorporationIdAssetsNamesRequest,
     options?: AxiosRequestConfig
   ) {
     return AssetsApiFp(this.configuration)
       .postCorporationsCorporationIdAssetsNames(
-        corporationId,
-        itemIds,
-        datasource,
-        token,
+        requestParameters.corporationId,
+        requestParameters.itemIds,
+        requestParameters.datasource,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -16381,6 +16681,174 @@ export const BookmarksApiFactory = function (
 };
 
 /**
+ * Request parameters for getCharacterBookmarks operation in BookmarksApi.
+ * @export
+ * @interface BookmarksApiGetCharacterBookmarksRequest
+ */
+export interface BookmarksApiGetCharacterBookmarksRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof BookmarksApiGetCharacterBookmarks
+   */
+  readonly characterId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof BookmarksApiGetCharacterBookmarks
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof BookmarksApiGetCharacterBookmarks
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Which page of results to return
+   * @type {number}
+   * @memberof BookmarksApiGetCharacterBookmarks
+   */
+  readonly page?: number;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof BookmarksApiGetCharacterBookmarks
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCharacterBookmarksFolders operation in BookmarksApi.
+ * @export
+ * @interface BookmarksApiGetCharacterBookmarksFoldersRequest
+ */
+export interface BookmarksApiGetCharacterBookmarksFoldersRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof BookmarksApiGetCharacterBookmarksFolders
+   */
+  readonly characterId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof BookmarksApiGetCharacterBookmarksFolders
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof BookmarksApiGetCharacterBookmarksFolders
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Which page of results to return
+   * @type {number}
+   * @memberof BookmarksApiGetCharacterBookmarksFolders
+   */
+  readonly page?: number;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof BookmarksApiGetCharacterBookmarksFolders
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCorporationsCorporationIdBookmarks operation in BookmarksApi.
+ * @export
+ * @interface BookmarksApiGetCorporationsCorporationIdBookmarksRequest
+ */
+export interface BookmarksApiGetCorporationsCorporationIdBookmarksRequest {
+  /**
+   * An EVE corporation ID
+   * @type {number}
+   * @memberof BookmarksApiGetCorporationsCorporationIdBookmarks
+   */
+  readonly corporationId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof BookmarksApiGetCorporationsCorporationIdBookmarks
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof BookmarksApiGetCorporationsCorporationIdBookmarks
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Which page of results to return
+   * @type {number}
+   * @memberof BookmarksApiGetCorporationsCorporationIdBookmarks
+   */
+  readonly page?: number;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof BookmarksApiGetCorporationsCorporationIdBookmarks
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCorporationsCorporationIdBookmarksFolders operation in BookmarksApi.
+ * @export
+ * @interface BookmarksApiGetCorporationsCorporationIdBookmarksFoldersRequest
+ */
+export interface BookmarksApiGetCorporationsCorporationIdBookmarksFoldersRequest {
+  /**
+   * An EVE corporation ID
+   * @type {number}
+   * @memberof BookmarksApiGetCorporationsCorporationIdBookmarksFolders
+   */
+  readonly corporationId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof BookmarksApiGetCorporationsCorporationIdBookmarksFolders
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof BookmarksApiGetCorporationsCorporationIdBookmarksFolders
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Which page of results to return
+   * @type {number}
+   * @memberof BookmarksApiGetCorporationsCorporationIdBookmarksFolders
+   */
+  readonly page?: number;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof BookmarksApiGetCorporationsCorporationIdBookmarksFolders
+   */
+  readonly token?: string;
+}
+
+/**
  * BookmarksApi - object-oriented interface
  * @export
  * @class BookmarksApi
@@ -16390,30 +16858,22 @@ export class BookmarksApi extends BaseAPI {
   /**
    * A list of your character\'s personal bookmarks  --- Alternate route: `/dev/characters/{character_id}/bookmarks/`  Alternate route: `/v2/characters/{character_id}/bookmarks/`  --- This route is cached for up to 3600 seconds
    * @summary List bookmarks
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [page] Which page of results to return
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {BookmarksApiGetCharacterBookmarksRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof BookmarksApi
    */
   public getCharacterBookmarks(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    page?: number,
-    token?: string,
+    requestParameters: BookmarksApiGetCharacterBookmarksRequest,
     options?: AxiosRequestConfig
   ) {
     return BookmarksApiFp(this.configuration)
       .getCharacterBookmarks(
-        characterId,
-        datasource,
-        ifNoneMatch,
-        page,
-        token,
+        requestParameters.characterId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.page,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -16422,30 +16882,22 @@ export class BookmarksApi extends BaseAPI {
   /**
    * A list of your character\'s personal bookmark folders  --- Alternate route: `/dev/characters/{character_id}/bookmarks/folders/`  Alternate route: `/v2/characters/{character_id}/bookmarks/folders/`  --- This route is cached for up to 3600 seconds
    * @summary List bookmark folders
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [page] Which page of results to return
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {BookmarksApiGetCharacterBookmarksFoldersRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof BookmarksApi
    */
   public getCharacterBookmarksFolders(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    page?: number,
-    token?: string,
+    requestParameters: BookmarksApiGetCharacterBookmarksFoldersRequest,
     options?: AxiosRequestConfig
   ) {
     return BookmarksApiFp(this.configuration)
       .getCharacterBookmarksFolders(
-        characterId,
-        datasource,
-        ifNoneMatch,
-        page,
-        token,
+        requestParameters.characterId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.page,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -16454,30 +16906,22 @@ export class BookmarksApi extends BaseAPI {
   /**
    * A list of your corporation\'s bookmarks  --- Alternate route: `/dev/corporations/{corporation_id}/bookmarks/`  Alternate route: `/legacy/corporations/{corporation_id}/bookmarks/`  Alternate route: `/v1/corporations/{corporation_id}/bookmarks/`  --- This route is cached for up to 3600 seconds
    * @summary List corporation bookmarks
-   * @param {number} corporationId An EVE corporation ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [page] Which page of results to return
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {BookmarksApiGetCorporationsCorporationIdBookmarksRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof BookmarksApi
    */
   public getCorporationsCorporationIdBookmarks(
-    corporationId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    page?: number,
-    token?: string,
+    requestParameters: BookmarksApiGetCorporationsCorporationIdBookmarksRequest,
     options?: AxiosRequestConfig
   ) {
     return BookmarksApiFp(this.configuration)
       .getCorporationsCorporationIdBookmarks(
-        corporationId,
-        datasource,
-        ifNoneMatch,
-        page,
-        token,
+        requestParameters.corporationId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.page,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -16486,30 +16930,22 @@ export class BookmarksApi extends BaseAPI {
   /**
    * A list of your corporation\'s bookmark folders  --- Alternate route: `/dev/corporations/{corporation_id}/bookmarks/folders/`  Alternate route: `/legacy/corporations/{corporation_id}/bookmarks/folders/`  Alternate route: `/v1/corporations/{corporation_id}/bookmarks/folders/`  --- This route is cached for up to 3600 seconds
    * @summary List corporation bookmark folders
-   * @param {number} corporationId An EVE corporation ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [page] Which page of results to return
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {BookmarksApiGetCorporationsCorporationIdBookmarksFoldersRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof BookmarksApi
    */
   public getCorporationsCorporationIdBookmarksFolders(
-    corporationId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    page?: number,
-    token?: string,
+    requestParameters: BookmarksApiGetCorporationsCorporationIdBookmarksFoldersRequest,
     options?: AxiosRequestConfig
   ) {
     return BookmarksApiFp(this.configuration)
       .getCorporationsCorporationIdBookmarksFolders(
-        corporationId,
-        datasource,
-        ifNoneMatch,
-        page,
-        token,
+        requestParameters.corporationId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.page,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -17173,6 +17609,174 @@ export const CalendarApiFactory = function (
 };
 
 /**
+ * Request parameters for getCharacterCalendar operation in CalendarApi.
+ * @export
+ * @interface CalendarApiGetCharacterCalendarRequest
+ */
+export interface CalendarApiGetCharacterCalendarRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof CalendarApiGetCharacterCalendar
+   */
+  readonly characterId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof CalendarApiGetCharacterCalendar
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * The event ID to retrieve events from
+   * @type {number}
+   * @memberof CalendarApiGetCharacterCalendar
+   */
+  readonly fromEvent?: number;
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof CalendarApiGetCharacterCalendar
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof CalendarApiGetCharacterCalendar
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCharacterCalendarEvent operation in CalendarApi.
+ * @export
+ * @interface CalendarApiGetCharacterCalendarEventRequest
+ */
+export interface CalendarApiGetCharacterCalendarEventRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof CalendarApiGetCharacterCalendarEvent
+   */
+  readonly characterId: number;
+
+  /**
+   * The id of the event requested
+   * @type {number}
+   * @memberof CalendarApiGetCharacterCalendarEvent
+   */
+  readonly eventId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof CalendarApiGetCharacterCalendarEvent
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof CalendarApiGetCharacterCalendarEvent
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof CalendarApiGetCharacterCalendarEvent
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCharacterCalendarEventAttendees operation in CalendarApi.
+ * @export
+ * @interface CalendarApiGetCharacterCalendarEventAttendeesRequest
+ */
+export interface CalendarApiGetCharacterCalendarEventAttendeesRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof CalendarApiGetCharacterCalendarEventAttendees
+   */
+  readonly characterId: number;
+
+  /**
+   * The id of the event requested
+   * @type {number}
+   * @memberof CalendarApiGetCharacterCalendarEventAttendees
+   */
+  readonly eventId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof CalendarApiGetCharacterCalendarEventAttendees
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof CalendarApiGetCharacterCalendarEventAttendees
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof CalendarApiGetCharacterCalendarEventAttendees
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for respondToCharacterCharacterCalendarEvent operation in CalendarApi.
+ * @export
+ * @interface CalendarApiRespondToCharacterCharacterCalendarEventRequest
+ */
+export interface CalendarApiRespondToCharacterCharacterCalendarEventRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof CalendarApiRespondToCharacterCharacterCalendarEvent
+   */
+  readonly characterId: number;
+
+  /**
+   * The ID of the event requested
+   * @type {number}
+   * @memberof CalendarApiRespondToCharacterCharacterCalendarEvent
+   */
+  readonly eventId: number;
+
+  /**
+   * The response value to set, overriding current value
+   * @type {PutCharactersCharacterIdCalendarEventIdResponse}
+   * @memberof CalendarApiRespondToCharacterCharacterCalendarEvent
+   */
+  readonly response: PutCharactersCharacterIdCalendarEventIdResponse;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof CalendarApiRespondToCharacterCharacterCalendarEvent
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof CalendarApiRespondToCharacterCharacterCalendarEvent
+   */
+  readonly token?: string;
+}
+
+/**
  * CalendarApi - object-oriented interface
  * @export
  * @class CalendarApi
@@ -17182,30 +17786,22 @@ export class CalendarApi extends BaseAPI {
   /**
    * Get 50 event summaries from the calendar. If no from_event ID is given, the resource will return the next 50 chronological event summaries from now. If a from_event ID is specified, it will return the next 50 chronological event summaries from after that event  --- Alternate route: `/dev/characters/{character_id}/calendar/`  Alternate route: `/legacy/characters/{character_id}/calendar/`  Alternate route: `/v1/characters/{character_id}/calendar/`  Alternate route: `/v2/characters/{character_id}/calendar/`  --- This route is cached for up to 5 seconds
    * @summary List calendar event summaries
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {number} [fromEvent] The event ID to retrieve events from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {CalendarApiGetCharacterCalendarRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CalendarApi
    */
   public getCharacterCalendar(
-    characterId: number,
-    datasource?: "tranquility",
-    fromEvent?: number,
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: CalendarApiGetCharacterCalendarRequest,
     options?: AxiosRequestConfig
   ) {
     return CalendarApiFp(this.configuration)
       .getCharacterCalendar(
-        characterId,
-        datasource,
-        fromEvent,
-        ifNoneMatch,
-        token,
+        requestParameters.characterId,
+        requestParameters.datasource,
+        requestParameters.fromEvent,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -17214,30 +17810,22 @@ export class CalendarApi extends BaseAPI {
   /**
    * Get all the information for a specific event  --- Alternate route: `/dev/characters/{character_id}/calendar/{event_id}/`  Alternate route: `/legacy/characters/{character_id}/calendar/{event_id}/`  Alternate route: `/v3/characters/{character_id}/calendar/{event_id}/`  Alternate route: `/v4/characters/{character_id}/calendar/{event_id}/`  --- This route is cached for up to 5 seconds
    * @summary Get an event
-   * @param {number} characterId An EVE character ID
-   * @param {number} eventId The id of the event requested
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {CalendarApiGetCharacterCalendarEventRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CalendarApi
    */
   public getCharacterCalendarEvent(
-    characterId: number,
-    eventId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: CalendarApiGetCharacterCalendarEventRequest,
     options?: AxiosRequestConfig
   ) {
     return CalendarApiFp(this.configuration)
       .getCharacterCalendarEvent(
-        characterId,
-        eventId,
-        datasource,
-        ifNoneMatch,
-        token,
+        requestParameters.characterId,
+        requestParameters.eventId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -17246,30 +17834,22 @@ export class CalendarApi extends BaseAPI {
   /**
    * Get all invited attendees for a given event  --- Alternate route: `/dev/characters/{character_id}/calendar/{event_id}/attendees/`  Alternate route: `/legacy/characters/{character_id}/calendar/{event_id}/attendees/`  Alternate route: `/v1/characters/{character_id}/calendar/{event_id}/attendees/`  Alternate route: `/v2/characters/{character_id}/calendar/{event_id}/attendees/`  --- This route is cached for up to 600 seconds
    * @summary Get attendees
-   * @param {number} characterId An EVE character ID
-   * @param {number} eventId The id of the event requested
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {CalendarApiGetCharacterCalendarEventAttendeesRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CalendarApi
    */
   public getCharacterCalendarEventAttendees(
-    characterId: number,
-    eventId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: CalendarApiGetCharacterCalendarEventAttendeesRequest,
     options?: AxiosRequestConfig
   ) {
     return CalendarApiFp(this.configuration)
       .getCharacterCalendarEventAttendees(
-        characterId,
-        eventId,
-        datasource,
-        ifNoneMatch,
-        token,
+        requestParameters.characterId,
+        requestParameters.eventId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -17278,30 +17858,22 @@ export class CalendarApi extends BaseAPI {
   /**
    * Set your response status to an event  --- Alternate route: `/dev/characters/{character_id}/calendar/{event_id}/`  Alternate route: `/legacy/characters/{character_id}/calendar/{event_id}/`  Alternate route: `/v3/characters/{character_id}/calendar/{event_id}/`  Alternate route: `/v4/characters/{character_id}/calendar/{event_id}/`  --- This route is cached for up to 5 seconds
    * @summary Respond to an event
-   * @param {number} characterId An EVE character ID
-   * @param {number} eventId The ID of the event requested
-   * @param {PutCharactersCharacterIdCalendarEventIdResponse} response The response value to set, overriding current value
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {CalendarApiRespondToCharacterCharacterCalendarEventRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CalendarApi
    */
   public respondToCharacterCharacterCalendarEvent(
-    characterId: number,
-    eventId: number,
-    response: PutCharactersCharacterIdCalendarEventIdResponse,
-    datasource?: "tranquility",
-    token?: string,
+    requestParameters: CalendarApiRespondToCharacterCharacterCalendarEventRequest,
     options?: AxiosRequestConfig
   ) {
     return CalendarApiFp(this.configuration)
       .respondToCharacterCharacterCalendarEvent(
-        characterId,
-        eventId,
-        response,
-        datasource,
-        token,
+        requestParameters.characterId,
+        requestParameters.eventId,
+        requestParameters.response,
+        requestParameters.datasource,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -19189,6 +19761,468 @@ export const CharacterApiFactory = function (
 };
 
 /**
+ * Request parameters for bulkLookupCharacterAffiliation operation in CharacterApi.
+ * @export
+ * @interface CharacterApiBulkLookupCharacterAffiliationRequest
+ */
+export interface CharacterApiBulkLookupCharacterAffiliationRequest {
+  /**
+   * The character IDs to fetch affiliations for. All characters must exist, or none will be returned
+   * @type {Array<number>}
+   * @memberof CharacterApiBulkLookupCharacterAffiliation
+   */
+  readonly characters: Array<number>;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof CharacterApiBulkLookupCharacterAffiliation
+   */
+  readonly datasource?: "tranquility";
+}
+
+/**
+ * Request parameters for getCharacter operation in CharacterApi.
+ * @export
+ * @interface CharacterApiGetCharacterRequest
+ */
+export interface CharacterApiGetCharacterRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof CharacterApiGetCharacter
+   */
+  readonly characterId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof CharacterApiGetCharacter
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof CharacterApiGetCharacter
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
+ * Request parameters for getCharacterAgentResearch operation in CharacterApi.
+ * @export
+ * @interface CharacterApiGetCharacterAgentResearchRequest
+ */
+export interface CharacterApiGetCharacterAgentResearchRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof CharacterApiGetCharacterAgentResearch
+   */
+  readonly characterId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof CharacterApiGetCharacterAgentResearch
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof CharacterApiGetCharacterAgentResearch
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof CharacterApiGetCharacterAgentResearch
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCharacterBlueprints operation in CharacterApi.
+ * @export
+ * @interface CharacterApiGetCharacterBlueprintsRequest
+ */
+export interface CharacterApiGetCharacterBlueprintsRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof CharacterApiGetCharacterBlueprints
+   */
+  readonly characterId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof CharacterApiGetCharacterBlueprints
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof CharacterApiGetCharacterBlueprints
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Which page of results to return
+   * @type {number}
+   * @memberof CharacterApiGetCharacterBlueprints
+   */
+  readonly page?: number;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof CharacterApiGetCharacterBlueprints
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCharacterCorporationhistory operation in CharacterApi.
+ * @export
+ * @interface CharacterApiGetCharacterCorporationhistoryRequest
+ */
+export interface CharacterApiGetCharacterCorporationhistoryRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof CharacterApiGetCharacterCorporationhistory
+   */
+  readonly characterId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof CharacterApiGetCharacterCorporationhistory
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof CharacterApiGetCharacterCorporationhistory
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
+ * Request parameters for getCharacterFatigue operation in CharacterApi.
+ * @export
+ * @interface CharacterApiGetCharacterFatigueRequest
+ */
+export interface CharacterApiGetCharacterFatigueRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof CharacterApiGetCharacterFatigue
+   */
+  readonly characterId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof CharacterApiGetCharacterFatigue
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof CharacterApiGetCharacterFatigue
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof CharacterApiGetCharacterFatigue
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCharacterMedals operation in CharacterApi.
+ * @export
+ * @interface CharacterApiGetCharacterMedalsRequest
+ */
+export interface CharacterApiGetCharacterMedalsRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof CharacterApiGetCharacterMedals
+   */
+  readonly characterId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof CharacterApiGetCharacterMedals
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof CharacterApiGetCharacterMedals
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof CharacterApiGetCharacterMedals
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCharacterNotifications operation in CharacterApi.
+ * @export
+ * @interface CharacterApiGetCharacterNotificationsRequest
+ */
+export interface CharacterApiGetCharacterNotificationsRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof CharacterApiGetCharacterNotifications
+   */
+  readonly characterId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof CharacterApiGetCharacterNotifications
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof CharacterApiGetCharacterNotifications
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof CharacterApiGetCharacterNotifications
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCharacterNotificationsContacts operation in CharacterApi.
+ * @export
+ * @interface CharacterApiGetCharacterNotificationsContactsRequest
+ */
+export interface CharacterApiGetCharacterNotificationsContactsRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof CharacterApiGetCharacterNotificationsContacts
+   */
+  readonly characterId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof CharacterApiGetCharacterNotificationsContacts
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof CharacterApiGetCharacterNotificationsContacts
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof CharacterApiGetCharacterNotificationsContacts
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCharacterPortrait operation in CharacterApi.
+ * @export
+ * @interface CharacterApiGetCharacterPortraitRequest
+ */
+export interface CharacterApiGetCharacterPortraitRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof CharacterApiGetCharacterPortrait
+   */
+  readonly characterId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof CharacterApiGetCharacterPortrait
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof CharacterApiGetCharacterPortrait
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
+ * Request parameters for getCharacterRoles operation in CharacterApi.
+ * @export
+ * @interface CharacterApiGetCharacterRolesRequest
+ */
+export interface CharacterApiGetCharacterRolesRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof CharacterApiGetCharacterRoles
+   */
+  readonly characterId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof CharacterApiGetCharacterRoles
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof CharacterApiGetCharacterRoles
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof CharacterApiGetCharacterRoles
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCharacterStandings operation in CharacterApi.
+ * @export
+ * @interface CharacterApiGetCharacterStandingsRequest
+ */
+export interface CharacterApiGetCharacterStandingsRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof CharacterApiGetCharacterStandings
+   */
+  readonly characterId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof CharacterApiGetCharacterStandings
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof CharacterApiGetCharacterStandings
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof CharacterApiGetCharacterStandings
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCharacterTitles operation in CharacterApi.
+ * @export
+ * @interface CharacterApiGetCharacterTitlesRequest
+ */
+export interface CharacterApiGetCharacterTitlesRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof CharacterApiGetCharacterTitles
+   */
+  readonly characterId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof CharacterApiGetCharacterTitles
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof CharacterApiGetCharacterTitles
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof CharacterApiGetCharacterTitles
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCharactersCspaCost operation in CharacterApi.
+ * @export
+ * @interface CharacterApiGetCharactersCspaCostRequest
+ */
+export interface CharacterApiGetCharactersCspaCostRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof CharacterApiGetCharactersCspaCost
+   */
+  readonly characterId: number;
+
+  /**
+   * The target characters to calculate the charge for
+   * @type {Array<number>}
+   * @memberof CharacterApiGetCharactersCspaCost
+   */
+  readonly characters: Array<number>;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof CharacterApiGetCharactersCspaCost
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof CharacterApiGetCharactersCspaCost
+   */
+  readonly token?: string;
+}
+
+/**
  * CharacterApi - object-oriented interface
  * @export
  * @class CharacterApi
@@ -19198,67 +20232,64 @@ export class CharacterApi extends BaseAPI {
   /**
    * Bulk lookup of character IDs to corporation, alliance and faction  --- Alternate route: `/dev/characters/affiliation/`  Alternate route: `/v2/characters/affiliation/`  --- This route is cached for up to 3600 seconds
    * @summary Character affiliation
-   * @param {Array<number>} characters The character IDs to fetch affiliations for. All characters must exist, or none will be returned
-   * @param {'tranquility'} [datasource] The server name you would like data from
+   * @param {CharacterApiBulkLookupCharacterAffiliationRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CharacterApi
    */
   public bulkLookupCharacterAffiliation(
-    characters: Array<number>,
-    datasource?: "tranquility",
+    requestParameters: CharacterApiBulkLookupCharacterAffiliationRequest,
     options?: AxiosRequestConfig
   ) {
     return CharacterApiFp(this.configuration)
-      .bulkLookupCharacterAffiliation(characters, datasource, options)
+      .bulkLookupCharacterAffiliation(
+        requestParameters.characters,
+        requestParameters.datasource,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Public information about a character  --- Alternate route: `/dev/characters/{character_id}/`  Alternate route: `/legacy/characters/{character_id}/`  Alternate route: `/v5/characters/{character_id}/`  --- This route is cached for up to 86400 seconds
    * @summary Get character\'s public information
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {CharacterApiGetCharacterRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CharacterApi
    */
   public getCharacter(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: CharacterApiGetCharacterRequest,
     options?: AxiosRequestConfig
   ) {
     return CharacterApiFp(this.configuration)
-      .getCharacter(characterId, datasource, ifNoneMatch, options)
+      .getCharacter(
+        requestParameters.characterId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Return a list of agents research information for a character. The formula for finding the current research points with an agent is: currentPoints = remainderPoints + pointsPerDay * days(currentTime - researchStartDate)  --- Alternate route: `/dev/characters/{character_id}/agents_research/`  Alternate route: `/v2/characters/{character_id}/agents_research/`  --- This route is cached for up to 3600 seconds
    * @summary Get agents research
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {CharacterApiGetCharacterAgentResearchRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CharacterApi
    */
   public getCharacterAgentResearch(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: CharacterApiGetCharacterAgentResearchRequest,
     options?: AxiosRequestConfig
   ) {
     return CharacterApiFp(this.configuration)
       .getCharacterAgentResearch(
-        characterId,
-        datasource,
-        ifNoneMatch,
-        token,
+        requestParameters.characterId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -19267,30 +20298,22 @@ export class CharacterApi extends BaseAPI {
   /**
    * Return a list of blueprints the character owns  --- Alternate route: `/dev/characters/{character_id}/blueprints/`  Alternate route: `/v3/characters/{character_id}/blueprints/`  --- This route is cached for up to 3600 seconds
    * @summary Get blueprints
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [page] Which page of results to return
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {CharacterApiGetCharacterBlueprintsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CharacterApi
    */
   public getCharacterBlueprints(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    page?: number,
-    token?: string,
+    requestParameters: CharacterApiGetCharacterBlueprintsRequest,
     options?: AxiosRequestConfig
   ) {
     return CharacterApiFp(this.configuration)
       .getCharacterBlueprints(
-        characterId,
-        datasource,
-        ifNoneMatch,
-        page,
-        token,
+        requestParameters.characterId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.page,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -19299,24 +20322,20 @@ export class CharacterApi extends BaseAPI {
   /**
    * Get a list of all the corporations a character has been a member of  --- Alternate route: `/dev/characters/{character_id}/corporationhistory/`  Alternate route: `/v2/characters/{character_id}/corporationhistory/`  --- This route is cached for up to 86400 seconds
    * @summary Get corporation history
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {CharacterApiGetCharacterCorporationhistoryRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CharacterApi
    */
   public getCharacterCorporationhistory(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: CharacterApiGetCharacterCorporationhistoryRequest,
     options?: AxiosRequestConfig
   ) {
     return CharacterApiFp(this.configuration)
       .getCharacterCorporationhistory(
-        characterId,
-        datasource,
-        ifNoneMatch,
+        requestParameters.characterId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -19325,73 +20344,67 @@ export class CharacterApi extends BaseAPI {
   /**
    * Return a character\'s jump activation and fatigue information  --- Alternate route: `/dev/characters/{character_id}/fatigue/`  Alternate route: `/v2/characters/{character_id}/fatigue/`  --- This route is cached for up to 300 seconds
    * @summary Get jump fatigue
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {CharacterApiGetCharacterFatigueRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CharacterApi
    */
   public getCharacterFatigue(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: CharacterApiGetCharacterFatigueRequest,
     options?: AxiosRequestConfig
   ) {
     return CharacterApiFp(this.configuration)
-      .getCharacterFatigue(characterId, datasource, ifNoneMatch, token, options)
+      .getCharacterFatigue(
+        requestParameters.characterId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Return a list of medals the character has  --- Alternate route: `/dev/characters/{character_id}/medals/`  Alternate route: `/v2/characters/{character_id}/medals/`  --- This route is cached for up to 3600 seconds
    * @summary Get medals
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {CharacterApiGetCharacterMedalsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CharacterApi
    */
   public getCharacterMedals(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: CharacterApiGetCharacterMedalsRequest,
     options?: AxiosRequestConfig
   ) {
     return CharacterApiFp(this.configuration)
-      .getCharacterMedals(characterId, datasource, ifNoneMatch, token, options)
+      .getCharacterMedals(
+        requestParameters.characterId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Return character notifications  --- Alternate route: `/dev/characters/{character_id}/notifications/`  Alternate route: `/v5/characters/{character_id}/notifications/`  Alternate route: `/v6/characters/{character_id}/notifications/`  --- This route is cached for up to 600 seconds
    * @summary Get character notifications
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {CharacterApiGetCharacterNotificationsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CharacterApi
    */
   public getCharacterNotifications(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: CharacterApiGetCharacterNotificationsRequest,
     options?: AxiosRequestConfig
   ) {
     return CharacterApiFp(this.configuration)
       .getCharacterNotifications(
-        characterId,
-        datasource,
-        ifNoneMatch,
-        token,
+        requestParameters.characterId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -19400,27 +20413,21 @@ export class CharacterApi extends BaseAPI {
   /**
    * Return notifications about having been added to someone\'s contact list  --- Alternate route: `/dev/characters/{character_id}/notifications/contacts/`  Alternate route: `/v2/characters/{character_id}/notifications/contacts/`  --- This route is cached for up to 600 seconds
    * @summary Get new contact notifications
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {CharacterApiGetCharacterNotificationsContactsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CharacterApi
    */
   public getCharacterNotificationsContacts(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: CharacterApiGetCharacterNotificationsContactsRequest,
     options?: AxiosRequestConfig
   ) {
     return CharacterApiFp(this.configuration)
       .getCharacterNotificationsContacts(
-        characterId,
-        datasource,
-        ifNoneMatch,
-        token,
+        requestParameters.characterId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -19429,71 +20436,66 @@ export class CharacterApi extends BaseAPI {
   /**
    * Get portrait urls for a character  --- Alternate route: `/dev/characters/{character_id}/portrait/`  Alternate route: `/v2/characters/{character_id}/portrait/`  Alternate route: `/v3/characters/{character_id}/portrait/`  --- This route expires daily at 11:05
    * @summary Get character portraits
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {CharacterApiGetCharacterPortraitRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CharacterApi
    */
   public getCharacterPortrait(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: CharacterApiGetCharacterPortraitRequest,
     options?: AxiosRequestConfig
   ) {
     return CharacterApiFp(this.configuration)
-      .getCharacterPortrait(characterId, datasource, ifNoneMatch, options)
+      .getCharacterPortrait(
+        requestParameters.characterId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Returns a character\'s corporation roles  --- Alternate route: `/dev/characters/{character_id}/roles/`  Alternate route: `/v3/characters/{character_id}/roles/`  --- This route is cached for up to 3600 seconds
    * @summary Get character corporation roles
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {CharacterApiGetCharacterRolesRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CharacterApi
    */
   public getCharacterRoles(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: CharacterApiGetCharacterRolesRequest,
     options?: AxiosRequestConfig
   ) {
     return CharacterApiFp(this.configuration)
-      .getCharacterRoles(characterId, datasource, ifNoneMatch, token, options)
+      .getCharacterRoles(
+        requestParameters.characterId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Return character standings from agents, NPC corporations, and factions  --- Alternate route: `/dev/characters/{character_id}/standings/`  Alternate route: `/v2/characters/{character_id}/standings/`  --- This route is cached for up to 3600 seconds
    * @summary Get standings
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {CharacterApiGetCharacterStandingsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CharacterApi
    */
   public getCharacterStandings(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: CharacterApiGetCharacterStandingsRequest,
     options?: AxiosRequestConfig
   ) {
     return CharacterApiFp(this.configuration)
       .getCharacterStandings(
-        characterId,
-        datasource,
-        ifNoneMatch,
-        token,
+        requestParameters.characterId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -19502,50 +20504,44 @@ export class CharacterApi extends BaseAPI {
   /**
    * Returns a character\'s titles  --- Alternate route: `/dev/characters/{character_id}/titles/`  Alternate route: `/v2/characters/{character_id}/titles/`  --- This route is cached for up to 3600 seconds
    * @summary Get character corporation titles
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {CharacterApiGetCharacterTitlesRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CharacterApi
    */
   public getCharacterTitles(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: CharacterApiGetCharacterTitlesRequest,
     options?: AxiosRequestConfig
   ) {
     return CharacterApiFp(this.configuration)
-      .getCharacterTitles(characterId, datasource, ifNoneMatch, token, options)
+      .getCharacterTitles(
+        requestParameters.characterId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Takes a source character ID in the url and a set of target character ID\'s in the body, returns a CSPA charge cost  --- Alternate route: `/dev/characters/{character_id}/cspa/`  Alternate route: `/v5/characters/{character_id}/cspa/`
    * @summary Calculate a CSPA charge cost
-   * @param {number} characterId An EVE character ID
-   * @param {Array<number>} characters The target characters to calculate the charge for
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {CharacterApiGetCharactersCspaCostRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CharacterApi
    */
   public getCharactersCspaCost(
-    characterId: number,
-    characters: Array<number>,
-    datasource?: "tranquility",
-    token?: string,
+    requestParameters: CharacterApiGetCharactersCspaCostRequest,
     options?: AxiosRequestConfig
   ) {
     return CharacterApiFp(this.configuration)
       .getCharactersCspaCost(
-        characterId,
-        characters,
-        datasource,
-        token,
+        requestParameters.characterId,
+        requestParameters.characters,
+        requestParameters.datasource,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -19863,6 +20859,76 @@ export const ClonesApiFactory = function (
 };
 
 /**
+ * Request parameters for getCharacterCharacterImplants operation in ClonesApi.
+ * @export
+ * @interface ClonesApiGetCharacterCharacterImplantsRequest
+ */
+export interface ClonesApiGetCharacterCharacterImplantsRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof ClonesApiGetCharacterCharacterImplants
+   */
+  readonly characterId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof ClonesApiGetCharacterCharacterImplants
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof ClonesApiGetCharacterCharacterImplants
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof ClonesApiGetCharacterCharacterImplants
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCharacterClones operation in ClonesApi.
+ * @export
+ * @interface ClonesApiGetCharacterClonesRequest
+ */
+export interface ClonesApiGetCharacterClonesRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof ClonesApiGetCharacterClones
+   */
+  readonly characterId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof ClonesApiGetCharacterClones
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof ClonesApiGetCharacterClones
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof ClonesApiGetCharacterClones
+   */
+  readonly token?: string;
+}
+
+/**
  * ClonesApi - object-oriented interface
  * @export
  * @class ClonesApi
@@ -19872,27 +20938,21 @@ export class ClonesApi extends BaseAPI {
   /**
    * Return implants on the active clone of a character  --- Alternate route: `/dev/characters/{character_id}/implants/`  Alternate route: `/legacy/characters/{character_id}/implants/`  Alternate route: `/v1/characters/{character_id}/implants/`  Alternate route: `/v2/characters/{character_id}/implants/`  --- This route is cached for up to 120 seconds
    * @summary Get active implants
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {ClonesApiGetCharacterCharacterImplantsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ClonesApi
    */
   public getCharacterCharacterImplants(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: ClonesApiGetCharacterCharacterImplantsRequest,
     options?: AxiosRequestConfig
   ) {
     return ClonesApiFp(this.configuration)
       .getCharacterCharacterImplants(
-        characterId,
-        datasource,
-        ifNoneMatch,
-        token,
+        requestParameters.characterId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -19901,23 +20961,23 @@ export class ClonesApi extends BaseAPI {
   /**
    * A list of the character\'s clones  --- Alternate route: `/dev/characters/{character_id}/clones/`  Alternate route: `/v3/characters/{character_id}/clones/`  Alternate route: `/v4/characters/{character_id}/clones/`  --- This route is cached for up to 120 seconds
    * @summary Get clones
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {ClonesApiGetCharacterClonesRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ClonesApi
    */
   public getCharacterClones(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: ClonesApiGetCharacterClonesRequest,
     options?: AxiosRequestConfig
   ) {
     return ClonesApiFp(this.configuration)
-      .getCharacterClones(characterId, datasource, ifNoneMatch, token, options)
+      .getCharacterClones(
+        requestParameters.characterId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 }
@@ -21338,6 +22398,384 @@ export const ContactsApiFactory = function (
 };
 
 /**
+ * Request parameters for bulkAddCharacterContacts operation in ContactsApi.
+ * @export
+ * @interface ContactsApiBulkAddCharacterContactsRequest
+ */
+export interface ContactsApiBulkAddCharacterContactsRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof ContactsApiBulkAddCharacterContacts
+   */
+  readonly characterId: number;
+
+  /**
+   * Standing for the contact
+   * @type {number}
+   * @memberof ContactsApiBulkAddCharacterContacts
+   */
+  readonly standing: number;
+
+  /**
+   * A list of contacts
+   * @type {Array<number>}
+   * @memberof ContactsApiBulkAddCharacterContacts
+   */
+  readonly contactIds: Array<number>;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof ContactsApiBulkAddCharacterContacts
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * Add custom labels to the new contact
+   * @type {Array<number>}
+   * @memberof ContactsApiBulkAddCharacterContacts
+   */
+  readonly labelIds?: Array<number>;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof ContactsApiBulkAddCharacterContacts
+   */
+  readonly token?: string;
+
+  /**
+   * Whether the contact should be watched, note this is only effective on characters
+   * @type {boolean}
+   * @memberof ContactsApiBulkAddCharacterContacts
+   */
+  readonly watched?: boolean;
+}
+
+/**
+ * Request parameters for bulkDeleteCharacterContacts operation in ContactsApi.
+ * @export
+ * @interface ContactsApiBulkDeleteCharacterContactsRequest
+ */
+export interface ContactsApiBulkDeleteCharacterContactsRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof ContactsApiBulkDeleteCharacterContacts
+   */
+  readonly characterId: number;
+
+  /**
+   * A list of contacts to delete
+   * @type {Array<number>}
+   * @memberof ContactsApiBulkDeleteCharacterContacts
+   */
+  readonly contactIds: Array<number>;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof ContactsApiBulkDeleteCharacterContacts
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof ContactsApiBulkDeleteCharacterContacts
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for bulkEditCharacterContacts operation in ContactsApi.
+ * @export
+ * @interface ContactsApiBulkEditCharacterContactsRequest
+ */
+export interface ContactsApiBulkEditCharacterContactsRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof ContactsApiBulkEditCharacterContacts
+   */
+  readonly characterId: number;
+
+  /**
+   * Standing for the contact
+   * @type {number}
+   * @memberof ContactsApiBulkEditCharacterContacts
+   */
+  readonly standing: number;
+
+  /**
+   * A list of contacts
+   * @type {Array<number>}
+   * @memberof ContactsApiBulkEditCharacterContacts
+   */
+  readonly contactIds: Array<number>;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof ContactsApiBulkEditCharacterContacts
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * Add custom labels to the contact
+   * @type {Array<number>}
+   * @memberof ContactsApiBulkEditCharacterContacts
+   */
+  readonly labelIds?: Array<number>;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof ContactsApiBulkEditCharacterContacts
+   */
+  readonly token?: string;
+
+  /**
+   * Whether the contact should be watched, note this is only effective on characters
+   * @type {boolean}
+   * @memberof ContactsApiBulkEditCharacterContacts
+   */
+  readonly watched?: boolean;
+}
+
+/**
+ * Request parameters for getAllianceContactLabels operation in ContactsApi.
+ * @export
+ * @interface ContactsApiGetAllianceContactLabelsRequest
+ */
+export interface ContactsApiGetAllianceContactLabelsRequest {
+  /**
+   * An EVE alliance ID
+   * @type {number}
+   * @memberof ContactsApiGetAllianceContactLabels
+   */
+  readonly allianceId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof ContactsApiGetAllianceContactLabels
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof ContactsApiGetAllianceContactLabels
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof ContactsApiGetAllianceContactLabels
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getAllianceContacts operation in ContactsApi.
+ * @export
+ * @interface ContactsApiGetAllianceContactsRequest
+ */
+export interface ContactsApiGetAllianceContactsRequest {
+  /**
+   * An EVE alliance ID
+   * @type {number}
+   * @memberof ContactsApiGetAllianceContacts
+   */
+  readonly allianceId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof ContactsApiGetAllianceContacts
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof ContactsApiGetAllianceContacts
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Which page of results to return
+   * @type {number}
+   * @memberof ContactsApiGetAllianceContacts
+   */
+  readonly page?: number;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof ContactsApiGetAllianceContacts
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCharacterContactLabels operation in ContactsApi.
+ * @export
+ * @interface ContactsApiGetCharacterContactLabelsRequest
+ */
+export interface ContactsApiGetCharacterContactLabelsRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof ContactsApiGetCharacterContactLabels
+   */
+  readonly characterId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof ContactsApiGetCharacterContactLabels
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof ContactsApiGetCharacterContactLabels
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof ContactsApiGetCharacterContactLabels
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCharacterContacts operation in ContactsApi.
+ * @export
+ * @interface ContactsApiGetCharacterContactsRequest
+ */
+export interface ContactsApiGetCharacterContactsRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof ContactsApiGetCharacterContacts
+   */
+  readonly characterId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof ContactsApiGetCharacterContacts
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof ContactsApiGetCharacterContacts
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Which page of results to return
+   * @type {number}
+   * @memberof ContactsApiGetCharacterContacts
+   */
+  readonly page?: number;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof ContactsApiGetCharacterContacts
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCorporationsCorporationIdContacts operation in ContactsApi.
+ * @export
+ * @interface ContactsApiGetCorporationsCorporationIdContactsRequest
+ */
+export interface ContactsApiGetCorporationsCorporationIdContactsRequest {
+  /**
+   * An EVE corporation ID
+   * @type {number}
+   * @memberof ContactsApiGetCorporationsCorporationIdContacts
+   */
+  readonly corporationId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof ContactsApiGetCorporationsCorporationIdContacts
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof ContactsApiGetCorporationsCorporationIdContacts
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Which page of results to return
+   * @type {number}
+   * @memberof ContactsApiGetCorporationsCorporationIdContacts
+   */
+  readonly page?: number;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof ContactsApiGetCorporationsCorporationIdContacts
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCorporationsCorporationIdContactsLabels operation in ContactsApi.
+ * @export
+ * @interface ContactsApiGetCorporationsCorporationIdContactsLabelsRequest
+ */
+export interface ContactsApiGetCorporationsCorporationIdContactsLabelsRequest {
+  /**
+   * An EVE corporation ID
+   * @type {number}
+   * @memberof ContactsApiGetCorporationsCorporationIdContactsLabels
+   */
+  readonly corporationId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof ContactsApiGetCorporationsCorporationIdContactsLabels
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof ContactsApiGetCorporationsCorporationIdContactsLabels
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof ContactsApiGetCorporationsCorporationIdContactsLabels
+   */
+  readonly token?: string;
+}
+
+/**
  * ContactsApi - object-oriented interface
  * @export
  * @class ContactsApi
@@ -21347,36 +22785,24 @@ export class ContactsApi extends BaseAPI {
   /**
    * Bulk add contacts with same settings  --- Alternate route: `/dev/characters/{character_id}/contacts/`  Alternate route: `/v2/characters/{character_id}/contacts/`
    * @summary Add contacts
-   * @param {number} characterId An EVE character ID
-   * @param {number} standing Standing for the contact
-   * @param {Array<number>} contactIds A list of contacts
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {Array<number>} [labelIds] Add custom labels to the new contact
-   * @param {string} [token] Access token to use if unable to set a header
-   * @param {boolean} [watched] Whether the contact should be watched, note this is only effective on characters
+   * @param {ContactsApiBulkAddCharacterContactsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ContactsApi
    */
   public bulkAddCharacterContacts(
-    characterId: number,
-    standing: number,
-    contactIds: Array<number>,
-    datasource?: "tranquility",
-    labelIds?: Array<number>,
-    token?: string,
-    watched?: boolean,
+    requestParameters: ContactsApiBulkAddCharacterContactsRequest,
     options?: AxiosRequestConfig
   ) {
     return ContactsApiFp(this.configuration)
       .bulkAddCharacterContacts(
-        characterId,
-        standing,
-        contactIds,
-        datasource,
-        labelIds,
-        token,
-        watched,
+        requestParameters.characterId,
+        requestParameters.standing,
+        requestParameters.contactIds,
+        requestParameters.datasource,
+        requestParameters.labelIds,
+        requestParameters.token,
+        requestParameters.watched,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -21385,27 +22811,21 @@ export class ContactsApi extends BaseAPI {
   /**
    * Bulk delete contacts  --- Alternate route: `/dev/characters/{character_id}/contacts/`  Alternate route: `/v2/characters/{character_id}/contacts/`
    * @summary Delete contacts
-   * @param {number} characterId An EVE character ID
-   * @param {Array<number>} contactIds A list of contacts to delete
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {ContactsApiBulkDeleteCharacterContactsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ContactsApi
    */
   public bulkDeleteCharacterContacts(
-    characterId: number,
-    contactIds: Array<number>,
-    datasource?: "tranquility",
-    token?: string,
+    requestParameters: ContactsApiBulkDeleteCharacterContactsRequest,
     options?: AxiosRequestConfig
   ) {
     return ContactsApiFp(this.configuration)
       .bulkDeleteCharacterContacts(
-        characterId,
-        contactIds,
-        datasource,
-        token,
+        requestParameters.characterId,
+        requestParameters.contactIds,
+        requestParameters.datasource,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -21414,36 +22834,24 @@ export class ContactsApi extends BaseAPI {
   /**
    * Bulk edit contacts with same settings  --- Alternate route: `/dev/characters/{character_id}/contacts/`  Alternate route: `/v2/characters/{character_id}/contacts/`
    * @summary Edit contacts
-   * @param {number} characterId An EVE character ID
-   * @param {number} standing Standing for the contact
-   * @param {Array<number>} contactIds A list of contacts
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {Array<number>} [labelIds] Add custom labels to the contact
-   * @param {string} [token] Access token to use if unable to set a header
-   * @param {boolean} [watched] Whether the contact should be watched, note this is only effective on characters
+   * @param {ContactsApiBulkEditCharacterContactsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ContactsApi
    */
   public bulkEditCharacterContacts(
-    characterId: number,
-    standing: number,
-    contactIds: Array<number>,
-    datasource?: "tranquility",
-    labelIds?: Array<number>,
-    token?: string,
-    watched?: boolean,
+    requestParameters: ContactsApiBulkEditCharacterContactsRequest,
     options?: AxiosRequestConfig
   ) {
     return ContactsApiFp(this.configuration)
       .bulkEditCharacterContacts(
-        characterId,
-        standing,
-        contactIds,
-        datasource,
-        labelIds,
-        token,
-        watched,
+        requestParameters.characterId,
+        requestParameters.standing,
+        requestParameters.contactIds,
+        requestParameters.datasource,
+        requestParameters.labelIds,
+        requestParameters.token,
+        requestParameters.watched,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -21452,27 +22860,21 @@ export class ContactsApi extends BaseAPI {
   /**
    * Return custom labels for an alliance\'s contacts  --- Alternate route: `/dev/alliances/{alliance_id}/contacts/labels/`  Alternate route: `/legacy/alliances/{alliance_id}/contacts/labels/`  Alternate route: `/v1/alliances/{alliance_id}/contacts/labels/`  --- This route is cached for up to 300 seconds
    * @summary Get alliance contact labels
-   * @param {number} allianceId An EVE alliance ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {ContactsApiGetAllianceContactLabelsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ContactsApi
    */
   public getAllianceContactLabels(
-    allianceId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: ContactsApiGetAllianceContactLabelsRequest,
     options?: AxiosRequestConfig
   ) {
     return ContactsApiFp(this.configuration)
       .getAllianceContactLabels(
-        allianceId,
-        datasource,
-        ifNoneMatch,
-        token,
+        requestParameters.allianceId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -21481,30 +22883,22 @@ export class ContactsApi extends BaseAPI {
   /**
    * Return contacts of an alliance  --- Alternate route: `/dev/alliances/{alliance_id}/contacts/`  Alternate route: `/v2/alliances/{alliance_id}/contacts/`  --- This route is cached for up to 300 seconds
    * @summary Get alliance contacts
-   * @param {number} allianceId An EVE alliance ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [page] Which page of results to return
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {ContactsApiGetAllianceContactsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ContactsApi
    */
   public getAllianceContacts(
-    allianceId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    page?: number,
-    token?: string,
+    requestParameters: ContactsApiGetAllianceContactsRequest,
     options?: AxiosRequestConfig
   ) {
     return ContactsApiFp(this.configuration)
       .getAllianceContacts(
-        allianceId,
-        datasource,
-        ifNoneMatch,
-        page,
-        token,
+        requestParameters.allianceId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.page,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -21513,27 +22907,21 @@ export class ContactsApi extends BaseAPI {
   /**
    * Return custom labels for a character\'s contacts  --- Alternate route: `/dev/characters/{character_id}/contacts/labels/`  Alternate route: `/legacy/characters/{character_id}/contacts/labels/`  Alternate route: `/v1/characters/{character_id}/contacts/labels/`  --- This route is cached for up to 300 seconds
    * @summary Get contact labels
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {ContactsApiGetCharacterContactLabelsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ContactsApi
    */
   public getCharacterContactLabels(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: ContactsApiGetCharacterContactLabelsRequest,
     options?: AxiosRequestConfig
   ) {
     return ContactsApiFp(this.configuration)
       .getCharacterContactLabels(
-        characterId,
-        datasource,
-        ifNoneMatch,
-        token,
+        requestParameters.characterId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -21542,30 +22930,22 @@ export class ContactsApi extends BaseAPI {
   /**
    * Return contacts of a character  --- Alternate route: `/dev/characters/{character_id}/contacts/`  Alternate route: `/v2/characters/{character_id}/contacts/`  --- This route is cached for up to 300 seconds
    * @summary Get contacts
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [page] Which page of results to return
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {ContactsApiGetCharacterContactsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ContactsApi
    */
   public getCharacterContacts(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    page?: number,
-    token?: string,
+    requestParameters: ContactsApiGetCharacterContactsRequest,
     options?: AxiosRequestConfig
   ) {
     return ContactsApiFp(this.configuration)
       .getCharacterContacts(
-        characterId,
-        datasource,
-        ifNoneMatch,
-        page,
-        token,
+        requestParameters.characterId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.page,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -21574,30 +22954,22 @@ export class ContactsApi extends BaseAPI {
   /**
    * Return contacts of a corporation  --- Alternate route: `/dev/corporations/{corporation_id}/contacts/`  Alternate route: `/v2/corporations/{corporation_id}/contacts/`  --- This route is cached for up to 300 seconds
    * @summary Get corporation contacts
-   * @param {number} corporationId An EVE corporation ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [page] Which page of results to return
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {ContactsApiGetCorporationsCorporationIdContactsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ContactsApi
    */
   public getCorporationsCorporationIdContacts(
-    corporationId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    page?: number,
-    token?: string,
+    requestParameters: ContactsApiGetCorporationsCorporationIdContactsRequest,
     options?: AxiosRequestConfig
   ) {
     return ContactsApiFp(this.configuration)
       .getCorporationsCorporationIdContacts(
-        corporationId,
-        datasource,
-        ifNoneMatch,
-        page,
-        token,
+        requestParameters.corporationId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.page,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -21606,27 +22978,21 @@ export class ContactsApi extends BaseAPI {
   /**
    * Return custom labels for a corporation\'s contacts  --- Alternate route: `/dev/corporations/{corporation_id}/contacts/labels/`  Alternate route: `/legacy/corporations/{corporation_id}/contacts/labels/`  Alternate route: `/v1/corporations/{corporation_id}/contacts/labels/`  --- This route is cached for up to 300 seconds
    * @summary Get corporation contact labels
-   * @param {number} corporationId An EVE corporation ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {ContactsApiGetCorporationsCorporationIdContactsLabelsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ContactsApi
    */
   public getCorporationsCorporationIdContactsLabels(
-    corporationId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: ContactsApiGetCorporationsCorporationIdContactsLabelsRequest,
     options?: AxiosRequestConfig
   ) {
     return ContactsApiFp(this.configuration)
       .getCorporationsCorporationIdContactsLabels(
-        corporationId,
-        datasource,
-        ifNoneMatch,
-        token,
+        requestParameters.corporationId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -23018,6 +24384,370 @@ export const ContractsApiFactory = function (
 };
 
 /**
+ * Request parameters for getCharacterContractBids operation in ContractsApi.
+ * @export
+ * @interface ContractsApiGetCharacterContractBidsRequest
+ */
+export interface ContractsApiGetCharacterContractBidsRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof ContractsApiGetCharacterContractBids
+   */
+  readonly characterId: number;
+
+  /**
+   * ID of a contract
+   * @type {number}
+   * @memberof ContractsApiGetCharacterContractBids
+   */
+  readonly contractId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof ContractsApiGetCharacterContractBids
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof ContractsApiGetCharacterContractBids
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof ContractsApiGetCharacterContractBids
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCharacterContractItems operation in ContractsApi.
+ * @export
+ * @interface ContractsApiGetCharacterContractItemsRequest
+ */
+export interface ContractsApiGetCharacterContractItemsRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof ContractsApiGetCharacterContractItems
+   */
+  readonly characterId: number;
+
+  /**
+   * ID of a contract
+   * @type {number}
+   * @memberof ContractsApiGetCharacterContractItems
+   */
+  readonly contractId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof ContractsApiGetCharacterContractItems
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof ContractsApiGetCharacterContractItems
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof ContractsApiGetCharacterContractItems
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCharacterContracts operation in ContractsApi.
+ * @export
+ * @interface ContractsApiGetCharacterContractsRequest
+ */
+export interface ContractsApiGetCharacterContractsRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof ContractsApiGetCharacterContracts
+   */
+  readonly characterId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof ContractsApiGetCharacterContracts
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof ContractsApiGetCharacterContracts
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Which page of results to return
+   * @type {number}
+   * @memberof ContractsApiGetCharacterContracts
+   */
+  readonly page?: number;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof ContractsApiGetCharacterContracts
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getContractsPublicBidsContractId operation in ContractsApi.
+ * @export
+ * @interface ContractsApiGetContractsPublicBidsContractIdRequest
+ */
+export interface ContractsApiGetContractsPublicBidsContractIdRequest {
+  /**
+   * ID of a contract
+   * @type {number}
+   * @memberof ContractsApiGetContractsPublicBidsContractId
+   */
+  readonly contractId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof ContractsApiGetContractsPublicBidsContractId
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof ContractsApiGetContractsPublicBidsContractId
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Which page of results to return
+   * @type {number}
+   * @memberof ContractsApiGetContractsPublicBidsContractId
+   */
+  readonly page?: number;
+}
+
+/**
+ * Request parameters for getContractsPublicItemsContractId operation in ContractsApi.
+ * @export
+ * @interface ContractsApiGetContractsPublicItemsContractIdRequest
+ */
+export interface ContractsApiGetContractsPublicItemsContractIdRequest {
+  /**
+   * ID of a contract
+   * @type {number}
+   * @memberof ContractsApiGetContractsPublicItemsContractId
+   */
+  readonly contractId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof ContractsApiGetContractsPublicItemsContractId
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof ContractsApiGetContractsPublicItemsContractId
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Which page of results to return
+   * @type {number}
+   * @memberof ContractsApiGetContractsPublicItemsContractId
+   */
+  readonly page?: number;
+}
+
+/**
+ * Request parameters for getContractsPublicRegionId operation in ContractsApi.
+ * @export
+ * @interface ContractsApiGetContractsPublicRegionIdRequest
+ */
+export interface ContractsApiGetContractsPublicRegionIdRequest {
+  /**
+   * An EVE region id
+   * @type {number}
+   * @memberof ContractsApiGetContractsPublicRegionId
+   */
+  readonly regionId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof ContractsApiGetContractsPublicRegionId
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof ContractsApiGetContractsPublicRegionId
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Which page of results to return
+   * @type {number}
+   * @memberof ContractsApiGetContractsPublicRegionId
+   */
+  readonly page?: number;
+}
+
+/**
+ * Request parameters for getCorporationsCorporationIdContracts operation in ContractsApi.
+ * @export
+ * @interface ContractsApiGetCorporationsCorporationIdContractsRequest
+ */
+export interface ContractsApiGetCorporationsCorporationIdContractsRequest {
+  /**
+   * An EVE corporation ID
+   * @type {number}
+   * @memberof ContractsApiGetCorporationsCorporationIdContracts
+   */
+  readonly corporationId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof ContractsApiGetCorporationsCorporationIdContracts
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof ContractsApiGetCorporationsCorporationIdContracts
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Which page of results to return
+   * @type {number}
+   * @memberof ContractsApiGetCorporationsCorporationIdContracts
+   */
+  readonly page?: number;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof ContractsApiGetCorporationsCorporationIdContracts
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCorporationsCorporationIdContractsContractIdBids operation in ContractsApi.
+ * @export
+ * @interface ContractsApiGetCorporationsCorporationIdContractsContractIdBidsRequest
+ */
+export interface ContractsApiGetCorporationsCorporationIdContractsContractIdBidsRequest {
+  /**
+   * ID of a contract
+   * @type {number}
+   * @memberof ContractsApiGetCorporationsCorporationIdContractsContractIdBids
+   */
+  readonly contractId: number;
+
+  /**
+   * An EVE corporation ID
+   * @type {number}
+   * @memberof ContractsApiGetCorporationsCorporationIdContractsContractIdBids
+   */
+  readonly corporationId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof ContractsApiGetCorporationsCorporationIdContractsContractIdBids
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof ContractsApiGetCorporationsCorporationIdContractsContractIdBids
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Which page of results to return
+   * @type {number}
+   * @memberof ContractsApiGetCorporationsCorporationIdContractsContractIdBids
+   */
+  readonly page?: number;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof ContractsApiGetCorporationsCorporationIdContractsContractIdBids
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCorporationsCorporationIdContractsContractIdItems operation in ContractsApi.
+ * @export
+ * @interface ContractsApiGetCorporationsCorporationIdContractsContractIdItemsRequest
+ */
+export interface ContractsApiGetCorporationsCorporationIdContractsContractIdItemsRequest {
+  /**
+   * ID of a contract
+   * @type {number}
+   * @memberof ContractsApiGetCorporationsCorporationIdContractsContractIdItems
+   */
+  readonly contractId: number;
+
+  /**
+   * An EVE corporation ID
+   * @type {number}
+   * @memberof ContractsApiGetCorporationsCorporationIdContractsContractIdItems
+   */
+  readonly corporationId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof ContractsApiGetCorporationsCorporationIdContractsContractIdItems
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof ContractsApiGetCorporationsCorporationIdContractsContractIdItems
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof ContractsApiGetCorporationsCorporationIdContractsContractIdItems
+   */
+  readonly token?: string;
+}
+
+/**
  * ContractsApi - object-oriented interface
  * @export
  * @class ContractsApi
@@ -23027,30 +24757,22 @@ export class ContractsApi extends BaseAPI {
   /**
    * Lists bids on a particular auction contract  --- Alternate route: `/dev/characters/{character_id}/contracts/{contract_id}/bids/`  Alternate route: `/legacy/characters/{character_id}/contracts/{contract_id}/bids/`  Alternate route: `/v1/characters/{character_id}/contracts/{contract_id}/bids/`  --- This route is cached for up to 300 seconds
    * @summary Get contract bids
-   * @param {number} characterId An EVE character ID
-   * @param {number} contractId ID of a contract
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {ContractsApiGetCharacterContractBidsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ContractsApi
    */
   public getCharacterContractBids(
-    characterId: number,
-    contractId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: ContractsApiGetCharacterContractBidsRequest,
     options?: AxiosRequestConfig
   ) {
     return ContractsApiFp(this.configuration)
       .getCharacterContractBids(
-        characterId,
-        contractId,
-        datasource,
-        ifNoneMatch,
-        token,
+        requestParameters.characterId,
+        requestParameters.contractId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -23059,30 +24781,22 @@ export class ContractsApi extends BaseAPI {
   /**
    * Lists items of a particular contract  --- Alternate route: `/dev/characters/{character_id}/contracts/{contract_id}/items/`  Alternate route: `/legacy/characters/{character_id}/contracts/{contract_id}/items/`  Alternate route: `/v1/characters/{character_id}/contracts/{contract_id}/items/`  --- This route is cached for up to 3600 seconds
    * @summary Get contract items
-   * @param {number} characterId An EVE character ID
-   * @param {number} contractId ID of a contract
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {ContractsApiGetCharacterContractItemsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ContractsApi
    */
   public getCharacterContractItems(
-    characterId: number,
-    contractId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: ContractsApiGetCharacterContractItemsRequest,
     options?: AxiosRequestConfig
   ) {
     return ContractsApiFp(this.configuration)
       .getCharacterContractItems(
-        characterId,
-        contractId,
-        datasource,
-        ifNoneMatch,
-        token,
+        requestParameters.characterId,
+        requestParameters.contractId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -23091,30 +24805,22 @@ export class ContractsApi extends BaseAPI {
   /**
    * Returns contracts available to a character, only if the character is issuer, acceptor or assignee. Only returns contracts no older than 30 days, or if the status is \"in_progress\".  --- Alternate route: `/dev/characters/{character_id}/contracts/`  Alternate route: `/legacy/characters/{character_id}/contracts/`  Alternate route: `/v1/characters/{character_id}/contracts/`  --- This route is cached for up to 300 seconds
    * @summary Get contracts
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [page] Which page of results to return
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {ContractsApiGetCharacterContractsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ContractsApi
    */
   public getCharacterContracts(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    page?: number,
-    token?: string,
+    requestParameters: ContractsApiGetCharacterContractsRequest,
     options?: AxiosRequestConfig
   ) {
     return ContractsApiFp(this.configuration)
       .getCharacterContracts(
-        characterId,
-        datasource,
-        ifNoneMatch,
-        page,
-        token,
+        requestParameters.characterId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.page,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -23123,27 +24829,21 @@ export class ContractsApi extends BaseAPI {
   /**
    * Lists bids on a public auction contract  --- Alternate route: `/dev/contracts/public/bids/{contract_id}/`  Alternate route: `/legacy/contracts/public/bids/{contract_id}/`  Alternate route: `/v1/contracts/public/bids/{contract_id}/`  --- This route is cached for up to 300 seconds
    * @summary Get public contract bids
-   * @param {number} contractId ID of a contract
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [page] Which page of results to return
+   * @param {ContractsApiGetContractsPublicBidsContractIdRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ContractsApi
    */
   public getContractsPublicBidsContractId(
-    contractId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    page?: number,
+    requestParameters: ContractsApiGetContractsPublicBidsContractIdRequest,
     options?: AxiosRequestConfig
   ) {
     return ContractsApiFp(this.configuration)
       .getContractsPublicBidsContractId(
-        contractId,
-        datasource,
-        ifNoneMatch,
-        page,
+        requestParameters.contractId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.page,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -23152,27 +24852,21 @@ export class ContractsApi extends BaseAPI {
   /**
    * Lists items of a public contract  --- Alternate route: `/dev/contracts/public/items/{contract_id}/`  Alternate route: `/legacy/contracts/public/items/{contract_id}/`  Alternate route: `/v1/contracts/public/items/{contract_id}/`  --- This route is cached for up to 3600 seconds
    * @summary Get public contract items
-   * @param {number} contractId ID of a contract
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [page] Which page of results to return
+   * @param {ContractsApiGetContractsPublicItemsContractIdRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ContractsApi
    */
   public getContractsPublicItemsContractId(
-    contractId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    page?: number,
+    requestParameters: ContractsApiGetContractsPublicItemsContractIdRequest,
     options?: AxiosRequestConfig
   ) {
     return ContractsApiFp(this.configuration)
       .getContractsPublicItemsContractId(
-        contractId,
-        datasource,
-        ifNoneMatch,
-        page,
+        requestParameters.contractId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.page,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -23181,27 +24875,21 @@ export class ContractsApi extends BaseAPI {
   /**
    * Returns a paginated list of all public contracts in the given region  --- Alternate route: `/dev/contracts/public/{region_id}/`  Alternate route: `/legacy/contracts/public/{region_id}/`  Alternate route: `/v1/contracts/public/{region_id}/`  --- This route is cached for up to 1800 seconds
    * @summary Get public contracts
-   * @param {number} regionId An EVE region id
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [page] Which page of results to return
+   * @param {ContractsApiGetContractsPublicRegionIdRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ContractsApi
    */
   public getContractsPublicRegionId(
-    regionId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    page?: number,
+    requestParameters: ContractsApiGetContractsPublicRegionIdRequest,
     options?: AxiosRequestConfig
   ) {
     return ContractsApiFp(this.configuration)
       .getContractsPublicRegionId(
-        regionId,
-        datasource,
-        ifNoneMatch,
-        page,
+        requestParameters.regionId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.page,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -23210,30 +24898,22 @@ export class ContractsApi extends BaseAPI {
   /**
    * Returns contracts available to a corporation, only if the corporation is issuer, acceptor or assignee. Only returns contracts no older than 30 days, or if the status is \"in_progress\".  --- Alternate route: `/dev/corporations/{corporation_id}/contracts/`  Alternate route: `/legacy/corporations/{corporation_id}/contracts/`  Alternate route: `/v1/corporations/{corporation_id}/contracts/`  --- This route is cached for up to 300 seconds
    * @summary Get corporation contracts
-   * @param {number} corporationId An EVE corporation ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [page] Which page of results to return
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {ContractsApiGetCorporationsCorporationIdContractsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ContractsApi
    */
   public getCorporationsCorporationIdContracts(
-    corporationId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    page?: number,
-    token?: string,
+    requestParameters: ContractsApiGetCorporationsCorporationIdContractsRequest,
     options?: AxiosRequestConfig
   ) {
     return ContractsApiFp(this.configuration)
       .getCorporationsCorporationIdContracts(
-        corporationId,
-        datasource,
-        ifNoneMatch,
-        page,
-        token,
+        requestParameters.corporationId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.page,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -23242,33 +24922,23 @@ export class ContractsApi extends BaseAPI {
   /**
    * Lists bids on a particular auction contract  --- Alternate route: `/dev/corporations/{corporation_id}/contracts/{contract_id}/bids/`  Alternate route: `/legacy/corporations/{corporation_id}/contracts/{contract_id}/bids/`  Alternate route: `/v1/corporations/{corporation_id}/contracts/{contract_id}/bids/`  --- This route is cached for up to 3600 seconds
    * @summary Get corporation contract bids
-   * @param {number} contractId ID of a contract
-   * @param {number} corporationId An EVE corporation ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [page] Which page of results to return
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {ContractsApiGetCorporationsCorporationIdContractsContractIdBidsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ContractsApi
    */
   public getCorporationsCorporationIdContractsContractIdBids(
-    contractId: number,
-    corporationId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    page?: number,
-    token?: string,
+    requestParameters: ContractsApiGetCorporationsCorporationIdContractsContractIdBidsRequest,
     options?: AxiosRequestConfig
   ) {
     return ContractsApiFp(this.configuration)
       .getCorporationsCorporationIdContractsContractIdBids(
-        contractId,
-        corporationId,
-        datasource,
-        ifNoneMatch,
-        page,
-        token,
+        requestParameters.contractId,
+        requestParameters.corporationId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.page,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -23277,30 +24947,22 @@ export class ContractsApi extends BaseAPI {
   /**
    * Lists items of a particular contract  --- Alternate route: `/dev/corporations/{corporation_id}/contracts/{contract_id}/items/`  Alternate route: `/legacy/corporations/{corporation_id}/contracts/{contract_id}/items/`  Alternate route: `/v1/corporations/{corporation_id}/contracts/{contract_id}/items/`  --- This route is cached for up to 3600 seconds
    * @summary Get corporation contract items
-   * @param {number} contractId ID of a contract
-   * @param {number} corporationId An EVE corporation ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {ContractsApiGetCorporationsCorporationIdContractsContractIdItemsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof ContractsApi
    */
   public getCorporationsCorporationIdContractsContractIdItems(
-    contractId: number,
-    corporationId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: ContractsApiGetCorporationsCorporationIdContractsContractIdItemsRequest,
     options?: AxiosRequestConfig
   ) {
     return ContractsApiFp(this.configuration)
       .getCorporationsCorporationIdContractsContractIdItems(
-        contractId,
-        corporationId,
-        datasource,
-        ifNoneMatch,
-        token,
+        requestParameters.contractId,
+        requestParameters.corporationId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -26564,6 +28226,850 @@ export const CorporationApiFactory = function (
 };
 
 /**
+ * Request parameters for getCorporationsCorporationId operation in CorporationApi.
+ * @export
+ * @interface CorporationApiGetCorporationsCorporationIdRequest
+ */
+export interface CorporationApiGetCorporationsCorporationIdRequest {
+  /**
+   * An EVE corporation ID
+   * @type {number}
+   * @memberof CorporationApiGetCorporationsCorporationId
+   */
+  readonly corporationId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof CorporationApiGetCorporationsCorporationId
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof CorporationApiGetCorporationsCorporationId
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
+ * Request parameters for getCorporationsCorporationIdAlliancehistory operation in CorporationApi.
+ * @export
+ * @interface CorporationApiGetCorporationsCorporationIdAlliancehistoryRequest
+ */
+export interface CorporationApiGetCorporationsCorporationIdAlliancehistoryRequest {
+  /**
+   * An EVE corporation ID
+   * @type {number}
+   * @memberof CorporationApiGetCorporationsCorporationIdAlliancehistory
+   */
+  readonly corporationId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof CorporationApiGetCorporationsCorporationIdAlliancehistory
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof CorporationApiGetCorporationsCorporationIdAlliancehistory
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
+ * Request parameters for getCorporationsCorporationIdBlueprints operation in CorporationApi.
+ * @export
+ * @interface CorporationApiGetCorporationsCorporationIdBlueprintsRequest
+ */
+export interface CorporationApiGetCorporationsCorporationIdBlueprintsRequest {
+  /**
+   * An EVE corporation ID
+   * @type {number}
+   * @memberof CorporationApiGetCorporationsCorporationIdBlueprints
+   */
+  readonly corporationId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof CorporationApiGetCorporationsCorporationIdBlueprints
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof CorporationApiGetCorporationsCorporationIdBlueprints
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Which page of results to return
+   * @type {number}
+   * @memberof CorporationApiGetCorporationsCorporationIdBlueprints
+   */
+  readonly page?: number;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof CorporationApiGetCorporationsCorporationIdBlueprints
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCorporationsCorporationIdContainersLogs operation in CorporationApi.
+ * @export
+ * @interface CorporationApiGetCorporationsCorporationIdContainersLogsRequest
+ */
+export interface CorporationApiGetCorporationsCorporationIdContainersLogsRequest {
+  /**
+   * An EVE corporation ID
+   * @type {number}
+   * @memberof CorporationApiGetCorporationsCorporationIdContainersLogs
+   */
+  readonly corporationId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof CorporationApiGetCorporationsCorporationIdContainersLogs
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof CorporationApiGetCorporationsCorporationIdContainersLogs
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Which page of results to return
+   * @type {number}
+   * @memberof CorporationApiGetCorporationsCorporationIdContainersLogs
+   */
+  readonly page?: number;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof CorporationApiGetCorporationsCorporationIdContainersLogs
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCorporationsCorporationIdDivisions operation in CorporationApi.
+ * @export
+ * @interface CorporationApiGetCorporationsCorporationIdDivisionsRequest
+ */
+export interface CorporationApiGetCorporationsCorporationIdDivisionsRequest {
+  /**
+   * An EVE corporation ID
+   * @type {number}
+   * @memberof CorporationApiGetCorporationsCorporationIdDivisions
+   */
+  readonly corporationId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof CorporationApiGetCorporationsCorporationIdDivisions
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof CorporationApiGetCorporationsCorporationIdDivisions
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof CorporationApiGetCorporationsCorporationIdDivisions
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCorporationsCorporationIdFacilities operation in CorporationApi.
+ * @export
+ * @interface CorporationApiGetCorporationsCorporationIdFacilitiesRequest
+ */
+export interface CorporationApiGetCorporationsCorporationIdFacilitiesRequest {
+  /**
+   * An EVE corporation ID
+   * @type {number}
+   * @memberof CorporationApiGetCorporationsCorporationIdFacilities
+   */
+  readonly corporationId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof CorporationApiGetCorporationsCorporationIdFacilities
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof CorporationApiGetCorporationsCorporationIdFacilities
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof CorporationApiGetCorporationsCorporationIdFacilities
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCorporationsCorporationIdIcons operation in CorporationApi.
+ * @export
+ * @interface CorporationApiGetCorporationsCorporationIdIconsRequest
+ */
+export interface CorporationApiGetCorporationsCorporationIdIconsRequest {
+  /**
+   * An EVE corporation ID
+   * @type {number}
+   * @memberof CorporationApiGetCorporationsCorporationIdIcons
+   */
+  readonly corporationId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof CorporationApiGetCorporationsCorporationIdIcons
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof CorporationApiGetCorporationsCorporationIdIcons
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
+ * Request parameters for getCorporationsCorporationIdMedals operation in CorporationApi.
+ * @export
+ * @interface CorporationApiGetCorporationsCorporationIdMedalsRequest
+ */
+export interface CorporationApiGetCorporationsCorporationIdMedalsRequest {
+  /**
+   * An EVE corporation ID
+   * @type {number}
+   * @memberof CorporationApiGetCorporationsCorporationIdMedals
+   */
+  readonly corporationId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof CorporationApiGetCorporationsCorporationIdMedals
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof CorporationApiGetCorporationsCorporationIdMedals
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Which page of results to return
+   * @type {number}
+   * @memberof CorporationApiGetCorporationsCorporationIdMedals
+   */
+  readonly page?: number;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof CorporationApiGetCorporationsCorporationIdMedals
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCorporationsCorporationIdMedalsIssued operation in CorporationApi.
+ * @export
+ * @interface CorporationApiGetCorporationsCorporationIdMedalsIssuedRequest
+ */
+export interface CorporationApiGetCorporationsCorporationIdMedalsIssuedRequest {
+  /**
+   * An EVE corporation ID
+   * @type {number}
+   * @memberof CorporationApiGetCorporationsCorporationIdMedalsIssued
+   */
+  readonly corporationId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof CorporationApiGetCorporationsCorporationIdMedalsIssued
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof CorporationApiGetCorporationsCorporationIdMedalsIssued
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Which page of results to return
+   * @type {number}
+   * @memberof CorporationApiGetCorporationsCorporationIdMedalsIssued
+   */
+  readonly page?: number;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof CorporationApiGetCorporationsCorporationIdMedalsIssued
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCorporationsCorporationIdMembers operation in CorporationApi.
+ * @export
+ * @interface CorporationApiGetCorporationsCorporationIdMembersRequest
+ */
+export interface CorporationApiGetCorporationsCorporationIdMembersRequest {
+  /**
+   * An EVE corporation ID
+   * @type {number}
+   * @memberof CorporationApiGetCorporationsCorporationIdMembers
+   */
+  readonly corporationId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof CorporationApiGetCorporationsCorporationIdMembers
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof CorporationApiGetCorporationsCorporationIdMembers
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof CorporationApiGetCorporationsCorporationIdMembers
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCorporationsCorporationIdMembersLimit operation in CorporationApi.
+ * @export
+ * @interface CorporationApiGetCorporationsCorporationIdMembersLimitRequest
+ */
+export interface CorporationApiGetCorporationsCorporationIdMembersLimitRequest {
+  /**
+   * An EVE corporation ID
+   * @type {number}
+   * @memberof CorporationApiGetCorporationsCorporationIdMembersLimit
+   */
+  readonly corporationId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof CorporationApiGetCorporationsCorporationIdMembersLimit
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof CorporationApiGetCorporationsCorporationIdMembersLimit
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof CorporationApiGetCorporationsCorporationIdMembersLimit
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCorporationsCorporationIdMembersTitles operation in CorporationApi.
+ * @export
+ * @interface CorporationApiGetCorporationsCorporationIdMembersTitlesRequest
+ */
+export interface CorporationApiGetCorporationsCorporationIdMembersTitlesRequest {
+  /**
+   * An EVE corporation ID
+   * @type {number}
+   * @memberof CorporationApiGetCorporationsCorporationIdMembersTitles
+   */
+  readonly corporationId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof CorporationApiGetCorporationsCorporationIdMembersTitles
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof CorporationApiGetCorporationsCorporationIdMembersTitles
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof CorporationApiGetCorporationsCorporationIdMembersTitles
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCorporationsCorporationIdMembertracking operation in CorporationApi.
+ * @export
+ * @interface CorporationApiGetCorporationsCorporationIdMembertrackingRequest
+ */
+export interface CorporationApiGetCorporationsCorporationIdMembertrackingRequest {
+  /**
+   * An EVE corporation ID
+   * @type {number}
+   * @memberof CorporationApiGetCorporationsCorporationIdMembertracking
+   */
+  readonly corporationId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof CorporationApiGetCorporationsCorporationIdMembertracking
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof CorporationApiGetCorporationsCorporationIdMembertracking
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof CorporationApiGetCorporationsCorporationIdMembertracking
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCorporationsCorporationIdRoles operation in CorporationApi.
+ * @export
+ * @interface CorporationApiGetCorporationsCorporationIdRolesRequest
+ */
+export interface CorporationApiGetCorporationsCorporationIdRolesRequest {
+  /**
+   * An EVE corporation ID
+   * @type {number}
+   * @memberof CorporationApiGetCorporationsCorporationIdRoles
+   */
+  readonly corporationId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof CorporationApiGetCorporationsCorporationIdRoles
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof CorporationApiGetCorporationsCorporationIdRoles
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof CorporationApiGetCorporationsCorporationIdRoles
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCorporationsCorporationIdRolesHistory operation in CorporationApi.
+ * @export
+ * @interface CorporationApiGetCorporationsCorporationIdRolesHistoryRequest
+ */
+export interface CorporationApiGetCorporationsCorporationIdRolesHistoryRequest {
+  /**
+   * An EVE corporation ID
+   * @type {number}
+   * @memberof CorporationApiGetCorporationsCorporationIdRolesHistory
+   */
+  readonly corporationId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof CorporationApiGetCorporationsCorporationIdRolesHistory
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof CorporationApiGetCorporationsCorporationIdRolesHistory
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Which page of results to return
+   * @type {number}
+   * @memberof CorporationApiGetCorporationsCorporationIdRolesHistory
+   */
+  readonly page?: number;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof CorporationApiGetCorporationsCorporationIdRolesHistory
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCorporationsCorporationIdShareholders operation in CorporationApi.
+ * @export
+ * @interface CorporationApiGetCorporationsCorporationIdShareholdersRequest
+ */
+export interface CorporationApiGetCorporationsCorporationIdShareholdersRequest {
+  /**
+   * An EVE corporation ID
+   * @type {number}
+   * @memberof CorporationApiGetCorporationsCorporationIdShareholders
+   */
+  readonly corporationId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof CorporationApiGetCorporationsCorporationIdShareholders
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof CorporationApiGetCorporationsCorporationIdShareholders
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Which page of results to return
+   * @type {number}
+   * @memberof CorporationApiGetCorporationsCorporationIdShareholders
+   */
+  readonly page?: number;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof CorporationApiGetCorporationsCorporationIdShareholders
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCorporationsCorporationIdStandings operation in CorporationApi.
+ * @export
+ * @interface CorporationApiGetCorporationsCorporationIdStandingsRequest
+ */
+export interface CorporationApiGetCorporationsCorporationIdStandingsRequest {
+  /**
+   * An EVE corporation ID
+   * @type {number}
+   * @memberof CorporationApiGetCorporationsCorporationIdStandings
+   */
+  readonly corporationId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof CorporationApiGetCorporationsCorporationIdStandings
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof CorporationApiGetCorporationsCorporationIdStandings
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Which page of results to return
+   * @type {number}
+   * @memberof CorporationApiGetCorporationsCorporationIdStandings
+   */
+  readonly page?: number;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof CorporationApiGetCorporationsCorporationIdStandings
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCorporationsCorporationIdStarbases operation in CorporationApi.
+ * @export
+ * @interface CorporationApiGetCorporationsCorporationIdStarbasesRequest
+ */
+export interface CorporationApiGetCorporationsCorporationIdStarbasesRequest {
+  /**
+   * An EVE corporation ID
+   * @type {number}
+   * @memberof CorporationApiGetCorporationsCorporationIdStarbases
+   */
+  readonly corporationId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof CorporationApiGetCorporationsCorporationIdStarbases
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof CorporationApiGetCorporationsCorporationIdStarbases
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Which page of results to return
+   * @type {number}
+   * @memberof CorporationApiGetCorporationsCorporationIdStarbases
+   */
+  readonly page?: number;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof CorporationApiGetCorporationsCorporationIdStarbases
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCorporationsCorporationIdStarbasesStarbaseId operation in CorporationApi.
+ * @export
+ * @interface CorporationApiGetCorporationsCorporationIdStarbasesStarbaseIdRequest
+ */
+export interface CorporationApiGetCorporationsCorporationIdStarbasesStarbaseIdRequest {
+  /**
+   * An EVE corporation ID
+   * @type {number}
+   * @memberof CorporationApiGetCorporationsCorporationIdStarbasesStarbaseId
+   */
+  readonly corporationId: number;
+
+  /**
+   * An EVE starbase (POS) ID
+   * @type {number}
+   * @memberof CorporationApiGetCorporationsCorporationIdStarbasesStarbaseId
+   */
+  readonly starbaseId: number;
+
+  /**
+   * The solar system this starbase (POS) is located in,
+   * @type {number}
+   * @memberof CorporationApiGetCorporationsCorporationIdStarbasesStarbaseId
+   */
+  readonly systemId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof CorporationApiGetCorporationsCorporationIdStarbasesStarbaseId
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof CorporationApiGetCorporationsCorporationIdStarbasesStarbaseId
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof CorporationApiGetCorporationsCorporationIdStarbasesStarbaseId
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCorporationsCorporationIdStructures operation in CorporationApi.
+ * @export
+ * @interface CorporationApiGetCorporationsCorporationIdStructuresRequest
+ */
+export interface CorporationApiGetCorporationsCorporationIdStructuresRequest {
+  /**
+   * An EVE corporation ID
+   * @type {number}
+   * @memberof CorporationApiGetCorporationsCorporationIdStructures
+   */
+  readonly corporationId: number;
+
+  /**
+   * Language to use in the response
+   * @type {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'}
+   * @memberof CorporationApiGetCorporationsCorporationIdStructures
+   */
+  readonly acceptLanguage?:
+    | "en"
+    | "en-us"
+    | "de"
+    | "fr"
+    | "ja"
+    | "ru"
+    | "zh"
+    | "ko"
+    | "es";
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof CorporationApiGetCorporationsCorporationIdStructures
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof CorporationApiGetCorporationsCorporationIdStructures
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Language to use in the response, takes precedence over Accept-Language
+   * @type {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'}
+   * @memberof CorporationApiGetCorporationsCorporationIdStructures
+   */
+  readonly language?:
+    | "en"
+    | "en-us"
+    | "de"
+    | "fr"
+    | "ja"
+    | "ru"
+    | "zh"
+    | "ko"
+    | "es";
+
+  /**
+   * Which page of results to return
+   * @type {number}
+   * @memberof CorporationApiGetCorporationsCorporationIdStructures
+   */
+  readonly page?: number;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof CorporationApiGetCorporationsCorporationIdStructures
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCorporationsCorporationIdTitles operation in CorporationApi.
+ * @export
+ * @interface CorporationApiGetCorporationsCorporationIdTitlesRequest
+ */
+export interface CorporationApiGetCorporationsCorporationIdTitlesRequest {
+  /**
+   * An EVE corporation ID
+   * @type {number}
+   * @memberof CorporationApiGetCorporationsCorporationIdTitles
+   */
+  readonly corporationId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof CorporationApiGetCorporationsCorporationIdTitles
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof CorporationApiGetCorporationsCorporationIdTitles
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof CorporationApiGetCorporationsCorporationIdTitles
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCorporationsNpccorps operation in CorporationApi.
+ * @export
+ * @interface CorporationApiGetCorporationsNpccorpsRequest
+ */
+export interface CorporationApiGetCorporationsNpccorpsRequest {
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof CorporationApiGetCorporationsNpccorps
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof CorporationApiGetCorporationsNpccorps
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
  * CorporationApi - object-oriented interface
  * @export
  * @class CorporationApi
@@ -26573,24 +29079,20 @@ export class CorporationApi extends BaseAPI {
   /**
    * Public information about a corporation  --- Alternate route: `/dev/corporations/{corporation_id}/`  Alternate route: `/v5/corporations/{corporation_id}/`  --- This route is cached for up to 3600 seconds
    * @summary Get corporation information
-   * @param {number} corporationId An EVE corporation ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {CorporationApiGetCorporationsCorporationIdRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CorporationApi
    */
   public getCorporationsCorporationId(
-    corporationId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: CorporationApiGetCorporationsCorporationIdRequest,
     options?: AxiosRequestConfig
   ) {
     return CorporationApiFp(this.configuration)
       .getCorporationsCorporationId(
-        corporationId,
-        datasource,
-        ifNoneMatch,
+        requestParameters.corporationId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -26599,24 +29101,20 @@ export class CorporationApi extends BaseAPI {
   /**
    * Get a list of all the alliances a corporation has been a member of  --- Alternate route: `/dev/corporations/{corporation_id}/alliancehistory/`  Alternate route: `/v3/corporations/{corporation_id}/alliancehistory/`  --- This route is cached for up to 3600 seconds
    * @summary Get alliance history
-   * @param {number} corporationId An EVE corporation ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {CorporationApiGetCorporationsCorporationIdAlliancehistoryRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CorporationApi
    */
   public getCorporationsCorporationIdAlliancehistory(
-    corporationId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: CorporationApiGetCorporationsCorporationIdAlliancehistoryRequest,
     options?: AxiosRequestConfig
   ) {
     return CorporationApiFp(this.configuration)
       .getCorporationsCorporationIdAlliancehistory(
-        corporationId,
-        datasource,
-        ifNoneMatch,
+        requestParameters.corporationId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -26625,30 +29123,22 @@ export class CorporationApi extends BaseAPI {
   /**
    * Returns a list of blueprints the corporation owns  --- Alternate route: `/dev/corporations/{corporation_id}/blueprints/`  Alternate route: `/v3/corporations/{corporation_id}/blueprints/`  --- This route is cached for up to 3600 seconds  --- Requires one of the following EVE corporation role(s): Director
    * @summary Get corporation blueprints
-   * @param {number} corporationId An EVE corporation ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [page] Which page of results to return
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {CorporationApiGetCorporationsCorporationIdBlueprintsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CorporationApi
    */
   public getCorporationsCorporationIdBlueprints(
-    corporationId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    page?: number,
-    token?: string,
+    requestParameters: CorporationApiGetCorporationsCorporationIdBlueprintsRequest,
     options?: AxiosRequestConfig
   ) {
     return CorporationApiFp(this.configuration)
       .getCorporationsCorporationIdBlueprints(
-        corporationId,
-        datasource,
-        ifNoneMatch,
-        page,
-        token,
+        requestParameters.corporationId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.page,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -26657,30 +29147,22 @@ export class CorporationApi extends BaseAPI {
   /**
    * Returns logs recorded in the past seven days from all audit log secure containers (ALSC) owned by a given corporation  --- Alternate route: `/dev/corporations/{corporation_id}/containers/logs/`  Alternate route: `/v3/corporations/{corporation_id}/containers/logs/`  --- This route is cached for up to 600 seconds  --- Requires one of the following EVE corporation role(s): Director
    * @summary Get all corporation ALSC logs
-   * @param {number} corporationId An EVE corporation ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [page] Which page of results to return
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {CorporationApiGetCorporationsCorporationIdContainersLogsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CorporationApi
    */
   public getCorporationsCorporationIdContainersLogs(
-    corporationId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    page?: number,
-    token?: string,
+    requestParameters: CorporationApiGetCorporationsCorporationIdContainersLogsRequest,
     options?: AxiosRequestConfig
   ) {
     return CorporationApiFp(this.configuration)
       .getCorporationsCorporationIdContainersLogs(
-        corporationId,
-        datasource,
-        ifNoneMatch,
-        page,
-        token,
+        requestParameters.corporationId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.page,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -26689,27 +29171,21 @@ export class CorporationApi extends BaseAPI {
   /**
    * Return corporation hangar and wallet division names, only show if a division is not using the default name  --- Alternate route: `/dev/corporations/{corporation_id}/divisions/`  Alternate route: `/v2/corporations/{corporation_id}/divisions/`  --- This route is cached for up to 3600 seconds  --- Requires one of the following EVE corporation role(s): Director
    * @summary Get corporation divisions
-   * @param {number} corporationId An EVE corporation ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {CorporationApiGetCorporationsCorporationIdDivisionsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CorporationApi
    */
   public getCorporationsCorporationIdDivisions(
-    corporationId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: CorporationApiGetCorporationsCorporationIdDivisionsRequest,
     options?: AxiosRequestConfig
   ) {
     return CorporationApiFp(this.configuration)
       .getCorporationsCorporationIdDivisions(
-        corporationId,
-        datasource,
-        ifNoneMatch,
-        token,
+        requestParameters.corporationId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -26718,27 +29194,21 @@ export class CorporationApi extends BaseAPI {
   /**
    * Return a corporation\'s facilities  --- Alternate route: `/dev/corporations/{corporation_id}/facilities/`  Alternate route: `/v2/corporations/{corporation_id}/facilities/`  --- This route is cached for up to 3600 seconds  --- Requires one of the following EVE corporation role(s): Factory_Manager
    * @summary Get corporation facilities
-   * @param {number} corporationId An EVE corporation ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {CorporationApiGetCorporationsCorporationIdFacilitiesRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CorporationApi
    */
   public getCorporationsCorporationIdFacilities(
-    corporationId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: CorporationApiGetCorporationsCorporationIdFacilitiesRequest,
     options?: AxiosRequestConfig
   ) {
     return CorporationApiFp(this.configuration)
       .getCorporationsCorporationIdFacilities(
-        corporationId,
-        datasource,
-        ifNoneMatch,
-        token,
+        requestParameters.corporationId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -26747,24 +29217,20 @@ export class CorporationApi extends BaseAPI {
   /**
    * Get the icon urls for a corporation  --- Alternate route: `/dev/corporations/{corporation_id}/icons/`  Alternate route: `/v2/corporations/{corporation_id}/icons/`  --- This route is cached for up to 3600 seconds
    * @summary Get corporation icon
-   * @param {number} corporationId An EVE corporation ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {CorporationApiGetCorporationsCorporationIdIconsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CorporationApi
    */
   public getCorporationsCorporationIdIcons(
-    corporationId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: CorporationApiGetCorporationsCorporationIdIconsRequest,
     options?: AxiosRequestConfig
   ) {
     return CorporationApiFp(this.configuration)
       .getCorporationsCorporationIdIcons(
-        corporationId,
-        datasource,
-        ifNoneMatch,
+        requestParameters.corporationId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -26773,30 +29239,22 @@ export class CorporationApi extends BaseAPI {
   /**
    * Returns a corporation\'s medals  --- Alternate route: `/dev/corporations/{corporation_id}/medals/`  Alternate route: `/v2/corporations/{corporation_id}/medals/`  --- This route is cached for up to 3600 seconds
    * @summary Get corporation medals
-   * @param {number} corporationId An EVE corporation ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [page] Which page of results to return
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {CorporationApiGetCorporationsCorporationIdMedalsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CorporationApi
    */
   public getCorporationsCorporationIdMedals(
-    corporationId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    page?: number,
-    token?: string,
+    requestParameters: CorporationApiGetCorporationsCorporationIdMedalsRequest,
     options?: AxiosRequestConfig
   ) {
     return CorporationApiFp(this.configuration)
       .getCorporationsCorporationIdMedals(
-        corporationId,
-        datasource,
-        ifNoneMatch,
-        page,
-        token,
+        requestParameters.corporationId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.page,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -26805,30 +29263,22 @@ export class CorporationApi extends BaseAPI {
   /**
    * Returns medals issued by a corporation  --- Alternate route: `/dev/corporations/{corporation_id}/medals/issued/`  Alternate route: `/v2/corporations/{corporation_id}/medals/issued/`  --- This route is cached for up to 3600 seconds  --- Requires one of the following EVE corporation role(s): Director
    * @summary Get corporation issued medals
-   * @param {number} corporationId An EVE corporation ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [page] Which page of results to return
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {CorporationApiGetCorporationsCorporationIdMedalsIssuedRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CorporationApi
    */
   public getCorporationsCorporationIdMedalsIssued(
-    corporationId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    page?: number,
-    token?: string,
+    requestParameters: CorporationApiGetCorporationsCorporationIdMedalsIssuedRequest,
     options?: AxiosRequestConfig
   ) {
     return CorporationApiFp(this.configuration)
       .getCorporationsCorporationIdMedalsIssued(
-        corporationId,
-        datasource,
-        ifNoneMatch,
-        page,
-        token,
+        requestParameters.corporationId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.page,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -26837,27 +29287,21 @@ export class CorporationApi extends BaseAPI {
   /**
    * Return the current member list of a corporation, the token\'s character need to be a member of the corporation.  --- Alternate route: `/dev/corporations/{corporation_id}/members/`  Alternate route: `/v4/corporations/{corporation_id}/members/`  --- This route is cached for up to 3600 seconds
    * @summary Get corporation members
-   * @param {number} corporationId An EVE corporation ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {CorporationApiGetCorporationsCorporationIdMembersRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CorporationApi
    */
   public getCorporationsCorporationIdMembers(
-    corporationId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: CorporationApiGetCorporationsCorporationIdMembersRequest,
     options?: AxiosRequestConfig
   ) {
     return CorporationApiFp(this.configuration)
       .getCorporationsCorporationIdMembers(
-        corporationId,
-        datasource,
-        ifNoneMatch,
-        token,
+        requestParameters.corporationId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -26866,27 +29310,21 @@ export class CorporationApi extends BaseAPI {
   /**
    * Return a corporation\'s member limit, not including CEO himself  --- Alternate route: `/dev/corporations/{corporation_id}/members/limit/`  Alternate route: `/v2/corporations/{corporation_id}/members/limit/`  --- This route is cached for up to 3600 seconds  --- Requires one of the following EVE corporation role(s): Director
    * @summary Get corporation member limit
-   * @param {number} corporationId An EVE corporation ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {CorporationApiGetCorporationsCorporationIdMembersLimitRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CorporationApi
    */
   public getCorporationsCorporationIdMembersLimit(
-    corporationId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: CorporationApiGetCorporationsCorporationIdMembersLimitRequest,
     options?: AxiosRequestConfig
   ) {
     return CorporationApiFp(this.configuration)
       .getCorporationsCorporationIdMembersLimit(
-        corporationId,
-        datasource,
-        ifNoneMatch,
-        token,
+        requestParameters.corporationId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -26895,27 +29333,21 @@ export class CorporationApi extends BaseAPI {
   /**
    * Returns a corporation\'s members\' titles  --- Alternate route: `/dev/corporations/{corporation_id}/members/titles/`  Alternate route: `/v2/corporations/{corporation_id}/members/titles/`  --- This route is cached for up to 3600 seconds  --- Requires one of the following EVE corporation role(s): Director
    * @summary Get corporation\'s members\' titles
-   * @param {number} corporationId An EVE corporation ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {CorporationApiGetCorporationsCorporationIdMembersTitlesRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CorporationApi
    */
   public getCorporationsCorporationIdMembersTitles(
-    corporationId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: CorporationApiGetCorporationsCorporationIdMembersTitlesRequest,
     options?: AxiosRequestConfig
   ) {
     return CorporationApiFp(this.configuration)
       .getCorporationsCorporationIdMembersTitles(
-        corporationId,
-        datasource,
-        ifNoneMatch,
-        token,
+        requestParameters.corporationId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -26924,27 +29356,21 @@ export class CorporationApi extends BaseAPI {
   /**
    * Returns additional information about a corporation\'s members which helps tracking their activities  --- Alternate route: `/dev/corporations/{corporation_id}/membertracking/`  Alternate route: `/v2/corporations/{corporation_id}/membertracking/`  --- This route is cached for up to 3600 seconds  --- Requires one of the following EVE corporation role(s): Director
    * @summary Track corporation members
-   * @param {number} corporationId An EVE corporation ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {CorporationApiGetCorporationsCorporationIdMembertrackingRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CorporationApi
    */
   public getCorporationsCorporationIdMembertracking(
-    corporationId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: CorporationApiGetCorporationsCorporationIdMembertrackingRequest,
     options?: AxiosRequestConfig
   ) {
     return CorporationApiFp(this.configuration)
       .getCorporationsCorporationIdMembertracking(
-        corporationId,
-        datasource,
-        ifNoneMatch,
-        token,
+        requestParameters.corporationId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -26953,27 +29379,21 @@ export class CorporationApi extends BaseAPI {
   /**
    * Return the roles of all members if the character has the personnel manager role or any grantable role.  --- Alternate route: `/dev/corporations/{corporation_id}/roles/`  Alternate route: `/v2/corporations/{corporation_id}/roles/`  --- This route is cached for up to 3600 seconds
    * @summary Get corporation member roles
-   * @param {number} corporationId An EVE corporation ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {CorporationApiGetCorporationsCorporationIdRolesRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CorporationApi
    */
   public getCorporationsCorporationIdRoles(
-    corporationId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: CorporationApiGetCorporationsCorporationIdRolesRequest,
     options?: AxiosRequestConfig
   ) {
     return CorporationApiFp(this.configuration)
       .getCorporationsCorporationIdRoles(
-        corporationId,
-        datasource,
-        ifNoneMatch,
-        token,
+        requestParameters.corporationId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -26982,30 +29402,22 @@ export class CorporationApi extends BaseAPI {
   /**
    * Return how roles have changed for a coporation\'s members, up to a month  --- Alternate route: `/dev/corporations/{corporation_id}/roles/history/`  Alternate route: `/v2/corporations/{corporation_id}/roles/history/`  --- This route is cached for up to 3600 seconds  --- Requires one of the following EVE corporation role(s): Director
    * @summary Get corporation member roles history
-   * @param {number} corporationId An EVE corporation ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [page] Which page of results to return
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {CorporationApiGetCorporationsCorporationIdRolesHistoryRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CorporationApi
    */
   public getCorporationsCorporationIdRolesHistory(
-    corporationId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    page?: number,
-    token?: string,
+    requestParameters: CorporationApiGetCorporationsCorporationIdRolesHistoryRequest,
     options?: AxiosRequestConfig
   ) {
     return CorporationApiFp(this.configuration)
       .getCorporationsCorporationIdRolesHistory(
-        corporationId,
-        datasource,
-        ifNoneMatch,
-        page,
-        token,
+        requestParameters.corporationId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.page,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -27014,30 +29426,22 @@ export class CorporationApi extends BaseAPI {
   /**
    * Return the current shareholders of a corporation.  --- Alternate route: `/dev/corporations/{corporation_id}/shareholders/`  Alternate route: `/legacy/corporations/{corporation_id}/shareholders/`  Alternate route: `/v1/corporations/{corporation_id}/shareholders/`  --- This route is cached for up to 3600 seconds  --- Requires one of the following EVE corporation role(s): Director
    * @summary Get corporation shareholders
-   * @param {number} corporationId An EVE corporation ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [page] Which page of results to return
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {CorporationApiGetCorporationsCorporationIdShareholdersRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CorporationApi
    */
   public getCorporationsCorporationIdShareholders(
-    corporationId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    page?: number,
-    token?: string,
+    requestParameters: CorporationApiGetCorporationsCorporationIdShareholdersRequest,
     options?: AxiosRequestConfig
   ) {
     return CorporationApiFp(this.configuration)
       .getCorporationsCorporationIdShareholders(
-        corporationId,
-        datasource,
-        ifNoneMatch,
-        page,
-        token,
+        requestParameters.corporationId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.page,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -27046,30 +29450,22 @@ export class CorporationApi extends BaseAPI {
   /**
    * Return corporation standings from agents, NPC corporations, and factions  --- Alternate route: `/dev/corporations/{corporation_id}/standings/`  Alternate route: `/v2/corporations/{corporation_id}/standings/`  --- This route is cached for up to 3600 seconds
    * @summary Get corporation standings
-   * @param {number} corporationId An EVE corporation ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [page] Which page of results to return
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {CorporationApiGetCorporationsCorporationIdStandingsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CorporationApi
    */
   public getCorporationsCorporationIdStandings(
-    corporationId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    page?: number,
-    token?: string,
+    requestParameters: CorporationApiGetCorporationsCorporationIdStandingsRequest,
     options?: AxiosRequestConfig
   ) {
     return CorporationApiFp(this.configuration)
       .getCorporationsCorporationIdStandings(
-        corporationId,
-        datasource,
-        ifNoneMatch,
-        page,
-        token,
+        requestParameters.corporationId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.page,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -27078,30 +29474,22 @@ export class CorporationApi extends BaseAPI {
   /**
    * Returns list of corporation starbases (POSes)  --- Alternate route: `/dev/corporations/{corporation_id}/starbases/`  Alternate route: `/v2/corporations/{corporation_id}/starbases/`  --- This route is cached for up to 3600 seconds  --- Requires one of the following EVE corporation role(s): Director
    * @summary Get corporation starbases (POSes)
-   * @param {number} corporationId An EVE corporation ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [page] Which page of results to return
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {CorporationApiGetCorporationsCorporationIdStarbasesRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CorporationApi
    */
   public getCorporationsCorporationIdStarbases(
-    corporationId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    page?: number,
-    token?: string,
+    requestParameters: CorporationApiGetCorporationsCorporationIdStarbasesRequest,
     options?: AxiosRequestConfig
   ) {
     return CorporationApiFp(this.configuration)
       .getCorporationsCorporationIdStarbases(
-        corporationId,
-        datasource,
-        ifNoneMatch,
-        page,
-        token,
+        requestParameters.corporationId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.page,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -27110,33 +29498,23 @@ export class CorporationApi extends BaseAPI {
   /**
    * Returns various settings and fuels of a starbase (POS)  --- Alternate route: `/dev/corporations/{corporation_id}/starbases/{starbase_id}/`  Alternate route: `/v2/corporations/{corporation_id}/starbases/{starbase_id}/`  --- This route is cached for up to 3600 seconds  --- Requires one of the following EVE corporation role(s): Director
    * @summary Get starbase (POS) detail
-   * @param {number} corporationId An EVE corporation ID
-   * @param {number} starbaseId An EVE starbase (POS) ID
-   * @param {number} systemId The solar system this starbase (POS) is located in,
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {CorporationApiGetCorporationsCorporationIdStarbasesStarbaseIdRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CorporationApi
    */
   public getCorporationsCorporationIdStarbasesStarbaseId(
-    corporationId: number,
-    starbaseId: number,
-    systemId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: CorporationApiGetCorporationsCorporationIdStarbasesStarbaseIdRequest,
     options?: AxiosRequestConfig
   ) {
     return CorporationApiFp(this.configuration)
       .getCorporationsCorporationIdStarbasesStarbaseId(
-        corporationId,
-        starbaseId,
-        systemId,
-        datasource,
-        ifNoneMatch,
-        token,
+        requestParameters.corporationId,
+        requestParameters.starbaseId,
+        requestParameters.systemId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -27145,45 +29523,24 @@ export class CorporationApi extends BaseAPI {
   /**
    * Get a list of corporation structures. This route\'s version includes the changes to structures detailed in this blog: https://www.eveonline.com/article/upwell-2.0-structures-changes-coming-on-february-13th  --- Alternate route: `/dev/corporations/{corporation_id}/structures/`  Alternate route: `/v4/corporations/{corporation_id}/structures/`  --- This route is cached for up to 3600 seconds  --- Requires one of the following EVE corporation role(s): Station_Manager
    * @summary Get corporation structures
-   * @param {number} corporationId An EVE corporation ID
-   * @param {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'} [acceptLanguage] Language to use in the response
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'} [language] Language to use in the response, takes precedence over Accept-Language
-   * @param {number} [page] Which page of results to return
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {CorporationApiGetCorporationsCorporationIdStructuresRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CorporationApi
    */
   public getCorporationsCorporationIdStructures(
-    corporationId: number,
-    acceptLanguage?:
-      | "en"
-      | "en-us"
-      | "de"
-      | "fr"
-      | "ja"
-      | "ru"
-      | "zh"
-      | "ko"
-      | "es",
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    language?: "en" | "en-us" | "de" | "fr" | "ja" | "ru" | "zh" | "ko" | "es",
-    page?: number,
-    token?: string,
+    requestParameters: CorporationApiGetCorporationsCorporationIdStructuresRequest,
     options?: AxiosRequestConfig
   ) {
     return CorporationApiFp(this.configuration)
       .getCorporationsCorporationIdStructures(
-        corporationId,
-        acceptLanguage,
-        datasource,
-        ifNoneMatch,
-        language,
-        page,
-        token,
+        requestParameters.corporationId,
+        requestParameters.acceptLanguage,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.language,
+        requestParameters.page,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -27192,27 +29549,21 @@ export class CorporationApi extends BaseAPI {
   /**
    * Returns a corporation\'s titles  --- Alternate route: `/dev/corporations/{corporation_id}/titles/`  Alternate route: `/v2/corporations/{corporation_id}/titles/`  --- This route is cached for up to 3600 seconds  --- Requires one of the following EVE corporation role(s): Director
    * @summary Get corporation titles
-   * @param {number} corporationId An EVE corporation ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {CorporationApiGetCorporationsCorporationIdTitlesRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CorporationApi
    */
   public getCorporationsCorporationIdTitles(
-    corporationId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: CorporationApiGetCorporationsCorporationIdTitlesRequest,
     options?: AxiosRequestConfig
   ) {
     return CorporationApiFp(this.configuration)
       .getCorporationsCorporationIdTitles(
-        corporationId,
-        datasource,
-        ifNoneMatch,
-        token,
+        requestParameters.corporationId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -27221,19 +29572,21 @@ export class CorporationApi extends BaseAPI {
   /**
    * Get a list of npc corporations  --- Alternate route: `/dev/corporations/npccorps/`  Alternate route: `/v2/corporations/npccorps/`  --- This route expires daily at 11:05
    * @summary Get npc corporations
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {CorporationApiGetCorporationsNpccorpsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof CorporationApi
    */
   public getCorporationsNpccorps(
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: CorporationApiGetCorporationsNpccorpsRequest = {},
     options?: AxiosRequestConfig
   ) {
     return CorporationApiFp(this.configuration)
-      .getCorporationsNpccorps(datasource, ifNoneMatch, options)
+      .getCorporationsNpccorps(
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 }
@@ -27821,6 +30174,139 @@ export const DogmaApiFactory = function (
 };
 
 /**
+ * Request parameters for getDogmaAttributes operation in DogmaApi.
+ * @export
+ * @interface DogmaApiGetDogmaAttributesRequest
+ */
+export interface DogmaApiGetDogmaAttributesRequest {
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof DogmaApiGetDogmaAttributes
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof DogmaApiGetDogmaAttributes
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
+ * Request parameters for getDogmaAttributesAttributeId operation in DogmaApi.
+ * @export
+ * @interface DogmaApiGetDogmaAttributesAttributeIdRequest
+ */
+export interface DogmaApiGetDogmaAttributesAttributeIdRequest {
+  /**
+   * A dogma attribute ID
+   * @type {number}
+   * @memberof DogmaApiGetDogmaAttributesAttributeId
+   */
+  readonly attributeId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof DogmaApiGetDogmaAttributesAttributeId
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof DogmaApiGetDogmaAttributesAttributeId
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
+ * Request parameters for getDogmaDynamicItemsTypeIdItemId operation in DogmaApi.
+ * @export
+ * @interface DogmaApiGetDogmaDynamicItemsTypeIdItemIdRequest
+ */
+export interface DogmaApiGetDogmaDynamicItemsTypeIdItemIdRequest {
+  /**
+   * item_id integer
+   * @type {number}
+   * @memberof DogmaApiGetDogmaDynamicItemsTypeIdItemId
+   */
+  readonly itemId: number;
+
+  /**
+   * type_id integer
+   * @type {number}
+   * @memberof DogmaApiGetDogmaDynamicItemsTypeIdItemId
+   */
+  readonly typeId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof DogmaApiGetDogmaDynamicItemsTypeIdItemId
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof DogmaApiGetDogmaDynamicItemsTypeIdItemId
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
+ * Request parameters for getDogmaEffects operation in DogmaApi.
+ * @export
+ * @interface DogmaApiGetDogmaEffectsRequest
+ */
+export interface DogmaApiGetDogmaEffectsRequest {
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof DogmaApiGetDogmaEffects
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof DogmaApiGetDogmaEffects
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
+ * Request parameters for getDogmaEffectsEffectId operation in DogmaApi.
+ * @export
+ * @interface DogmaApiGetDogmaEffectsEffectIdRequest
+ */
+export interface DogmaApiGetDogmaEffectsEffectIdRequest {
+  /**
+   * A dogma effect ID
+   * @type {number}
+   * @memberof DogmaApiGetDogmaEffectsEffectId
+   */
+  readonly effectId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof DogmaApiGetDogmaEffectsEffectId
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof DogmaApiGetDogmaEffectsEffectId
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
  * DogmaApi - object-oriented interface
  * @export
  * @class DogmaApi
@@ -27830,43 +30316,41 @@ export class DogmaApi extends BaseAPI {
   /**
    * Get a list of dogma attribute ids  --- Alternate route: `/dev/dogma/attributes/`  Alternate route: `/legacy/dogma/attributes/`  Alternate route: `/v1/dogma/attributes/`  --- This route expires daily at 11:05
    * @summary Get attributes
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {DogmaApiGetDogmaAttributesRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof DogmaApi
    */
   public getDogmaAttributes(
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: DogmaApiGetDogmaAttributesRequest = {},
     options?: AxiosRequestConfig
   ) {
     return DogmaApiFp(this.configuration)
-      .getDogmaAttributes(datasource, ifNoneMatch, options)
+      .getDogmaAttributes(
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Get information on a dogma attribute  --- Alternate route: `/dev/dogma/attributes/{attribute_id}/`  Alternate route: `/legacy/dogma/attributes/{attribute_id}/`  Alternate route: `/v1/dogma/attributes/{attribute_id}/`  --- This route expires daily at 11:05
    * @summary Get attribute information
-   * @param {number} attributeId A dogma attribute ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {DogmaApiGetDogmaAttributesAttributeIdRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof DogmaApi
    */
   public getDogmaAttributesAttributeId(
-    attributeId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: DogmaApiGetDogmaAttributesAttributeIdRequest,
     options?: AxiosRequestConfig
   ) {
     return DogmaApiFp(this.configuration)
       .getDogmaAttributesAttributeId(
-        attributeId,
-        datasource,
-        ifNoneMatch,
+        requestParameters.attributeId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -27875,27 +30359,21 @@ export class DogmaApi extends BaseAPI {
   /**
    * Returns info about a dynamic item resulting from mutation with a mutaplasmid.  --- Alternate route: `/dev/dogma/dynamic/items/{type_id}/{item_id}/`  Alternate route: `/legacy/dogma/dynamic/items/{type_id}/{item_id}/`  Alternate route: `/v1/dogma/dynamic/items/{type_id}/{item_id}/`  --- This route expires daily at 11:05
    * @summary Get dynamic item information
-   * @param {number} itemId item_id integer
-   * @param {number} typeId type_id integer
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {DogmaApiGetDogmaDynamicItemsTypeIdItemIdRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof DogmaApi
    */
   public getDogmaDynamicItemsTypeIdItemId(
-    itemId: number,
-    typeId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: DogmaApiGetDogmaDynamicItemsTypeIdItemIdRequest,
     options?: AxiosRequestConfig
   ) {
     return DogmaApiFp(this.configuration)
       .getDogmaDynamicItemsTypeIdItemId(
-        itemId,
-        typeId,
-        datasource,
-        ifNoneMatch,
+        requestParameters.itemId,
+        requestParameters.typeId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -27904,40 +30382,43 @@ export class DogmaApi extends BaseAPI {
   /**
    * Get a list of dogma effect ids  --- Alternate route: `/dev/dogma/effects/`  Alternate route: `/legacy/dogma/effects/`  Alternate route: `/v1/dogma/effects/`  --- This route expires daily at 11:05
    * @summary Get effects
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {DogmaApiGetDogmaEffectsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof DogmaApi
    */
   public getDogmaEffects(
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: DogmaApiGetDogmaEffectsRequest = {},
     options?: AxiosRequestConfig
   ) {
     return DogmaApiFp(this.configuration)
-      .getDogmaEffects(datasource, ifNoneMatch, options)
+      .getDogmaEffects(
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Get information on a dogma effect  --- Alternate route: `/dev/dogma/effects/{effect_id}/`  Alternate route: `/v2/dogma/effects/{effect_id}/`  --- This route expires daily at 11:05
    * @summary Get effect information
-   * @param {number} effectId A dogma effect ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {DogmaApiGetDogmaEffectsEffectIdRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof DogmaApi
    */
   public getDogmaEffectsEffectId(
-    effectId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: DogmaApiGetDogmaEffectsEffectIdRequest,
     options?: AxiosRequestConfig
   ) {
     return DogmaApiFp(this.configuration)
-      .getDogmaEffectsEffectId(effectId, datasource, ifNoneMatch, options)
+      .getDogmaEffectsEffectId(
+        requestParameters.effectId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 }
@@ -28852,6 +31333,202 @@ export const FactionWarfareApiFactory = function (
 };
 
 /**
+ * Request parameters for getCharacterCharacterFwStats operation in FactionWarfareApi.
+ * @export
+ * @interface FactionWarfareApiGetCharacterCharacterFwStatsRequest
+ */
+export interface FactionWarfareApiGetCharacterCharacterFwStatsRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof FactionWarfareApiGetCharacterCharacterFwStats
+   */
+  readonly characterId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof FactionWarfareApiGetCharacterCharacterFwStats
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof FactionWarfareApiGetCharacterCharacterFwStats
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof FactionWarfareApiGetCharacterCharacterFwStats
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCorporationsCorporationIdFwStats operation in FactionWarfareApi.
+ * @export
+ * @interface FactionWarfareApiGetCorporationsCorporationIdFwStatsRequest
+ */
+export interface FactionWarfareApiGetCorporationsCorporationIdFwStatsRequest {
+  /**
+   * An EVE corporation ID
+   * @type {number}
+   * @memberof FactionWarfareApiGetCorporationsCorporationIdFwStats
+   */
+  readonly corporationId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof FactionWarfareApiGetCorporationsCorporationIdFwStats
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof FactionWarfareApiGetCorporationsCorporationIdFwStats
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof FactionWarfareApiGetCorporationsCorporationIdFwStats
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getFwLeaderboards operation in FactionWarfareApi.
+ * @export
+ * @interface FactionWarfareApiGetFwLeaderboardsRequest
+ */
+export interface FactionWarfareApiGetFwLeaderboardsRequest {
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof FactionWarfareApiGetFwLeaderboards
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof FactionWarfareApiGetFwLeaderboards
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
+ * Request parameters for getFwLeaderboardsCharacters operation in FactionWarfareApi.
+ * @export
+ * @interface FactionWarfareApiGetFwLeaderboardsCharactersRequest
+ */
+export interface FactionWarfareApiGetFwLeaderboardsCharactersRequest {
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof FactionWarfareApiGetFwLeaderboardsCharacters
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof FactionWarfareApiGetFwLeaderboardsCharacters
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
+ * Request parameters for getFwLeaderboardsCorporations operation in FactionWarfareApi.
+ * @export
+ * @interface FactionWarfareApiGetFwLeaderboardsCorporationsRequest
+ */
+export interface FactionWarfareApiGetFwLeaderboardsCorporationsRequest {
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof FactionWarfareApiGetFwLeaderboardsCorporations
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof FactionWarfareApiGetFwLeaderboardsCorporations
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
+ * Request parameters for getFwStats operation in FactionWarfareApi.
+ * @export
+ * @interface FactionWarfareApiGetFwStatsRequest
+ */
+export interface FactionWarfareApiGetFwStatsRequest {
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof FactionWarfareApiGetFwStats
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof FactionWarfareApiGetFwStats
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
+ * Request parameters for getFwSystems operation in FactionWarfareApi.
+ * @export
+ * @interface FactionWarfareApiGetFwSystemsRequest
+ */
+export interface FactionWarfareApiGetFwSystemsRequest {
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof FactionWarfareApiGetFwSystems
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof FactionWarfareApiGetFwSystems
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
+ * Request parameters for getFwWars operation in FactionWarfareApi.
+ * @export
+ * @interface FactionWarfareApiGetFwWarsRequest
+ */
+export interface FactionWarfareApiGetFwWarsRequest {
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof FactionWarfareApiGetFwWars
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof FactionWarfareApiGetFwWars
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
  * FactionWarfareApi - object-oriented interface
  * @export
  * @class FactionWarfareApi
@@ -28861,27 +31538,21 @@ export class FactionWarfareApi extends BaseAPI {
   /**
    * Statistical overview of a character involved in faction warfare  --- Alternate route: `/dev/characters/{character_id}/fw/stats/`  Alternate route: `/legacy/characters/{character_id}/fw/stats/`  Alternate route: `/v1/characters/{character_id}/fw/stats/`  Alternate route: `/v2/characters/{character_id}/fw/stats/`  --- This route expires daily at 11:05
    * @summary Overview of a character involved in faction warfare
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {FactionWarfareApiGetCharacterCharacterFwStatsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof FactionWarfareApi
    */
   public getCharacterCharacterFwStats(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: FactionWarfareApiGetCharacterCharacterFwStatsRequest,
     options?: AxiosRequestConfig
   ) {
     return FactionWarfareApiFp(this.configuration)
       .getCharacterCharacterFwStats(
-        characterId,
-        datasource,
-        ifNoneMatch,
-        token,
+        requestParameters.characterId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -28890,27 +31561,21 @@ export class FactionWarfareApi extends BaseAPI {
   /**
    * Statistics about a corporation involved in faction warfare  --- Alternate route: `/dev/corporations/{corporation_id}/fw/stats/`  Alternate route: `/legacy/corporations/{corporation_id}/fw/stats/`  Alternate route: `/v1/corporations/{corporation_id}/fw/stats/`  Alternate route: `/v2/corporations/{corporation_id}/fw/stats/`  --- This route expires daily at 11:05
    * @summary Overview of a corporation involved in faction warfare
-   * @param {number} corporationId An EVE corporation ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {FactionWarfareApiGetCorporationsCorporationIdFwStatsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof FactionWarfareApi
    */
   public getCorporationsCorporationIdFwStats(
-    corporationId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: FactionWarfareApiGetCorporationsCorporationIdFwStatsRequest,
     options?: AxiosRequestConfig
   ) {
     return FactionWarfareApiFp(this.configuration)
       .getCorporationsCorporationIdFwStats(
-        corporationId,
-        datasource,
-        ifNoneMatch,
-        token,
+        requestParameters.corporationId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -28919,114 +31584,126 @@ export class FactionWarfareApi extends BaseAPI {
   /**
    * Top 4 leaderboard of factions for kills and victory points separated by total, last week and yesterday  --- Alternate route: `/dev/fw/leaderboards/`  Alternate route: `/legacy/fw/leaderboards/`  Alternate route: `/v1/fw/leaderboards/`  Alternate route: `/v2/fw/leaderboards/`  --- This route expires daily at 11:05
    * @summary List of the top factions in faction warfare
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {FactionWarfareApiGetFwLeaderboardsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof FactionWarfareApi
    */
   public getFwLeaderboards(
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: FactionWarfareApiGetFwLeaderboardsRequest = {},
     options?: AxiosRequestConfig
   ) {
     return FactionWarfareApiFp(this.configuration)
-      .getFwLeaderboards(datasource, ifNoneMatch, options)
+      .getFwLeaderboards(
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Top 100 leaderboard of pilots for kills and victory points separated by total, last week and yesterday  --- Alternate route: `/dev/fw/leaderboards/characters/`  Alternate route: `/legacy/fw/leaderboards/characters/`  Alternate route: `/v1/fw/leaderboards/characters/`  Alternate route: `/v2/fw/leaderboards/characters/`  --- This route expires daily at 11:05
    * @summary List of the top pilots in faction warfare
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {FactionWarfareApiGetFwLeaderboardsCharactersRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof FactionWarfareApi
    */
   public getFwLeaderboardsCharacters(
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: FactionWarfareApiGetFwLeaderboardsCharactersRequest = {},
     options?: AxiosRequestConfig
   ) {
     return FactionWarfareApiFp(this.configuration)
-      .getFwLeaderboardsCharacters(datasource, ifNoneMatch, options)
+      .getFwLeaderboardsCharacters(
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Top 10 leaderboard of corporations for kills and victory points separated by total, last week and yesterday  --- Alternate route: `/dev/fw/leaderboards/corporations/`  Alternate route: `/legacy/fw/leaderboards/corporations/`  Alternate route: `/v1/fw/leaderboards/corporations/`  Alternate route: `/v2/fw/leaderboards/corporations/`  --- This route expires daily at 11:05
    * @summary List of the top corporations in faction warfare
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {FactionWarfareApiGetFwLeaderboardsCorporationsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof FactionWarfareApi
    */
   public getFwLeaderboardsCorporations(
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: FactionWarfareApiGetFwLeaderboardsCorporationsRequest = {},
     options?: AxiosRequestConfig
   ) {
     return FactionWarfareApiFp(this.configuration)
-      .getFwLeaderboardsCorporations(datasource, ifNoneMatch, options)
+      .getFwLeaderboardsCorporations(
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Statistical overviews of factions involved in faction warfare  --- Alternate route: `/dev/fw/stats/`  Alternate route: `/legacy/fw/stats/`  Alternate route: `/v1/fw/stats/`  Alternate route: `/v2/fw/stats/`  --- This route expires daily at 11:05
    * @summary An overview of statistics about factions involved in faction warfare
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {FactionWarfareApiGetFwStatsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof FactionWarfareApi
    */
   public getFwStats(
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: FactionWarfareApiGetFwStatsRequest = {},
     options?: AxiosRequestConfig
   ) {
     return FactionWarfareApiFp(this.configuration)
-      .getFwStats(datasource, ifNoneMatch, options)
+      .getFwStats(
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * An overview of the current ownership of faction warfare solar systems  --- Alternate route: `/dev/fw/systems/`  Alternate route: `/legacy/fw/systems/`  Alternate route: `/v2/fw/systems/`  Alternate route: `/v3/fw/systems/`  --- This route is cached for up to 1800 seconds
    * @summary Ownership of faction warfare systems
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {FactionWarfareApiGetFwSystemsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof FactionWarfareApi
    */
   public getFwSystems(
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: FactionWarfareApiGetFwSystemsRequest = {},
     options?: AxiosRequestConfig
   ) {
     return FactionWarfareApiFp(this.configuration)
-      .getFwSystems(datasource, ifNoneMatch, options)
+      .getFwSystems(
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Data about which NPC factions are at war  --- Alternate route: `/dev/fw/wars/`  Alternate route: `/legacy/fw/wars/`  Alternate route: `/v1/fw/wars/`  Alternate route: `/v2/fw/wars/`  --- This route expires daily at 11:05
    * @summary Data about which NPC factions are at war
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {FactionWarfareApiGetFwWarsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof FactionWarfareApi
    */
   public getFwWars(
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: FactionWarfareApiGetFwWarsRequest = {},
     options?: AxiosRequestConfig
   ) {
     return FactionWarfareApiFp(this.configuration)
-      .getFwWars(datasource, ifNoneMatch, options)
+      .getFwWars(
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 }
@@ -29471,6 +32148,111 @@ export const FittingsApiFactory = function (
 };
 
 /**
+ * Request parameters for addCharacterFitting operation in FittingsApi.
+ * @export
+ * @interface FittingsApiAddCharacterFittingRequest
+ */
+export interface FittingsApiAddCharacterFittingRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof FittingsApiAddCharacterFitting
+   */
+  readonly characterId: number;
+
+  /**
+   * Details about the new fitting
+   * @type {PostCharactersCharacterIdFittingsFitting}
+   * @memberof FittingsApiAddCharacterFitting
+   */
+  readonly fitting: PostCharactersCharacterIdFittingsFitting;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof FittingsApiAddCharacterFitting
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof FittingsApiAddCharacterFitting
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for deleteCharacterFitting operation in FittingsApi.
+ * @export
+ * @interface FittingsApiDeleteCharacterFittingRequest
+ */
+export interface FittingsApiDeleteCharacterFittingRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof FittingsApiDeleteCharacterFitting
+   */
+  readonly characterId: number;
+
+  /**
+   * ID for a fitting of this character
+   * @type {number}
+   * @memberof FittingsApiDeleteCharacterFitting
+   */
+  readonly fittingId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof FittingsApiDeleteCharacterFitting
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof FittingsApiDeleteCharacterFitting
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCharacterFittings operation in FittingsApi.
+ * @export
+ * @interface FittingsApiGetCharacterFittingsRequest
+ */
+export interface FittingsApiGetCharacterFittingsRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof FittingsApiGetCharacterFittings
+   */
+  readonly characterId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof FittingsApiGetCharacterFittings
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof FittingsApiGetCharacterFittings
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof FittingsApiGetCharacterFittings
+   */
+  readonly token?: string;
+}
+
+/**
  * FittingsApi - object-oriented interface
  * @export
  * @class FittingsApi
@@ -29480,50 +32262,44 @@ export class FittingsApi extends BaseAPI {
   /**
    * Save a new fitting for a character  --- Alternate route: `/dev/characters/{character_id}/fittings/`  Alternate route: `/v2/characters/{character_id}/fittings/`
    * @summary Create fitting
-   * @param {number} characterId An EVE character ID
-   * @param {PostCharactersCharacterIdFittingsFitting} fitting Details about the new fitting
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {FittingsApiAddCharacterFittingRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof FittingsApi
    */
   public addCharacterFitting(
-    characterId: number,
-    fitting: PostCharactersCharacterIdFittingsFitting,
-    datasource?: "tranquility",
-    token?: string,
+    requestParameters: FittingsApiAddCharacterFittingRequest,
     options?: AxiosRequestConfig
   ) {
     return FittingsApiFp(this.configuration)
-      .addCharacterFitting(characterId, fitting, datasource, token, options)
+      .addCharacterFitting(
+        requestParameters.characterId,
+        requestParameters.fitting,
+        requestParameters.datasource,
+        requestParameters.token,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Delete a fitting from a character  --- Alternate route: `/dev/characters/{character_id}/fittings/{fitting_id}/`  Alternate route: `/legacy/characters/{character_id}/fittings/{fitting_id}/`  Alternate route: `/v1/characters/{character_id}/fittings/{fitting_id}/`
    * @summary Delete fitting
-   * @param {number} characterId An EVE character ID
-   * @param {number} fittingId ID for a fitting of this character
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {FittingsApiDeleteCharacterFittingRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof FittingsApi
    */
   public deleteCharacterFitting(
-    characterId: number,
-    fittingId: number,
-    datasource?: "tranquility",
-    token?: string,
+    requestParameters: FittingsApiDeleteCharacterFittingRequest,
     options?: AxiosRequestConfig
   ) {
     return FittingsApiFp(this.configuration)
       .deleteCharacterFitting(
-        characterId,
-        fittingId,
-        datasource,
-        token,
+        requestParameters.characterId,
+        requestParameters.fittingId,
+        requestParameters.datasource,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -29532,27 +32308,21 @@ export class FittingsApi extends BaseAPI {
   /**
    * Return fittings of a character  --- Alternate route: `/dev/characters/{character_id}/fittings/`  Alternate route: `/v2/characters/{character_id}/fittings/`  --- This route is cached for up to 300 seconds
    * @summary Get fittings
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {FittingsApiGetCharacterFittingsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof FittingsApi
    */
   public getCharacterFittings(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: FittingsApiGetCharacterFittingsRequest,
     options?: AxiosRequestConfig
   ) {
     return FittingsApiFp(this.configuration)
       .getCharacterFittings(
-        characterId,
-        datasource,
-        ifNoneMatch,
-        token,
+        requestParameters.characterId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -31670,6 +34440,574 @@ export const FleetsApiFactory = function (
 };
 
 /**
+ * Request parameters for deleteFleetsFleetIdMembersMemberId operation in FleetsApi.
+ * @export
+ * @interface FleetsApiDeleteFleetsFleetIdMembersMemberIdRequest
+ */
+export interface FleetsApiDeleteFleetsFleetIdMembersMemberIdRequest {
+  /**
+   * ID for a fleet
+   * @type {number}
+   * @memberof FleetsApiDeleteFleetsFleetIdMembersMemberId
+   */
+  readonly fleetId: number;
+
+  /**
+   * The character ID of a member in this fleet
+   * @type {number}
+   * @memberof FleetsApiDeleteFleetsFleetIdMembersMemberId
+   */
+  readonly memberId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof FleetsApiDeleteFleetsFleetIdMembersMemberId
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof FleetsApiDeleteFleetsFleetIdMembersMemberId
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for deleteFleetsFleetIdSquadsSquadId operation in FleetsApi.
+ * @export
+ * @interface FleetsApiDeleteFleetsFleetIdSquadsSquadIdRequest
+ */
+export interface FleetsApiDeleteFleetsFleetIdSquadsSquadIdRequest {
+  /**
+   * ID for a fleet
+   * @type {number}
+   * @memberof FleetsApiDeleteFleetsFleetIdSquadsSquadId
+   */
+  readonly fleetId: number;
+
+  /**
+   * The squad to delete
+   * @type {number}
+   * @memberof FleetsApiDeleteFleetsFleetIdSquadsSquadId
+   */
+  readonly squadId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof FleetsApiDeleteFleetsFleetIdSquadsSquadId
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof FleetsApiDeleteFleetsFleetIdSquadsSquadId
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for deleteFleetsFleetIdWingsWingId operation in FleetsApi.
+ * @export
+ * @interface FleetsApiDeleteFleetsFleetIdWingsWingIdRequest
+ */
+export interface FleetsApiDeleteFleetsFleetIdWingsWingIdRequest {
+  /**
+   * ID for a fleet
+   * @type {number}
+   * @memberof FleetsApiDeleteFleetsFleetIdWingsWingId
+   */
+  readonly fleetId: number;
+
+  /**
+   * The wing to delete
+   * @type {number}
+   * @memberof FleetsApiDeleteFleetsFleetIdWingsWingId
+   */
+  readonly wingId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof FleetsApiDeleteFleetsFleetIdWingsWingId
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof FleetsApiDeleteFleetsFleetIdWingsWingId
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCharacterFleet operation in FleetsApi.
+ * @export
+ * @interface FleetsApiGetCharacterFleetRequest
+ */
+export interface FleetsApiGetCharacterFleetRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof FleetsApiGetCharacterFleet
+   */
+  readonly characterId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof FleetsApiGetCharacterFleet
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof FleetsApiGetCharacterFleet
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof FleetsApiGetCharacterFleet
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getFleetsFleetId operation in FleetsApi.
+ * @export
+ * @interface FleetsApiGetFleetsFleetIdRequest
+ */
+export interface FleetsApiGetFleetsFleetIdRequest {
+  /**
+   * ID for a fleet
+   * @type {number}
+   * @memberof FleetsApiGetFleetsFleetId
+   */
+  readonly fleetId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof FleetsApiGetFleetsFleetId
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof FleetsApiGetFleetsFleetId
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof FleetsApiGetFleetsFleetId
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getFleetsFleetIdMembers operation in FleetsApi.
+ * @export
+ * @interface FleetsApiGetFleetsFleetIdMembersRequest
+ */
+export interface FleetsApiGetFleetsFleetIdMembersRequest {
+  /**
+   * ID for a fleet
+   * @type {number}
+   * @memberof FleetsApiGetFleetsFleetIdMembers
+   */
+  readonly fleetId: number;
+
+  /**
+   * Language to use in the response
+   * @type {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'}
+   * @memberof FleetsApiGetFleetsFleetIdMembers
+   */
+  readonly acceptLanguage?:
+    | "en"
+    | "en-us"
+    | "de"
+    | "fr"
+    | "ja"
+    | "ru"
+    | "zh"
+    | "ko"
+    | "es";
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof FleetsApiGetFleetsFleetIdMembers
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof FleetsApiGetFleetsFleetIdMembers
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Language to use in the response, takes precedence over Accept-Language
+   * @type {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'}
+   * @memberof FleetsApiGetFleetsFleetIdMembers
+   */
+  readonly language?:
+    | "en"
+    | "en-us"
+    | "de"
+    | "fr"
+    | "ja"
+    | "ru"
+    | "zh"
+    | "ko"
+    | "es";
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof FleetsApiGetFleetsFleetIdMembers
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getFleetsFleetIdWings operation in FleetsApi.
+ * @export
+ * @interface FleetsApiGetFleetsFleetIdWingsRequest
+ */
+export interface FleetsApiGetFleetsFleetIdWingsRequest {
+  /**
+   * ID for a fleet
+   * @type {number}
+   * @memberof FleetsApiGetFleetsFleetIdWings
+   */
+  readonly fleetId: number;
+
+  /**
+   * Language to use in the response
+   * @type {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'}
+   * @memberof FleetsApiGetFleetsFleetIdWings
+   */
+  readonly acceptLanguage?:
+    | "en"
+    | "en-us"
+    | "de"
+    | "fr"
+    | "ja"
+    | "ru"
+    | "zh"
+    | "ko"
+    | "es";
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof FleetsApiGetFleetsFleetIdWings
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof FleetsApiGetFleetsFleetIdWings
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Language to use in the response, takes precedence over Accept-Language
+   * @type {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'}
+   * @memberof FleetsApiGetFleetsFleetIdWings
+   */
+  readonly language?:
+    | "en"
+    | "en-us"
+    | "de"
+    | "fr"
+    | "ja"
+    | "ru"
+    | "zh"
+    | "ko"
+    | "es";
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof FleetsApiGetFleetsFleetIdWings
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for postFleetsFleetIdMembers operation in FleetsApi.
+ * @export
+ * @interface FleetsApiPostFleetsFleetIdMembersRequest
+ */
+export interface FleetsApiPostFleetsFleetIdMembersRequest {
+  /**
+   * ID for a fleet
+   * @type {number}
+   * @memberof FleetsApiPostFleetsFleetIdMembers
+   */
+  readonly fleetId: number;
+
+  /**
+   * Details of the invitation
+   * @type {PostFleetsFleetIdMembersInvitation}
+   * @memberof FleetsApiPostFleetsFleetIdMembers
+   */
+  readonly invitation: PostFleetsFleetIdMembersInvitation;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof FleetsApiPostFleetsFleetIdMembers
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof FleetsApiPostFleetsFleetIdMembers
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for postFleetsFleetIdWings operation in FleetsApi.
+ * @export
+ * @interface FleetsApiPostFleetsFleetIdWingsRequest
+ */
+export interface FleetsApiPostFleetsFleetIdWingsRequest {
+  /**
+   * ID for a fleet
+   * @type {number}
+   * @memberof FleetsApiPostFleetsFleetIdWings
+   */
+  readonly fleetId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof FleetsApiPostFleetsFleetIdWings
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof FleetsApiPostFleetsFleetIdWings
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for postFleetsFleetIdWingsWingIdSquads operation in FleetsApi.
+ * @export
+ * @interface FleetsApiPostFleetsFleetIdWingsWingIdSquadsRequest
+ */
+export interface FleetsApiPostFleetsFleetIdWingsWingIdSquadsRequest {
+  /**
+   * ID for a fleet
+   * @type {number}
+   * @memberof FleetsApiPostFleetsFleetIdWingsWingIdSquads
+   */
+  readonly fleetId: number;
+
+  /**
+   * The wing_id to create squad in
+   * @type {number}
+   * @memberof FleetsApiPostFleetsFleetIdWingsWingIdSquads
+   */
+  readonly wingId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof FleetsApiPostFleetsFleetIdWingsWingIdSquads
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof FleetsApiPostFleetsFleetIdWingsWingIdSquads
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for putFleetsFleetId operation in FleetsApi.
+ * @export
+ * @interface FleetsApiPutFleetsFleetIdRequest
+ */
+export interface FleetsApiPutFleetsFleetIdRequest {
+  /**
+   * ID for a fleet
+   * @type {number}
+   * @memberof FleetsApiPutFleetsFleetId
+   */
+  readonly fleetId: number;
+
+  /**
+   * What to update for this fleet
+   * @type {PutFleetsFleetIdNewSettings}
+   * @memberof FleetsApiPutFleetsFleetId
+   */
+  readonly newSettings: PutFleetsFleetIdNewSettings;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof FleetsApiPutFleetsFleetId
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof FleetsApiPutFleetsFleetId
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for putFleetsFleetIdMembersMemberId operation in FleetsApi.
+ * @export
+ * @interface FleetsApiPutFleetsFleetIdMembersMemberIdRequest
+ */
+export interface FleetsApiPutFleetsFleetIdMembersMemberIdRequest {
+  /**
+   * ID for a fleet
+   * @type {number}
+   * @memberof FleetsApiPutFleetsFleetIdMembersMemberId
+   */
+  readonly fleetId: number;
+
+  /**
+   * The character ID of a member in this fleet
+   * @type {number}
+   * @memberof FleetsApiPutFleetsFleetIdMembersMemberId
+   */
+  readonly memberId: number;
+
+  /**
+   * Details of the invitation
+   * @type {PutFleetsFleetIdMembersMemberIdMovement}
+   * @memberof FleetsApiPutFleetsFleetIdMembersMemberId
+   */
+  readonly movement: PutFleetsFleetIdMembersMemberIdMovement;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof FleetsApiPutFleetsFleetIdMembersMemberId
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof FleetsApiPutFleetsFleetIdMembersMemberId
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for putFleetsFleetIdSquadsSquadId operation in FleetsApi.
+ * @export
+ * @interface FleetsApiPutFleetsFleetIdSquadsSquadIdRequest
+ */
+export interface FleetsApiPutFleetsFleetIdSquadsSquadIdRequest {
+  /**
+   * ID for a fleet
+   * @type {number}
+   * @memberof FleetsApiPutFleetsFleetIdSquadsSquadId
+   */
+  readonly fleetId: number;
+
+  /**
+   * The squad to rename
+   * @type {number}
+   * @memberof FleetsApiPutFleetsFleetIdSquadsSquadId
+   */
+  readonly squadId: number;
+
+  /**
+   * New name of the squad
+   * @type {PutFleetsFleetIdSquadsSquadIdNaming}
+   * @memberof FleetsApiPutFleetsFleetIdSquadsSquadId
+   */
+  readonly naming: PutFleetsFleetIdSquadsSquadIdNaming;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof FleetsApiPutFleetsFleetIdSquadsSquadId
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof FleetsApiPutFleetsFleetIdSquadsSquadId
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for putFleetsFleetIdWingsWingId operation in FleetsApi.
+ * @export
+ * @interface FleetsApiPutFleetsFleetIdWingsWingIdRequest
+ */
+export interface FleetsApiPutFleetsFleetIdWingsWingIdRequest {
+  /**
+   * ID for a fleet
+   * @type {number}
+   * @memberof FleetsApiPutFleetsFleetIdWingsWingId
+   */
+  readonly fleetId: number;
+
+  /**
+   * The wing to rename
+   * @type {number}
+   * @memberof FleetsApiPutFleetsFleetIdWingsWingId
+   */
+  readonly wingId: number;
+
+  /**
+   * New name of the wing
+   * @type {PutFleetsFleetIdWingsWingIdNaming}
+   * @memberof FleetsApiPutFleetsFleetIdWingsWingId
+   */
+  readonly naming: PutFleetsFleetIdWingsWingIdNaming;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof FleetsApiPutFleetsFleetIdWingsWingId
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof FleetsApiPutFleetsFleetIdWingsWingId
+   */
+  readonly token?: string;
+}
+
+/**
  * FleetsApi - object-oriented interface
  * @export
  * @class FleetsApi
@@ -31679,27 +35017,21 @@ export class FleetsApi extends BaseAPI {
   /**
    * Kick a fleet member  --- Alternate route: `/dev/fleets/{fleet_id}/members/{member_id}/`  Alternate route: `/legacy/fleets/{fleet_id}/members/{member_id}/`  Alternate route: `/v1/fleets/{fleet_id}/members/{member_id}/`
    * @summary Kick fleet member
-   * @param {number} fleetId ID for a fleet
-   * @param {number} memberId The character ID of a member in this fleet
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {FleetsApiDeleteFleetsFleetIdMembersMemberIdRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof FleetsApi
    */
   public deleteFleetsFleetIdMembersMemberId(
-    fleetId: number,
-    memberId: number,
-    datasource?: "tranquility",
-    token?: string,
+    requestParameters: FleetsApiDeleteFleetsFleetIdMembersMemberIdRequest,
     options?: AxiosRequestConfig
   ) {
     return FleetsApiFp(this.configuration)
       .deleteFleetsFleetIdMembersMemberId(
-        fleetId,
-        memberId,
-        datasource,
-        token,
+        requestParameters.fleetId,
+        requestParameters.memberId,
+        requestParameters.datasource,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -31708,27 +35040,21 @@ export class FleetsApi extends BaseAPI {
   /**
    * Delete a fleet squad, only empty squads can be deleted  --- Alternate route: `/dev/fleets/{fleet_id}/squads/{squad_id}/`  Alternate route: `/legacy/fleets/{fleet_id}/squads/{squad_id}/`  Alternate route: `/v1/fleets/{fleet_id}/squads/{squad_id}/`
    * @summary Delete fleet squad
-   * @param {number} fleetId ID for a fleet
-   * @param {number} squadId The squad to delete
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {FleetsApiDeleteFleetsFleetIdSquadsSquadIdRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof FleetsApi
    */
   public deleteFleetsFleetIdSquadsSquadId(
-    fleetId: number,
-    squadId: number,
-    datasource?: "tranquility",
-    token?: string,
+    requestParameters: FleetsApiDeleteFleetsFleetIdSquadsSquadIdRequest,
     options?: AxiosRequestConfig
   ) {
     return FleetsApiFp(this.configuration)
       .deleteFleetsFleetIdSquadsSquadId(
-        fleetId,
-        squadId,
-        datasource,
-        token,
+        requestParameters.fleetId,
+        requestParameters.squadId,
+        requestParameters.datasource,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -31737,27 +35063,21 @@ export class FleetsApi extends BaseAPI {
   /**
    * Delete a fleet wing, only empty wings can be deleted. The wing may contain squads, but the squads must be empty  --- Alternate route: `/dev/fleets/{fleet_id}/wings/{wing_id}/`  Alternate route: `/legacy/fleets/{fleet_id}/wings/{wing_id}/`  Alternate route: `/v1/fleets/{fleet_id}/wings/{wing_id}/`
    * @summary Delete fleet wing
-   * @param {number} fleetId ID for a fleet
-   * @param {number} wingId The wing to delete
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {FleetsApiDeleteFleetsFleetIdWingsWingIdRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof FleetsApi
    */
   public deleteFleetsFleetIdWingsWingId(
-    fleetId: number,
-    wingId: number,
-    datasource?: "tranquility",
-    token?: string,
+    requestParameters: FleetsApiDeleteFleetsFleetIdWingsWingIdRequest,
     options?: AxiosRequestConfig
   ) {
     return FleetsApiFp(this.configuration)
       .deleteFleetsFleetIdWingsWingId(
-        fleetId,
-        wingId,
-        datasource,
-        token,
+        requestParameters.fleetId,
+        requestParameters.wingId,
+        requestParameters.datasource,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -31766,88 +35086,69 @@ export class FleetsApi extends BaseAPI {
   /**
    * Return the fleet ID the character is in, if any.  --- Alternate route: `/legacy/characters/{character_id}/fleet/`  Alternate route: `/v1/characters/{character_id}/fleet/`  --- This route is cached for up to 60 seconds  --- Warning: This route has an upgrade available  --- [Diff of the upcoming changes](https://esi.evetech.net/diff/latest/dev/#GET-/characters/{character_id}/fleet/)
    * @summary Get character fleet info
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {FleetsApiGetCharacterFleetRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof FleetsApi
    */
   public getCharacterFleet(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: FleetsApiGetCharacterFleetRequest,
     options?: AxiosRequestConfig
   ) {
     return FleetsApiFp(this.configuration)
-      .getCharacterFleet(characterId, datasource, ifNoneMatch, token, options)
+      .getCharacterFleet(
+        requestParameters.characterId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Return details about a fleet  --- Alternate route: `/dev/fleets/{fleet_id}/`  Alternate route: `/legacy/fleets/{fleet_id}/`  Alternate route: `/v1/fleets/{fleet_id}/`  --- This route is cached for up to 5 seconds
    * @summary Get fleet information
-   * @param {number} fleetId ID for a fleet
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {FleetsApiGetFleetsFleetIdRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof FleetsApi
    */
   public getFleetsFleetId(
-    fleetId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: FleetsApiGetFleetsFleetIdRequest,
     options?: AxiosRequestConfig
   ) {
     return FleetsApiFp(this.configuration)
-      .getFleetsFleetId(fleetId, datasource, ifNoneMatch, token, options)
+      .getFleetsFleetId(
+        requestParameters.fleetId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Return information about fleet members  --- Alternate route: `/dev/fleets/{fleet_id}/members/`  Alternate route: `/legacy/fleets/{fleet_id}/members/`  Alternate route: `/v1/fleets/{fleet_id}/members/`  --- This route is cached for up to 5 seconds
    * @summary Get fleet members
-   * @param {number} fleetId ID for a fleet
-   * @param {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'} [acceptLanguage] Language to use in the response
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'} [language] Language to use in the response, takes precedence over Accept-Language
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {FleetsApiGetFleetsFleetIdMembersRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof FleetsApi
    */
   public getFleetsFleetIdMembers(
-    fleetId: number,
-    acceptLanguage?:
-      | "en"
-      | "en-us"
-      | "de"
-      | "fr"
-      | "ja"
-      | "ru"
-      | "zh"
-      | "ko"
-      | "es",
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    language?: "en" | "en-us" | "de" | "fr" | "ja" | "ru" | "zh" | "ko" | "es",
-    token?: string,
+    requestParameters: FleetsApiGetFleetsFleetIdMembersRequest,
     options?: AxiosRequestConfig
   ) {
     return FleetsApiFp(this.configuration)
       .getFleetsFleetIdMembers(
-        fleetId,
-        acceptLanguage,
-        datasource,
-        ifNoneMatch,
-        language,
-        token,
+        requestParameters.fleetId,
+        requestParameters.acceptLanguage,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.language,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -31856,42 +35157,23 @@ export class FleetsApi extends BaseAPI {
   /**
    * Return information about wings in a fleet  --- Alternate route: `/dev/fleets/{fleet_id}/wings/`  Alternate route: `/legacy/fleets/{fleet_id}/wings/`  Alternate route: `/v1/fleets/{fleet_id}/wings/`  --- This route is cached for up to 5 seconds
    * @summary Get fleet wings
-   * @param {number} fleetId ID for a fleet
-   * @param {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'} [acceptLanguage] Language to use in the response
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'} [language] Language to use in the response, takes precedence over Accept-Language
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {FleetsApiGetFleetsFleetIdWingsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof FleetsApi
    */
   public getFleetsFleetIdWings(
-    fleetId: number,
-    acceptLanguage?:
-      | "en"
-      | "en-us"
-      | "de"
-      | "fr"
-      | "ja"
-      | "ru"
-      | "zh"
-      | "ko"
-      | "es",
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    language?: "en" | "en-us" | "de" | "fr" | "ja" | "ru" | "zh" | "ko" | "es",
-    token?: string,
+    requestParameters: FleetsApiGetFleetsFleetIdWingsRequest,
     options?: AxiosRequestConfig
   ) {
     return FleetsApiFp(this.configuration)
       .getFleetsFleetIdWings(
-        fleetId,
-        acceptLanguage,
-        datasource,
-        ifNoneMatch,
-        language,
-        token,
+        requestParameters.fleetId,
+        requestParameters.acceptLanguage,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.language,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -31900,71 +35182,66 @@ export class FleetsApi extends BaseAPI {
   /**
    * Invite a character into the fleet. If a character has a CSPA charge set it is not possible to invite them to the fleet using ESI  --- Alternate route: `/dev/fleets/{fleet_id}/members/`  Alternate route: `/legacy/fleets/{fleet_id}/members/`  Alternate route: `/v1/fleets/{fleet_id}/members/`
    * @summary Create fleet invitation
-   * @param {number} fleetId ID for a fleet
-   * @param {PostFleetsFleetIdMembersInvitation} invitation Details of the invitation
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {FleetsApiPostFleetsFleetIdMembersRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof FleetsApi
    */
   public postFleetsFleetIdMembers(
-    fleetId: number,
-    invitation: PostFleetsFleetIdMembersInvitation,
-    datasource?: "tranquility",
-    token?: string,
+    requestParameters: FleetsApiPostFleetsFleetIdMembersRequest,
     options?: AxiosRequestConfig
   ) {
     return FleetsApiFp(this.configuration)
-      .postFleetsFleetIdMembers(fleetId, invitation, datasource, token, options)
+      .postFleetsFleetIdMembers(
+        requestParameters.fleetId,
+        requestParameters.invitation,
+        requestParameters.datasource,
+        requestParameters.token,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Create a new wing in a fleet  --- Alternate route: `/dev/fleets/{fleet_id}/wings/`  Alternate route: `/legacy/fleets/{fleet_id}/wings/`  Alternate route: `/v1/fleets/{fleet_id}/wings/`
    * @summary Create fleet wing
-   * @param {number} fleetId ID for a fleet
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {FleetsApiPostFleetsFleetIdWingsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof FleetsApi
    */
   public postFleetsFleetIdWings(
-    fleetId: number,
-    datasource?: "tranquility",
-    token?: string,
+    requestParameters: FleetsApiPostFleetsFleetIdWingsRequest,
     options?: AxiosRequestConfig
   ) {
     return FleetsApiFp(this.configuration)
-      .postFleetsFleetIdWings(fleetId, datasource, token, options)
+      .postFleetsFleetIdWings(
+        requestParameters.fleetId,
+        requestParameters.datasource,
+        requestParameters.token,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Create a new squad in a fleet  --- Alternate route: `/dev/fleets/{fleet_id}/wings/{wing_id}/squads/`  Alternate route: `/legacy/fleets/{fleet_id}/wings/{wing_id}/squads/`  Alternate route: `/v1/fleets/{fleet_id}/wings/{wing_id}/squads/`
    * @summary Create fleet squad
-   * @param {number} fleetId ID for a fleet
-   * @param {number} wingId The wing_id to create squad in
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {FleetsApiPostFleetsFleetIdWingsWingIdSquadsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof FleetsApi
    */
   public postFleetsFleetIdWingsWingIdSquads(
-    fleetId: number,
-    wingId: number,
-    datasource?: "tranquility",
-    token?: string,
+    requestParameters: FleetsApiPostFleetsFleetIdWingsWingIdSquadsRequest,
     options?: AxiosRequestConfig
   ) {
     return FleetsApiFp(this.configuration)
       .postFleetsFleetIdWingsWingIdSquads(
-        fleetId,
-        wingId,
-        datasource,
-        token,
+        requestParameters.fleetId,
+        requestParameters.wingId,
+        requestParameters.datasource,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -31973,53 +35250,45 @@ export class FleetsApi extends BaseAPI {
   /**
    * Update settings about a fleet  --- Alternate route: `/dev/fleets/{fleet_id}/`  Alternate route: `/legacy/fleets/{fleet_id}/`  Alternate route: `/v1/fleets/{fleet_id}/`
    * @summary Update fleet
-   * @param {number} fleetId ID for a fleet
-   * @param {PutFleetsFleetIdNewSettings} newSettings What to update for this fleet
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {FleetsApiPutFleetsFleetIdRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof FleetsApi
    */
   public putFleetsFleetId(
-    fleetId: number,
-    newSettings: PutFleetsFleetIdNewSettings,
-    datasource?: "tranquility",
-    token?: string,
+    requestParameters: FleetsApiPutFleetsFleetIdRequest,
     options?: AxiosRequestConfig
   ) {
     return FleetsApiFp(this.configuration)
-      .putFleetsFleetId(fleetId, newSettings, datasource, token, options)
+      .putFleetsFleetId(
+        requestParameters.fleetId,
+        requestParameters.newSettings,
+        requestParameters.datasource,
+        requestParameters.token,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Move a fleet member around  --- Alternate route: `/dev/fleets/{fleet_id}/members/{member_id}/`  Alternate route: `/legacy/fleets/{fleet_id}/members/{member_id}/`  Alternate route: `/v1/fleets/{fleet_id}/members/{member_id}/`
    * @summary Move fleet member
-   * @param {number} fleetId ID for a fleet
-   * @param {number} memberId The character ID of a member in this fleet
-   * @param {PutFleetsFleetIdMembersMemberIdMovement} movement Details of the invitation
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {FleetsApiPutFleetsFleetIdMembersMemberIdRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof FleetsApi
    */
   public putFleetsFleetIdMembersMemberId(
-    fleetId: number,
-    memberId: number,
-    movement: PutFleetsFleetIdMembersMemberIdMovement,
-    datasource?: "tranquility",
-    token?: string,
+    requestParameters: FleetsApiPutFleetsFleetIdMembersMemberIdRequest,
     options?: AxiosRequestConfig
   ) {
     return FleetsApiFp(this.configuration)
       .putFleetsFleetIdMembersMemberId(
-        fleetId,
-        memberId,
-        movement,
-        datasource,
-        token,
+        requestParameters.fleetId,
+        requestParameters.memberId,
+        requestParameters.movement,
+        requestParameters.datasource,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -32028,30 +35297,22 @@ export class FleetsApi extends BaseAPI {
   /**
    * Rename a fleet squad  --- Alternate route: `/dev/fleets/{fleet_id}/squads/{squad_id}/`  Alternate route: `/legacy/fleets/{fleet_id}/squads/{squad_id}/`  Alternate route: `/v1/fleets/{fleet_id}/squads/{squad_id}/`
    * @summary Rename fleet squad
-   * @param {number} fleetId ID for a fleet
-   * @param {number} squadId The squad to rename
-   * @param {PutFleetsFleetIdSquadsSquadIdNaming} naming New name of the squad
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {FleetsApiPutFleetsFleetIdSquadsSquadIdRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof FleetsApi
    */
   public putFleetsFleetIdSquadsSquadId(
-    fleetId: number,
-    squadId: number,
-    naming: PutFleetsFleetIdSquadsSquadIdNaming,
-    datasource?: "tranquility",
-    token?: string,
+    requestParameters: FleetsApiPutFleetsFleetIdSquadsSquadIdRequest,
     options?: AxiosRequestConfig
   ) {
     return FleetsApiFp(this.configuration)
       .putFleetsFleetIdSquadsSquadId(
-        fleetId,
-        squadId,
-        naming,
-        datasource,
-        token,
+        requestParameters.fleetId,
+        requestParameters.squadId,
+        requestParameters.naming,
+        requestParameters.datasource,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -32060,30 +35321,22 @@ export class FleetsApi extends BaseAPI {
   /**
    * Rename a fleet wing  --- Alternate route: `/dev/fleets/{fleet_id}/wings/{wing_id}/`  Alternate route: `/legacy/fleets/{fleet_id}/wings/{wing_id}/`  Alternate route: `/v1/fleets/{fleet_id}/wings/{wing_id}/`
    * @summary Rename fleet wing
-   * @param {number} fleetId ID for a fleet
-   * @param {number} wingId The wing to rename
-   * @param {PutFleetsFleetIdWingsWingIdNaming} naming New name of the wing
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {FleetsApiPutFleetsFleetIdWingsWingIdRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof FleetsApi
    */
   public putFleetsFleetIdWingsWingId(
-    fleetId: number,
-    wingId: number,
-    naming: PutFleetsFleetIdWingsWingIdNaming,
-    datasource?: "tranquility",
-    token?: string,
+    requestParameters: FleetsApiPutFleetsFleetIdWingsWingIdRequest,
     options?: AxiosRequestConfig
   ) {
     return FleetsApiFp(this.configuration)
       .putFleetsFleetIdWingsWingId(
-        fleetId,
-        wingId,
-        naming,
-        datasource,
-        token,
+        requestParameters.fleetId,
+        requestParameters.wingId,
+        requestParameters.naming,
+        requestParameters.datasource,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -32225,6 +35478,27 @@ export const IncursionsApiFactory = function (
 };
 
 /**
+ * Request parameters for getIncursions operation in IncursionsApi.
+ * @export
+ * @interface IncursionsApiGetIncursionsRequest
+ */
+export interface IncursionsApiGetIncursionsRequest {
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof IncursionsApiGetIncursions
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof IncursionsApiGetIncursions
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
  * IncursionsApi - object-oriented interface
  * @export
  * @class IncursionsApi
@@ -32234,19 +35508,21 @@ export class IncursionsApi extends BaseAPI {
   /**
    * Return a list of current incursions  --- Alternate route: `/dev/incursions/`  Alternate route: `/legacy/incursions/`  Alternate route: `/v1/incursions/`  --- This route is cached for up to 300 seconds
    * @summary List incursions
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {IncursionsApiGetIncursionsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof IncursionsApi
    */
   public getIncursions(
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: IncursionsApiGetIncursionsRequest = {},
     options?: AxiosRequestConfig
   ) {
     return IncursionsApiFp(this.configuration)
-      .getIncursions(datasource, ifNoneMatch, options)
+      .getIncursions(
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 }
@@ -33436,6 +36712,314 @@ export const IndustryApiFactory = function (
 };
 
 /**
+ * Request parameters for getCharacterIndustryJobs operation in IndustryApi.
+ * @export
+ * @interface IndustryApiGetCharacterIndustryJobsRequest
+ */
+export interface IndustryApiGetCharacterIndustryJobsRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof IndustryApiGetCharacterIndustryJobs
+   */
+  readonly characterId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof IndustryApiGetCharacterIndustryJobs
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof IndustryApiGetCharacterIndustryJobs
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Whether to retrieve completed character industry jobs. Only includes jobs from the past 90 days
+   * @type {boolean}
+   * @memberof IndustryApiGetCharacterIndustryJobs
+   */
+  readonly includeCompleted?: boolean;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof IndustryApiGetCharacterIndustryJobs
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCharacterMining operation in IndustryApi.
+ * @export
+ * @interface IndustryApiGetCharacterMiningRequest
+ */
+export interface IndustryApiGetCharacterMiningRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof IndustryApiGetCharacterMining
+   */
+  readonly characterId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof IndustryApiGetCharacterMining
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof IndustryApiGetCharacterMining
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Which page of results to return
+   * @type {number}
+   * @memberof IndustryApiGetCharacterMining
+   */
+  readonly page?: number;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof IndustryApiGetCharacterMining
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCorporationCorporationIdMiningExtractions operation in IndustryApi.
+ * @export
+ * @interface IndustryApiGetCorporationCorporationIdMiningExtractionsRequest
+ */
+export interface IndustryApiGetCorporationCorporationIdMiningExtractionsRequest {
+  /**
+   * An EVE corporation ID
+   * @type {number}
+   * @memberof IndustryApiGetCorporationCorporationIdMiningExtractions
+   */
+  readonly corporationId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof IndustryApiGetCorporationCorporationIdMiningExtractions
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof IndustryApiGetCorporationCorporationIdMiningExtractions
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Which page of results to return
+   * @type {number}
+   * @memberof IndustryApiGetCorporationCorporationIdMiningExtractions
+   */
+  readonly page?: number;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof IndustryApiGetCorporationCorporationIdMiningExtractions
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCorporationCorporationIdMiningObservers operation in IndustryApi.
+ * @export
+ * @interface IndustryApiGetCorporationCorporationIdMiningObserversRequest
+ */
+export interface IndustryApiGetCorporationCorporationIdMiningObserversRequest {
+  /**
+   * An EVE corporation ID
+   * @type {number}
+   * @memberof IndustryApiGetCorporationCorporationIdMiningObservers
+   */
+  readonly corporationId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof IndustryApiGetCorporationCorporationIdMiningObservers
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof IndustryApiGetCorporationCorporationIdMiningObservers
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Which page of results to return
+   * @type {number}
+   * @memberof IndustryApiGetCorporationCorporationIdMiningObservers
+   */
+  readonly page?: number;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof IndustryApiGetCorporationCorporationIdMiningObservers
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCorporationCorporationIdMiningObserversObserverId operation in IndustryApi.
+ * @export
+ * @interface IndustryApiGetCorporationCorporationIdMiningObserversObserverIdRequest
+ */
+export interface IndustryApiGetCorporationCorporationIdMiningObserversObserverIdRequest {
+  /**
+   * An EVE corporation ID
+   * @type {number}
+   * @memberof IndustryApiGetCorporationCorporationIdMiningObserversObserverId
+   */
+  readonly corporationId: number;
+
+  /**
+   * A mining observer id
+   * @type {number}
+   * @memberof IndustryApiGetCorporationCorporationIdMiningObserversObserverId
+   */
+  readonly observerId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof IndustryApiGetCorporationCorporationIdMiningObserversObserverId
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof IndustryApiGetCorporationCorporationIdMiningObserversObserverId
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Which page of results to return
+   * @type {number}
+   * @memberof IndustryApiGetCorporationCorporationIdMiningObserversObserverId
+   */
+  readonly page?: number;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof IndustryApiGetCorporationCorporationIdMiningObserversObserverId
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCorporationsCorporationIdIndustryJobs operation in IndustryApi.
+ * @export
+ * @interface IndustryApiGetCorporationsCorporationIdIndustryJobsRequest
+ */
+export interface IndustryApiGetCorporationsCorporationIdIndustryJobsRequest {
+  /**
+   * An EVE corporation ID
+   * @type {number}
+   * @memberof IndustryApiGetCorporationsCorporationIdIndustryJobs
+   */
+  readonly corporationId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof IndustryApiGetCorporationsCorporationIdIndustryJobs
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof IndustryApiGetCorporationsCorporationIdIndustryJobs
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Whether to retrieve completed corporation industry jobs. Only includes jobs from the past 90 days
+   * @type {boolean}
+   * @memberof IndustryApiGetCorporationsCorporationIdIndustryJobs
+   */
+  readonly includeCompleted?: boolean;
+
+  /**
+   * Which page of results to return
+   * @type {number}
+   * @memberof IndustryApiGetCorporationsCorporationIdIndustryJobs
+   */
+  readonly page?: number;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof IndustryApiGetCorporationsCorporationIdIndustryJobs
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getIndustryFacilities operation in IndustryApi.
+ * @export
+ * @interface IndustryApiGetIndustryFacilitiesRequest
+ */
+export interface IndustryApiGetIndustryFacilitiesRequest {
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof IndustryApiGetIndustryFacilities
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof IndustryApiGetIndustryFacilities
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
+ * Request parameters for getIndustrySystems operation in IndustryApi.
+ * @export
+ * @interface IndustryApiGetIndustrySystemsRequest
+ */
+export interface IndustryApiGetIndustrySystemsRequest {
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof IndustryApiGetIndustrySystems
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof IndustryApiGetIndustrySystems
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
  * IndustryApi - object-oriented interface
  * @export
  * @class IndustryApi
@@ -33445,30 +37029,22 @@ export class IndustryApi extends BaseAPI {
   /**
    * List industry jobs placed by a character  --- Alternate route: `/dev/characters/{character_id}/industry/jobs/`  Alternate route: `/legacy/characters/{character_id}/industry/jobs/`  Alternate route: `/v1/characters/{character_id}/industry/jobs/`  --- This route is cached for up to 300 seconds
    * @summary List character industry jobs
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {boolean} [includeCompleted] Whether to retrieve completed character industry jobs. Only includes jobs from the past 90 days
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {IndustryApiGetCharacterIndustryJobsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof IndustryApi
    */
   public getCharacterIndustryJobs(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    includeCompleted?: boolean,
-    token?: string,
+    requestParameters: IndustryApiGetCharacterIndustryJobsRequest,
     options?: AxiosRequestConfig
   ) {
     return IndustryApiFp(this.configuration)
       .getCharacterIndustryJobs(
-        characterId,
-        datasource,
-        ifNoneMatch,
-        includeCompleted,
-        token,
+        requestParameters.characterId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.includeCompleted,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -33477,30 +37053,22 @@ export class IndustryApi extends BaseAPI {
   /**
    * Paginated record of all mining done by a character for the past 30 days   --- Alternate route: `/dev/characters/{character_id}/mining/`  Alternate route: `/legacy/characters/{character_id}/mining/`  Alternate route: `/v1/characters/{character_id}/mining/`  --- This route is cached for up to 600 seconds
    * @summary Character mining ledger
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [page] Which page of results to return
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {IndustryApiGetCharacterMiningRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof IndustryApi
    */
   public getCharacterMining(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    page?: number,
-    token?: string,
+    requestParameters: IndustryApiGetCharacterMiningRequest,
     options?: AxiosRequestConfig
   ) {
     return IndustryApiFp(this.configuration)
       .getCharacterMining(
-        characterId,
-        datasource,
-        ifNoneMatch,
-        page,
-        token,
+        requestParameters.characterId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.page,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -33509,30 +37077,22 @@ export class IndustryApi extends BaseAPI {
   /**
    * Extraction timers for all moon chunks being extracted by refineries belonging to a corporation.   --- Alternate route: `/dev/corporation/{corporation_id}/mining/extractions/`  Alternate route: `/legacy/corporation/{corporation_id}/mining/extractions/`  Alternate route: `/v1/corporation/{corporation_id}/mining/extractions/`  --- This route is cached for up to 1800 seconds  --- Requires one of the following EVE corporation role(s): Station_Manager
    * @summary Moon extraction timers
-   * @param {number} corporationId An EVE corporation ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [page] Which page of results to return
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {IndustryApiGetCorporationCorporationIdMiningExtractionsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof IndustryApi
    */
   public getCorporationCorporationIdMiningExtractions(
-    corporationId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    page?: number,
-    token?: string,
+    requestParameters: IndustryApiGetCorporationCorporationIdMiningExtractionsRequest,
     options?: AxiosRequestConfig
   ) {
     return IndustryApiFp(this.configuration)
       .getCorporationCorporationIdMiningExtractions(
-        corporationId,
-        datasource,
-        ifNoneMatch,
-        page,
-        token,
+        requestParameters.corporationId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.page,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -33541,30 +37101,22 @@ export class IndustryApi extends BaseAPI {
   /**
    * Paginated list of all entities capable of observing and recording mining for a corporation   --- Alternate route: `/dev/corporation/{corporation_id}/mining/observers/`  Alternate route: `/legacy/corporation/{corporation_id}/mining/observers/`  Alternate route: `/v1/corporation/{corporation_id}/mining/observers/`  --- This route is cached for up to 3600 seconds  --- Requires one of the following EVE corporation role(s): Accountant
    * @summary Corporation mining observers
-   * @param {number} corporationId An EVE corporation ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [page] Which page of results to return
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {IndustryApiGetCorporationCorporationIdMiningObserversRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof IndustryApi
    */
   public getCorporationCorporationIdMiningObservers(
-    corporationId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    page?: number,
-    token?: string,
+    requestParameters: IndustryApiGetCorporationCorporationIdMiningObserversRequest,
     options?: AxiosRequestConfig
   ) {
     return IndustryApiFp(this.configuration)
       .getCorporationCorporationIdMiningObservers(
-        corporationId,
-        datasource,
-        ifNoneMatch,
-        page,
-        token,
+        requestParameters.corporationId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.page,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -33573,33 +37125,23 @@ export class IndustryApi extends BaseAPI {
   /**
    * Paginated record of all mining seen by an observer   --- Alternate route: `/dev/corporation/{corporation_id}/mining/observers/{observer_id}/`  Alternate route: `/legacy/corporation/{corporation_id}/mining/observers/{observer_id}/`  Alternate route: `/v1/corporation/{corporation_id}/mining/observers/{observer_id}/`  --- This route is cached for up to 3600 seconds  --- Requires one of the following EVE corporation role(s): Accountant
    * @summary Observed corporation mining
-   * @param {number} corporationId An EVE corporation ID
-   * @param {number} observerId A mining observer id
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [page] Which page of results to return
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {IndustryApiGetCorporationCorporationIdMiningObserversObserverIdRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof IndustryApi
    */
   public getCorporationCorporationIdMiningObserversObserverId(
-    corporationId: number,
-    observerId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    page?: number,
-    token?: string,
+    requestParameters: IndustryApiGetCorporationCorporationIdMiningObserversObserverIdRequest,
     options?: AxiosRequestConfig
   ) {
     return IndustryApiFp(this.configuration)
       .getCorporationCorporationIdMiningObserversObserverId(
-        corporationId,
-        observerId,
-        datasource,
-        ifNoneMatch,
-        page,
-        token,
+        requestParameters.corporationId,
+        requestParameters.observerId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.page,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -33608,33 +37150,23 @@ export class IndustryApi extends BaseAPI {
   /**
    * List industry jobs run by a corporation  --- Alternate route: `/dev/corporations/{corporation_id}/industry/jobs/`  Alternate route: `/legacy/corporations/{corporation_id}/industry/jobs/`  Alternate route: `/v1/corporations/{corporation_id}/industry/jobs/`  --- This route is cached for up to 300 seconds  --- Requires one of the following EVE corporation role(s): Factory_Manager
    * @summary List corporation industry jobs
-   * @param {number} corporationId An EVE corporation ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {boolean} [includeCompleted] Whether to retrieve completed corporation industry jobs. Only includes jobs from the past 90 days
-   * @param {number} [page] Which page of results to return
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {IndustryApiGetCorporationsCorporationIdIndustryJobsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof IndustryApi
    */
   public getCorporationsCorporationIdIndustryJobs(
-    corporationId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    includeCompleted?: boolean,
-    page?: number,
-    token?: string,
+    requestParameters: IndustryApiGetCorporationsCorporationIdIndustryJobsRequest,
     options?: AxiosRequestConfig
   ) {
     return IndustryApiFp(this.configuration)
       .getCorporationsCorporationIdIndustryJobs(
-        corporationId,
-        datasource,
-        ifNoneMatch,
-        includeCompleted,
-        page,
-        token,
+        requestParameters.corporationId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.includeCompleted,
+        requestParameters.page,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -33643,38 +37175,42 @@ export class IndustryApi extends BaseAPI {
   /**
    * Return a list of industry facilities  --- Alternate route: `/dev/industry/facilities/`  Alternate route: `/legacy/industry/facilities/`  Alternate route: `/v1/industry/facilities/`  --- This route is cached for up to 3600 seconds
    * @summary List industry facilities
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {IndustryApiGetIndustryFacilitiesRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof IndustryApi
    */
   public getIndustryFacilities(
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: IndustryApiGetIndustryFacilitiesRequest = {},
     options?: AxiosRequestConfig
   ) {
     return IndustryApiFp(this.configuration)
-      .getIndustryFacilities(datasource, ifNoneMatch, options)
+      .getIndustryFacilities(
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Return cost indices for solar systems  --- Alternate route: `/dev/industry/systems/`  Alternate route: `/legacy/industry/systems/`  Alternate route: `/v1/industry/systems/`  --- This route is cached for up to 3600 seconds
    * @summary List solar system cost indices
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {IndustryApiGetIndustrySystemsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof IndustryApi
    */
   public getIndustrySystems(
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: IndustryApiGetIndustrySystemsRequest = {},
     options?: AxiosRequestConfig
   ) {
     return IndustryApiFp(this.configuration)
-      .getIndustrySystems(datasource, ifNoneMatch, options)
+      .getIndustrySystems(
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 }
@@ -33897,6 +37433,59 @@ export const InsuranceApiFactory = function (
 };
 
 /**
+ * Request parameters for getInsurancePrices operation in InsuranceApi.
+ * @export
+ * @interface InsuranceApiGetInsurancePricesRequest
+ */
+export interface InsuranceApiGetInsurancePricesRequest {
+  /**
+   * Language to use in the response
+   * @type {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'}
+   * @memberof InsuranceApiGetInsurancePrices
+   */
+  readonly acceptLanguage?:
+    | "en"
+    | "en-us"
+    | "de"
+    | "fr"
+    | "ja"
+    | "ru"
+    | "zh"
+    | "ko"
+    | "es";
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof InsuranceApiGetInsurancePrices
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof InsuranceApiGetInsurancePrices
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Language to use in the response, takes precedence over Accept-Language
+   * @type {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'}
+   * @memberof InsuranceApiGetInsurancePrices
+   */
+  readonly language?:
+    | "en"
+    | "en-us"
+    | "de"
+    | "fr"
+    | "ja"
+    | "ru"
+    | "zh"
+    | "ko"
+    | "es";
+}
+
+/**
  * InsuranceApi - object-oriented interface
  * @export
  * @class InsuranceApi
@@ -33906,36 +37495,21 @@ export class InsuranceApi extends BaseAPI {
   /**
    * Return available insurance levels for all ship types  --- Alternate route: `/dev/insurance/prices/`  Alternate route: `/legacy/insurance/prices/`  Alternate route: `/v1/insurance/prices/`  --- This route is cached for up to 3600 seconds
    * @summary List insurance levels
-   * @param {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'} [acceptLanguage] Language to use in the response
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'} [language] Language to use in the response, takes precedence over Accept-Language
+   * @param {InsuranceApiGetInsurancePricesRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof InsuranceApi
    */
   public getInsurancePrices(
-    acceptLanguage?:
-      | "en"
-      | "en-us"
-      | "de"
-      | "fr"
-      | "ja"
-      | "ru"
-      | "zh"
-      | "ko"
-      | "es",
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    language?: "en" | "en-us" | "de" | "fr" | "ja" | "ru" | "zh" | "ko" | "es",
+    requestParameters: InsuranceApiGetInsurancePricesRequest = {},
     options?: AxiosRequestConfig
   ) {
     return InsuranceApiFp(this.configuration)
       .getInsurancePrices(
-        acceptLanguage,
-        datasource,
-        ifNoneMatch,
-        language,
+        requestParameters.acceptLanguage,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.language,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -34423,6 +37997,125 @@ export const KillmailsApiFactory = function (
 };
 
 /**
+ * Request parameters for getCharacterRecentKillmails operation in KillmailsApi.
+ * @export
+ * @interface KillmailsApiGetCharacterRecentKillmailsRequest
+ */
+export interface KillmailsApiGetCharacterRecentKillmailsRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof KillmailsApiGetCharacterRecentKillmails
+   */
+  readonly characterId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof KillmailsApiGetCharacterRecentKillmails
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof KillmailsApiGetCharacterRecentKillmails
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Which page of results to return
+   * @type {number}
+   * @memberof KillmailsApiGetCharacterRecentKillmails
+   */
+  readonly page?: number;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof KillmailsApiGetCharacterRecentKillmails
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCorporationsCorporationIdKillmailsRecent operation in KillmailsApi.
+ * @export
+ * @interface KillmailsApiGetCorporationsCorporationIdKillmailsRecentRequest
+ */
+export interface KillmailsApiGetCorporationsCorporationIdKillmailsRecentRequest {
+  /**
+   * An EVE corporation ID
+   * @type {number}
+   * @memberof KillmailsApiGetCorporationsCorporationIdKillmailsRecent
+   */
+  readonly corporationId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof KillmailsApiGetCorporationsCorporationIdKillmailsRecent
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof KillmailsApiGetCorporationsCorporationIdKillmailsRecent
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Which page of results to return
+   * @type {number}
+   * @memberof KillmailsApiGetCorporationsCorporationIdKillmailsRecent
+   */
+  readonly page?: number;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof KillmailsApiGetCorporationsCorporationIdKillmailsRecent
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getKillmailsKillmailIdKillmailHash operation in KillmailsApi.
+ * @export
+ * @interface KillmailsApiGetKillmailsKillmailIdKillmailHashRequest
+ */
+export interface KillmailsApiGetKillmailsKillmailIdKillmailHashRequest {
+  /**
+   * The killmail hash for verification
+   * @type {string}
+   * @memberof KillmailsApiGetKillmailsKillmailIdKillmailHash
+   */
+  readonly killmailHash: string;
+
+  /**
+   * The killmail ID to be queried
+   * @type {number}
+   * @memberof KillmailsApiGetKillmailsKillmailIdKillmailHash
+   */
+  readonly killmailId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof KillmailsApiGetKillmailsKillmailIdKillmailHash
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof KillmailsApiGetKillmailsKillmailIdKillmailHash
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
  * KillmailsApi - object-oriented interface
  * @export
  * @class KillmailsApi
@@ -34432,30 +38125,22 @@ export class KillmailsApi extends BaseAPI {
   /**
    * Return a list of a character\'s kills and losses going back 90 days  --- Alternate route: `/dev/characters/{character_id}/killmails/recent/`  Alternate route: `/legacy/characters/{character_id}/killmails/recent/`  Alternate route: `/v1/characters/{character_id}/killmails/recent/`  --- This route is cached for up to 300 seconds
    * @summary Get a character\'s recent kills and losses
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [page] Which page of results to return
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {KillmailsApiGetCharacterRecentKillmailsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof KillmailsApi
    */
   public getCharacterRecentKillmails(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    page?: number,
-    token?: string,
+    requestParameters: KillmailsApiGetCharacterRecentKillmailsRequest,
     options?: AxiosRequestConfig
   ) {
     return KillmailsApiFp(this.configuration)
       .getCharacterRecentKillmails(
-        characterId,
-        datasource,
-        ifNoneMatch,
-        page,
-        token,
+        requestParameters.characterId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.page,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -34464,30 +38149,22 @@ export class KillmailsApi extends BaseAPI {
   /**
    * Get a list of a corporation\'s kills and losses going back 90 days  --- Alternate route: `/dev/corporations/{corporation_id}/killmails/recent/`  Alternate route: `/legacy/corporations/{corporation_id}/killmails/recent/`  Alternate route: `/v1/corporations/{corporation_id}/killmails/recent/`  --- This route is cached for up to 300 seconds  --- Requires one of the following EVE corporation role(s): Director
    * @summary Get a corporation\'s recent kills and losses
-   * @param {number} corporationId An EVE corporation ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [page] Which page of results to return
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {KillmailsApiGetCorporationsCorporationIdKillmailsRecentRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof KillmailsApi
    */
   public getCorporationsCorporationIdKillmailsRecent(
-    corporationId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    page?: number,
-    token?: string,
+    requestParameters: KillmailsApiGetCorporationsCorporationIdKillmailsRecentRequest,
     options?: AxiosRequestConfig
   ) {
     return KillmailsApiFp(this.configuration)
       .getCorporationsCorporationIdKillmailsRecent(
-        corporationId,
-        datasource,
-        ifNoneMatch,
-        page,
-        token,
+        requestParameters.corporationId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.page,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -34496,27 +38173,21 @@ export class KillmailsApi extends BaseAPI {
   /**
    * Return a single killmail from its ID and hash  --- Alternate route: `/dev/killmails/{killmail_id}/{killmail_hash}/`  Alternate route: `/legacy/killmails/{killmail_id}/{killmail_hash}/`  Alternate route: `/v1/killmails/{killmail_id}/{killmail_hash}/`  --- This route is cached for up to 30758400 seconds
    * @summary Get a single killmail
-   * @param {string} killmailHash The killmail hash for verification
-   * @param {number} killmailId The killmail ID to be queried
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {KillmailsApiGetKillmailsKillmailIdKillmailHashRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof KillmailsApi
    */
   public getKillmailsKillmailIdKillmailHash(
-    killmailHash: string,
-    killmailId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: KillmailsApiGetKillmailsKillmailIdKillmailHashRequest,
     options?: AxiosRequestConfig
   ) {
     return KillmailsApiFp(this.configuration)
       .getKillmailsKillmailIdKillmailHash(
-        killmailHash,
-        killmailId,
-        datasource,
-        ifNoneMatch,
+        requestParameters.killmailHash,
+        requestParameters.killmailId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -34958,6 +38629,111 @@ export const LocationApiFactory = function (
 };
 
 /**
+ * Request parameters for getCharacterLocation operation in LocationApi.
+ * @export
+ * @interface LocationApiGetCharacterLocationRequest
+ */
+export interface LocationApiGetCharacterLocationRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof LocationApiGetCharacterLocation
+   */
+  readonly characterId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof LocationApiGetCharacterLocation
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof LocationApiGetCharacterLocation
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof LocationApiGetCharacterLocation
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCharacterShip operation in LocationApi.
+ * @export
+ * @interface LocationApiGetCharacterShipRequest
+ */
+export interface LocationApiGetCharacterShipRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof LocationApiGetCharacterShip
+   */
+  readonly characterId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof LocationApiGetCharacterShip
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof LocationApiGetCharacterShip
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof LocationApiGetCharacterShip
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for isCharacterOnline operation in LocationApi.
+ * @export
+ * @interface LocationApiIsCharacterOnlineRequest
+ */
+export interface LocationApiIsCharacterOnlineRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof LocationApiIsCharacterOnline
+   */
+  readonly characterId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof LocationApiIsCharacterOnline
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof LocationApiIsCharacterOnline
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof LocationApiIsCharacterOnline
+   */
+  readonly token?: string;
+}
+
+/**
  * LocationApi - object-oriented interface
  * @export
  * @class LocationApi
@@ -34967,27 +38743,21 @@ export class LocationApi extends BaseAPI {
   /**
    * Information about the characters current location. Returns the current solar system id, and also the current station or structure ID if applicable  --- Alternate route: `/dev/characters/{character_id}/location/`  Alternate route: `/legacy/characters/{character_id}/location/`  Alternate route: `/v1/characters/{character_id}/location/`  Alternate route: `/v2/characters/{character_id}/location/`  --- This route is cached for up to 5 seconds
    * @summary Get character location
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {LocationApiGetCharacterLocationRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof LocationApi
    */
   public getCharacterLocation(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: LocationApiGetCharacterLocationRequest,
     options?: AxiosRequestConfig
   ) {
     return LocationApiFp(this.configuration)
       .getCharacterLocation(
-        characterId,
-        datasource,
-        ifNoneMatch,
-        token,
+        requestParameters.characterId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -34996,46 +38766,46 @@ export class LocationApi extends BaseAPI {
   /**
    * Get the current ship type, name and id  --- Alternate route: `/dev/characters/{character_id}/ship/`  Alternate route: `/legacy/characters/{character_id}/ship/`  Alternate route: `/v1/characters/{character_id}/ship/`  Alternate route: `/v2/characters/{character_id}/ship/`  --- This route is cached for up to 5 seconds
    * @summary Get current ship
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {LocationApiGetCharacterShipRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof LocationApi
    */
   public getCharacterShip(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: LocationApiGetCharacterShipRequest,
     options?: AxiosRequestConfig
   ) {
     return LocationApiFp(this.configuration)
-      .getCharacterShip(characterId, datasource, ifNoneMatch, token, options)
+      .getCharacterShip(
+        requestParameters.characterId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Checks if the character is currently online  --- Alternate route: `/dev/characters/{character_id}/online/`  Alternate route: `/v2/characters/{character_id}/online/`  Alternate route: `/v3/characters/{character_id}/online/`  --- This route is cached for up to 60 seconds
    * @summary Get character online
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {LocationApiIsCharacterOnlineRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof LocationApi
    */
   public isCharacterOnline(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: LocationApiIsCharacterOnlineRequest,
     options?: AxiosRequestConfig
   ) {
     return LocationApiFp(this.configuration)
-      .isCharacterOnline(characterId, datasource, ifNoneMatch, token, options)
+      .isCharacterOnline(
+        requestParameters.characterId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 }
@@ -35337,6 +39107,69 @@ export const LoyaltyApiFactory = function (
 };
 
 /**
+ * Request parameters for getCharacterLoyaltyPoints operation in LoyaltyApi.
+ * @export
+ * @interface LoyaltyApiGetCharacterLoyaltyPointsRequest
+ */
+export interface LoyaltyApiGetCharacterLoyaltyPointsRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof LoyaltyApiGetCharacterLoyaltyPoints
+   */
+  readonly characterId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof LoyaltyApiGetCharacterLoyaltyPoints
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof LoyaltyApiGetCharacterLoyaltyPoints
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof LoyaltyApiGetCharacterLoyaltyPoints
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getLoyaltyStoresCorporationIdOffers operation in LoyaltyApi.
+ * @export
+ * @interface LoyaltyApiGetLoyaltyStoresCorporationIdOffersRequest
+ */
+export interface LoyaltyApiGetLoyaltyStoresCorporationIdOffersRequest {
+  /**
+   * An EVE corporation ID
+   * @type {number}
+   * @memberof LoyaltyApiGetLoyaltyStoresCorporationIdOffers
+   */
+  readonly corporationId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof LoyaltyApiGetLoyaltyStoresCorporationIdOffers
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof LoyaltyApiGetLoyaltyStoresCorporationIdOffers
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
  * LoyaltyApi - object-oriented interface
  * @export
  * @class LoyaltyApi
@@ -35346,27 +39179,21 @@ export class LoyaltyApi extends BaseAPI {
   /**
    * Return a list of loyalty points for all corporations the character has worked for  --- Alternate route: `/dev/characters/{character_id}/loyalty/points/`  Alternate route: `/legacy/characters/{character_id}/loyalty/points/`  Alternate route: `/v1/characters/{character_id}/loyalty/points/`  --- This route is cached for up to 3600 seconds
    * @summary Get loyalty points
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {LoyaltyApiGetCharacterLoyaltyPointsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof LoyaltyApi
    */
   public getCharacterLoyaltyPoints(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: LoyaltyApiGetCharacterLoyaltyPointsRequest,
     options?: AxiosRequestConfig
   ) {
     return LoyaltyApiFp(this.configuration)
       .getCharacterLoyaltyPoints(
-        characterId,
-        datasource,
-        ifNoneMatch,
-        token,
+        requestParameters.characterId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -35375,24 +39202,20 @@ export class LoyaltyApi extends BaseAPI {
   /**
    * Return a list of offers from a specific corporation\'s loyalty store  --- Alternate route: `/dev/loyalty/stores/{corporation_id}/offers/`  Alternate route: `/legacy/loyalty/stores/{corporation_id}/offers/`  Alternate route: `/v1/loyalty/stores/{corporation_id}/offers/`  --- This route expires daily at 11:05
    * @summary List loyalty store offers
-   * @param {number} corporationId An EVE corporation ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {LoyaltyApiGetLoyaltyStoresCorporationIdOffersRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof LoyaltyApi
    */
   public getLoyaltyStoresCorporationIdOffers(
-    corporationId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: LoyaltyApiGetLoyaltyStoresCorporationIdOffersRequest,
     options?: AxiosRequestConfig
   ) {
     return LoyaltyApiFp(this.configuration)
       .getLoyaltyStoresCorporationIdOffers(
-        corporationId,
-        datasource,
-        ifNoneMatch,
+        requestParameters.corporationId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -36698,6 +40521,349 @@ export const MailApiFactory = function (
 };
 
 /**
+ * Request parameters for createCharacterMailLabel operation in MailApi.
+ * @export
+ * @interface MailApiCreateCharacterMailLabelRequest
+ */
+export interface MailApiCreateCharacterMailLabelRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof MailApiCreateCharacterMailLabel
+   */
+  readonly characterId: number;
+
+  /**
+   * Label to create
+   * @type {PostCharactersCharacterIdMailLabelsLabel}
+   * @memberof MailApiCreateCharacterMailLabel
+   */
+  readonly label: PostCharactersCharacterIdMailLabelsLabel;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof MailApiCreateCharacterMailLabel
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof MailApiCreateCharacterMailLabel
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for deleteCharacterMail operation in MailApi.
+ * @export
+ * @interface MailApiDeleteCharacterMailRequest
+ */
+export interface MailApiDeleteCharacterMailRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof MailApiDeleteCharacterMail
+   */
+  readonly characterId: number;
+
+  /**
+   * An EVE mail ID
+   * @type {number}
+   * @memberof MailApiDeleteCharacterMail
+   */
+  readonly mailId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof MailApiDeleteCharacterMail
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof MailApiDeleteCharacterMail
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for deleteCharacterMailLabel operation in MailApi.
+ * @export
+ * @interface MailApiDeleteCharacterMailLabelRequest
+ */
+export interface MailApiDeleteCharacterMailLabelRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof MailApiDeleteCharacterMailLabel
+   */
+  readonly characterId: number;
+
+  /**
+   * An EVE label id
+   * @type {number}
+   * @memberof MailApiDeleteCharacterMailLabel
+   */
+  readonly labelId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof MailApiDeleteCharacterMailLabel
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof MailApiDeleteCharacterMailLabel
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCharacterMail operation in MailApi.
+ * @export
+ * @interface MailApiGetCharacterMailRequest
+ */
+export interface MailApiGetCharacterMailRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof MailApiGetCharacterMail
+   */
+  readonly characterId: number;
+
+  /**
+   * An EVE mail ID
+   * @type {number}
+   * @memberof MailApiGetCharacterMail
+   */
+  readonly mailId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof MailApiGetCharacterMail
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof MailApiGetCharacterMail
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof MailApiGetCharacterMail
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCharacterMailHeaders operation in MailApi.
+ * @export
+ * @interface MailApiGetCharacterMailHeadersRequest
+ */
+export interface MailApiGetCharacterMailHeadersRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof MailApiGetCharacterMailHeaders
+   */
+  readonly characterId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof MailApiGetCharacterMailHeaders
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof MailApiGetCharacterMailHeaders
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Fetch only mails that match one or more of the given labels
+   * @type {Set<number>}
+   * @memberof MailApiGetCharacterMailHeaders
+   */
+  readonly labels?: Set<number>;
+
+  /**
+   * List only mail with an ID lower than the given ID, if present
+   * @type {number}
+   * @memberof MailApiGetCharacterMailHeaders
+   */
+  readonly lastMailId?: number;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof MailApiGetCharacterMailHeaders
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCharacterMailLabels operation in MailApi.
+ * @export
+ * @interface MailApiGetCharacterMailLabelsRequest
+ */
+export interface MailApiGetCharacterMailLabelsRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof MailApiGetCharacterMailLabels
+   */
+  readonly characterId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof MailApiGetCharacterMailLabels
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof MailApiGetCharacterMailLabels
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof MailApiGetCharacterMailLabels
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCharacterMailLists operation in MailApi.
+ * @export
+ * @interface MailApiGetCharacterMailListsRequest
+ */
+export interface MailApiGetCharacterMailListsRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof MailApiGetCharacterMailLists
+   */
+  readonly characterId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof MailApiGetCharacterMailLists
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof MailApiGetCharacterMailLists
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof MailApiGetCharacterMailLists
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for sendCharacterMail operation in MailApi.
+ * @export
+ * @interface MailApiSendCharacterMailRequest
+ */
+export interface MailApiSendCharacterMailRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof MailApiSendCharacterMail
+   */
+  readonly characterId: number;
+
+  /**
+   * The mail to send
+   * @type {PostCharactersCharacterIdMailMail}
+   * @memberof MailApiSendCharacterMail
+   */
+  readonly mail: PostCharactersCharacterIdMailMail;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof MailApiSendCharacterMail
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof MailApiSendCharacterMail
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for updateCharactersMailMetadata operation in MailApi.
+ * @export
+ * @interface MailApiUpdateCharactersMailMetadataRequest
+ */
+export interface MailApiUpdateCharactersMailMetadataRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof MailApiUpdateCharactersMailMetadata
+   */
+  readonly characterId: number;
+
+  /**
+   * An EVE mail ID
+   * @type {number}
+   * @memberof MailApiUpdateCharactersMailMetadata
+   */
+  readonly mailId: number;
+
+  /**
+   * Data used to update the mail
+   * @type {PutCharactersCharacterIdMailMailIdContents}
+   * @memberof MailApiUpdateCharactersMailMetadata
+   */
+  readonly contents: PutCharactersCharacterIdMailMailIdContents;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof MailApiUpdateCharactersMailMetadata
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof MailApiUpdateCharactersMailMetadata
+   */
+  readonly token?: string;
+}
+
+/**
  * MailApi - object-oriented interface
  * @export
  * @class MailApi
@@ -36707,73 +40873,67 @@ export class MailApi extends BaseAPI {
   /**
    * Create a mail label  --- Alternate route: `/dev/characters/{character_id}/mail/labels/`  Alternate route: `/legacy/characters/{character_id}/mail/labels/`  Alternate route: `/v2/characters/{character_id}/mail/labels/`
    * @summary Create a mail label
-   * @param {number} characterId An EVE character ID
-   * @param {PostCharactersCharacterIdMailLabelsLabel} label Label to create
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {MailApiCreateCharacterMailLabelRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MailApi
    */
   public createCharacterMailLabel(
-    characterId: number,
-    label: PostCharactersCharacterIdMailLabelsLabel,
-    datasource?: "tranquility",
-    token?: string,
+    requestParameters: MailApiCreateCharacterMailLabelRequest,
     options?: AxiosRequestConfig
   ) {
     return MailApiFp(this.configuration)
-      .createCharacterMailLabel(characterId, label, datasource, token, options)
+      .createCharacterMailLabel(
+        requestParameters.characterId,
+        requestParameters.label,
+        requestParameters.datasource,
+        requestParameters.token,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Delete a mail  --- Alternate route: `/dev/characters/{character_id}/mail/{mail_id}/`  Alternate route: `/legacy/characters/{character_id}/mail/{mail_id}/`  Alternate route: `/v1/characters/{character_id}/mail/{mail_id}/`
    * @summary Delete a mail
-   * @param {number} characterId An EVE character ID
-   * @param {number} mailId An EVE mail ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {MailApiDeleteCharacterMailRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MailApi
    */
   public deleteCharacterMail(
-    characterId: number,
-    mailId: number,
-    datasource?: "tranquility",
-    token?: string,
+    requestParameters: MailApiDeleteCharacterMailRequest,
     options?: AxiosRequestConfig
   ) {
     return MailApiFp(this.configuration)
-      .deleteCharacterMail(characterId, mailId, datasource, token, options)
+      .deleteCharacterMail(
+        requestParameters.characterId,
+        requestParameters.mailId,
+        requestParameters.datasource,
+        requestParameters.token,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Delete a mail label  --- Alternate route: `/dev/characters/{character_id}/mail/labels/{label_id}/`  Alternate route: `/legacy/characters/{character_id}/mail/labels/{label_id}/`  Alternate route: `/v1/characters/{character_id}/mail/labels/{label_id}/`
    * @summary Delete a mail label
-   * @param {number} characterId An EVE character ID
-   * @param {number} labelId An EVE label id
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {MailApiDeleteCharacterMailLabelRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MailApi
    */
   public deleteCharacterMailLabel(
-    characterId: number,
-    labelId: number,
-    datasource?: "tranquility",
-    token?: string,
+    requestParameters: MailApiDeleteCharacterMailLabelRequest,
     options?: AxiosRequestConfig
   ) {
     return MailApiFp(this.configuration)
       .deleteCharacterMailLabel(
-        characterId,
-        labelId,
-        datasource,
-        token,
+        requestParameters.characterId,
+        requestParameters.labelId,
+        requestParameters.datasource,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -36782,30 +40942,22 @@ export class MailApi extends BaseAPI {
   /**
    * Return the contents of an EVE mail  --- Alternate route: `/dev/characters/{character_id}/mail/{mail_id}/`  Alternate route: `/legacy/characters/{character_id}/mail/{mail_id}/`  Alternate route: `/v1/characters/{character_id}/mail/{mail_id}/`  --- This route is cached for up to 30 seconds
    * @summary Return a mail
-   * @param {number} characterId An EVE character ID
-   * @param {number} mailId An EVE mail ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {MailApiGetCharacterMailRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MailApi
    */
   public getCharacterMail(
-    characterId: number,
-    mailId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: MailApiGetCharacterMailRequest,
     options?: AxiosRequestConfig
   ) {
     return MailApiFp(this.configuration)
       .getCharacterMail(
-        characterId,
-        mailId,
-        datasource,
-        ifNoneMatch,
-        token,
+        requestParameters.characterId,
+        requestParameters.mailId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -36814,33 +40966,23 @@ export class MailApi extends BaseAPI {
   /**
    * Return the 50 most recent mail headers belonging to the character that match the query criteria. Queries can be filtered by label, and last_mail_id can be used to paginate backwards  --- Alternate route: `/dev/characters/{character_id}/mail/`  Alternate route: `/legacy/characters/{character_id}/mail/`  Alternate route: `/v1/characters/{character_id}/mail/`  --- This route is cached for up to 30 seconds
    * @summary Return mail headers
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {Set<number>} [labels] Fetch only mails that match one or more of the given labels
-   * @param {number} [lastMailId] List only mail with an ID lower than the given ID, if present
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {MailApiGetCharacterMailHeadersRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MailApi
    */
   public getCharacterMailHeaders(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    labels?: Set<number>,
-    lastMailId?: number,
-    token?: string,
+    requestParameters: MailApiGetCharacterMailHeadersRequest,
     options?: AxiosRequestConfig
   ) {
     return MailApiFp(this.configuration)
       .getCharacterMailHeaders(
-        characterId,
-        datasource,
-        ifNoneMatch,
-        labels,
-        lastMailId,
-        token,
+        requestParameters.characterId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.labels,
+        requestParameters.lastMailId,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -36849,27 +40991,21 @@ export class MailApi extends BaseAPI {
   /**
    * Return a list of the users mail labels, unread counts for each label and a total unread count.  --- Alternate route: `/dev/characters/{character_id}/mail/labels/`  Alternate route: `/v3/characters/{character_id}/mail/labels/`  --- This route is cached for up to 30 seconds
    * @summary Get mail labels and unread counts
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {MailApiGetCharacterMailLabelsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MailApi
    */
   public getCharacterMailLabels(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: MailApiGetCharacterMailLabelsRequest,
     options?: AxiosRequestConfig
   ) {
     return MailApiFp(this.configuration)
       .getCharacterMailLabels(
-        characterId,
-        datasource,
-        ifNoneMatch,
-        token,
+        requestParameters.characterId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -36878,27 +41014,21 @@ export class MailApi extends BaseAPI {
   /**
    * Return all mailing lists that the character is subscribed to  --- Alternate route: `/dev/characters/{character_id}/mail/lists/`  Alternate route: `/legacy/characters/{character_id}/mail/lists/`  Alternate route: `/v1/characters/{character_id}/mail/lists/`  --- This route is cached for up to 120 seconds
    * @summary Return mailing list subscriptions
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {MailApiGetCharacterMailListsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MailApi
    */
   public getCharacterMailLists(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: MailApiGetCharacterMailListsRequest,
     options?: AxiosRequestConfig
   ) {
     return MailApiFp(this.configuration)
       .getCharacterMailLists(
-        characterId,
-        datasource,
-        ifNoneMatch,
-        token,
+        requestParameters.characterId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -36907,53 +41037,45 @@ export class MailApi extends BaseAPI {
   /**
    * Create and send a new mail  --- Alternate route: `/dev/characters/{character_id}/mail/`  Alternate route: `/legacy/characters/{character_id}/mail/`  Alternate route: `/v1/characters/{character_id}/mail/`
    * @summary Send a new mail
-   * @param {number} characterId An EVE character ID
-   * @param {PostCharactersCharacterIdMailMail} mail The mail to send
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {MailApiSendCharacterMailRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MailApi
    */
   public sendCharacterMail(
-    characterId: number,
-    mail: PostCharactersCharacterIdMailMail,
-    datasource?: "tranquility",
-    token?: string,
+    requestParameters: MailApiSendCharacterMailRequest,
     options?: AxiosRequestConfig
   ) {
     return MailApiFp(this.configuration)
-      .sendCharacterMail(characterId, mail, datasource, token, options)
+      .sendCharacterMail(
+        requestParameters.characterId,
+        requestParameters.mail,
+        requestParameters.datasource,
+        requestParameters.token,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Update metadata about a mail  --- Alternate route: `/dev/characters/{character_id}/mail/{mail_id}/`  Alternate route: `/legacy/characters/{character_id}/mail/{mail_id}/`  Alternate route: `/v1/characters/{character_id}/mail/{mail_id}/`
    * @summary Update metadata about a mail
-   * @param {number} characterId An EVE character ID
-   * @param {number} mailId An EVE mail ID
-   * @param {PutCharactersCharacterIdMailMailIdContents} contents Data used to update the mail
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {MailApiUpdateCharactersMailMetadataRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MailApi
    */
   public updateCharactersMailMetadata(
-    characterId: number,
-    mailId: number,
-    contents: PutCharactersCharacterIdMailMailIdContents,
-    datasource?: "tranquility",
-    token?: string,
+    requestParameters: MailApiUpdateCharactersMailMetadataRequest,
     options?: AxiosRequestConfig
   ) {
     return MailApiFp(this.configuration)
       .updateCharactersMailMetadata(
-        characterId,
-        mailId,
-        contents,
-        datasource,
-        token,
+        requestParameters.characterId,
+        requestParameters.mailId,
+        requestParameters.contents,
+        requestParameters.datasource,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -38544,6 +42666,430 @@ export const MarketApiFactory = function (
 };
 
 /**
+ * Request parameters for getCharacterOrderHistory operation in MarketApi.
+ * @export
+ * @interface MarketApiGetCharacterOrderHistoryRequest
+ */
+export interface MarketApiGetCharacterOrderHistoryRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof MarketApiGetCharacterOrderHistory
+   */
+  readonly characterId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof MarketApiGetCharacterOrderHistory
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof MarketApiGetCharacterOrderHistory
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Which page of results to return
+   * @type {number}
+   * @memberof MarketApiGetCharacterOrderHistory
+   */
+  readonly page?: number;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof MarketApiGetCharacterOrderHistory
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCharacterOrders operation in MarketApi.
+ * @export
+ * @interface MarketApiGetCharacterOrdersRequest
+ */
+export interface MarketApiGetCharacterOrdersRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof MarketApiGetCharacterOrders
+   */
+  readonly characterId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof MarketApiGetCharacterOrders
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof MarketApiGetCharacterOrders
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof MarketApiGetCharacterOrders
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCorporationsCorporationIdOrders operation in MarketApi.
+ * @export
+ * @interface MarketApiGetCorporationsCorporationIdOrdersRequest
+ */
+export interface MarketApiGetCorporationsCorporationIdOrdersRequest {
+  /**
+   * An EVE corporation ID
+   * @type {number}
+   * @memberof MarketApiGetCorporationsCorporationIdOrders
+   */
+  readonly corporationId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof MarketApiGetCorporationsCorporationIdOrders
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof MarketApiGetCorporationsCorporationIdOrders
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Which page of results to return
+   * @type {number}
+   * @memberof MarketApiGetCorporationsCorporationIdOrders
+   */
+  readonly page?: number;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof MarketApiGetCorporationsCorporationIdOrders
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCorporationsCorporationIdOrdersHistory operation in MarketApi.
+ * @export
+ * @interface MarketApiGetCorporationsCorporationIdOrdersHistoryRequest
+ */
+export interface MarketApiGetCorporationsCorporationIdOrdersHistoryRequest {
+  /**
+   * An EVE corporation ID
+   * @type {number}
+   * @memberof MarketApiGetCorporationsCorporationIdOrdersHistory
+   */
+  readonly corporationId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof MarketApiGetCorporationsCorporationIdOrdersHistory
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof MarketApiGetCorporationsCorporationIdOrdersHistory
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Which page of results to return
+   * @type {number}
+   * @memberof MarketApiGetCorporationsCorporationIdOrdersHistory
+   */
+  readonly page?: number;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof MarketApiGetCorporationsCorporationIdOrdersHistory
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getMarketsGroups operation in MarketApi.
+ * @export
+ * @interface MarketApiGetMarketsGroupsRequest
+ */
+export interface MarketApiGetMarketsGroupsRequest {
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof MarketApiGetMarketsGroups
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof MarketApiGetMarketsGroups
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
+ * Request parameters for getMarketsGroupsMarketGroupId operation in MarketApi.
+ * @export
+ * @interface MarketApiGetMarketsGroupsMarketGroupIdRequest
+ */
+export interface MarketApiGetMarketsGroupsMarketGroupIdRequest {
+  /**
+   * An Eve item group ID
+   * @type {number}
+   * @memberof MarketApiGetMarketsGroupsMarketGroupId
+   */
+  readonly marketGroupId: number;
+
+  /**
+   * Language to use in the response
+   * @type {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'}
+   * @memberof MarketApiGetMarketsGroupsMarketGroupId
+   */
+  readonly acceptLanguage?:
+    | "en"
+    | "en-us"
+    | "de"
+    | "fr"
+    | "ja"
+    | "ru"
+    | "zh"
+    | "ko"
+    | "es";
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof MarketApiGetMarketsGroupsMarketGroupId
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof MarketApiGetMarketsGroupsMarketGroupId
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Language to use in the response, takes precedence over Accept-Language
+   * @type {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'}
+   * @memberof MarketApiGetMarketsGroupsMarketGroupId
+   */
+  readonly language?:
+    | "en"
+    | "en-us"
+    | "de"
+    | "fr"
+    | "ja"
+    | "ru"
+    | "zh"
+    | "ko"
+    | "es";
+}
+
+/**
+ * Request parameters for getMarketsPrices operation in MarketApi.
+ * @export
+ * @interface MarketApiGetMarketsPricesRequest
+ */
+export interface MarketApiGetMarketsPricesRequest {
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof MarketApiGetMarketsPrices
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof MarketApiGetMarketsPrices
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
+ * Request parameters for getMarketsRegionIdHistory operation in MarketApi.
+ * @export
+ * @interface MarketApiGetMarketsRegionIdHistoryRequest
+ */
+export interface MarketApiGetMarketsRegionIdHistoryRequest {
+  /**
+   * Return statistics in this region
+   * @type {number}
+   * @memberof MarketApiGetMarketsRegionIdHistory
+   */
+  readonly regionId: number;
+
+  /**
+   * Return statistics for this type
+   * @type {number}
+   * @memberof MarketApiGetMarketsRegionIdHistory
+   */
+  readonly typeId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof MarketApiGetMarketsRegionIdHistory
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof MarketApiGetMarketsRegionIdHistory
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
+ * Request parameters for getMarketsRegionIdOrders operation in MarketApi.
+ * @export
+ * @interface MarketApiGetMarketsRegionIdOrdersRequest
+ */
+export interface MarketApiGetMarketsRegionIdOrdersRequest {
+  /**
+   * Filter buy/sell orders, return all orders by default. If you query without type_id, we always return both buy and sell orders
+   * @type {'buy' | 'sell' | 'all'}
+   * @memberof MarketApiGetMarketsRegionIdOrders
+   */
+  readonly orderType: "buy" | "sell" | "all";
+
+  /**
+   * Return orders in this region
+   * @type {number}
+   * @memberof MarketApiGetMarketsRegionIdOrders
+   */
+  readonly regionId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof MarketApiGetMarketsRegionIdOrders
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof MarketApiGetMarketsRegionIdOrders
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Which page of results to return
+   * @type {number}
+   * @memberof MarketApiGetMarketsRegionIdOrders
+   */
+  readonly page?: number;
+
+  /**
+   * Return orders only for this type
+   * @type {number}
+   * @memberof MarketApiGetMarketsRegionIdOrders
+   */
+  readonly typeId?: number;
+}
+
+/**
+ * Request parameters for getMarketsRegionIdTypes operation in MarketApi.
+ * @export
+ * @interface MarketApiGetMarketsRegionIdTypesRequest
+ */
+export interface MarketApiGetMarketsRegionIdTypesRequest {
+  /**
+   * Return statistics in this region
+   * @type {number}
+   * @memberof MarketApiGetMarketsRegionIdTypes
+   */
+  readonly regionId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof MarketApiGetMarketsRegionIdTypes
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof MarketApiGetMarketsRegionIdTypes
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Which page of results to return
+   * @type {number}
+   * @memberof MarketApiGetMarketsRegionIdTypes
+   */
+  readonly page?: number;
+}
+
+/**
+ * Request parameters for getMarketsStructuresStructureId operation in MarketApi.
+ * @export
+ * @interface MarketApiGetMarketsStructuresStructureIdRequest
+ */
+export interface MarketApiGetMarketsStructuresStructureIdRequest {
+  /**
+   * Return orders in this structure
+   * @type {number}
+   * @memberof MarketApiGetMarketsStructuresStructureId
+   */
+  readonly structureId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof MarketApiGetMarketsStructuresStructureId
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof MarketApiGetMarketsStructuresStructureId
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Which page of results to return
+   * @type {number}
+   * @memberof MarketApiGetMarketsStructuresStructureId
+   */
+  readonly page?: number;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof MarketApiGetMarketsStructuresStructureId
+   */
+  readonly token?: string;
+}
+
+/**
  * MarketApi - object-oriented interface
  * @export
  * @class MarketApi
@@ -38553,30 +43099,22 @@ export class MarketApi extends BaseAPI {
   /**
    * List cancelled and expired market orders placed by a character up to 90 days in the past.  --- Alternate route: `/dev/characters/{character_id}/orders/history/`  Alternate route: `/legacy/characters/{character_id}/orders/history/`  Alternate route: `/v1/characters/{character_id}/orders/history/`  --- This route is cached for up to 3600 seconds
    * @summary List historical orders by a character
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [page] Which page of results to return
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {MarketApiGetCharacterOrderHistoryRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MarketApi
    */
   public getCharacterOrderHistory(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    page?: number,
-    token?: string,
+    requestParameters: MarketApiGetCharacterOrderHistoryRequest,
     options?: AxiosRequestConfig
   ) {
     return MarketApiFp(this.configuration)
       .getCharacterOrderHistory(
-        characterId,
-        datasource,
-        ifNoneMatch,
-        page,
-        token,
+        requestParameters.characterId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.page,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -38585,53 +43123,45 @@ export class MarketApi extends BaseAPI {
   /**
    * List open market orders placed by a character  --- Alternate route: `/dev/characters/{character_id}/orders/`  Alternate route: `/v2/characters/{character_id}/orders/`  --- This route is cached for up to 1200 seconds
    * @summary List open orders from a character
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {MarketApiGetCharacterOrdersRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MarketApi
    */
   public getCharacterOrders(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: MarketApiGetCharacterOrdersRequest,
     options?: AxiosRequestConfig
   ) {
     return MarketApiFp(this.configuration)
-      .getCharacterOrders(characterId, datasource, ifNoneMatch, token, options)
+      .getCharacterOrders(
+        requestParameters.characterId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * List open market orders placed on behalf of a corporation  --- Alternate route: `/dev/corporations/{corporation_id}/orders/`  Alternate route: `/v3/corporations/{corporation_id}/orders/`  --- This route is cached for up to 1200 seconds  --- Requires one of the following EVE corporation role(s): Accountant, Trader
    * @summary List open orders from a corporation
-   * @param {number} corporationId An EVE corporation ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [page] Which page of results to return
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {MarketApiGetCorporationsCorporationIdOrdersRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MarketApi
    */
   public getCorporationsCorporationIdOrders(
-    corporationId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    page?: number,
-    token?: string,
+    requestParameters: MarketApiGetCorporationsCorporationIdOrdersRequest,
     options?: AxiosRequestConfig
   ) {
     return MarketApiFp(this.configuration)
       .getCorporationsCorporationIdOrders(
-        corporationId,
-        datasource,
-        ifNoneMatch,
-        page,
-        token,
+        requestParameters.corporationId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.page,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -38640,30 +43170,22 @@ export class MarketApi extends BaseAPI {
   /**
    * List cancelled and expired market orders placed on behalf of a corporation up to 90 days in the past.  --- Alternate route: `/dev/corporations/{corporation_id}/orders/history/`  Alternate route: `/v2/corporations/{corporation_id}/orders/history/`  --- This route is cached for up to 3600 seconds  --- Requires one of the following EVE corporation role(s): Accountant, Trader
    * @summary List historical orders from a corporation
-   * @param {number} corporationId An EVE corporation ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [page] Which page of results to return
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {MarketApiGetCorporationsCorporationIdOrdersHistoryRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MarketApi
    */
   public getCorporationsCorporationIdOrdersHistory(
-    corporationId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    page?: number,
-    token?: string,
+    requestParameters: MarketApiGetCorporationsCorporationIdOrdersHistoryRequest,
     options?: AxiosRequestConfig
   ) {
     return MarketApiFp(this.configuration)
       .getCorporationsCorporationIdOrdersHistory(
-        corporationId,
-        datasource,
-        ifNoneMatch,
-        page,
-        token,
+        requestParameters.corporationId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.page,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -38672,58 +43194,43 @@ export class MarketApi extends BaseAPI {
   /**
    * Get a list of item groups  --- Alternate route: `/dev/markets/groups/`  Alternate route: `/legacy/markets/groups/`  Alternate route: `/v1/markets/groups/`  --- This route expires daily at 11:05
    * @summary Get item groups
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {MarketApiGetMarketsGroupsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MarketApi
    */
   public getMarketsGroups(
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: MarketApiGetMarketsGroupsRequest = {},
     options?: AxiosRequestConfig
   ) {
     return MarketApiFp(this.configuration)
-      .getMarketsGroups(datasource, ifNoneMatch, options)
+      .getMarketsGroups(
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Get information on an item group  --- Alternate route: `/dev/markets/groups/{market_group_id}/`  Alternate route: `/legacy/markets/groups/{market_group_id}/`  Alternate route: `/v1/markets/groups/{market_group_id}/`  --- This route expires daily at 11:05
    * @summary Get item group information
-   * @param {number} marketGroupId An Eve item group ID
-   * @param {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'} [acceptLanguage] Language to use in the response
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'} [language] Language to use in the response, takes precedence over Accept-Language
+   * @param {MarketApiGetMarketsGroupsMarketGroupIdRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MarketApi
    */
   public getMarketsGroupsMarketGroupId(
-    marketGroupId: number,
-    acceptLanguage?:
-      | "en"
-      | "en-us"
-      | "de"
-      | "fr"
-      | "ja"
-      | "ru"
-      | "zh"
-      | "ko"
-      | "es",
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    language?: "en" | "en-us" | "de" | "fr" | "ja" | "ru" | "zh" | "ko" | "es",
+    requestParameters: MarketApiGetMarketsGroupsMarketGroupIdRequest,
     options?: AxiosRequestConfig
   ) {
     return MarketApiFp(this.configuration)
       .getMarketsGroupsMarketGroupId(
-        marketGroupId,
-        acceptLanguage,
-        datasource,
-        ifNoneMatch,
-        language,
+        requestParameters.marketGroupId,
+        requestParameters.acceptLanguage,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.language,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -38732,46 +43239,42 @@ export class MarketApi extends BaseAPI {
   /**
    * Return a list of prices  --- Alternate route: `/dev/markets/prices/`  Alternate route: `/legacy/markets/prices/`  Alternate route: `/v1/markets/prices/`  --- This route is cached for up to 3600 seconds
    * @summary List market prices
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {MarketApiGetMarketsPricesRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MarketApi
    */
   public getMarketsPrices(
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: MarketApiGetMarketsPricesRequest = {},
     options?: AxiosRequestConfig
   ) {
     return MarketApiFp(this.configuration)
-      .getMarketsPrices(datasource, ifNoneMatch, options)
+      .getMarketsPrices(
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Return a list of historical market statistics for the specified type in a region  --- Alternate route: `/dev/markets/{region_id}/history/`  Alternate route: `/legacy/markets/{region_id}/history/`  Alternate route: `/v1/markets/{region_id}/history/`  --- This route expires daily at 11:05
    * @summary List historical market statistics in a region
-   * @param {number} regionId Return statistics in this region
-   * @param {number} typeId Return statistics for this type
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {MarketApiGetMarketsRegionIdHistoryRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MarketApi
    */
   public getMarketsRegionIdHistory(
-    regionId: number,
-    typeId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: MarketApiGetMarketsRegionIdHistoryRequest,
     options?: AxiosRequestConfig
   ) {
     return MarketApiFp(this.configuration)
       .getMarketsRegionIdHistory(
-        regionId,
-        typeId,
-        datasource,
-        ifNoneMatch,
+        requestParameters.regionId,
+        requestParameters.typeId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -38780,33 +43283,23 @@ export class MarketApi extends BaseAPI {
   /**
    * Return a list of orders in a region  --- Alternate route: `/dev/markets/{region_id}/orders/`  Alternate route: `/legacy/markets/{region_id}/orders/`  Alternate route: `/v1/markets/{region_id}/orders/`  --- This route is cached for up to 300 seconds
    * @summary List orders in a region
-   * @param {'buy' | 'sell' | 'all'} orderType Filter buy/sell orders, return all orders by default. If you query without type_id, we always return both buy and sell orders
-   * @param {number} regionId Return orders in this region
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [page] Which page of results to return
-   * @param {number} [typeId] Return orders only for this type
+   * @param {MarketApiGetMarketsRegionIdOrdersRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MarketApi
    */
   public getMarketsRegionIdOrders(
-    orderType: "buy" | "sell" | "all",
-    regionId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    page?: number,
-    typeId?: number,
+    requestParameters: MarketApiGetMarketsRegionIdOrdersRequest,
     options?: AxiosRequestConfig
   ) {
     return MarketApiFp(this.configuration)
       .getMarketsRegionIdOrders(
-        orderType,
-        regionId,
-        datasource,
-        ifNoneMatch,
-        page,
-        typeId,
+        requestParameters.orderType,
+        requestParameters.regionId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.page,
+        requestParameters.typeId,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -38815,53 +43308,45 @@ export class MarketApi extends BaseAPI {
   /**
    * Return a list of type IDs that have active orders in the region, for efficient market indexing.  --- Alternate route: `/dev/markets/{region_id}/types/`  Alternate route: `/legacy/markets/{region_id}/types/`  Alternate route: `/v1/markets/{region_id}/types/`  --- This route is cached for up to 600 seconds
    * @summary List type IDs relevant to a market
-   * @param {number} regionId Return statistics in this region
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [page] Which page of results to return
+   * @param {MarketApiGetMarketsRegionIdTypesRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MarketApi
    */
   public getMarketsRegionIdTypes(
-    regionId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    page?: number,
+    requestParameters: MarketApiGetMarketsRegionIdTypesRequest,
     options?: AxiosRequestConfig
   ) {
     return MarketApiFp(this.configuration)
-      .getMarketsRegionIdTypes(regionId, datasource, ifNoneMatch, page, options)
+      .getMarketsRegionIdTypes(
+        requestParameters.regionId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.page,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Return all orders in a structure  --- Alternate route: `/dev/markets/structures/{structure_id}/`  Alternate route: `/legacy/markets/structures/{structure_id}/`  Alternate route: `/v1/markets/structures/{structure_id}/`  --- This route is cached for up to 300 seconds
    * @summary List orders in a structure
-   * @param {number} structureId Return orders in this structure
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [page] Which page of results to return
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {MarketApiGetMarketsStructuresStructureIdRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof MarketApi
    */
   public getMarketsStructuresStructureId(
-    structureId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    page?: number,
-    token?: string,
+    requestParameters: MarketApiGetMarketsStructuresStructureIdRequest,
     options?: AxiosRequestConfig
   ) {
     return MarketApiFp(this.configuration)
       .getMarketsStructuresStructureId(
-        structureId,
-        datasource,
-        ifNoneMatch,
-        page,
-        token,
+        requestParameters.structureId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.page,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -39543,6 +44028,171 @@ export const OpportunitiesApiFactory = function (
 };
 
 /**
+ * Request parameters for getCharacterOpportunities operation in OpportunitiesApi.
+ * @export
+ * @interface OpportunitiesApiGetCharacterOpportunitiesRequest
+ */
+export interface OpportunitiesApiGetCharacterOpportunitiesRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof OpportunitiesApiGetCharacterOpportunities
+   */
+  readonly characterId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof OpportunitiesApiGetCharacterOpportunities
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof OpportunitiesApiGetCharacterOpportunities
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof OpportunitiesApiGetCharacterOpportunities
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getOpportunitiesGroups operation in OpportunitiesApi.
+ * @export
+ * @interface OpportunitiesApiGetOpportunitiesGroupsRequest
+ */
+export interface OpportunitiesApiGetOpportunitiesGroupsRequest {
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof OpportunitiesApiGetOpportunitiesGroups
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof OpportunitiesApiGetOpportunitiesGroups
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
+ * Request parameters for getOpportunitiesGroupsGroupId operation in OpportunitiesApi.
+ * @export
+ * @interface OpportunitiesApiGetOpportunitiesGroupsGroupIdRequest
+ */
+export interface OpportunitiesApiGetOpportunitiesGroupsGroupIdRequest {
+  /**
+   * ID of an opportunities group
+   * @type {number}
+   * @memberof OpportunitiesApiGetOpportunitiesGroupsGroupId
+   */
+  readonly groupId: number;
+
+  /**
+   * Language to use in the response
+   * @type {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'}
+   * @memberof OpportunitiesApiGetOpportunitiesGroupsGroupId
+   */
+  readonly acceptLanguage?:
+    | "en"
+    | "en-us"
+    | "de"
+    | "fr"
+    | "ja"
+    | "ru"
+    | "zh"
+    | "ko"
+    | "es";
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof OpportunitiesApiGetOpportunitiesGroupsGroupId
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof OpportunitiesApiGetOpportunitiesGroupsGroupId
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Language to use in the response, takes precedence over Accept-Language
+   * @type {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'}
+   * @memberof OpportunitiesApiGetOpportunitiesGroupsGroupId
+   */
+  readonly language?:
+    | "en"
+    | "en-us"
+    | "de"
+    | "fr"
+    | "ja"
+    | "ru"
+    | "zh"
+    | "ko"
+    | "es";
+}
+
+/**
+ * Request parameters for getOpportunitiesTasks operation in OpportunitiesApi.
+ * @export
+ * @interface OpportunitiesApiGetOpportunitiesTasksRequest
+ */
+export interface OpportunitiesApiGetOpportunitiesTasksRequest {
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof OpportunitiesApiGetOpportunitiesTasks
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof OpportunitiesApiGetOpportunitiesTasks
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
+ * Request parameters for getOpportunitiesTasksTaskId operation in OpportunitiesApi.
+ * @export
+ * @interface OpportunitiesApiGetOpportunitiesTasksTaskIdRequest
+ */
+export interface OpportunitiesApiGetOpportunitiesTasksTaskIdRequest {
+  /**
+   * ID of an opportunities task
+   * @type {number}
+   * @memberof OpportunitiesApiGetOpportunitiesTasksTaskId
+   */
+  readonly taskId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof OpportunitiesApiGetOpportunitiesTasksTaskId
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof OpportunitiesApiGetOpportunitiesTasksTaskId
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
  * OpportunitiesApi - object-oriented interface
  * @export
  * @class OpportunitiesApi
@@ -39552,27 +44202,21 @@ export class OpportunitiesApi extends BaseAPI {
   /**
    * Return a list of tasks finished by a character  --- Alternate route: `/dev/characters/{character_id}/opportunities/`  Alternate route: `/legacy/characters/{character_id}/opportunities/`  Alternate route: `/v1/characters/{character_id}/opportunities/`  --- This route is cached for up to 3600 seconds
    * @summary Get a character\'s completed tasks
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {OpportunitiesApiGetCharacterOpportunitiesRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof OpportunitiesApi
    */
   public getCharacterOpportunities(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: OpportunitiesApiGetCharacterOpportunitiesRequest,
     options?: AxiosRequestConfig
   ) {
     return OpportunitiesApiFp(this.configuration)
       .getCharacterOpportunities(
-        characterId,
-        datasource,
-        ifNoneMatch,
-        token,
+        requestParameters.characterId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -39581,58 +44225,43 @@ export class OpportunitiesApi extends BaseAPI {
   /**
    * Return a list of opportunities groups  --- Alternate route: `/dev/opportunities/groups/`  Alternate route: `/legacy/opportunities/groups/`  Alternate route: `/v1/opportunities/groups/`  --- This route expires daily at 11:05
    * @summary Get opportunities groups
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {OpportunitiesApiGetOpportunitiesGroupsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof OpportunitiesApi
    */
   public getOpportunitiesGroups(
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: OpportunitiesApiGetOpportunitiesGroupsRequest = {},
     options?: AxiosRequestConfig
   ) {
     return OpportunitiesApiFp(this.configuration)
-      .getOpportunitiesGroups(datasource, ifNoneMatch, options)
+      .getOpportunitiesGroups(
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Return information of an opportunities group  --- Alternate route: `/dev/opportunities/groups/{group_id}/`  Alternate route: `/legacy/opportunities/groups/{group_id}/`  Alternate route: `/v1/opportunities/groups/{group_id}/`  --- This route expires daily at 11:05
    * @summary Get opportunities group
-   * @param {number} groupId ID of an opportunities group
-   * @param {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'} [acceptLanguage] Language to use in the response
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'} [language] Language to use in the response, takes precedence over Accept-Language
+   * @param {OpportunitiesApiGetOpportunitiesGroupsGroupIdRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof OpportunitiesApi
    */
   public getOpportunitiesGroupsGroupId(
-    groupId: number,
-    acceptLanguage?:
-      | "en"
-      | "en-us"
-      | "de"
-      | "fr"
-      | "ja"
-      | "ru"
-      | "zh"
-      | "ko"
-      | "es",
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    language?: "en" | "en-us" | "de" | "fr" | "ja" | "ru" | "zh" | "ko" | "es",
+    requestParameters: OpportunitiesApiGetOpportunitiesGroupsGroupIdRequest,
     options?: AxiosRequestConfig
   ) {
     return OpportunitiesApiFp(this.configuration)
       .getOpportunitiesGroupsGroupId(
-        groupId,
-        acceptLanguage,
-        datasource,
-        ifNoneMatch,
-        language,
+        requestParameters.groupId,
+        requestParameters.acceptLanguage,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.language,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -39641,40 +44270,43 @@ export class OpportunitiesApi extends BaseAPI {
   /**
    * Return a list of opportunities tasks  --- Alternate route: `/dev/opportunities/tasks/`  Alternate route: `/legacy/opportunities/tasks/`  Alternate route: `/v1/opportunities/tasks/`  --- This route expires daily at 11:05
    * @summary Get opportunities tasks
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {OpportunitiesApiGetOpportunitiesTasksRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof OpportunitiesApi
    */
   public getOpportunitiesTasks(
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: OpportunitiesApiGetOpportunitiesTasksRequest = {},
     options?: AxiosRequestConfig
   ) {
     return OpportunitiesApiFp(this.configuration)
-      .getOpportunitiesTasks(datasource, ifNoneMatch, options)
+      .getOpportunitiesTasks(
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Return information of an opportunities task  --- Alternate route: `/dev/opportunities/tasks/{task_id}/`  Alternate route: `/legacy/opportunities/tasks/{task_id}/`  Alternate route: `/v1/opportunities/tasks/{task_id}/`  --- This route expires daily at 11:05
    * @summary Get opportunities task
-   * @param {number} taskId ID of an opportunities task
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {OpportunitiesApiGetOpportunitiesTasksTaskIdRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof OpportunitiesApi
    */
   public getOpportunitiesTasksTaskId(
-    taskId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: OpportunitiesApiGetOpportunitiesTasksTaskIdRequest,
     options?: AxiosRequestConfig
   ) {
     return OpportunitiesApiFp(this.configuration)
-      .getOpportunitiesTasksTaskId(taskId, datasource, ifNoneMatch, options)
+      .getOpportunitiesTasksTaskId(
+        requestParameters.taskId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 }
@@ -40257,6 +44889,146 @@ export const PlanetaryInteractionApiFactory = function (
 };
 
 /**
+ * Request parameters for getCharacterPlanet operation in PlanetaryInteractionApi.
+ * @export
+ * @interface PlanetaryInteractionApiGetCharacterPlanetRequest
+ */
+export interface PlanetaryInteractionApiGetCharacterPlanetRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof PlanetaryInteractionApiGetCharacterPlanet
+   */
+  readonly characterId: number;
+
+  /**
+   * Planet id of the target planet
+   * @type {number}
+   * @memberof PlanetaryInteractionApiGetCharacterPlanet
+   */
+  readonly planetId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof PlanetaryInteractionApiGetCharacterPlanet
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof PlanetaryInteractionApiGetCharacterPlanet
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCharacterPlanets operation in PlanetaryInteractionApi.
+ * @export
+ * @interface PlanetaryInteractionApiGetCharacterPlanetsRequest
+ */
+export interface PlanetaryInteractionApiGetCharacterPlanetsRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof PlanetaryInteractionApiGetCharacterPlanets
+   */
+  readonly characterId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof PlanetaryInteractionApiGetCharacterPlanets
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof PlanetaryInteractionApiGetCharacterPlanets
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof PlanetaryInteractionApiGetCharacterPlanets
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCorporationsCorporationIdCustomsOffices operation in PlanetaryInteractionApi.
+ * @export
+ * @interface PlanetaryInteractionApiGetCorporationsCorporationIdCustomsOfficesRequest
+ */
+export interface PlanetaryInteractionApiGetCorporationsCorporationIdCustomsOfficesRequest {
+  /**
+   * An EVE corporation ID
+   * @type {number}
+   * @memberof PlanetaryInteractionApiGetCorporationsCorporationIdCustomsOffices
+   */
+  readonly corporationId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof PlanetaryInteractionApiGetCorporationsCorporationIdCustomsOffices
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof PlanetaryInteractionApiGetCorporationsCorporationIdCustomsOffices
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Which page of results to return
+   * @type {number}
+   * @memberof PlanetaryInteractionApiGetCorporationsCorporationIdCustomsOffices
+   */
+  readonly page?: number;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof PlanetaryInteractionApiGetCorporationsCorporationIdCustomsOffices
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getUniverseSchematicsSchematicId operation in PlanetaryInteractionApi.
+ * @export
+ * @interface PlanetaryInteractionApiGetUniverseSchematicsSchematicIdRequest
+ */
+export interface PlanetaryInteractionApiGetUniverseSchematicsSchematicIdRequest {
+  /**
+   * A PI schematic ID
+   * @type {number}
+   * @memberof PlanetaryInteractionApiGetUniverseSchematicsSchematicId
+   */
+  readonly schematicId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof PlanetaryInteractionApiGetUniverseSchematicsSchematicId
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof PlanetaryInteractionApiGetUniverseSchematicsSchematicId
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
  * PlanetaryInteractionApi - object-oriented interface
  * @export
  * @class PlanetaryInteractionApi
@@ -40266,76 +45038,68 @@ export class PlanetaryInteractionApi extends BaseAPI {
   /**
    * Returns full details on the layout of a single planetary colony, including links, pins and routes. Note: Planetary information is only recalculated when the colony is viewed through the client. Information will not update until this criteria is met.  --- Alternate route: `/dev/characters/{character_id}/planets/{planet_id}/`  Alternate route: `/v3/characters/{character_id}/planets/{planet_id}/`
    * @summary Get colony layout
-   * @param {number} characterId An EVE character ID
-   * @param {number} planetId Planet id of the target planet
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {PlanetaryInteractionApiGetCharacterPlanetRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof PlanetaryInteractionApi
    */
   public getCharacterPlanet(
-    characterId: number,
-    planetId: number,
-    datasource?: "tranquility",
-    token?: string,
+    requestParameters: PlanetaryInteractionApiGetCharacterPlanetRequest,
     options?: AxiosRequestConfig
   ) {
     return PlanetaryInteractionApiFp(this.configuration)
-      .getCharacterPlanet(characterId, planetId, datasource, token, options)
+      .getCharacterPlanet(
+        requestParameters.characterId,
+        requestParameters.planetId,
+        requestParameters.datasource,
+        requestParameters.token,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Returns a list of all planetary colonies owned by a character.  --- Alternate route: `/dev/characters/{character_id}/planets/`  Alternate route: `/legacy/characters/{character_id}/planets/`  Alternate route: `/v1/characters/{character_id}/planets/`  --- This route is cached for up to 600 seconds
    * @summary Get colonies
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {PlanetaryInteractionApiGetCharacterPlanetsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof PlanetaryInteractionApi
    */
   public getCharacterPlanets(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: PlanetaryInteractionApiGetCharacterPlanetsRequest,
     options?: AxiosRequestConfig
   ) {
     return PlanetaryInteractionApiFp(this.configuration)
-      .getCharacterPlanets(characterId, datasource, ifNoneMatch, token, options)
+      .getCharacterPlanets(
+        requestParameters.characterId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * List customs offices owned by a corporation  --- Alternate route: `/dev/corporations/{corporation_id}/customs_offices/`  Alternate route: `/legacy/corporations/{corporation_id}/customs_offices/`  Alternate route: `/v1/corporations/{corporation_id}/customs_offices/`  --- This route is cached for up to 3600 seconds  --- Requires one of the following EVE corporation role(s): Director
    * @summary List corporation customs offices
-   * @param {number} corporationId An EVE corporation ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [page] Which page of results to return
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {PlanetaryInteractionApiGetCorporationsCorporationIdCustomsOfficesRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof PlanetaryInteractionApi
    */
   public getCorporationsCorporationIdCustomsOffices(
-    corporationId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    page?: number,
-    token?: string,
+    requestParameters: PlanetaryInteractionApiGetCorporationsCorporationIdCustomsOfficesRequest,
     options?: AxiosRequestConfig
   ) {
     return PlanetaryInteractionApiFp(this.configuration)
       .getCorporationsCorporationIdCustomsOffices(
-        corporationId,
-        datasource,
-        ifNoneMatch,
-        page,
-        token,
+        requestParameters.corporationId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.page,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -40344,24 +45108,20 @@ export class PlanetaryInteractionApi extends BaseAPI {
   /**
    * Get information on a planetary factory schematic  --- Alternate route: `/dev/universe/schematics/{schematic_id}/`  Alternate route: `/legacy/universe/schematics/{schematic_id}/`  Alternate route: `/v1/universe/schematics/{schematic_id}/`  --- This route is cached for up to 3600 seconds
    * @summary Get schematic information
-   * @param {number} schematicId A PI schematic ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {PlanetaryInteractionApiGetUniverseSchematicsSchematicIdRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof PlanetaryInteractionApi
    */
   public getUniverseSchematicsSchematicId(
-    schematicId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: PlanetaryInteractionApiGetUniverseSchematicsSchematicIdRequest,
     options?: AxiosRequestConfig
   ) {
     return PlanetaryInteractionApiFp(this.configuration)
       .getUniverseSchematicsSchematicId(
-        schematicId,
-        datasource,
-        ifNoneMatch,
+        requestParameters.schematicId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -40570,6 +45330,62 @@ export const RoutesApiFactory = function (
 };
 
 /**
+ * Request parameters for getRouteOriginDestination operation in RoutesApi.
+ * @export
+ * @interface RoutesApiGetRouteOriginDestinationRequest
+ */
+export interface RoutesApiGetRouteOriginDestinationRequest {
+  /**
+   * destination solar system ID
+   * @type {number}
+   * @memberof RoutesApiGetRouteOriginDestination
+   */
+  readonly destination: number;
+
+  /**
+   * origin solar system ID
+   * @type {number}
+   * @memberof RoutesApiGetRouteOriginDestination
+   */
+  readonly origin: number;
+
+  /**
+   * avoid solar system ID(s)
+   * @type {Set<number>}
+   * @memberof RoutesApiGetRouteOriginDestination
+   */
+  readonly avoid?: Set<number>;
+
+  /**
+   * connected solar system pairs
+   * @type {Set<Set<number>>}
+   * @memberof RoutesApiGetRouteOriginDestination
+   */
+  readonly connections?: Set<Set<number>>;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof RoutesApiGetRouteOriginDestination
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * route security preference
+   * @type {'shortest' | 'secure' | 'insecure'}
+   * @memberof RoutesApiGetRouteOriginDestination
+   */
+  readonly flag?: "shortest" | "secure" | "insecure";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof RoutesApiGetRouteOriginDestination
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
  * RoutesApi - object-oriented interface
  * @export
  * @class RoutesApi
@@ -40579,36 +45395,24 @@ export class RoutesApi extends BaseAPI {
   /**
    * Get the systems between origin and destination  --- Alternate route: `/dev/route/{origin}/{destination}/`  Alternate route: `/legacy/route/{origin}/{destination}/`  Alternate route: `/v1/route/{origin}/{destination}/`  --- This route is cached for up to 86400 seconds
    * @summary Get route
-   * @param {number} destination destination solar system ID
-   * @param {number} origin origin solar system ID
-   * @param {Set<number>} [avoid] avoid solar system ID(s)
-   * @param {Set<Set<number>>} [connections] connected solar system pairs
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {'shortest' | 'secure' | 'insecure'} [flag] route security preference
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {RoutesApiGetRouteOriginDestinationRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof RoutesApi
    */
   public getRouteOriginDestination(
-    destination: number,
-    origin: number,
-    avoid?: Set<number>,
-    connections?: Set<Set<number>>,
-    datasource?: "tranquility",
-    flag?: "shortest" | "secure" | "insecure",
-    ifNoneMatch?: string,
+    requestParameters: RoutesApiGetRouteOriginDestinationRequest,
     options?: AxiosRequestConfig
   ) {
     return RoutesApiFp(this.configuration)
       .getRouteOriginDestination(
-        destination,
-        origin,
-        avoid,
-        connections,
-        datasource,
-        flag,
-        ifNoneMatch,
+        requestParameters.destination,
+        requestParameters.origin,
+        requestParameters.avoid,
+        requestParameters.connections,
+        requestParameters.datasource,
+        requestParameters.flag,
+        requestParameters.ifNoneMatch,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -40944,6 +45748,106 @@ export const SearchApiFactory = function (
 };
 
 /**
+ * Request parameters for searchCharacterEntities operation in SearchApi.
+ * @export
+ * @interface SearchApiSearchCharacterEntitiesRequest
+ */
+export interface SearchApiSearchCharacterEntitiesRequest {
+  /**
+   * Type of entities to search for
+   * @type {Set<'agent' | 'alliance' | 'character' | 'constellation' | 'corporation' | 'faction' | 'inventory_type' | 'region' | 'solar_system' | 'station' | 'structure'>}
+   * @memberof SearchApiSearchCharacterEntities
+   */
+  readonly categories: Set<
+    | "agent"
+    | "alliance"
+    | "character"
+    | "constellation"
+    | "corporation"
+    | "faction"
+    | "inventory_type"
+    | "region"
+    | "solar_system"
+    | "station"
+    | "structure"
+  >;
+
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof SearchApiSearchCharacterEntities
+   */
+  readonly characterId: number;
+
+  /**
+   * The string to search on
+   * @type {string}
+   * @memberof SearchApiSearchCharacterEntities
+   */
+  readonly search: string;
+
+  /**
+   * Language to use in the response
+   * @type {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'}
+   * @memberof SearchApiSearchCharacterEntities
+   */
+  readonly acceptLanguage?:
+    | "en"
+    | "en-us"
+    | "de"
+    | "fr"
+    | "ja"
+    | "ru"
+    | "zh"
+    | "ko"
+    | "es";
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof SearchApiSearchCharacterEntities
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof SearchApiSearchCharacterEntities
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Language to use in the response, takes precedence over Accept-Language
+   * @type {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'}
+   * @memberof SearchApiSearchCharacterEntities
+   */
+  readonly language?:
+    | "en"
+    | "en-us"
+    | "de"
+    | "fr"
+    | "ja"
+    | "ru"
+    | "zh"
+    | "ko"
+    | "es";
+
+  /**
+   * Whether the search should be a strict match
+   * @type {boolean}
+   * @memberof SearchApiSearchCharacterEntities
+   */
+  readonly strict?: boolean;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof SearchApiSearchCharacterEntities
+   */
+  readonly token?: string;
+}
+
+/**
  * SearchApi - object-oriented interface
  * @export
  * @class SearchApi
@@ -40953,63 +45857,26 @@ export class SearchApi extends BaseAPI {
   /**
    * Search for entities that match a given sub-string.  --- Alternate route: `/dev/characters/{character_id}/search/`  Alternate route: `/legacy/characters/{character_id}/search/`  Alternate route: `/v3/characters/{character_id}/search/`  --- This route is cached for up to 3600 seconds
    * @summary Search on a string
-   * @param {Set<'agent' | 'alliance' | 'character' | 'constellation' | 'corporation' | 'faction' | 'inventory_type' | 'region' | 'solar_system' | 'station' | 'structure'>} categories Type of entities to search for
-   * @param {number} characterId An EVE character ID
-   * @param {string} search The string to search on
-   * @param {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'} [acceptLanguage] Language to use in the response
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'} [language] Language to use in the response, takes precedence over Accept-Language
-   * @param {boolean} [strict] Whether the search should be a strict match
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {SearchApiSearchCharacterEntitiesRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SearchApi
    */
   public searchCharacterEntities(
-    categories: Set<
-      | "agent"
-      | "alliance"
-      | "character"
-      | "constellation"
-      | "corporation"
-      | "faction"
-      | "inventory_type"
-      | "region"
-      | "solar_system"
-      | "station"
-      | "structure"
-    >,
-    characterId: number,
-    search: string,
-    acceptLanguage?:
-      | "en"
-      | "en-us"
-      | "de"
-      | "fr"
-      | "ja"
-      | "ru"
-      | "zh"
-      | "ko"
-      | "es",
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    language?: "en" | "en-us" | "de" | "fr" | "ja" | "ru" | "zh" | "ko" | "es",
-    strict?: boolean,
-    token?: string,
+    requestParameters: SearchApiSearchCharacterEntitiesRequest,
     options?: AxiosRequestConfig
   ) {
     return SearchApiFp(this.configuration)
       .searchCharacterEntities(
-        categories,
-        characterId,
-        search,
-        acceptLanguage,
-        datasource,
-        ifNoneMatch,
-        language,
-        strict,
-        token,
+        requestParameters.categories,
+        requestParameters.characterId,
+        requestParameters.search,
+        requestParameters.acceptLanguage,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.language,
+        requestParameters.strict,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -41463,6 +46330,111 @@ export const SkillsApiFactory = function (
 };
 
 /**
+ * Request parameters for getCharacterAttributes operation in SkillsApi.
+ * @export
+ * @interface SkillsApiGetCharacterAttributesRequest
+ */
+export interface SkillsApiGetCharacterAttributesRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof SkillsApiGetCharacterAttributes
+   */
+  readonly characterId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof SkillsApiGetCharacterAttributes
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof SkillsApiGetCharacterAttributes
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof SkillsApiGetCharacterAttributes
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCharacterSkillqueue operation in SkillsApi.
+ * @export
+ * @interface SkillsApiGetCharacterSkillqueueRequest
+ */
+export interface SkillsApiGetCharacterSkillqueueRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof SkillsApiGetCharacterSkillqueue
+   */
+  readonly characterId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof SkillsApiGetCharacterSkillqueue
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof SkillsApiGetCharacterSkillqueue
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof SkillsApiGetCharacterSkillqueue
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCharacterSkills operation in SkillsApi.
+ * @export
+ * @interface SkillsApiGetCharacterSkillsRequest
+ */
+export interface SkillsApiGetCharacterSkillsRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof SkillsApiGetCharacterSkills
+   */
+  readonly characterId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof SkillsApiGetCharacterSkills
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof SkillsApiGetCharacterSkills
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof SkillsApiGetCharacterSkills
+   */
+  readonly token?: string;
+}
+
+/**
  * SkillsApi - object-oriented interface
  * @export
  * @class SkillsApi
@@ -41472,27 +46444,21 @@ export class SkillsApi extends BaseAPI {
   /**
    * Return attributes of a character  --- Alternate route: `/dev/characters/{character_id}/attributes/`  Alternate route: `/legacy/characters/{character_id}/attributes/`  Alternate route: `/v1/characters/{character_id}/attributes/`  --- This route is cached for up to 120 seconds
    * @summary Get character attributes
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {SkillsApiGetCharacterAttributesRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SkillsApi
    */
   public getCharacterAttributes(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: SkillsApiGetCharacterAttributesRequest,
     options?: AxiosRequestConfig
   ) {
     return SkillsApiFp(this.configuration)
       .getCharacterAttributes(
-        characterId,
-        datasource,
-        ifNoneMatch,
-        token,
+        requestParameters.characterId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -41501,27 +46467,21 @@ export class SkillsApi extends BaseAPI {
   /**
    * List the configured skill queue for the given character  --- Alternate route: `/dev/characters/{character_id}/skillqueue/`  Alternate route: `/legacy/characters/{character_id}/skillqueue/`  Alternate route: `/v2/characters/{character_id}/skillqueue/`  --- This route is cached for up to 120 seconds
    * @summary Get character\'s skill queue
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {SkillsApiGetCharacterSkillqueueRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SkillsApi
    */
   public getCharacterSkillqueue(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: SkillsApiGetCharacterSkillqueueRequest,
     options?: AxiosRequestConfig
   ) {
     return SkillsApiFp(this.configuration)
       .getCharacterSkillqueue(
-        characterId,
-        datasource,
-        ifNoneMatch,
-        token,
+        requestParameters.characterId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -41530,23 +46490,23 @@ export class SkillsApi extends BaseAPI {
   /**
    * List all trained skills for the given character  --- Alternate route: `/dev/characters/{character_id}/skills/`  Alternate route: `/v4/characters/{character_id}/skills/`  --- This route is cached for up to 120 seconds
    * @summary Get character skills
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {SkillsApiGetCharacterSkillsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SkillsApi
    */
   public getCharacterSkills(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: SkillsApiGetCharacterSkillsRequest,
     options?: AxiosRequestConfig
   ) {
     return SkillsApiFp(this.configuration)
-      .getCharacterSkills(characterId, datasource, ifNoneMatch, token, options)
+      .getCharacterSkills(
+        requestParameters.characterId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 }
@@ -41885,6 +46845,69 @@ export const SovereigntyApiFactory = function (
 };
 
 /**
+ * Request parameters for getSovereigntyCampaigns operation in SovereigntyApi.
+ * @export
+ * @interface SovereigntyApiGetSovereigntyCampaignsRequest
+ */
+export interface SovereigntyApiGetSovereigntyCampaignsRequest {
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof SovereigntyApiGetSovereigntyCampaigns
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof SovereigntyApiGetSovereigntyCampaigns
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
+ * Request parameters for getSovereigntyMap operation in SovereigntyApi.
+ * @export
+ * @interface SovereigntyApiGetSovereigntyMapRequest
+ */
+export interface SovereigntyApiGetSovereigntyMapRequest {
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof SovereigntyApiGetSovereigntyMap
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof SovereigntyApiGetSovereigntyMap
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
+ * Request parameters for getSovereigntyStructures operation in SovereigntyApi.
+ * @export
+ * @interface SovereigntyApiGetSovereigntyStructuresRequest
+ */
+export interface SovereigntyApiGetSovereigntyStructuresRequest {
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof SovereigntyApiGetSovereigntyStructures
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof SovereigntyApiGetSovereigntyStructures
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
  * SovereigntyApi - object-oriented interface
  * @export
  * @class SovereigntyApi
@@ -41894,57 +46917,63 @@ export class SovereigntyApi extends BaseAPI {
   /**
    * Shows sovereignty data for campaigns.  --- Alternate route: `/dev/sovereignty/campaigns/`  Alternate route: `/legacy/sovereignty/campaigns/`  Alternate route: `/v1/sovereignty/campaigns/`  --- This route is cached for up to 5 seconds
    * @summary List sovereignty campaigns
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {SovereigntyApiGetSovereigntyCampaignsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SovereigntyApi
    */
   public getSovereigntyCampaigns(
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: SovereigntyApiGetSovereigntyCampaignsRequest = {},
     options?: AxiosRequestConfig
   ) {
     return SovereigntyApiFp(this.configuration)
-      .getSovereigntyCampaigns(datasource, ifNoneMatch, options)
+      .getSovereigntyCampaigns(
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Shows sovereignty information for solar systems  --- Alternate route: `/dev/sovereignty/map/`  Alternate route: `/legacy/sovereignty/map/`  Alternate route: `/v1/sovereignty/map/`  --- This route is cached for up to 3600 seconds
    * @summary List sovereignty of systems
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {SovereigntyApiGetSovereigntyMapRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SovereigntyApi
    */
   public getSovereigntyMap(
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: SovereigntyApiGetSovereigntyMapRequest = {},
     options?: AxiosRequestConfig
   ) {
     return SovereigntyApiFp(this.configuration)
-      .getSovereigntyMap(datasource, ifNoneMatch, options)
+      .getSovereigntyMap(
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Shows sovereignty data for structures.  --- Alternate route: `/dev/sovereignty/structures/`  Alternate route: `/legacy/sovereignty/structures/`  Alternate route: `/v1/sovereignty/structures/`  --- This route is cached for up to 120 seconds
    * @summary List sovereignty structures
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {SovereigntyApiGetSovereigntyStructuresRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof SovereigntyApi
    */
   public getSovereigntyStructures(
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: SovereigntyApiGetSovereigntyStructuresRequest = {},
     options?: AxiosRequestConfig
   ) {
     return SovereigntyApiFp(this.configuration)
-      .getSovereigntyStructures(datasource, ifNoneMatch, options)
+      .getSovereigntyStructures(
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 }
@@ -42080,6 +47109,27 @@ export const StatusApiFactory = function (
 };
 
 /**
+ * Request parameters for getStatus operation in StatusApi.
+ * @export
+ * @interface StatusApiGetStatusRequest
+ */
+export interface StatusApiGetStatusRequest {
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof StatusApiGetStatus
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof StatusApiGetStatus
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
  * StatusApi - object-oriented interface
  * @export
  * @class StatusApi
@@ -42089,19 +47139,21 @@ export class StatusApi extends BaseAPI {
   /**
    * EVE Server status  --- Alternate route: `/dev/status/`  Alternate route: `/legacy/status/`  Alternate route: `/v1/status/`  Alternate route: `/v2/status/`  --- This route is cached for up to 30 seconds
    * @summary Retrieve the uptime and player counts
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {StatusApiGetStatusRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof StatusApi
    */
   public getStatus(
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: StatusApiGetStatusRequest = {},
     options?: AxiosRequestConfig
   ) {
     return StatusApiFp(this.configuration)
-      .getStatus(datasource, ifNoneMatch, options)
+      .getStatus(
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 }
@@ -46268,6 +51320,1114 @@ export const UniverseApiFactory = function (
 };
 
 /**
+ * Request parameters for getUniverseAncestries operation in UniverseApi.
+ * @export
+ * @interface UniverseApiGetUniverseAncestriesRequest
+ */
+export interface UniverseApiGetUniverseAncestriesRequest {
+  /**
+   * Language to use in the response
+   * @type {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'}
+   * @memberof UniverseApiGetUniverseAncestries
+   */
+  readonly acceptLanguage?:
+    | "en"
+    | "en-us"
+    | "de"
+    | "fr"
+    | "ja"
+    | "ru"
+    | "zh"
+    | "ko"
+    | "es";
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof UniverseApiGetUniverseAncestries
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof UniverseApiGetUniverseAncestries
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Language to use in the response, takes precedence over Accept-Language
+   * @type {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'}
+   * @memberof UniverseApiGetUniverseAncestries
+   */
+  readonly language?:
+    | "en"
+    | "en-us"
+    | "de"
+    | "fr"
+    | "ja"
+    | "ru"
+    | "zh"
+    | "ko"
+    | "es";
+}
+
+/**
+ * Request parameters for getUniverseAsteroidBeltsAsteroidBeltId operation in UniverseApi.
+ * @export
+ * @interface UniverseApiGetUniverseAsteroidBeltsAsteroidBeltIdRequest
+ */
+export interface UniverseApiGetUniverseAsteroidBeltsAsteroidBeltIdRequest {
+  /**
+   * asteroid_belt_id integer
+   * @type {number}
+   * @memberof UniverseApiGetUniverseAsteroidBeltsAsteroidBeltId
+   */
+  readonly asteroidBeltId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof UniverseApiGetUniverseAsteroidBeltsAsteroidBeltId
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof UniverseApiGetUniverseAsteroidBeltsAsteroidBeltId
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
+ * Request parameters for getUniverseBloodlines operation in UniverseApi.
+ * @export
+ * @interface UniverseApiGetUniverseBloodlinesRequest
+ */
+export interface UniverseApiGetUniverseBloodlinesRequest {
+  /**
+   * Language to use in the response
+   * @type {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'}
+   * @memberof UniverseApiGetUniverseBloodlines
+   */
+  readonly acceptLanguage?:
+    | "en"
+    | "en-us"
+    | "de"
+    | "fr"
+    | "ja"
+    | "ru"
+    | "zh"
+    | "ko"
+    | "es";
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof UniverseApiGetUniverseBloodlines
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof UniverseApiGetUniverseBloodlines
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Language to use in the response, takes precedence over Accept-Language
+   * @type {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'}
+   * @memberof UniverseApiGetUniverseBloodlines
+   */
+  readonly language?:
+    | "en"
+    | "en-us"
+    | "de"
+    | "fr"
+    | "ja"
+    | "ru"
+    | "zh"
+    | "ko"
+    | "es";
+}
+
+/**
+ * Request parameters for getUniverseCategories operation in UniverseApi.
+ * @export
+ * @interface UniverseApiGetUniverseCategoriesRequest
+ */
+export interface UniverseApiGetUniverseCategoriesRequest {
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof UniverseApiGetUniverseCategories
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof UniverseApiGetUniverseCategories
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
+ * Request parameters for getUniverseCategoriesCategoryId operation in UniverseApi.
+ * @export
+ * @interface UniverseApiGetUniverseCategoriesCategoryIdRequest
+ */
+export interface UniverseApiGetUniverseCategoriesCategoryIdRequest {
+  /**
+   * An Eve item category ID
+   * @type {number}
+   * @memberof UniverseApiGetUniverseCategoriesCategoryId
+   */
+  readonly categoryId: number;
+
+  /**
+   * Language to use in the response
+   * @type {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'}
+   * @memberof UniverseApiGetUniverseCategoriesCategoryId
+   */
+  readonly acceptLanguage?:
+    | "en"
+    | "en-us"
+    | "de"
+    | "fr"
+    | "ja"
+    | "ru"
+    | "zh"
+    | "ko"
+    | "es";
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof UniverseApiGetUniverseCategoriesCategoryId
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof UniverseApiGetUniverseCategoriesCategoryId
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Language to use in the response, takes precedence over Accept-Language
+   * @type {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'}
+   * @memberof UniverseApiGetUniverseCategoriesCategoryId
+   */
+  readonly language?:
+    | "en"
+    | "en-us"
+    | "de"
+    | "fr"
+    | "ja"
+    | "ru"
+    | "zh"
+    | "ko"
+    | "es";
+}
+
+/**
+ * Request parameters for getUniverseConstellations operation in UniverseApi.
+ * @export
+ * @interface UniverseApiGetUniverseConstellationsRequest
+ */
+export interface UniverseApiGetUniverseConstellationsRequest {
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof UniverseApiGetUniverseConstellations
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof UniverseApiGetUniverseConstellations
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
+ * Request parameters for getUniverseConstellationsConstellationId operation in UniverseApi.
+ * @export
+ * @interface UniverseApiGetUniverseConstellationsConstellationIdRequest
+ */
+export interface UniverseApiGetUniverseConstellationsConstellationIdRequest {
+  /**
+   * constellation_id integer
+   * @type {number}
+   * @memberof UniverseApiGetUniverseConstellationsConstellationId
+   */
+  readonly constellationId: number;
+
+  /**
+   * Language to use in the response
+   * @type {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'}
+   * @memberof UniverseApiGetUniverseConstellationsConstellationId
+   */
+  readonly acceptLanguage?:
+    | "en"
+    | "en-us"
+    | "de"
+    | "fr"
+    | "ja"
+    | "ru"
+    | "zh"
+    | "ko"
+    | "es";
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof UniverseApiGetUniverseConstellationsConstellationId
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof UniverseApiGetUniverseConstellationsConstellationId
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Language to use in the response, takes precedence over Accept-Language
+   * @type {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'}
+   * @memberof UniverseApiGetUniverseConstellationsConstellationId
+   */
+  readonly language?:
+    | "en"
+    | "en-us"
+    | "de"
+    | "fr"
+    | "ja"
+    | "ru"
+    | "zh"
+    | "ko"
+    | "es";
+}
+
+/**
+ * Request parameters for getUniverseFactions operation in UniverseApi.
+ * @export
+ * @interface UniverseApiGetUniverseFactionsRequest
+ */
+export interface UniverseApiGetUniverseFactionsRequest {
+  /**
+   * Language to use in the response
+   * @type {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'}
+   * @memberof UniverseApiGetUniverseFactions
+   */
+  readonly acceptLanguage?:
+    | "en"
+    | "en-us"
+    | "de"
+    | "fr"
+    | "ja"
+    | "ru"
+    | "zh"
+    | "ko"
+    | "es";
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof UniverseApiGetUniverseFactions
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof UniverseApiGetUniverseFactions
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Language to use in the response, takes precedence over Accept-Language
+   * @type {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'}
+   * @memberof UniverseApiGetUniverseFactions
+   */
+  readonly language?:
+    | "en"
+    | "en-us"
+    | "de"
+    | "fr"
+    | "ja"
+    | "ru"
+    | "zh"
+    | "ko"
+    | "es";
+}
+
+/**
+ * Request parameters for getUniverseGraphics operation in UniverseApi.
+ * @export
+ * @interface UniverseApiGetUniverseGraphicsRequest
+ */
+export interface UniverseApiGetUniverseGraphicsRequest {
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof UniverseApiGetUniverseGraphics
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof UniverseApiGetUniverseGraphics
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
+ * Request parameters for getUniverseGraphicsGraphicId operation in UniverseApi.
+ * @export
+ * @interface UniverseApiGetUniverseGraphicsGraphicIdRequest
+ */
+export interface UniverseApiGetUniverseGraphicsGraphicIdRequest {
+  /**
+   * graphic_id integer
+   * @type {number}
+   * @memberof UniverseApiGetUniverseGraphicsGraphicId
+   */
+  readonly graphicId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof UniverseApiGetUniverseGraphicsGraphicId
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof UniverseApiGetUniverseGraphicsGraphicId
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
+ * Request parameters for getUniverseGroups operation in UniverseApi.
+ * @export
+ * @interface UniverseApiGetUniverseGroupsRequest
+ */
+export interface UniverseApiGetUniverseGroupsRequest {
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof UniverseApiGetUniverseGroups
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof UniverseApiGetUniverseGroups
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Which page of results to return
+   * @type {number}
+   * @memberof UniverseApiGetUniverseGroups
+   */
+  readonly page?: number;
+}
+
+/**
+ * Request parameters for getUniverseGroupsGroupId operation in UniverseApi.
+ * @export
+ * @interface UniverseApiGetUniverseGroupsGroupIdRequest
+ */
+export interface UniverseApiGetUniverseGroupsGroupIdRequest {
+  /**
+   * An Eve item group ID
+   * @type {number}
+   * @memberof UniverseApiGetUniverseGroupsGroupId
+   */
+  readonly groupId: number;
+
+  /**
+   * Language to use in the response
+   * @type {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'}
+   * @memberof UniverseApiGetUniverseGroupsGroupId
+   */
+  readonly acceptLanguage?:
+    | "en"
+    | "en-us"
+    | "de"
+    | "fr"
+    | "ja"
+    | "ru"
+    | "zh"
+    | "ko"
+    | "es";
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof UniverseApiGetUniverseGroupsGroupId
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof UniverseApiGetUniverseGroupsGroupId
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Language to use in the response, takes precedence over Accept-Language
+   * @type {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'}
+   * @memberof UniverseApiGetUniverseGroupsGroupId
+   */
+  readonly language?:
+    | "en"
+    | "en-us"
+    | "de"
+    | "fr"
+    | "ja"
+    | "ru"
+    | "zh"
+    | "ko"
+    | "es";
+}
+
+/**
+ * Request parameters for getUniverseMoonsMoonId operation in UniverseApi.
+ * @export
+ * @interface UniverseApiGetUniverseMoonsMoonIdRequest
+ */
+export interface UniverseApiGetUniverseMoonsMoonIdRequest {
+  /**
+   * moon_id integer
+   * @type {number}
+   * @memberof UniverseApiGetUniverseMoonsMoonId
+   */
+  readonly moonId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof UniverseApiGetUniverseMoonsMoonId
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof UniverseApiGetUniverseMoonsMoonId
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
+ * Request parameters for getUniversePlanetsPlanetId operation in UniverseApi.
+ * @export
+ * @interface UniverseApiGetUniversePlanetsPlanetIdRequest
+ */
+export interface UniverseApiGetUniversePlanetsPlanetIdRequest {
+  /**
+   * planet_id integer
+   * @type {number}
+   * @memberof UniverseApiGetUniversePlanetsPlanetId
+   */
+  readonly planetId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof UniverseApiGetUniversePlanetsPlanetId
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof UniverseApiGetUniversePlanetsPlanetId
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
+ * Request parameters for getUniverseRaces operation in UniverseApi.
+ * @export
+ * @interface UniverseApiGetUniverseRacesRequest
+ */
+export interface UniverseApiGetUniverseRacesRequest {
+  /**
+   * Language to use in the response
+   * @type {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'}
+   * @memberof UniverseApiGetUniverseRaces
+   */
+  readonly acceptLanguage?:
+    | "en"
+    | "en-us"
+    | "de"
+    | "fr"
+    | "ja"
+    | "ru"
+    | "zh"
+    | "ko"
+    | "es";
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof UniverseApiGetUniverseRaces
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof UniverseApiGetUniverseRaces
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Language to use in the response, takes precedence over Accept-Language
+   * @type {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'}
+   * @memberof UniverseApiGetUniverseRaces
+   */
+  readonly language?:
+    | "en"
+    | "en-us"
+    | "de"
+    | "fr"
+    | "ja"
+    | "ru"
+    | "zh"
+    | "ko"
+    | "es";
+}
+
+/**
+ * Request parameters for getUniverseRegions operation in UniverseApi.
+ * @export
+ * @interface UniverseApiGetUniverseRegionsRequest
+ */
+export interface UniverseApiGetUniverseRegionsRequest {
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof UniverseApiGetUniverseRegions
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof UniverseApiGetUniverseRegions
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
+ * Request parameters for getUniverseRegionsRegionId operation in UniverseApi.
+ * @export
+ * @interface UniverseApiGetUniverseRegionsRegionIdRequest
+ */
+export interface UniverseApiGetUniverseRegionsRegionIdRequest {
+  /**
+   * region_id integer
+   * @type {number}
+   * @memberof UniverseApiGetUniverseRegionsRegionId
+   */
+  readonly regionId: number;
+
+  /**
+   * Language to use in the response
+   * @type {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'}
+   * @memberof UniverseApiGetUniverseRegionsRegionId
+   */
+  readonly acceptLanguage?:
+    | "en"
+    | "en-us"
+    | "de"
+    | "fr"
+    | "ja"
+    | "ru"
+    | "zh"
+    | "ko"
+    | "es";
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof UniverseApiGetUniverseRegionsRegionId
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof UniverseApiGetUniverseRegionsRegionId
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Language to use in the response, takes precedence over Accept-Language
+   * @type {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'}
+   * @memberof UniverseApiGetUniverseRegionsRegionId
+   */
+  readonly language?:
+    | "en"
+    | "en-us"
+    | "de"
+    | "fr"
+    | "ja"
+    | "ru"
+    | "zh"
+    | "ko"
+    | "es";
+}
+
+/**
+ * Request parameters for getUniverseStargatesStargateId operation in UniverseApi.
+ * @export
+ * @interface UniverseApiGetUniverseStargatesStargateIdRequest
+ */
+export interface UniverseApiGetUniverseStargatesStargateIdRequest {
+  /**
+   * stargate_id integer
+   * @type {number}
+   * @memberof UniverseApiGetUniverseStargatesStargateId
+   */
+  readonly stargateId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof UniverseApiGetUniverseStargatesStargateId
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof UniverseApiGetUniverseStargatesStargateId
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
+ * Request parameters for getUniverseStarsStarId operation in UniverseApi.
+ * @export
+ * @interface UniverseApiGetUniverseStarsStarIdRequest
+ */
+export interface UniverseApiGetUniverseStarsStarIdRequest {
+  /**
+   * star_id integer
+   * @type {number}
+   * @memberof UniverseApiGetUniverseStarsStarId
+   */
+  readonly starId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof UniverseApiGetUniverseStarsStarId
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof UniverseApiGetUniverseStarsStarId
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
+ * Request parameters for getUniverseStationsStationId operation in UniverseApi.
+ * @export
+ * @interface UniverseApiGetUniverseStationsStationIdRequest
+ */
+export interface UniverseApiGetUniverseStationsStationIdRequest {
+  /**
+   * station_id integer
+   * @type {number}
+   * @memberof UniverseApiGetUniverseStationsStationId
+   */
+  readonly stationId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof UniverseApiGetUniverseStationsStationId
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof UniverseApiGetUniverseStationsStationId
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
+ * Request parameters for getUniverseStructures operation in UniverseApi.
+ * @export
+ * @interface UniverseApiGetUniverseStructuresRequest
+ */
+export interface UniverseApiGetUniverseStructuresRequest {
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof UniverseApiGetUniverseStructures
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * Only list public structures that have this service online
+   * @type {'market' | 'manufacturing_basic'}
+   * @memberof UniverseApiGetUniverseStructures
+   */
+  readonly filter?: "market" | "manufacturing_basic";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof UniverseApiGetUniverseStructures
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
+ * Request parameters for getUniverseStructuresStructureId operation in UniverseApi.
+ * @export
+ * @interface UniverseApiGetUniverseStructuresStructureIdRequest
+ */
+export interface UniverseApiGetUniverseStructuresStructureIdRequest {
+  /**
+   * An Eve structure ID
+   * @type {number}
+   * @memberof UniverseApiGetUniverseStructuresStructureId
+   */
+  readonly structureId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof UniverseApiGetUniverseStructuresStructureId
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof UniverseApiGetUniverseStructuresStructureId
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof UniverseApiGetUniverseStructuresStructureId
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getUniverseSystemJumps operation in UniverseApi.
+ * @export
+ * @interface UniverseApiGetUniverseSystemJumpsRequest
+ */
+export interface UniverseApiGetUniverseSystemJumpsRequest {
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof UniverseApiGetUniverseSystemJumps
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof UniverseApiGetUniverseSystemJumps
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
+ * Request parameters for getUniverseSystemKills operation in UniverseApi.
+ * @export
+ * @interface UniverseApiGetUniverseSystemKillsRequest
+ */
+export interface UniverseApiGetUniverseSystemKillsRequest {
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof UniverseApiGetUniverseSystemKills
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof UniverseApiGetUniverseSystemKills
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
+ * Request parameters for getUniverseSystems operation in UniverseApi.
+ * @export
+ * @interface UniverseApiGetUniverseSystemsRequest
+ */
+export interface UniverseApiGetUniverseSystemsRequest {
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof UniverseApiGetUniverseSystems
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof UniverseApiGetUniverseSystems
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
+ * Request parameters for getUniverseSystemsSystemId operation in UniverseApi.
+ * @export
+ * @interface UniverseApiGetUniverseSystemsSystemIdRequest
+ */
+export interface UniverseApiGetUniverseSystemsSystemIdRequest {
+  /**
+   * system_id integer
+   * @type {number}
+   * @memberof UniverseApiGetUniverseSystemsSystemId
+   */
+  readonly systemId: number;
+
+  /**
+   * Language to use in the response
+   * @type {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'}
+   * @memberof UniverseApiGetUniverseSystemsSystemId
+   */
+  readonly acceptLanguage?:
+    | "en"
+    | "en-us"
+    | "de"
+    | "fr"
+    | "ja"
+    | "ru"
+    | "zh"
+    | "ko"
+    | "es";
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof UniverseApiGetUniverseSystemsSystemId
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof UniverseApiGetUniverseSystemsSystemId
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Language to use in the response, takes precedence over Accept-Language
+   * @type {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'}
+   * @memberof UniverseApiGetUniverseSystemsSystemId
+   */
+  readonly language?:
+    | "en"
+    | "en-us"
+    | "de"
+    | "fr"
+    | "ja"
+    | "ru"
+    | "zh"
+    | "ko"
+    | "es";
+}
+
+/**
+ * Request parameters for getUniverseTypes operation in UniverseApi.
+ * @export
+ * @interface UniverseApiGetUniverseTypesRequest
+ */
+export interface UniverseApiGetUniverseTypesRequest {
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof UniverseApiGetUniverseTypes
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof UniverseApiGetUniverseTypes
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Which page of results to return
+   * @type {number}
+   * @memberof UniverseApiGetUniverseTypes
+   */
+  readonly page?: number;
+}
+
+/**
+ * Request parameters for getUniverseTypesTypeId operation in UniverseApi.
+ * @export
+ * @interface UniverseApiGetUniverseTypesTypeIdRequest
+ */
+export interface UniverseApiGetUniverseTypesTypeIdRequest {
+  /**
+   * An Eve item type ID
+   * @type {number}
+   * @memberof UniverseApiGetUniverseTypesTypeId
+   */
+  readonly typeId: number;
+
+  /**
+   * Language to use in the response
+   * @type {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'}
+   * @memberof UniverseApiGetUniverseTypesTypeId
+   */
+  readonly acceptLanguage?:
+    | "en"
+    | "en-us"
+    | "de"
+    | "fr"
+    | "ja"
+    | "ru"
+    | "zh"
+    | "ko"
+    | "es";
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof UniverseApiGetUniverseTypesTypeId
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof UniverseApiGetUniverseTypesTypeId
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Language to use in the response, takes precedence over Accept-Language
+   * @type {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'}
+   * @memberof UniverseApiGetUniverseTypesTypeId
+   */
+  readonly language?:
+    | "en"
+    | "en-us"
+    | "de"
+    | "fr"
+    | "ja"
+    | "ru"
+    | "zh"
+    | "ko"
+    | "es";
+}
+
+/**
+ * Request parameters for postUniverseIds operation in UniverseApi.
+ * @export
+ * @interface UniverseApiPostUniverseIdsRequest
+ */
+export interface UniverseApiPostUniverseIdsRequest {
+  /**
+   * The names to resolve
+   * @type {Array<string>}
+   * @memberof UniverseApiPostUniverseIds
+   */
+  readonly names: Array<string>;
+
+  /**
+   * Language to use in the response
+   * @type {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'}
+   * @memberof UniverseApiPostUniverseIds
+   */
+  readonly acceptLanguage?:
+    | "en"
+    | "en-us"
+    | "de"
+    | "fr"
+    | "ja"
+    | "ru"
+    | "zh"
+    | "ko"
+    | "es";
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof UniverseApiPostUniverseIds
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * Language to use in the response, takes precedence over Accept-Language
+   * @type {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'}
+   * @memberof UniverseApiPostUniverseIds
+   */
+  readonly language?:
+    | "en"
+    | "en-us"
+    | "de"
+    | "fr"
+    | "ja"
+    | "ru"
+    | "zh"
+    | "ko"
+    | "es";
+}
+
+/**
+ * Request parameters for postUniverseNames operation in UniverseApi.
+ * @export
+ * @interface UniverseApiPostUniverseNamesRequest
+ */
+export interface UniverseApiPostUniverseNamesRequest {
+  /**
+   * The ids to resolve
+   * @type {Array<number>}
+   * @memberof UniverseApiPostUniverseNames
+   */
+  readonly ids: Array<number>;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof UniverseApiPostUniverseNames
+   */
+  readonly datasource?: "tranquility";
+}
+
+/**
  * UniverseApi - object-oriented interface
  * @export
  * @class UniverseApi
@@ -46277,36 +52437,21 @@ export class UniverseApi extends BaseAPI {
   /**
    * Get all character ancestries  --- Alternate route: `/legacy/universe/ancestries/`  Alternate route: `/v1/universe/ancestries/`  --- This route expires daily at 11:05
    * @summary Get ancestries
-   * @param {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'} [acceptLanguage] Language to use in the response
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'} [language] Language to use in the response, takes precedence over Accept-Language
+   * @param {UniverseApiGetUniverseAncestriesRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UniverseApi
    */
   public getUniverseAncestries(
-    acceptLanguage?:
-      | "en"
-      | "en-us"
-      | "de"
-      | "fr"
-      | "ja"
-      | "ru"
-      | "zh"
-      | "ko"
-      | "es",
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    language?: "en" | "en-us" | "de" | "fr" | "ja" | "ru" | "zh" | "ko" | "es",
+    requestParameters: UniverseApiGetUniverseAncestriesRequest = {},
     options?: AxiosRequestConfig
   ) {
     return UniverseApiFp(this.configuration)
       .getUniverseAncestries(
-        acceptLanguage,
-        datasource,
-        ifNoneMatch,
-        language,
+        requestParameters.acceptLanguage,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.language,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -46315,24 +52460,20 @@ export class UniverseApi extends BaseAPI {
   /**
    * Get information on an asteroid belt  --- Alternate route: `/legacy/universe/asteroid_belts/{asteroid_belt_id}/`  Alternate route: `/v1/universe/asteroid_belts/{asteroid_belt_id}/`  --- This route expires daily at 11:05
    * @summary Get asteroid belt information
-   * @param {number} asteroidBeltId asteroid_belt_id integer
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {UniverseApiGetUniverseAsteroidBeltsAsteroidBeltIdRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UniverseApi
    */
   public getUniverseAsteroidBeltsAsteroidBeltId(
-    asteroidBeltId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: UniverseApiGetUniverseAsteroidBeltsAsteroidBeltIdRequest,
     options?: AxiosRequestConfig
   ) {
     return UniverseApiFp(this.configuration)
       .getUniverseAsteroidBeltsAsteroidBeltId(
-        asteroidBeltId,
-        datasource,
-        ifNoneMatch,
+        requestParameters.asteroidBeltId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -46341,36 +52482,21 @@ export class UniverseApi extends BaseAPI {
   /**
    * Get a list of bloodlines  --- Alternate route: `/legacy/universe/bloodlines/`  Alternate route: `/v1/universe/bloodlines/`  --- This route expires daily at 11:05
    * @summary Get bloodlines
-   * @param {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'} [acceptLanguage] Language to use in the response
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'} [language] Language to use in the response, takes precedence over Accept-Language
+   * @param {UniverseApiGetUniverseBloodlinesRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UniverseApi
    */
   public getUniverseBloodlines(
-    acceptLanguage?:
-      | "en"
-      | "en-us"
-      | "de"
-      | "fr"
-      | "ja"
-      | "ru"
-      | "zh"
-      | "ko"
-      | "es",
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    language?: "en" | "en-us" | "de" | "fr" | "ja" | "ru" | "zh" | "ko" | "es",
+    requestParameters: UniverseApiGetUniverseBloodlinesRequest = {},
     options?: AxiosRequestConfig
   ) {
     return UniverseApiFp(this.configuration)
       .getUniverseBloodlines(
-        acceptLanguage,
-        datasource,
-        ifNoneMatch,
-        language,
+        requestParameters.acceptLanguage,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.language,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -46379,58 +52505,43 @@ export class UniverseApi extends BaseAPI {
   /**
    * Get a list of item categories  --- Alternate route: `/legacy/universe/categories/`  Alternate route: `/v1/universe/categories/`  --- This route expires daily at 11:05
    * @summary Get item categories
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {UniverseApiGetUniverseCategoriesRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UniverseApi
    */
   public getUniverseCategories(
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: UniverseApiGetUniverseCategoriesRequest = {},
     options?: AxiosRequestConfig
   ) {
     return UniverseApiFp(this.configuration)
-      .getUniverseCategories(datasource, ifNoneMatch, options)
+      .getUniverseCategories(
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Get information of an item category  --- Alternate route: `/legacy/universe/categories/{category_id}/`  Alternate route: `/v1/universe/categories/{category_id}/`  --- This route expires daily at 11:05
    * @summary Get item category information
-   * @param {number} categoryId An Eve item category ID
-   * @param {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'} [acceptLanguage] Language to use in the response
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'} [language] Language to use in the response, takes precedence over Accept-Language
+   * @param {UniverseApiGetUniverseCategoriesCategoryIdRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UniverseApi
    */
   public getUniverseCategoriesCategoryId(
-    categoryId: number,
-    acceptLanguage?:
-      | "en"
-      | "en-us"
-      | "de"
-      | "fr"
-      | "ja"
-      | "ru"
-      | "zh"
-      | "ko"
-      | "es",
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    language?: "en" | "en-us" | "de" | "fr" | "ja" | "ru" | "zh" | "ko" | "es",
+    requestParameters: UniverseApiGetUniverseCategoriesCategoryIdRequest,
     options?: AxiosRequestConfig
   ) {
     return UniverseApiFp(this.configuration)
       .getUniverseCategoriesCategoryId(
-        categoryId,
-        acceptLanguage,
-        datasource,
-        ifNoneMatch,
-        language,
+        requestParameters.categoryId,
+        requestParameters.acceptLanguage,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.language,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -46439,58 +52550,43 @@ export class UniverseApi extends BaseAPI {
   /**
    * Get a list of constellations  --- Alternate route: `/legacy/universe/constellations/`  Alternate route: `/v1/universe/constellations/`  --- This route expires daily at 11:05
    * @summary Get constellations
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {UniverseApiGetUniverseConstellationsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UniverseApi
    */
   public getUniverseConstellations(
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: UniverseApiGetUniverseConstellationsRequest = {},
     options?: AxiosRequestConfig
   ) {
     return UniverseApiFp(this.configuration)
-      .getUniverseConstellations(datasource, ifNoneMatch, options)
+      .getUniverseConstellations(
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Get information on a constellation  --- Alternate route: `/legacy/universe/constellations/{constellation_id}/`  Alternate route: `/v1/universe/constellations/{constellation_id}/`  --- This route expires daily at 11:05
    * @summary Get constellation information
-   * @param {number} constellationId constellation_id integer
-   * @param {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'} [acceptLanguage] Language to use in the response
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'} [language] Language to use in the response, takes precedence over Accept-Language
+   * @param {UniverseApiGetUniverseConstellationsConstellationIdRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UniverseApi
    */
   public getUniverseConstellationsConstellationId(
-    constellationId: number,
-    acceptLanguage?:
-      | "en"
-      | "en-us"
-      | "de"
-      | "fr"
-      | "ja"
-      | "ru"
-      | "zh"
-      | "ko"
-      | "es",
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    language?: "en" | "en-us" | "de" | "fr" | "ja" | "ru" | "zh" | "ko" | "es",
+    requestParameters: UniverseApiGetUniverseConstellationsConstellationIdRequest,
     options?: AxiosRequestConfig
   ) {
     return UniverseApiFp(this.configuration)
       .getUniverseConstellationsConstellationId(
-        constellationId,
-        acceptLanguage,
-        datasource,
-        ifNoneMatch,
-        language,
+        requestParameters.constellationId,
+        requestParameters.acceptLanguage,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.language,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -46499,36 +52595,21 @@ export class UniverseApi extends BaseAPI {
   /**
    * Get a list of factions  --- Alternate route: `/dev/universe/factions/`  Alternate route: `/v2/universe/factions/`  --- This route expires daily at 11:05
    * @summary Get factions
-   * @param {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'} [acceptLanguage] Language to use in the response
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'} [language] Language to use in the response, takes precedence over Accept-Language
+   * @param {UniverseApiGetUniverseFactionsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UniverseApi
    */
   public getUniverseFactions(
-    acceptLanguage?:
-      | "en"
-      | "en-us"
-      | "de"
-      | "fr"
-      | "ja"
-      | "ru"
-      | "zh"
-      | "ko"
-      | "es",
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    language?: "en" | "en-us" | "de" | "fr" | "ja" | "ru" | "zh" | "ko" | "es",
+    requestParameters: UniverseApiGetUniverseFactionsRequest = {},
     options?: AxiosRequestConfig
   ) {
     return UniverseApiFp(this.configuration)
       .getUniverseFactions(
-        acceptLanguage,
-        datasource,
-        ifNoneMatch,
-        language,
+        requestParameters.acceptLanguage,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.language,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -46537,100 +52618,87 @@ export class UniverseApi extends BaseAPI {
   /**
    * Get a list of graphics  --- Alternate route: `/legacy/universe/graphics/`  Alternate route: `/v1/universe/graphics/`  --- This route expires daily at 11:05
    * @summary Get graphics
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {UniverseApiGetUniverseGraphicsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UniverseApi
    */
   public getUniverseGraphics(
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: UniverseApiGetUniverseGraphicsRequest = {},
     options?: AxiosRequestConfig
   ) {
     return UniverseApiFp(this.configuration)
-      .getUniverseGraphics(datasource, ifNoneMatch, options)
+      .getUniverseGraphics(
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Get information on a graphic  --- Alternate route: `/dev/universe/graphics/{graphic_id}/`  Alternate route: `/legacy/universe/graphics/{graphic_id}/`  Alternate route: `/v1/universe/graphics/{graphic_id}/`  --- This route expires daily at 11:05
    * @summary Get graphic information
-   * @param {number} graphicId graphic_id integer
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {UniverseApiGetUniverseGraphicsGraphicIdRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UniverseApi
    */
   public getUniverseGraphicsGraphicId(
-    graphicId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: UniverseApiGetUniverseGraphicsGraphicIdRequest,
     options?: AxiosRequestConfig
   ) {
     return UniverseApiFp(this.configuration)
-      .getUniverseGraphicsGraphicId(graphicId, datasource, ifNoneMatch, options)
+      .getUniverseGraphicsGraphicId(
+        requestParameters.graphicId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Get a list of item groups  --- Alternate route: `/legacy/universe/groups/`  Alternate route: `/v1/universe/groups/`  --- This route expires daily at 11:05
    * @summary Get item groups
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [page] Which page of results to return
+   * @param {UniverseApiGetUniverseGroupsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UniverseApi
    */
   public getUniverseGroups(
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    page?: number,
+    requestParameters: UniverseApiGetUniverseGroupsRequest = {},
     options?: AxiosRequestConfig
   ) {
     return UniverseApiFp(this.configuration)
-      .getUniverseGroups(datasource, ifNoneMatch, page, options)
+      .getUniverseGroups(
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.page,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Get information on an item group  --- Alternate route: `/dev/universe/groups/{group_id}/`  Alternate route: `/legacy/universe/groups/{group_id}/`  Alternate route: `/v1/universe/groups/{group_id}/`  --- This route expires daily at 11:05
    * @summary Get item group information
-   * @param {number} groupId An Eve item group ID
-   * @param {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'} [acceptLanguage] Language to use in the response
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'} [language] Language to use in the response, takes precedence over Accept-Language
+   * @param {UniverseApiGetUniverseGroupsGroupIdRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UniverseApi
    */
   public getUniverseGroupsGroupId(
-    groupId: number,
-    acceptLanguage?:
-      | "en"
-      | "en-us"
-      | "de"
-      | "fr"
-      | "ja"
-      | "ru"
-      | "zh"
-      | "ko"
-      | "es",
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    language?: "en" | "en-us" | "de" | "fr" | "ja" | "ru" | "zh" | "ko" | "es",
+    requestParameters: UniverseApiGetUniverseGroupsGroupIdRequest,
     options?: AxiosRequestConfig
   ) {
     return UniverseApiFp(this.configuration)
       .getUniverseGroupsGroupId(
-        groupId,
-        acceptLanguage,
-        datasource,
-        ifNoneMatch,
-        language,
+        requestParameters.groupId,
+        requestParameters.acceptLanguage,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.language,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -46639,78 +52707,65 @@ export class UniverseApi extends BaseAPI {
   /**
    * Get information on a moon  --- Alternate route: `/legacy/universe/moons/{moon_id}/`  Alternate route: `/v1/universe/moons/{moon_id}/`  --- This route expires daily at 11:05
    * @summary Get moon information
-   * @param {number} moonId moon_id integer
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {UniverseApiGetUniverseMoonsMoonIdRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UniverseApi
    */
   public getUniverseMoonsMoonId(
-    moonId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: UniverseApiGetUniverseMoonsMoonIdRequest,
     options?: AxiosRequestConfig
   ) {
     return UniverseApiFp(this.configuration)
-      .getUniverseMoonsMoonId(moonId, datasource, ifNoneMatch, options)
+      .getUniverseMoonsMoonId(
+        requestParameters.moonId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Get information on a planet  --- Alternate route: `/legacy/universe/planets/{planet_id}/`  Alternate route: `/v1/universe/planets/{planet_id}/`  --- This route expires daily at 11:05
    * @summary Get planet information
-   * @param {number} planetId planet_id integer
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {UniverseApiGetUniversePlanetsPlanetIdRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UniverseApi
    */
   public getUniversePlanetsPlanetId(
-    planetId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: UniverseApiGetUniversePlanetsPlanetIdRequest,
     options?: AxiosRequestConfig
   ) {
     return UniverseApiFp(this.configuration)
-      .getUniversePlanetsPlanetId(planetId, datasource, ifNoneMatch, options)
+      .getUniversePlanetsPlanetId(
+        requestParameters.planetId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Get a list of character races  --- Alternate route: `/dev/universe/races/`  Alternate route: `/legacy/universe/races/`  Alternate route: `/v1/universe/races/`  --- This route expires daily at 11:05
    * @summary Get character races
-   * @param {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'} [acceptLanguage] Language to use in the response
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'} [language] Language to use in the response, takes precedence over Accept-Language
+   * @param {UniverseApiGetUniverseRacesRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UniverseApi
    */
   public getUniverseRaces(
-    acceptLanguage?:
-      | "en"
-      | "en-us"
-      | "de"
-      | "fr"
-      | "ja"
-      | "ru"
-      | "zh"
-      | "ko"
-      | "es",
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    language?: "en" | "en-us" | "de" | "fr" | "ja" | "ru" | "zh" | "ko" | "es",
+    requestParameters: UniverseApiGetUniverseRacesRequest = {},
     options?: AxiosRequestConfig
   ) {
     return UniverseApiFp(this.configuration)
       .getUniverseRaces(
-        acceptLanguage,
-        datasource,
-        ifNoneMatch,
-        language,
+        requestParameters.acceptLanguage,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.language,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -46719,58 +52774,43 @@ export class UniverseApi extends BaseAPI {
   /**
    * Get a list of regions  --- Alternate route: `/legacy/universe/regions/`  Alternate route: `/v1/universe/regions/`  --- This route expires daily at 11:05
    * @summary Get regions
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {UniverseApiGetUniverseRegionsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UniverseApi
    */
   public getUniverseRegions(
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: UniverseApiGetUniverseRegionsRequest = {},
     options?: AxiosRequestConfig
   ) {
     return UniverseApiFp(this.configuration)
-      .getUniverseRegions(datasource, ifNoneMatch, options)
+      .getUniverseRegions(
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Get information on a region  --- Alternate route: `/legacy/universe/regions/{region_id}/`  Alternate route: `/v1/universe/regions/{region_id}/`  --- This route expires daily at 11:05
    * @summary Get region information
-   * @param {number} regionId region_id integer
-   * @param {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'} [acceptLanguage] Language to use in the response
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'} [language] Language to use in the response, takes precedence over Accept-Language
+   * @param {UniverseApiGetUniverseRegionsRegionIdRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UniverseApi
    */
   public getUniverseRegionsRegionId(
-    regionId: number,
-    acceptLanguage?:
-      | "en"
-      | "en-us"
-      | "de"
-      | "fr"
-      | "ja"
-      | "ru"
-      | "zh"
-      | "ko"
-      | "es",
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    language?: "en" | "en-us" | "de" | "fr" | "ja" | "ru" | "zh" | "ko" | "es",
+    requestParameters: UniverseApiGetUniverseRegionsRegionIdRequest,
     options?: AxiosRequestConfig
   ) {
     return UniverseApiFp(this.configuration)
       .getUniverseRegionsRegionId(
-        regionId,
-        acceptLanguage,
-        datasource,
-        ifNoneMatch,
-        language,
+        requestParameters.regionId,
+        requestParameters.acceptLanguage,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.language,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -46779,24 +52819,20 @@ export class UniverseApi extends BaseAPI {
   /**
    * Get information on a stargate  --- Alternate route: `/legacy/universe/stargates/{stargate_id}/`  Alternate route: `/v1/universe/stargates/{stargate_id}/`  --- This route expires daily at 11:05
    * @summary Get stargate information
-   * @param {number} stargateId stargate_id integer
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {UniverseApiGetUniverseStargatesStargateIdRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UniverseApi
    */
   public getUniverseStargatesStargateId(
-    stargateId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: UniverseApiGetUniverseStargatesStargateIdRequest,
     options?: AxiosRequestConfig
   ) {
     return UniverseApiFp(this.configuration)
       .getUniverseStargatesStargateId(
-        stargateId,
-        datasource,
-        ifNoneMatch,
+        requestParameters.stargateId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -46805,90 +52841,87 @@ export class UniverseApi extends BaseAPI {
   /**
    * Get information on a star  --- Alternate route: `/legacy/universe/stars/{star_id}/`  Alternate route: `/v1/universe/stars/{star_id}/`  --- This route expires daily at 11:05
    * @summary Get star information
-   * @param {number} starId star_id integer
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {UniverseApiGetUniverseStarsStarIdRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UniverseApi
    */
   public getUniverseStarsStarId(
-    starId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: UniverseApiGetUniverseStarsStarIdRequest,
     options?: AxiosRequestConfig
   ) {
     return UniverseApiFp(this.configuration)
-      .getUniverseStarsStarId(starId, datasource, ifNoneMatch, options)
+      .getUniverseStarsStarId(
+        requestParameters.starId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Get information on a station  --- Alternate route: `/dev/universe/stations/{station_id}/`  Alternate route: `/v2/universe/stations/{station_id}/`  --- This route expires daily at 11:05
    * @summary Get station information
-   * @param {number} stationId station_id integer
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {UniverseApiGetUniverseStationsStationIdRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UniverseApi
    */
   public getUniverseStationsStationId(
-    stationId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: UniverseApiGetUniverseStationsStationIdRequest,
     options?: AxiosRequestConfig
   ) {
     return UniverseApiFp(this.configuration)
-      .getUniverseStationsStationId(stationId, datasource, ifNoneMatch, options)
+      .getUniverseStationsStationId(
+        requestParameters.stationId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * List all public structures  --- Alternate route: `/dev/universe/structures/`  Alternate route: `/legacy/universe/structures/`  Alternate route: `/v1/universe/structures/`  --- This route is cached for up to 3600 seconds
    * @summary List all public structures
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {'market' | 'manufacturing_basic'} [filter] Only list public structures that have this service online
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {UniverseApiGetUniverseStructuresRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UniverseApi
    */
   public getUniverseStructures(
-    datasource?: "tranquility",
-    filter?: "market" | "manufacturing_basic",
-    ifNoneMatch?: string,
+    requestParameters: UniverseApiGetUniverseStructuresRequest = {},
     options?: AxiosRequestConfig
   ) {
     return UniverseApiFp(this.configuration)
-      .getUniverseStructures(datasource, filter, ifNoneMatch, options)
+      .getUniverseStructures(
+        requestParameters.datasource,
+        requestParameters.filter,
+        requestParameters.ifNoneMatch,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Returns information on requested structure if you are on the ACL. Otherwise, returns \"Forbidden\" for all inputs.  --- Alternate route: `/v2/universe/structures/{structure_id}/`  --- This route is cached for up to 3600 seconds
    * @summary Get structure information
-   * @param {number} structureId An Eve structure ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {UniverseApiGetUniverseStructuresStructureIdRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UniverseApi
    */
   public getUniverseStructuresStructureId(
-    structureId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: UniverseApiGetUniverseStructuresStructureIdRequest,
     options?: AxiosRequestConfig
   ) {
     return UniverseApiFp(this.configuration)
       .getUniverseStructuresStructureId(
-        structureId,
-        datasource,
-        ifNoneMatch,
-        token,
+        requestParameters.structureId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -46897,96 +52930,85 @@ export class UniverseApi extends BaseAPI {
   /**
    * Get the number of jumps in solar systems within the last hour ending at the timestamp of the Last-Modified header, excluding wormhole space. Only systems with jumps will be listed  --- Alternate route: `/legacy/universe/system_jumps/`  Alternate route: `/v1/universe/system_jumps/`  --- This route is cached for up to 3600 seconds
    * @summary Get system jumps
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {UniverseApiGetUniverseSystemJumpsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UniverseApi
    */
   public getUniverseSystemJumps(
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: UniverseApiGetUniverseSystemJumpsRequest = {},
     options?: AxiosRequestConfig
   ) {
     return UniverseApiFp(this.configuration)
-      .getUniverseSystemJumps(datasource, ifNoneMatch, options)
+      .getUniverseSystemJumps(
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Get the number of ship, pod and NPC kills per solar system within the last hour ending at the timestamp of the Last-Modified header, excluding wormhole space. Only systems with kills will be listed  --- Alternate route: `/v2/universe/system_kills/`  --- This route is cached for up to 3600 seconds
    * @summary Get system kills
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {UniverseApiGetUniverseSystemKillsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UniverseApi
    */
   public getUniverseSystemKills(
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: UniverseApiGetUniverseSystemKillsRequest = {},
     options?: AxiosRequestConfig
   ) {
     return UniverseApiFp(this.configuration)
-      .getUniverseSystemKills(datasource, ifNoneMatch, options)
+      .getUniverseSystemKills(
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Get a list of solar systems  --- Alternate route: `/dev/universe/systems/`  Alternate route: `/legacy/universe/systems/`  Alternate route: `/v1/universe/systems/`  --- This route expires daily at 11:05
    * @summary Get solar systems
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {UniverseApiGetUniverseSystemsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UniverseApi
    */
   public getUniverseSystems(
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: UniverseApiGetUniverseSystemsRequest = {},
     options?: AxiosRequestConfig
   ) {
     return UniverseApiFp(this.configuration)
-      .getUniverseSystems(datasource, ifNoneMatch, options)
+      .getUniverseSystems(
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Get information on a solar system.  --- Alternate route: `/dev/universe/systems/{system_id}/`  Alternate route: `/v4/universe/systems/{system_id}/`  --- This route expires daily at 11:05
    * @summary Get solar system information
-   * @param {number} systemId system_id integer
-   * @param {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'} [acceptLanguage] Language to use in the response
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'} [language] Language to use in the response, takes precedence over Accept-Language
+   * @param {UniverseApiGetUniverseSystemsSystemIdRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UniverseApi
    */
   public getUniverseSystemsSystemId(
-    systemId: number,
-    acceptLanguage?:
-      | "en"
-      | "en-us"
-      | "de"
-      | "fr"
-      | "ja"
-      | "ru"
-      | "zh"
-      | "ko"
-      | "es",
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    language?: "en" | "en-us" | "de" | "fr" | "ja" | "ru" | "zh" | "ko" | "es",
+    requestParameters: UniverseApiGetUniverseSystemsSystemIdRequest,
     options?: AxiosRequestConfig
   ) {
     return UniverseApiFp(this.configuration)
       .getUniverseSystemsSystemId(
-        systemId,
-        acceptLanguage,
-        datasource,
-        ifNoneMatch,
-        language,
+        requestParameters.systemId,
+        requestParameters.acceptLanguage,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.language,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -46995,60 +53017,44 @@ export class UniverseApi extends BaseAPI {
   /**
    * Get a list of type ids  --- Alternate route: `/legacy/universe/types/`  Alternate route: `/v1/universe/types/`  --- This route expires daily at 11:05
    * @summary Get types
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [page] Which page of results to return
+   * @param {UniverseApiGetUniverseTypesRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UniverseApi
    */
   public getUniverseTypes(
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    page?: number,
+    requestParameters: UniverseApiGetUniverseTypesRequest = {},
     options?: AxiosRequestConfig
   ) {
     return UniverseApiFp(this.configuration)
-      .getUniverseTypes(datasource, ifNoneMatch, page, options)
+      .getUniverseTypes(
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.page,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Get information on a type  --- Alternate route: `/dev/universe/types/{type_id}/`  Alternate route: `/v3/universe/types/{type_id}/`  --- This route expires daily at 11:05
    * @summary Get type information
-   * @param {number} typeId An Eve item type ID
-   * @param {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'} [acceptLanguage] Language to use in the response
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'} [language] Language to use in the response, takes precedence over Accept-Language
+   * @param {UniverseApiGetUniverseTypesTypeIdRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UniverseApi
    */
   public getUniverseTypesTypeId(
-    typeId: number,
-    acceptLanguage?:
-      | "en"
-      | "en-us"
-      | "de"
-      | "fr"
-      | "ja"
-      | "ru"
-      | "zh"
-      | "ko"
-      | "es",
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    language?: "en" | "en-us" | "de" | "fr" | "ja" | "ru" | "zh" | "ko" | "es",
+    requestParameters: UniverseApiGetUniverseTypesTypeIdRequest,
     options?: AxiosRequestConfig
   ) {
     return UniverseApiFp(this.configuration)
       .getUniverseTypesTypeId(
-        typeId,
-        acceptLanguage,
-        datasource,
-        ifNoneMatch,
-        language,
+        requestParameters.typeId,
+        requestParameters.acceptLanguage,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.language,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -47057,51 +53063,44 @@ export class UniverseApi extends BaseAPI {
   /**
    * Resolve a set of names to IDs in the following categories: agents, alliances, characters, constellations, corporations factions, inventory_types, regions, stations, and systems. Only exact matches will be returned. All names searched for are cached for 12 hours  --- Alternate route: `/dev/universe/ids/`  Alternate route: `/legacy/universe/ids/`  Alternate route: `/v1/universe/ids/`
    * @summary Bulk names to IDs
-   * @param {Array<string>} names The names to resolve
-   * @param {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'} [acceptLanguage] Language to use in the response
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {'en' | 'en-us' | 'de' | 'fr' | 'ja' | 'ru' | 'zh' | 'ko' | 'es'} [language] Language to use in the response, takes precedence over Accept-Language
+   * @param {UniverseApiPostUniverseIdsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UniverseApi
    */
   public postUniverseIds(
-    names: Array<string>,
-    acceptLanguage?:
-      | "en"
-      | "en-us"
-      | "de"
-      | "fr"
-      | "ja"
-      | "ru"
-      | "zh"
-      | "ko"
-      | "es",
-    datasource?: "tranquility",
-    language?: "en" | "en-us" | "de" | "fr" | "ja" | "ru" | "zh" | "ko" | "es",
+    requestParameters: UniverseApiPostUniverseIdsRequest,
     options?: AxiosRequestConfig
   ) {
     return UniverseApiFp(this.configuration)
-      .postUniverseIds(names, acceptLanguage, datasource, language, options)
+      .postUniverseIds(
+        requestParameters.names,
+        requestParameters.acceptLanguage,
+        requestParameters.datasource,
+        requestParameters.language,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Resolve a set of IDs to names and categories. Supported ID\'s for resolving are: Characters, Corporations, Alliances, Stations, Solar Systems, Constellations, Regions, Types, Factions  --- Alternate route: `/dev/universe/names/`  Alternate route: `/v3/universe/names/`
    * @summary Get names and categories for a set of IDs
-   * @param {Array<number>} ids The ids to resolve
-   * @param {'tranquility'} [datasource] The server name you would like data from
+   * @param {UniverseApiPostUniverseNamesRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UniverseApi
    */
   public postUniverseNames(
-    ids: Array<number>,
-    datasource?: "tranquility",
+    requestParameters: UniverseApiPostUniverseNamesRequest,
     options?: AxiosRequestConfig
   ) {
     return UniverseApiFp(this.configuration)
-      .postUniverseNames(ids, datasource, options)
+      .postUniverseNames(
+        requestParameters.ids,
+        requestParameters.datasource,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 }
@@ -47781,6 +53780,160 @@ export const UserInterfaceApiFactory = function (
 };
 
 /**
+ * Request parameters for postUiAutopilotWaypoint operation in UserInterfaceApi.
+ * @export
+ * @interface UserInterfaceApiPostUiAutopilotWaypointRequest
+ */
+export interface UserInterfaceApiPostUiAutopilotWaypointRequest {
+  /**
+   * Whether this solar system should be added to the beginning of all waypoints
+   * @type {boolean}
+   * @memberof UserInterfaceApiPostUiAutopilotWaypoint
+   */
+  readonly addToBeginning: boolean;
+
+  /**
+   * Whether clean other waypoints beforing adding this one
+   * @type {boolean}
+   * @memberof UserInterfaceApiPostUiAutopilotWaypoint
+   */
+  readonly clearOtherWaypoints: boolean;
+
+  /**
+   * The destination to travel to, can be solar system, station or structure\&#39;s id
+   * @type {number}
+   * @memberof UserInterfaceApiPostUiAutopilotWaypoint
+   */
+  readonly destinationId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof UserInterfaceApiPostUiAutopilotWaypoint
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof UserInterfaceApiPostUiAutopilotWaypoint
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for postUiOpenwindowContract operation in UserInterfaceApi.
+ * @export
+ * @interface UserInterfaceApiPostUiOpenwindowContractRequest
+ */
+export interface UserInterfaceApiPostUiOpenwindowContractRequest {
+  /**
+   * The contract to open
+   * @type {number}
+   * @memberof UserInterfaceApiPostUiOpenwindowContract
+   */
+  readonly contractId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof UserInterfaceApiPostUiOpenwindowContract
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof UserInterfaceApiPostUiOpenwindowContract
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for postUiOpenwindowInformation operation in UserInterfaceApi.
+ * @export
+ * @interface UserInterfaceApiPostUiOpenwindowInformationRequest
+ */
+export interface UserInterfaceApiPostUiOpenwindowInformationRequest {
+  /**
+   * The target to open
+   * @type {number}
+   * @memberof UserInterfaceApiPostUiOpenwindowInformation
+   */
+  readonly targetId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof UserInterfaceApiPostUiOpenwindowInformation
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof UserInterfaceApiPostUiOpenwindowInformation
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for postUiOpenwindowMarketdetails operation in UserInterfaceApi.
+ * @export
+ * @interface UserInterfaceApiPostUiOpenwindowMarketdetailsRequest
+ */
+export interface UserInterfaceApiPostUiOpenwindowMarketdetailsRequest {
+  /**
+   * The item type to open in market window
+   * @type {number}
+   * @memberof UserInterfaceApiPostUiOpenwindowMarketdetails
+   */
+  readonly typeId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof UserInterfaceApiPostUiOpenwindowMarketdetails
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof UserInterfaceApiPostUiOpenwindowMarketdetails
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for postUiOpenwindowNewmail operation in UserInterfaceApi.
+ * @export
+ * @interface UserInterfaceApiPostUiOpenwindowNewmailRequest
+ */
+export interface UserInterfaceApiPostUiOpenwindowNewmailRequest {
+  /**
+   * The details of mail to create
+   * @type {PostUiOpenwindowNewmailNewMail}
+   * @memberof UserInterfaceApiPostUiOpenwindowNewmail
+   */
+  readonly newMail: PostUiOpenwindowNewmailNewMail;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof UserInterfaceApiPostUiOpenwindowNewmail
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof UserInterfaceApiPostUiOpenwindowNewmail
+   */
+  readonly token?: string;
+}
+
+/**
  * UserInterfaceApi - object-oriented interface
  * @export
  * @class UserInterfaceApi
@@ -47790,30 +53943,22 @@ export class UserInterfaceApi extends BaseAPI {
   /**
    * Set a solar system as autopilot waypoint  --- Alternate route: `/dev/ui/autopilot/waypoint/`  Alternate route: `/legacy/ui/autopilot/waypoint/`  Alternate route: `/v2/ui/autopilot/waypoint/`
    * @summary Set Autopilot Waypoint
-   * @param {boolean} addToBeginning Whether this solar system should be added to the beginning of all waypoints
-   * @param {boolean} clearOtherWaypoints Whether clean other waypoints beforing adding this one
-   * @param {number} destinationId The destination to travel to, can be solar system, station or structure\&#39;s id
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {UserInterfaceApiPostUiAutopilotWaypointRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UserInterfaceApi
    */
   public postUiAutopilotWaypoint(
-    addToBeginning: boolean,
-    clearOtherWaypoints: boolean,
-    destinationId: number,
-    datasource?: "tranquility",
-    token?: string,
+    requestParameters: UserInterfaceApiPostUiAutopilotWaypointRequest,
     options?: AxiosRequestConfig
   ) {
     return UserInterfaceApiFp(this.configuration)
       .postUiAutopilotWaypoint(
-        addToBeginning,
-        clearOtherWaypoints,
-        destinationId,
-        datasource,
-        token,
+        requestParameters.addToBeginning,
+        requestParameters.clearOtherWaypoints,
+        requestParameters.destinationId,
+        requestParameters.datasource,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -47822,84 +53967,88 @@ export class UserInterfaceApi extends BaseAPI {
   /**
    * Open the contract window inside the client  --- Alternate route: `/dev/ui/openwindow/contract/`  Alternate route: `/legacy/ui/openwindow/contract/`  Alternate route: `/v1/ui/openwindow/contract/`
    * @summary Open Contract Window
-   * @param {number} contractId The contract to open
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {UserInterfaceApiPostUiOpenwindowContractRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UserInterfaceApi
    */
   public postUiOpenwindowContract(
-    contractId: number,
-    datasource?: "tranquility",
-    token?: string,
+    requestParameters: UserInterfaceApiPostUiOpenwindowContractRequest,
     options?: AxiosRequestConfig
   ) {
     return UserInterfaceApiFp(this.configuration)
-      .postUiOpenwindowContract(contractId, datasource, token, options)
+      .postUiOpenwindowContract(
+        requestParameters.contractId,
+        requestParameters.datasource,
+        requestParameters.token,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Open the information window for a character, corporation or alliance inside the client  --- Alternate route: `/dev/ui/openwindow/information/`  Alternate route: `/legacy/ui/openwindow/information/`  Alternate route: `/v1/ui/openwindow/information/`
    * @summary Open Information Window
-   * @param {number} targetId The target to open
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {UserInterfaceApiPostUiOpenwindowInformationRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UserInterfaceApi
    */
   public postUiOpenwindowInformation(
-    targetId: number,
-    datasource?: "tranquility",
-    token?: string,
+    requestParameters: UserInterfaceApiPostUiOpenwindowInformationRequest,
     options?: AxiosRequestConfig
   ) {
     return UserInterfaceApiFp(this.configuration)
-      .postUiOpenwindowInformation(targetId, datasource, token, options)
+      .postUiOpenwindowInformation(
+        requestParameters.targetId,
+        requestParameters.datasource,
+        requestParameters.token,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Open the market details window for a specific typeID inside the client  --- Alternate route: `/dev/ui/openwindow/marketdetails/`  Alternate route: `/legacy/ui/openwindow/marketdetails/`  Alternate route: `/v1/ui/openwindow/marketdetails/`
    * @summary Open Market Details
-   * @param {number} typeId The item type to open in market window
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {UserInterfaceApiPostUiOpenwindowMarketdetailsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UserInterfaceApi
    */
   public postUiOpenwindowMarketdetails(
-    typeId: number,
-    datasource?: "tranquility",
-    token?: string,
+    requestParameters: UserInterfaceApiPostUiOpenwindowMarketdetailsRequest,
     options?: AxiosRequestConfig
   ) {
     return UserInterfaceApiFp(this.configuration)
-      .postUiOpenwindowMarketdetails(typeId, datasource, token, options)
+      .postUiOpenwindowMarketdetails(
+        requestParameters.typeId,
+        requestParameters.datasource,
+        requestParameters.token,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Open the New Mail window, according to settings from the request if applicable  --- Alternate route: `/dev/ui/openwindow/newmail/`  Alternate route: `/legacy/ui/openwindow/newmail/`  Alternate route: `/v1/ui/openwindow/newmail/`
    * @summary Open New Mail Window
-   * @param {PostUiOpenwindowNewmailNewMail} newMail The details of mail to create
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {UserInterfaceApiPostUiOpenwindowNewmailRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof UserInterfaceApi
    */
   public postUiOpenwindowNewmail(
-    newMail: PostUiOpenwindowNewmailNewMail,
-    datasource?: "tranquility",
-    token?: string,
+    requestParameters: UserInterfaceApiPostUiOpenwindowNewmailRequest,
     options?: AxiosRequestConfig
   ) {
     return UserInterfaceApiFp(this.configuration)
-      .postUiOpenwindowNewmail(newMail, datasource, token, options)
+      .postUiOpenwindowNewmail(
+        requestParameters.newMail,
+        requestParameters.datasource,
+        requestParameters.token,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 }
@@ -48870,6 +55019,258 @@ export const WalletApiFactory = function (
 };
 
 /**
+ * Request parameters for getCharacterWallet operation in WalletApi.
+ * @export
+ * @interface WalletApiGetCharacterWalletRequest
+ */
+export interface WalletApiGetCharacterWalletRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof WalletApiGetCharacterWallet
+   */
+  readonly characterId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof WalletApiGetCharacterWallet
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof WalletApiGetCharacterWallet
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof WalletApiGetCharacterWallet
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCharacterWalletJournal operation in WalletApi.
+ * @export
+ * @interface WalletApiGetCharacterWalletJournalRequest
+ */
+export interface WalletApiGetCharacterWalletJournalRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof WalletApiGetCharacterWalletJournal
+   */
+  readonly characterId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof WalletApiGetCharacterWalletJournal
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof WalletApiGetCharacterWalletJournal
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Which page of results to return
+   * @type {number}
+   * @memberof WalletApiGetCharacterWalletJournal
+   */
+  readonly page?: number;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof WalletApiGetCharacterWalletJournal
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCharacterWalletTransactions operation in WalletApi.
+ * @export
+ * @interface WalletApiGetCharacterWalletTransactionsRequest
+ */
+export interface WalletApiGetCharacterWalletTransactionsRequest {
+  /**
+   * An EVE character ID
+   * @type {number}
+   * @memberof WalletApiGetCharacterWalletTransactions
+   */
+  readonly characterId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof WalletApiGetCharacterWalletTransactions
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * Only show transactions happened before the one referenced by this id
+   * @type {number}
+   * @memberof WalletApiGetCharacterWalletTransactions
+   */
+  readonly fromId?: number;
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof WalletApiGetCharacterWalletTransactions
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof WalletApiGetCharacterWalletTransactions
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCorporationsCorporationIdWallets operation in WalletApi.
+ * @export
+ * @interface WalletApiGetCorporationsCorporationIdWalletsRequest
+ */
+export interface WalletApiGetCorporationsCorporationIdWalletsRequest {
+  /**
+   * An EVE corporation ID
+   * @type {number}
+   * @memberof WalletApiGetCorporationsCorporationIdWallets
+   */
+  readonly corporationId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof WalletApiGetCorporationsCorporationIdWallets
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof WalletApiGetCorporationsCorporationIdWallets
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof WalletApiGetCorporationsCorporationIdWallets
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCorporationsCorporationIdWalletsDivisionJournal operation in WalletApi.
+ * @export
+ * @interface WalletApiGetCorporationsCorporationIdWalletsDivisionJournalRequest
+ */
+export interface WalletApiGetCorporationsCorporationIdWalletsDivisionJournalRequest {
+  /**
+   * An EVE corporation ID
+   * @type {number}
+   * @memberof WalletApiGetCorporationsCorporationIdWalletsDivisionJournal
+   */
+  readonly corporationId: number;
+
+  /**
+   * Wallet key of the division to fetch journals from
+   * @type {number}
+   * @memberof WalletApiGetCorporationsCorporationIdWalletsDivisionJournal
+   */
+  readonly division: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof WalletApiGetCorporationsCorporationIdWalletsDivisionJournal
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof WalletApiGetCorporationsCorporationIdWalletsDivisionJournal
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Which page of results to return
+   * @type {number}
+   * @memberof WalletApiGetCorporationsCorporationIdWalletsDivisionJournal
+   */
+  readonly page?: number;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof WalletApiGetCorporationsCorporationIdWalletsDivisionJournal
+   */
+  readonly token?: string;
+}
+
+/**
+ * Request parameters for getCorporationsCorporationIdWalletsDivisionTransactions operation in WalletApi.
+ * @export
+ * @interface WalletApiGetCorporationsCorporationIdWalletsDivisionTransactionsRequest
+ */
+export interface WalletApiGetCorporationsCorporationIdWalletsDivisionTransactionsRequest {
+  /**
+   * An EVE corporation ID
+   * @type {number}
+   * @memberof WalletApiGetCorporationsCorporationIdWalletsDivisionTransactions
+   */
+  readonly corporationId: number;
+
+  /**
+   * Wallet key of the division to fetch journals from
+   * @type {number}
+   * @memberof WalletApiGetCorporationsCorporationIdWalletsDivisionTransactions
+   */
+  readonly division: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof WalletApiGetCorporationsCorporationIdWalletsDivisionTransactions
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * Only show journal entries happened before the transaction referenced by this id
+   * @type {number}
+   * @memberof WalletApiGetCorporationsCorporationIdWalletsDivisionTransactions
+   */
+  readonly fromId?: number;
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof WalletApiGetCorporationsCorporationIdWalletsDivisionTransactions
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Access token to use if unable to set a header
+   * @type {string}
+   * @memberof WalletApiGetCorporationsCorporationIdWalletsDivisionTransactions
+   */
+  readonly token?: string;
+}
+
+/**
  * WalletApi - object-oriented interface
  * @export
  * @class WalletApi
@@ -48879,53 +55280,45 @@ export class WalletApi extends BaseAPI {
   /**
    * Returns a character\'s wallet balance  --- Alternate route: `/legacy/characters/{character_id}/wallet/`  Alternate route: `/v1/characters/{character_id}/wallet/`  --- This route is cached for up to 120 seconds  --- [Diff of the upcoming changes](https://esi.evetech.net/diff/latest/dev/#GET-/characters/{character_id}/wallet/)
    * @summary Get a character\'s wallet balance
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {WalletApiGetCharacterWalletRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof WalletApi
    */
   public getCharacterWallet(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: WalletApiGetCharacterWalletRequest,
     options?: AxiosRequestConfig
   ) {
     return WalletApiFp(this.configuration)
-      .getCharacterWallet(characterId, datasource, ifNoneMatch, token, options)
+      .getCharacterWallet(
+        requestParameters.characterId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Retrieve the given character\'s wallet journal going 30 days back  --- Alternate route: `/dev/characters/{character_id}/wallet/journal/`  Alternate route: `/v6/characters/{character_id}/wallet/journal/`  --- This route is cached for up to 3600 seconds
    * @summary Get character wallet journal
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [page] Which page of results to return
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {WalletApiGetCharacterWalletJournalRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof WalletApi
    */
   public getCharacterWalletJournal(
-    characterId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    page?: number,
-    token?: string,
+    requestParameters: WalletApiGetCharacterWalletJournalRequest,
     options?: AxiosRequestConfig
   ) {
     return WalletApiFp(this.configuration)
       .getCharacterWalletJournal(
-        characterId,
-        datasource,
-        ifNoneMatch,
-        page,
-        token,
+        requestParameters.characterId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.page,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -48934,30 +55327,22 @@ export class WalletApi extends BaseAPI {
   /**
    * Get wallet transactions of a character  --- Alternate route: `/dev/characters/{character_id}/wallet/transactions/`  Alternate route: `/legacy/characters/{character_id}/wallet/transactions/`  Alternate route: `/v1/characters/{character_id}/wallet/transactions/`  --- This route is cached for up to 3600 seconds
    * @summary Get wallet transactions
-   * @param {number} characterId An EVE character ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {number} [fromId] Only show transactions happened before the one referenced by this id
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {WalletApiGetCharacterWalletTransactionsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof WalletApi
    */
   public getCharacterWalletTransactions(
-    characterId: number,
-    datasource?: "tranquility",
-    fromId?: number,
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: WalletApiGetCharacterWalletTransactionsRequest,
     options?: AxiosRequestConfig
   ) {
     return WalletApiFp(this.configuration)
       .getCharacterWalletTransactions(
-        characterId,
-        datasource,
-        fromId,
-        ifNoneMatch,
-        token,
+        requestParameters.characterId,
+        requestParameters.datasource,
+        requestParameters.fromId,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -48966,27 +55351,21 @@ export class WalletApi extends BaseAPI {
   /**
    * Get a corporation\'s wallets  --- Alternate route: `/dev/corporations/{corporation_id}/wallets/`  Alternate route: `/legacy/corporations/{corporation_id}/wallets/`  Alternate route: `/v1/corporations/{corporation_id}/wallets/`  --- This route is cached for up to 300 seconds  --- Requires one of the following EVE corporation role(s): Accountant, Junior_Accountant
    * @summary Returns a corporation\'s wallet balance
-   * @param {number} corporationId An EVE corporation ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {WalletApiGetCorporationsCorporationIdWalletsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof WalletApi
    */
   public getCorporationsCorporationIdWallets(
-    corporationId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: WalletApiGetCorporationsCorporationIdWalletsRequest,
     options?: AxiosRequestConfig
   ) {
     return WalletApiFp(this.configuration)
       .getCorporationsCorporationIdWallets(
-        corporationId,
-        datasource,
-        ifNoneMatch,
-        token,
+        requestParameters.corporationId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -48995,33 +55374,23 @@ export class WalletApi extends BaseAPI {
   /**
    * Retrieve the given corporation\'s wallet journal for the given division going 30 days back  --- Alternate route: `/dev/corporations/{corporation_id}/wallets/{division}/journal/`  Alternate route: `/v4/corporations/{corporation_id}/wallets/{division}/journal/`  --- This route is cached for up to 3600 seconds  --- Requires one of the following EVE corporation role(s): Accountant, Junior_Accountant
    * @summary Get corporation wallet journal
-   * @param {number} corporationId An EVE corporation ID
-   * @param {number} division Wallet key of the division to fetch journals from
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [page] Which page of results to return
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {WalletApiGetCorporationsCorporationIdWalletsDivisionJournalRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof WalletApi
    */
   public getCorporationsCorporationIdWalletsDivisionJournal(
-    corporationId: number,
-    division: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    page?: number,
-    token?: string,
+    requestParameters: WalletApiGetCorporationsCorporationIdWalletsDivisionJournalRequest,
     options?: AxiosRequestConfig
   ) {
     return WalletApiFp(this.configuration)
       .getCorporationsCorporationIdWalletsDivisionJournal(
-        corporationId,
-        division,
-        datasource,
-        ifNoneMatch,
-        page,
-        token,
+        requestParameters.corporationId,
+        requestParameters.division,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.page,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -49030,33 +55399,23 @@ export class WalletApi extends BaseAPI {
   /**
    * Get wallet transactions of a corporation  --- Alternate route: `/dev/corporations/{corporation_id}/wallets/{division}/transactions/`  Alternate route: `/legacy/corporations/{corporation_id}/wallets/{division}/transactions/`  Alternate route: `/v1/corporations/{corporation_id}/wallets/{division}/transactions/`  --- This route is cached for up to 3600 seconds  --- Requires one of the following EVE corporation role(s): Accountant, Junior_Accountant
    * @summary Get corporation wallet transactions
-   * @param {number} corporationId An EVE corporation ID
-   * @param {number} division Wallet key of the division to fetch journals from
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {number} [fromId] Only show journal entries happened before the transaction referenced by this id
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {string} [token] Access token to use if unable to set a header
+   * @param {WalletApiGetCorporationsCorporationIdWalletsDivisionTransactionsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof WalletApi
    */
   public getCorporationsCorporationIdWalletsDivisionTransactions(
-    corporationId: number,
-    division: number,
-    datasource?: "tranquility",
-    fromId?: number,
-    ifNoneMatch?: string,
-    token?: string,
+    requestParameters: WalletApiGetCorporationsCorporationIdWalletsDivisionTransactionsRequest,
     options?: AxiosRequestConfig
   ) {
     return WalletApiFp(this.configuration)
       .getCorporationsCorporationIdWalletsDivisionTransactions(
-        corporationId,
-        division,
-        datasource,
-        fromId,
-        ifNoneMatch,
-        token,
+        requestParameters.corporationId,
+        requestParameters.division,
+        requestParameters.datasource,
+        requestParameters.fromId,
+        requestParameters.ifNoneMatch,
+        requestParameters.token,
         options
       )
       .then((request) => request(this.axios, this.basePath));
@@ -49434,6 +55793,97 @@ export const WarsApiFactory = function (
 };
 
 /**
+ * Request parameters for getWars operation in WarsApi.
+ * @export
+ * @interface WarsApiGetWarsRequest
+ */
+export interface WarsApiGetWarsRequest {
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof WarsApiGetWars
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof WarsApiGetWars
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Only return wars with ID smaller than this
+   * @type {number}
+   * @memberof WarsApiGetWars
+   */
+  readonly maxWarId?: number;
+}
+
+/**
+ * Request parameters for getWarsWarId operation in WarsApi.
+ * @export
+ * @interface WarsApiGetWarsWarIdRequest
+ */
+export interface WarsApiGetWarsWarIdRequest {
+  /**
+   * ID for a war
+   * @type {number}
+   * @memberof WarsApiGetWarsWarId
+   */
+  readonly warId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof WarsApiGetWarsWarId
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof WarsApiGetWarsWarId
+   */
+  readonly ifNoneMatch?: string;
+}
+
+/**
+ * Request parameters for getWarsWarIdKillmails operation in WarsApi.
+ * @export
+ * @interface WarsApiGetWarsWarIdKillmailsRequest
+ */
+export interface WarsApiGetWarsWarIdKillmailsRequest {
+  /**
+   * A valid war ID
+   * @type {number}
+   * @memberof WarsApiGetWarsWarIdKillmails
+   */
+  readonly warId: number;
+
+  /**
+   * The server name you would like data from
+   * @type {'tranquility'}
+   * @memberof WarsApiGetWarsWarIdKillmails
+   */
+  readonly datasource?: "tranquility";
+
+  /**
+   * ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @type {string}
+   * @memberof WarsApiGetWarsWarIdKillmails
+   */
+  readonly ifNoneMatch?: string;
+
+  /**
+   * Which page of results to return
+   * @type {number}
+   * @memberof WarsApiGetWarsWarIdKillmails
+   */
+  readonly page?: number;
+}
+
+/**
  * WarsApi - object-oriented interface
  * @export
  * @class WarsApi
@@ -49443,65 +55893,67 @@ export class WarsApi extends BaseAPI {
   /**
    * Return a list of wars  --- Alternate route: `/dev/wars/`  Alternate route: `/legacy/wars/`  Alternate route: `/v1/wars/`  --- This route is cached for up to 3600 seconds
    * @summary List wars
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [maxWarId] Only return wars with ID smaller than this
+   * @param {WarsApiGetWarsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof WarsApi
    */
   public getWars(
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    maxWarId?: number,
+    requestParameters: WarsApiGetWarsRequest = {},
     options?: AxiosRequestConfig
   ) {
     return WarsApiFp(this.configuration)
-      .getWars(datasource, ifNoneMatch, maxWarId, options)
+      .getWars(
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.maxWarId,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Return details about a war  --- Alternate route: `/dev/wars/{war_id}/`  Alternate route: `/legacy/wars/{war_id}/`  Alternate route: `/v1/wars/{war_id}/`  --- This route is cached for up to 3600 seconds
    * @summary Get war information
-   * @param {number} warId ID for a war
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
+   * @param {WarsApiGetWarsWarIdRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof WarsApi
    */
   public getWarsWarId(
-    warId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
+    requestParameters: WarsApiGetWarsWarIdRequest,
     options?: AxiosRequestConfig
   ) {
     return WarsApiFp(this.configuration)
-      .getWarsWarId(warId, datasource, ifNoneMatch, options)
+      .getWarsWarId(
+        requestParameters.warId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
    * Return a list of kills related to a war  --- Alternate route: `/dev/wars/{war_id}/killmails/`  Alternate route: `/legacy/wars/{war_id}/killmails/`  Alternate route: `/v1/wars/{war_id}/killmails/`  --- This route is cached for up to 3600 seconds
    * @summary List kills for a war
-   * @param {number} warId A valid war ID
-   * @param {'tranquility'} [datasource] The server name you would like data from
-   * @param {string} [ifNoneMatch] ETag from a previous request. A 304 will be returned if this matches the current ETag
-   * @param {number} [page] Which page of results to return
+   * @param {WarsApiGetWarsWarIdKillmailsRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof WarsApi
    */
   public getWarsWarIdKillmails(
-    warId: number,
-    datasource?: "tranquility",
-    ifNoneMatch?: string,
-    page?: number,
+    requestParameters: WarsApiGetWarsWarIdKillmailsRequest,
     options?: AxiosRequestConfig
   ) {
     return WarsApiFp(this.configuration)
-      .getWarsWarIdKillmails(warId, datasource, ifNoneMatch, page, options)
+      .getWarsWarIdKillmails(
+        requestParameters.warId,
+        requestParameters.datasource,
+        requestParameters.ifNoneMatch,
+        requestParameters.page,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 }

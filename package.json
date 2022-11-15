@@ -1,6 +1,6 @@
 {
   "name": "@dariusbakunas/eve-esi-client",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "OpenAPI client for @dariusbakunas/eve-esi-client",
   "author": "OpenAPI-Generator Contributors",
   "repository": {
